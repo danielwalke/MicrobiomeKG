@@ -1,0 +1,6 @@
+workspace/
+*.jar
+*.db
+*.tgz
+data/
+logs/
