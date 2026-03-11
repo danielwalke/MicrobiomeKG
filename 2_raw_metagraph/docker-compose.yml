@@ -1,0 +1,20 @@
+services:
+  neo4j-metagraph:
+    image: neo4j:latest
+    container_name: neo4j-metagraph
+    ports:
+      - "7475:7474"
+      - "7688:7687"
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./conf:/conf
+      - ./import:/import
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_PLUGINS=["apoc"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
