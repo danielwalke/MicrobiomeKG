@@ -7,7 +7,7 @@
 2.  **Created Docker Compose**: Defined `docker-compose.yml` for the target Neo4j instance (Port 7477 for HTTP, 7690 for Bolt).
 3. **Property filtering**: Identifying intresting properties for each meta node (identify_relevant_properties.py) based on the node label, properties and example property values (get_properties_markdown.py):
 `python identify_relevant_properties.py`
-4. **Filter concept metagraph based on properties**: 
+4. **Filter concept metagraph based on properties**: `python filter_metagraph.py`
 
 
 
