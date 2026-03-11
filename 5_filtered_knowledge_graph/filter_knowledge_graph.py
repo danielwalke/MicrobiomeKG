@@ -55,16 +55,18 @@ def indirect_relationship_roll_up(t_session):
 def property_roll_up(t_session):
     t_session.run(
         """
-            CALL apoc.periodic.iterate(
-            "MATCH (sAgg)<-[m1:MAPPED_TO]-(s)
-            RETURN
-                id(sAgg) AS sAggId,
-                labels(s) AS sLabels,
-                properties(s) AS sProps",
+        CALL apoc.periodic.iterate(
+            "MATCH (sAgg)<-[:MAPPED_TO]-(s)
+            UNWIND keys(properties(s)) AS key
+            RETURN 
+                id(sAgg) AS sAggId, 
+                head(labels(s)) + '__' + key AS newKey, 
+                collect(DISTINCT s[key]) AS propValues",
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
-            SET sAgg += apoc.map.fromPairs([key IN keys(sProps) | [head(sLabels) + '__' + key, sProps[key]]])",
+            CALL apoc.create.setProperty(sAgg, newKey, propValues) YIELD node
+            RETURN node",
             {batchSize: 100000, parallel: false}
-            )
+        )
         """
     )
 
@@ -73,7 +75,7 @@ def direct_relationship_roll_up(t_session):
         """
         CALL apoc.periodic.iterate(
             "MATCH (sAgg)<-[:MAPPED_TO]-(s)-[r]-(t)
-            WHERE id(sAgg) <> id(t) AND id(s) <> id(sAgg) AND type(r) <> 'MAPPED_TO'
+            WHERE id(sAgg) <> id(t) AND id(s) <> id(sAgg) AND type(r) <> 'MAPPED_TO' AND NOT (t)-[:MAPPED_TO]->()
             RETURN 
                 CASE WHEN id(startNode(r)) = id(s) THEN id(sAgg) ELSE id(t) END AS newStartId,
                 CASE WHEN id(endNode(r)) = id(s) THEN id(sAgg) ELSE id(t) END AS newEndId,
@@ -106,13 +108,12 @@ def bridge_node_roll_up(t_session):
         """
     )
 
-def delete_all_nodes_that_only_have_mapped_to_edge(t_session):
+def delete_all_source_nodes_of_mapped_to(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
             "MATCH (n)-[:MAPPED_TO]->()
-             WHERE apoc.node.degree(n) = apoc.node.degree(n, 'MAPPED_TO')
-             RETURN n",
+             RETURN DISTINCT n",
             "DETACH DELETE n",
             {batchSize: 100000, parallel: false}
         )
@@ -128,17 +129,18 @@ def run_migration(args):
     target_driver = GraphDatabase.driver(args.turi, auth=(args.tuser, args.tpass))
 
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
-        # filter_properties(m_session, t_session)
-        # indirect_relationship_roll_up(t_session)
-        # direct_relationship_roll_up(t_session)
-        # bridge_node_roll_up(t_session)
-        # property_roll_up(t_session)
-        delete_all_nodes_that_only_have_mapped_to_edge(t_session)
+        filter_properties(m_session, t_session)
+        indirect_relationship_roll_up(t_session)
+        direct_relationship_roll_up(t_session)
+        bridge_node_roll_up(t_session)
+        property_roll_up(t_session)
+        delete_all_source_nodes_of_mapped_to(t_session)
 
     target_driver.close()
     metagraph_driver.close()
 
 if __name__ == "__main__":
+    ## TODO Test again -> verfiication and scaling up
     parser = argparse.ArgumentParser(description="Migrate and filter Neo4j graph")
     parser.add_argument("--muri", default="bolt://localhost:7690", help="Metagraph Bolt URI")
     parser.add_argument("--muser", default="neo4j", help="Metagraph username")
