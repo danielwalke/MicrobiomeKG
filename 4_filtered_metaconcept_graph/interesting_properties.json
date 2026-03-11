@@ -1,0 +1,148 @@
+{
+    "GeneOntology_Subset": [],
+    "metadata": [
+        "__id",
+        "license",
+        "datasource_id",
+        "export_version",
+        "export_properties_hash",
+        "type",
+        "datasource_oai_id",
+        "version",
+        "license_url"
+    ],
+    "InterPro_DBInfo": [],
+    "PROTEIN": [
+        "__id",
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "PUBLICATION": [
+        "pmid"
+    ],
+    "InterPro_ConservedSite": [],
+    "GeneOntology_Typedef": [
+        "id",
+        "name",
+        "namespace",
+        "xrefs",
+        "is_class_level",
+        "is_transitive",
+        "is_metadata_tag"
+    ],
+    "InterPro_ActiveSite": [],
+    "MassSpectrometryOntology_Typedef": [
+        "id",
+        "name",
+        "def",
+        "xrefs",
+        "is_transitive"
+    ],
+    "InterPro_Domain": [],
+    "MassSpectrometryOntology_Term": [
+        "id",
+        "name",
+        "def",
+        "xrefs",
+        "alt_ids",
+        "created_by",
+        "obsolete",
+        "creation_date",
+        "subsets",
+        "property_values",
+        "namespace",
+        "comment"
+    ],
+    "InterPro_Family": [
+        "id",
+        "name",
+        "structure_db_links",
+        "members_names",
+        "external_docs",
+        "members",
+        "key_species_protein_counts",
+        "key_species",
+        "members_protein_counts",
+        "protein_count",
+        "key_species_ncbi_taxids",
+        "short_name"
+    ],
+    "GeneOntology_Idspace": [],
+    "ENZYME_Enzyme": [
+        "official_name",
+        "alternative_names",
+        "catalyticActivities",
+        "comments"
+    ],
+    "InterPro_HomologousSuperfamily": [
+        "id",
+        "name",
+        "structure_db_links",
+        "members_names",
+        "external_docs",
+        "members",
+        "key_species_protein_counts",
+        "key_species",
+        "protein_count",
+        "members_protein_counts",
+        "short_name",
+        "key_species_ncbi_taxids"
+    ],
+    "PROTEIN_DOMAIN": [],
+    "InterPro_PTM": [
+        "name",
+        "short_name",
+        "members_names",
+        "members",
+        "external_docs",
+        "structure_db_links"
+    ],
+    "GeneOntology_Term": [
+        "id",
+        "name",
+        "def",
+        "alt_ids",
+        "xrefs",
+        "namespace",
+        "subsets",
+        "property_values"
+    ],
+    "GeneOntology_SynonymType": [],
+    "ENZYME_Protein": [
+        "name",
+        "accession"
+    ],
+    "InterPro_Classification": [
+        "description",
+        "id",
+        "type",
+        "category"
+    ],
+    "InterPro_Repeat": [
+        "id",
+        "name",
+        "structure_db_links",
+        "members_names",
+        "external_docs",
+        "members",
+        "key_species_protein_counts",
+        "key_species",
+        "members_protein_counts",
+        "protein_count",
+        "key_species_ncbi_taxids",
+        "short_name"
+    ],
+    "InterPro_BindingSite": [],
+    "InterPro_Publication": [],
+    "MassSpectrometryOntology_Header": [
+        "format_version",
+        "saved_by",
+        "default_namespace",
+        "date",
+        "data_version",
+        "remarks",
+        "ontology"
+    ],
+    "GeneOntology_Header": []
+}
