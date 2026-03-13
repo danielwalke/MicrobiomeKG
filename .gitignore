@@ -4,3 +4,9 @@ workspace/
 *.tgz
 data/
 logs/
+.env
+.venv/
+.venv
+*.png
+*.json
+__pycache__
