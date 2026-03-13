@@ -6,7 +6,13 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
-from get_properties_markdown import extract_schema_with_samples
+
+import importlib
+
+module_path = "4_filtered_metaconcept_graph.get_properties_markdown"
+my_module = importlib.import_module(module_path)
+extract_schema_with_samples = my_module.extract_schema_with_samples
+
 from tqdm import tqdm
 
 class ExtractionState(TypedDict):
