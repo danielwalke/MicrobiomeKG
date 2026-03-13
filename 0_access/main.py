@@ -2,6 +2,8 @@ import json
 import subprocess
 import datetime
 import questionary
+import sys
+import os
 
 def generate_config(selected_sources):
     config = {
@@ -24,6 +26,19 @@ def generate_config(selected_sources):
 
 def main():
     ## Config
+    print("Fetching and installing requirements")
+    subprocess.run(["""
+                    curl -s https://api.github.com/repos/BioDWH2/BioDWH2/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO]
+                    """])
+    subprocess.run(["""
+                    curl -s https://api.github.com/repos/BioDWH2/BioDWH2-Neo4j-Server/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO
+                    """])
+    venv_dir = ".venv"
+    python_bin = os.path.join(venv_dir, "bin", "python")
+    pip_bin = os.path.join(venv_dir, "bin", "pip")
+
+    subprocess.run([sys.executable, "-m", "venv", venv_dir])
+    subprocess.run([pip_bin, "install", "-r", "requirements.txt"])
     data_sources = [
         "ADReCS", "BasicFormalOntology", "BRENDA", "CanadianNutrientFile",
         "CancerDrugsDB", "ClinicalTrials.gov", "CMAUP", "DGIdb",
@@ -50,16 +65,16 @@ def main():
         return
     ## Step 1
     print("\n--- Creating workspace ---")
-    subprocess.run(['java -jar ~/git/MicrobiomeKG/1_raw_knowledge_graph/BioDWH2-v0.6.8.jar -c ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
+    subprocess.run(['java -jar ~/git/MicrobiomeKG/BioDWH2-v0.6.8.jar -c ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
     
     print("\n--- Changing config based on user input ---")
     generate_config(selected_sources)
     print("\n--- Updating workspace ---")
-    subprocess.run(['java -jar ~/git/MicrobiomeKG/1_raw_knowledge_graph/BioDWH2-v0.6.8.jar -u ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
+    subprocess.run(['java -jar ~/git/MicrobiomeKG/BioDWH2-v0.6.8.jar -u ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
     print("\n--- Creating raw neo4j database workspace ---")
-    subprocess.run(['java -jar ~/git/MicrobiomeKG/1_raw_knowledge_graph/BioDWH2-Neo4j-Server-v1.3.2.jar --create ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
+    subprocess.run(['java -jar ~/git/MicrobiomeKG/BioDWH2-Neo4j-Server-v1.3.2.jar --create ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
     print("\n--- Starting raw neo4j database workspace ---")
-    subprocess.run(['java -jar ~/git/MicrobiomeKG/1_raw_knowledge_graph/BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
+    subprocess.run(['java -jar ~/git/MicrobiomeKG/BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], capture_output=True, text=True)
     print("\nRaw Knowledge Graph Link: http://localhost:7474/browser. Pick port bolt://localhost:8083 without any username or password.")
 
     ## Step 2
