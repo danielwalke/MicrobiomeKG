@@ -27,12 +27,17 @@ def generate_config(selected_sources):
 def main():
     ## Config
     print("Fetching and installing requirements")
-    subprocess.run(["""
-                    curl -s https://api.github.com/repos/BioDWH2/BioDWH2/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO]
-                    """])
-    subprocess.run(["""
-                    curl -s https://api.github.com/repos/BioDWH2/BioDWH2-Neo4j-Server/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO
-                    """])
+    subprocess.run(
+    """curl -s https://api.github.com/repos/BioDWH2/BioDWH2/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO""",
+    shell=True,
+    check=True
+)
+
+    subprocess.run(
+        """curl -s https://api.github.com/repos/BioDWH2/BioDWH2-Neo4j-Server/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO""",
+        shell=True,
+        check=True
+    )
     venv_dir = ".venv"
     python_bin = os.path.join(venv_dir, "bin", "python")
     pip_bin = os.path.join(venv_dir, "bin", "pip")
