@@ -7,6 +7,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
 from get_properties_markdown import extract_schema_with_samples
+from tqdm import tqdm
 
 class ExtractionState(TypedDict):
     messages: Annotated[list, add_messages]
@@ -101,7 +102,8 @@ if __name__ == "__main__":
 
     relevant_props_dict = dict()
     
-    for label in schema_dict:
+    for label in tqdm(schema_dict, desc="Iterating over labels"):
+        print(label)
         markdown_table = schema_dict.get(label) #GeneOntology_Header
         
         try:
