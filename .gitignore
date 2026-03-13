@@ -9,3 +9,4 @@ logs/
 *.png
 *.json
 __pycache__
+*.jar
