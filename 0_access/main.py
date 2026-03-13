@@ -65,14 +65,14 @@ def main():
 
     ## Step 2
     print("\n--- Executing Metagraph Creation Script ---")
-    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/2_raw_metagraph/docker-compose.yml up -d "],shell=True, check=True)
+    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/2_raw_metagraph/docker-compose.yml up -d --wait"],shell=True, check=True)
     subprocess.run(["python -m 2_raw_metagraph.extract_metagraph --suri bolt://localhost:8083 --suser neo4j --spass neo4j --turi bolt://localhost:7688 --tuser neo4j --tpass ''"],shell=True, check=True)
     print("\n You can access the metagraph here: http://localhost:7475. Pick port bolt://localhost:7688 without any username or password.")
 
 
     ## Step 3
     print("\n--- Executing Metaconceptgraph Creation Script ---")
-    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/3_metaconcept_graph/docker-compose.yml up -d "], shell=True, check=True)
+    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/3_metaconcept_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m 3_metaconcept_graph.extract_concepts --suri bolt://localhost:7688 --suser neo4j --spass neo4j --turi bolt://localhost:7689 --tuser neo4j --tpass ''"],shell=True,
         check=True)
     print("\n You can access the metaconceptgraph here: http://localhost:7476. Pick port bolt://localhost:7689 without any username or password.")
@@ -83,13 +83,13 @@ def main():
     print("\n--- Identifying relevant properties from the metagraph based on your topics ---")
     subprocess.run(["python -m 4_filtered_metaconcept_graph.identify_relevant_properties.py"], shell=True, check=True)
     print("\n--- Filtering Metaconceptgraph based on selected intresting properties ---")
-    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/4_filtered_metaconcept_graph/docker-compose.yml up -d"], shell=True, check=True)
+    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/4_filtered_metaconcept_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m 4_filtered_metaconcept_graph.filter_metagraph"], shell=True, check=True)
     print("\n You can access the filtered metaconceptgraph here: http://localhost:7477. Pick port bolt://localhost:7690 without any username or password.")
 
     ## Step 5
     print("\n--- Refining the raw graph based on your metagraph ---")
-    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/5_filtered_knowledge_graph/docker-compose.yml up -d"], shell=True, check=True)
+    subprocess.run(["docker compose -f ~/git/MicrobiomeKG/5_filtered_knowledge_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m 5_filtered_knowledge_graph.filter_knowledge_graph"], shell=True, check=True)
     print("\n You can access the filtered refined knowledge graph here: http://localhost:7478. Pick port bolt://localhost:7691 without any username or password.")
 if __name__ == "__main__":
