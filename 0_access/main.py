@@ -73,7 +73,7 @@ def main():
     ## Step 3
     print("\n--- Executing Metaconceptgraph Creation Script ---")
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/3_metaconcept_graph/docker-compose.yml up -d "], shell=True, check=True)
-    subprocess.run(["python -m 3_metaconcept_graph.extract_concepts --suri bolt://localhost:7688 --suser neo4j --spass neo4j --turi bolt://localhost:7689 --tuser neo4j --tpass "],shell=True,
+    subprocess.run(["python -m 3_metaconcept_graph.extract_concepts --suri bolt://localhost:7688 --suser neo4j --spass neo4j --turi bolt://localhost:7689 --tuser neo4j --tpass ''"],shell=True,
         check=True)
     print("\n You can access the metaconceptgraph here: http://localhost:7476. Pick port bolt://localhost:7689 without any username or password.")
 
