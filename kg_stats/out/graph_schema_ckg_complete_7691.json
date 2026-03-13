@@ -1,0 +1,1732 @@
+{
+  "nodeTypes": [
+    {
+      "labels": [
+        "GeneOntology_Subset"
+      ],
+      "labelString": "GeneOntology_Subset",
+      "count": 22,
+      "properties": []
+    },
+    {
+      "labels": [
+        "metadata"
+      ],
+      "labelString": "metadata",
+      "count": 4,
+      "properties": [
+        {
+          "name": "export_version",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "type",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "export_properties_hash",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "datasource_id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "version",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "datasource_oai_id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "license_url",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "license",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_DBInfo"
+      ],
+      "labelString": "InterPro_DBInfo",
+      "count": 18,
+      "properties": []
+    },
+    {
+      "labels": [
+        "PROTEIN"
+      ],
+      "labelString": "PROTEIN",
+      "count": 238346,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "names",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "ENZYME_Protein__name",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "ids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__mapped",
+          "types": [
+            "bool"
+          ]
+        },
+        {
+          "name": "ENZYME_Protein__accession",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "PUBLICATION"
+      ],
+      "labelString": "PUBLICATION",
+      "count": 63250,
+      "properties": [
+        {
+          "name": "pmid",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_ConservedSite"
+      ],
+      "labelString": "InterPro_ConservedSite",
+      "count": 768,
+      "properties": []
+    },
+    {
+      "labels": [
+        "GeneOntology_Typedef"
+      ],
+      "labelString": "GeneOntology_Typedef",
+      "count": 11,
+      "properties": [
+        {
+          "name": "namespace",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "is_class_level",
+          "types": [
+            "bool"
+          ]
+        },
+        {
+          "name": "xrefs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "is_metadata_tag",
+          "types": [
+            "bool"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "is_transitive",
+          "types": [
+            "bool"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_ActiveSite"
+      ],
+      "labelString": "InterPro_ActiveSite",
+      "count": 133,
+      "properties": []
+    },
+    {
+      "labels": [
+        "MassSpectrometryOntology_Typedef"
+      ],
+      "labelString": "MassSpectrometryOntology_Typedef",
+      "count": 11,
+      "properties": [
+        {
+          "name": "xrefs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "def",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "is_transitive",
+          "types": [
+            "bool"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "MassSpectrometryOntology_Term"
+      ],
+      "labelString": "MassSpectrometryOntology_Term",
+      "count": 4036,
+      "properties": [
+        {
+          "name": "subsets",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "obsolete",
+          "types": [
+            "bool"
+          ]
+        },
+        {
+          "name": "created_by",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "namespace",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "comment",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "xrefs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "alt_ids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "def",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "property_values",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "creation_date",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_Family"
+      ],
+      "labelString": "InterPro_Family",
+      "count": 27308,
+      "properties": [
+        {
+          "name": "external_docs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_names",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_ncbi_taxids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "structure_db_links",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "protein_count",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "short_name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "key_species",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "GeneOntology_Idspace"
+      ],
+      "labelString": "GeneOntology_Idspace",
+      "count": 13,
+      "properties": []
+    },
+    {
+      "labels": [
+        "ENZYME_Enzyme"
+      ],
+      "labelString": "ENZYME_Enzyme",
+      "count": 6951,
+      "properties": [
+        {
+          "name": "catalyticActivities",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "comments",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "official_name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "alternative_names",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_HomologousSuperfamily"
+      ],
+      "labelString": "InterPro_HomologousSuperfamily",
+      "count": 3510,
+      "properties": [
+        {
+          "name": "external_docs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_names",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_ncbi_taxids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "structure_db_links",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "protein_count",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "short_name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "key_species",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "PROTEIN_DOMAIN"
+      ],
+      "labelString": "PROTEIN_DOMAIN",
+      "count": 19276,
+      "properties": []
+    },
+    {
+      "labels": [
+        "InterPro_PTM"
+      ],
+      "labelString": "InterPro_PTM",
+      "count": 17,
+      "properties": [
+        {
+          "name": "external_docs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_names",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "structure_db_links",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "short_name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "GeneOntology_Term"
+      ],
+      "labelString": "GeneOntology_Term",
+      "count": 48252,
+      "properties": [
+        {
+          "name": "subsets",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "namespace",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "xrefs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "alt_ids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "def",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "property_values",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "GeneOntology_SynonymType"
+      ],
+      "labelString": "GeneOntology_SynonymType",
+      "count": 2,
+      "properties": []
+    },
+    {
+      "labels": [
+        "InterPro_Classification"
+      ],
+      "labelString": "InterPro_Classification",
+      "count": 5633,
+      "properties": [
+        {
+          "name": "description",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "category",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "type",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_Repeat"
+      ],
+      "labelString": "InterPro_Repeat",
+      "count": 395,
+      "properties": [
+        {
+          "name": "external_docs",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members_names",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_protein_counts",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "key_species_ncbi_taxids",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "members",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "id",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "structure_db_links",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "protein_count",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "short_name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "name",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "key_species",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "InterPro_BindingSite"
+      ],
+      "labelString": "InterPro_BindingSite",
+      "count": 82,
+      "properties": []
+    },
+    {
+      "labels": [
+        "MassSpectrometryOntology_Header"
+      ],
+      "labelString": "MassSpectrometryOntology_Header",
+      "count": 1,
+      "properties": [
+        {
+          "name": "saved_by",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "date",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "default_namespace",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "ontology",
+          "types": [
+            "str"
+          ]
+        },
+        {
+          "name": "data_version",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "remarks",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "format_version",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "labels": [
+        "GeneOntology_Header"
+      ],
+      "labelString": "GeneOntology_Header",
+      "count": 1,
+      "properties": []
+    }
+  ],
+  "edgeTypes": [
+    {
+      "type": "GeneOntology_HAS_SUBSET",
+      "sources": [
+        [
+          "GeneOntology_Header"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Subset"
+        ]
+      ],
+      "count": 22,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_HOLDS_OVER_CHAIN",
+      "sources": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "count": 1,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "annotation",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_CHILD_OF",
+      "sources": [
+        [
+          "InterPro_Family"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Family"
+        ]
+      ],
+      "count": 4784,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_IS_A",
+      "sources": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "count": 58799,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_IS_A",
+      "sources": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "count": 3,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_REPLACED_BY",
+      "sources": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "count": 1929,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_HAS_IDSPACE",
+      "sources": [
+        [
+          "GeneOntology_Header"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Idspace"
+        ]
+      ],
+      "count": 13,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MassSpectrometryOntology_HAS_RELATIONSHIP",
+      "sources": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "count": 2645,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "rel_id",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_TRANSITIVE_OVER",
+      "sources": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "count": 1,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MassSpectrometryOntology_IS_A",
+      "sources": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "count": 4265,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_Family"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 21363,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_ConservedSite"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 822,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_BindingSite"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 91,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_ActiveSite"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 127,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_Repeat"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 86,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_HomologousSuperfamily"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 1550,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "InterPro_PTM"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 5,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_HAS_RELATIONSHIP",
+      "sources": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "count": 16447,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "rel_id",
+          "types": [
+            "str"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_INVERSE_OF",
+      "sources": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Typedef"
+        ]
+      ],
+      "count": 1,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_CONSIDER",
+      "sources": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "count": 3469,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_HAS_SYNONYM_TYPE",
+      "sources": [
+        [
+          "GeneOntology_Header"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_SynonymType"
+        ]
+      ],
+      "count": 2,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MassSpectrometryOntology_REPLACED_BY",
+      "sources": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "MassSpectrometryOntology_Term"
+        ]
+      ],
+      "count": 19,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "GeneOntology_DISJOINT_FROM",
+      "sources": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "targets": [
+        [
+          "GeneOntology_Term"
+        ]
+      ],
+      "count": 29,
+      "properties": [
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "PROTEIN_DOMAIN"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 105396,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_CHILD_OF",
+      "sources": [
+        [
+          "PROTEIN_DOMAIN"
+        ]
+      ],
+      "targets": [
+        [
+          "PROTEIN_DOMAIN"
+        ]
+      ],
+      "count": 6586,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ENZYME_HAS_XREF",
+      "sources": [
+        [
+          "ENZYME_Enzyme"
+        ]
+      ],
+      "targets": [
+        [
+          "PROTEIN"
+        ]
+      ],
+      "count": 256068,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_HomologousSuperfamily"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 10914,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_Family"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 59682,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_Repeat"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 850,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_ConservedSite"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 2947,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_BindingSite"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 367,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_ActiveSite"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 537,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_REFERENCE",
+      "sources": [
+        [
+          "InterPro_PTM"
+        ]
+      ],
+      "targets": [
+        [
+          "PUBLICATION"
+        ]
+      ],
+      "count": 49,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "InterPro_HAS_CLASS",
+      "sources": [
+        [
+          "PROTEIN_DOMAIN"
+        ]
+      ],
+      "targets": [
+        [
+          "InterPro_Classification"
+        ]
+      ],
+      "count": 6156,
+      "properties": [
+        {
+          "name": "target_labels",
+          "types": [
+            "list"
+          ]
+        },
+        {
+          "name": "__id",
+          "types": [
+            "int"
+          ]
+        },
+        {
+          "name": "source_labels",
+          "types": [
+            "list"
+          ]
+        }
+      ]
+    }
+  ]
+}
