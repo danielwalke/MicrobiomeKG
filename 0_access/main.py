@@ -60,8 +60,7 @@ def main():
     subprocess.run(['java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --create ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], shell=True,
         check=True)
     print("\n--- Starting raw neo4j database workspace ---")
-    subprocess.run(['java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], shell=True,
-        check=True)
+    subprocess.Popen(['java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], shell=True)
     print("\nRaw Knowledge Graph Link: http://localhost:7474/browser. Pick port bolt://localhost:8083 without any username or password.")
 
     ## Step 2
