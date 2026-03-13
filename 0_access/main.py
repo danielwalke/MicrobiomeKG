@@ -84,7 +84,7 @@ def main():
     ## Step 2
     print("\n--- Executing Metagraph Creation Script ---")
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/2_raw_metagraph/docker-compose.yml up -d "],shell=True, check=True)
-    subprocess.run(["python -m 2_raw_metagraph.extract_metagraph --suri bolt://localhost:8083 --suser neo4j --spass neo4j --turi bolt://localhost:7688 --tuser neo4j --tpass "]),shell=True, check=True
+    subprocess.run(["python -m 2_raw_metagraph.extract_metagraph --suri bolt://localhost:8083 --suser neo4j --spass neo4j --turi bolt://localhost:7688 --tuser neo4j --tpass "],shell=True, check=True)
     print("\n You can access the metagraph here: http://localhost:7475. Pick port bolt://localhost:7688 without any username or password.")
 
 
