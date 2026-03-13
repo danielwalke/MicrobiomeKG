@@ -5,24 +5,6 @@ import questionary
 import sys
 import os
 
-def generate_config(selected_sources):
-    config = {
-        "version": 1,
-        "creationDateTime": datetime.datetime.now().isoformat(),
-        "dataSourceIds": selected_sources,
-        "outputFormatIds": ["GRAPHML"],
-        "skipMetaGraphGeneration": False,
-        "globalProperties": {
-            "speciesFilter": [9606]
-        },
-        "dataSourceProperties": {}
-    }
-    
-    for source in selected_sources:
-        config["dataSourceProperties"][source] = {"forceExport": True}
-        
-    with open("~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace/config.json", "w") as f:
-        json.dump(config, f, indent=2)
 
 def main():
     ## Config
@@ -69,7 +51,8 @@ def main():
         check=True)
     
     print("\n--- Changing config based on user input ---")
-    generate_config(selected_sources)
+    for selected_source in selected_sources:
+        subprocess.run([f"java -jar BioDWH2-v0.6.8.jar --add-data-source ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace {selected_source}"],shell=True, check=True)
     print("\n--- Updating workspace ---")
     subprocess.run(['java -jar BioDWH2-v0.6.8.jar -u ~/git/MicrobiomeKG/1_raw_knowledge_graph/workspace'], shell=True,
         check=True)
