@@ -2,6 +2,7 @@
 
 ## Actions taken
 
+0. **Integration of NCBI taxonomy from MPA**: Might integrate the NCBI taxonomy with MAPPED_TO connections to the raw graph as an optional module
 1. **Found desired databases list**: `InterPro`, `Gene Ontology (GO)`, `Expasy ENZYME`, `Mass Spectrometry Ontology` at `desired_dbs.csv`.
 2. **Downloaded JAR files**:
    - `BioDWH2-v0.6.8.jar` downloaded from BioDWH2 releases. (curl -s https://api.github.com/repos/BioDWH2/BioDWH2/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs curl -LO)
