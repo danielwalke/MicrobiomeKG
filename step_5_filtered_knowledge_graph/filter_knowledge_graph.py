@@ -130,10 +130,11 @@ def run_migration(args):
 
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
         filter_properties(m_session, t_session)
+        property_roll_up(t_session)
         indirect_relationship_roll_up(t_session)
         direct_relationship_roll_up(t_session)
         bridge_node_roll_up(t_session)
-        property_roll_up(t_session)
+        
         delete_all_source_nodes_of_mapped_to(t_session)
 
     target_driver.close()
@@ -149,6 +150,6 @@ if __name__ == "__main__":
     parser.add_argument("--turi", default="bolt://localhost:7691", help="Target Bolt URI")
     parser.add_argument("--tuser", default="neo4j", help="Target username")
     parser.add_argument("--tpass", default="", help="Target password")
-    
+    ## TODO missing MAPPED_TO Props: MATCH (n:PROTEIN_DOMAIN {__id: 52889740513493}) RETURN n
     args = parser.parse_args()
     run_migration(args)
