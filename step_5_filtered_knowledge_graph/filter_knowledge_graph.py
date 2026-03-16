@@ -58,10 +58,8 @@ def property_roll_up(t_session):
         CALL apoc.periodic.iterate(
             "MATCH (sAgg)<-[:MAPPED_TO]-(s)
             UNWIND keys(properties(s)) AS key
-            RETURN 
-                id(sAgg) AS sAggId, 
-                head(labels(s)) + '__' + key AS newKey, 
-                collect(DISTINCT s[key]) AS propValues",
+            WITH id(sAgg) AS sAggId, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
+            RETURN sAggId, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues)) AS propValues",
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
             CALL apoc.create.setProperty(sAgg, newKey, propValues) YIELD node
             RETURN node",
@@ -120,6 +118,8 @@ def delete_all_source_nodes_of_mapped_to(t_session):
         """
     )
 
+## TODO apoc.coll.toSet(arrayProps)
+
 def remove_items(main_list, items_to_remove):
     remove_set = set(items_to_remove)
     return [item for item in main_list if item not in remove_set]
@@ -134,14 +134,13 @@ def run_migration(args):
         indirect_relationship_roll_up(t_session)
         direct_relationship_roll_up(t_session)
         bridge_node_roll_up(t_session)
-        
         delete_all_source_nodes_of_mapped_to(t_session)
 
     target_driver.close()
     metagraph_driver.close()
 
 if __name__ == "__main__":
-    ## TODO Test again -> verfiication and scaling up
+    ## TODO: Bug: MAPPED_TO props sometimes not correctly rolled up? e.g. INTERPRO_DOMAIN -> PROTEIN_DOMAIN
     parser = argparse.ArgumentParser(description="Migrate and filter Neo4j graph")
     parser.add_argument("--muri", default="bolt://localhost:7690", help="Metagraph Bolt URI")
     parser.add_argument("--muser", default="neo4j", help="Metagraph username")
@@ -150,6 +149,6 @@ if __name__ == "__main__":
     parser.add_argument("--turi", default="bolt://localhost:7691", help="Target Bolt URI")
     parser.add_argument("--tuser", default="neo4j", help="Target username")
     parser.add_argument("--tpass", default="", help="Target password")
-    ## TODO missing MAPPED_TO Props: MATCH (n:PROTEIN_DOMAIN {__id: 52889740513493}) RETURN n
+    
     args = parser.parse_args()
     run_migration(args)
