@@ -3,9 +3,9 @@ import shutil
 import sys
 
 def clone_biodwh2_neo4j(source_data_dir, target_project_dir):
-    if os.geteuid() != 0:
-        print("Run with sudo")
-        sys.exit(1)
+    # if os.geteuid() != 0:
+    #     print("Run with sudo")
+    #     sys.exit(1)
 
     os.makedirs(target_project_dir, exist_ok=True)
     target_data_dir = os.path.join(target_project_dir, 'data')
