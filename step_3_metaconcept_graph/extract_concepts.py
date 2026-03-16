@@ -36,6 +36,7 @@ def migrate(source_driver, target_driver):
     print(f"  {len(nodes)} nodes, {len(rels)} relationships found.")
 
     with target_driver.session() as t_sess:
+        t_sess.run("MATCH (n) DETACH DELETE n")
 
         print("Creating nodes in target …")
         for node in nodes:
