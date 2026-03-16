@@ -86,7 +86,7 @@ def main():
 
     ## Step 5
     print("\n--- Refining the raw graph based on your metagraph ---")
-    subprocess.run(["sudo python3 step_5_filtered_knowledge_graph/clone_kg.py step_1_raw_knowledge_graph/workspace/neo4j/neo4j.db/data/ step_5_filtered_knowledge_graph/"], shell=True, check=True)
+    subprocess.run(["sudo python3 step_5_filtered_knowledge_graph/clone_kg.py step_1_raw_knowledge_graph/workspace/neo4j/neo4j.db/data/ step_5_filtered_knowledge_graph/"], check=True)
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_5_filtered_knowledge_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m step_5_filtered_knowledge_graph.filter_knowledge_graph"], shell=True, check=True)
     print("\n You can access the filtered refined knowledge graph here: http://localhost:7478. Pick port bolt://localhost:7691 without any username or password.")
