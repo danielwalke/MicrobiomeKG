@@ -2,6 +2,7 @@ services:
   neo4j-metagraph:
     image: neo4j:latest
     container_name: filtered_knowledge_graph
+    user: "7474:7474"
     ports:
       - "7478:7474"
       - "7691:7687"
