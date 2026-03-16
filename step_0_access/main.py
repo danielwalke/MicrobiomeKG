@@ -42,9 +42,6 @@ def main():
         choices=data_sources
     ).ask()
 
-    if not selected_sources:
-        print("No data sources selected. Exiting.")
-        return
     ## Step 1
     print("\n--- Creating workspace ---")
     subprocess.run(['java -jar BioDWH2-v0.6.8.jar -c ~/git/MicrobiomeKG/step_1_raw_knowledge_graph/workspace'], shell=True,
@@ -81,7 +78,7 @@ def main():
     ## Step 4
     ## TODO topic selection
     print("\n--- Identifying relevant properties from the metagraph based on your topics ---")
-    subprocess.run(["python -m step_4_filtered_metaconcept_graph.identify_relevant_properties.py"], shell=True, check=True)
+    subprocess.run(["python -m step_4_filtered_metaconcept_graph.identify_relevant_properties"], shell=True, check=True)
     print("\n--- Filtering Metaconceptgraph based on selected intresting properties ---")
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_4_filtered_metaconcept_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m step_4_filtered_metaconcept_graph.filter_metagraph"], shell=True, check=True)
@@ -89,6 +86,7 @@ def main():
 
     ## Step 5
     print("\n--- Refining the raw graph based on your metagraph ---")
+    subprocess.run(["sudo python3 step_5_filtered_knowledge_graph/clone_kg.py 1_raw_knowledge_graph/workspace/neo4j/neo4j.db/data/step_5_filtered_knowledge_graph/"], shell=True, check=True)
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_5_filtered_knowledge_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m step_5_filtered_knowledge_graph.filter_knowledge_graph"], shell=True, check=True)
     print("\n You can access the filtered refined knowledge graph here: http://localhost:7478. Pick port bolt://localhost:7691 without any username or password.")
