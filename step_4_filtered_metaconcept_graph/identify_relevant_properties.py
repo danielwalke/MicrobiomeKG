@@ -71,9 +71,14 @@ def create_extraction_graph(model_name, api_key, base_url):
 def extract_validated_keys(markdown_content, topics, all_props, api_key, base_url, model_name, max_retries=3):
     graph = create_extraction_graph(model_name, api_key, base_url)
     
-    system_prompt = "You are an API that extracts relevant property keys based on topics and the label in the markdown. You must return a JSON object with a single key 'properties' containing a list of strings. The strings must perfectly match the Property Key column from the provided table."
+    system_prompt = """
+    You are an API that extracts relevant property keys for a given node label based on the provided markdown text. 
+    Extract properties that have a clear or moderate relevance to the topics discussed in the text and remove any properties that might yield redundant information. 
+    If you extract any properties, your final list must include at least one property key that represents a name or identifier to ensure the entity can be searched via the web.
+    You must return a JSON object with a single key "properties" containing a list of strings. Every string in this list must perfectly match a value from the "Property Key" column in the provided table.
+    """
     user_prompt = f"Topics: {topics}\n\nMarkdown Data:\n{markdown_content}"
-    
+    print(markdown_content)
     initial_state = {
         "messages": [
             SystemMessage(content=system_prompt),
@@ -93,11 +98,12 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     else:
         raise ValueError("Failed to extract valid keys within retry limit.")
 
-if __name__ == "__main__":
+def extract_relevant_properties_as_json(schema_dict, all_props, output_file="interesting_properties.json"):
+
     load_dotenv(find_dotenv())
-    topics = "proteomics, microbiome"
-    schema_dict, all_props = extract_schema_with_samples()
+    topics = "I want a knowledge graph for proteome, metaproteome and microbiome research with associated literature research and sequencing anylysis and associated treatments"
     
+
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
     custom_model = "qwen3-235b-a22b"
@@ -117,8 +123,18 @@ if __name__ == "__main__":
                 custom_base_url, 
                 custom_model
             )
+            if not valid_keys:
+                continue
             relevant_props_dict[label] = valid_keys
         except Exception as e:
             print(e)
-    with open("interesting_properties.json", 'w', encoding='utf-8') as f:
+    ## TODO run this and now it should also eclude node props -> but probably need to remove it in the actual filtering
+    with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(relevant_props_dict, f, indent=4)
+
+if __name__ == "__main__":
+    port = 8083
+    user = "neo4j"
+    password = "test"       
+    schema_dict, all_props = extract_schema_with_samples(port, user, password, only_concept_nodes = False)
+    extract_relevant_properties_as_json(schema_dict, all_props, output_file="interesting_properties.json")
