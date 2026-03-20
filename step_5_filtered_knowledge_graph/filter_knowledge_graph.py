@@ -5,7 +5,8 @@ def filter_properties(m_session, t_session):
     query = """CALL db.schema.nodeTypeProperties()
                     YIELD nodeLabels, propertyName
                     UNWIND nodeLabels AS label
-                    RETURN label, collect(DISTINCT propertyName) AS properties"""
+                    RETURN label, collect(DISTINCT propertyName) AS properties
+            """
     metagraph_label_props_results = m_session.run(query)
     metagraph_schema_dict = {record["label"]: record["properties"] for record in metagraph_label_props_results if record["label"]}
 
@@ -47,12 +48,13 @@ def indirect_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 100000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     )
 
 def property_roll_up(t_session):
+    ## TODO TEST AGAIN
     t_session.run(
         """
         CALL apoc.periodic.iterate(
@@ -63,7 +65,7 @@ def property_roll_up(t_session):
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
             CALL apoc.create.setProperty(sAgg, newKey, propValues) YIELD node
             RETURN node",
-            {batchSize: 100000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     )
@@ -86,7 +88,7 @@ def direct_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 100000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     )
@@ -101,7 +103,7 @@ def bridge_node_roll_up(t_session):
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
              SET new_r.source_labels = dbLabels",
-            {batchSize: 100000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     )
@@ -113,7 +115,7 @@ def delete_all_source_nodes_of_mapped_to(t_session):
             "MATCH (n)-[:MAPPED_TO]->()
              RETURN DISTINCT n",
             "DETACH DELETE n",
-            {batchSize: 100000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     )
