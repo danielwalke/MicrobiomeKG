@@ -7,10 +7,16 @@ class GraphComparator:
         self.driver_8083 = GraphDatabase.driver(uri_8083, auth=(user, password))
         self.driver_7691 = GraphDatabase.driver(uri_7691, auth=(user, password))
 
+    def get_node_ids(self, session, query):
+        res = session.run(query)
+        return [record["id"] for record in res]
+
     def get_metrics(self, driver, db_label):
         print(f"\nGathering metrics for {db_label}...")
         metrics = {}
-        with driver.session() as session:
+        batch_size = 1000
+
+        with driver.session(fetch_size=1000) as session:
             q_nodes = """
             MATCH (n)
             WITH n, all(l IN labels(n) WHERE l =~ '^[A-Z]+$') AS is_concept
@@ -23,39 +29,113 @@ class GraphComparator:
             print(f"  - concept_nodes: {metrics['concept_nodes']}")
             print(f"  - db_nodes: {metrics['db_nodes']}")
 
-            q_degree = """
-            MATCH (n)
-            WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$')
-            OPTIONAL MATCH (n)-[r]-()
-            RETURN coalesce(count(r) * 1.0 / count(DISTINCT n), 0) AS avg_concept_degree
-            """
-            res = session.run(q_degree).single()
-            metrics['avg_concept_degree'] = res['avg_concept_degree']
+            q_all_ids = "MATCH (n) RETURN elementId(n) AS id"
+            all_ids = self.get_node_ids(session, q_all_ids)
+
+            q_concept_ids = "MATCH (n) WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$') RETURN elementId(n) AS id"
+            concept_ids = self.get_node_ids(session, q_concept_ids)
+
+            total_concept_degree = 0
+            total_concept_props = 0
+            concept_concept_edges = 0
+            
+            metrics['edge_distribution'] = {}
+            metrics['degree_distributions'] = {}
+            metrics['concept_degree_distributions'] = {}
+
+            for i in range(0, len(concept_ids), batch_size):
+                batch_ids = concept_ids[i:i + batch_size]
+                
+                q_deg_props = """
+                MATCH (n) WHERE elementId(n) IN $batch_ids
+                RETURN sum(COUNT { (n)--() }) AS total_deg, sum(size(keys(n))) AS total_props
+                """
+                res = session.run(q_deg_props, batch_ids=batch_ids).single()
+                total_concept_degree += res['total_deg'] if res['total_deg'] is not None else 0
+                total_concept_props += res['total_props'] if res['total_props'] is not None else 0
+
+                q_cc_edges = """
+                MATCH (n)-[r]-(m)
+                WHERE elementId(n) IN $batch_ids AND all(l IN labels(m) WHERE l =~ '^[A-Z]+$')
+                RETURN count(r) AS cc_edges
+                """
+                res = session.run(q_cc_edges, batch_ids=batch_ids).single()
+                concept_concept_edges += res['cc_edges'] if res['cc_edges'] is not None else 0
+
+                q_cdd = """
+                MATCH (n) WHERE elementId(n) IN $batch_ids
+                WITH coalesce(labels(n)[0], 'UNKNOWN') AS concept_type, COUNT { (n)--() } AS degree
+                RETURN concept_type, degree, count(*) AS num_nodes
+                """
+                res_cdd = session.run(q_cdd, batch_ids=batch_ids)
+                for record in res_cdd:
+                    ctype = record['concept_type']
+                    deg = record['degree']
+                    cnt = record['num_nodes']
+                    if ctype not in metrics['concept_degree_distributions']:
+                        metrics['concept_degree_distributions'][ctype] = {}
+                    if deg not in metrics['concept_degree_distributions'][ctype]:
+                        metrics['concept_degree_distributions'][ctype][deg] = 0
+                    metrics['concept_degree_distributions'][ctype][deg] += cnt
+
+            if len(concept_ids) > 0:
+                metrics['avg_concept_degree'] = total_concept_degree / len(concept_ids)
+                metrics['avg_props_concept'] = total_concept_props / len(concept_ids)
+                metrics['concept_concept_edges'] = concept_concept_edges / 2
+            else:
+                metrics['avg_concept_degree'] = 0
+                metrics['avg_props_concept'] = 0
+                metrics['concept_concept_edges'] = 0
+
             print(f"  - avg_concept_degree: {metrics['avg_concept_degree']:.4f}")
-
-            q_cc_edges = """
-            MATCH (n)-[r]-(m)
-            WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$') AND all(l IN labels(m) WHERE l =~ '^[A-Z]+$')
-            RETURN coalesce(count(r) / 2, 0) AS concept_concept_edges
-            """
-            res = session.run(q_cc_edges).single()
-            metrics['concept_concept_edges'] = res['concept_concept_edges']
             print(f"  - concept_concept_edges: {metrics['concept_concept_edges']}")
-
-            q_props = """
-            MATCH (n)
-            WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$')
-            RETURN coalesce(avg(size(keys(n))), 0) AS avg_props
-            """
-            res = session.run(q_props).single()
-            metrics['avg_props_concept'] = res['avg_props']
             print(f"  - avg_props_concept: {metrics['avg_props_concept']:.4f}")
 
+            for i in range(0, len(all_ids), batch_size):
+                batch_ids = all_ids[i:i + batch_size]
+                
+                q_ed = """
+                MATCH (a)-[r]->(b)
+                WHERE elementId(a) IN $batch_ids
+                WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target
+                RETURN source + '-[' + rel + ']->' + target AS edge_type, count(*) AS count
+                """
+                res_ed = session.run(q_ed, batch_ids=batch_ids)
+                for record in res_ed:
+                    etype = record['edge_type']
+                    metrics['edge_distribution'][etype] = metrics['edge_distribution'].get(etype, 0) + record['count']
+
+                q_dd = """
+                MATCH (a)-[r]->(b)
+                WHERE elementId(a) IN $batch_ids
+                WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target, elementId(a) AS a_id
+                WITH source + '-[' + rel + ']->' + target AS edge_type, a_id, count(*) AS degree
+                RETURN edge_type, degree, count(a_id) AS num_nodes
+                """
+                res_dd = session.run(q_dd, batch_ids=batch_ids)
+                for record in res_dd:
+                    etype = record['edge_type']
+                    deg = record['degree']
+                    cnt = record['num_nodes']
+                    if etype not in metrics['degree_distributions']:
+                        metrics['degree_distributions'][etype] = {}
+                    if deg not in metrics['degree_distributions'][etype]:
+                        metrics['degree_distributions'][etype][deg] = 0
+                    metrics['degree_distributions'][etype][deg] += cnt
+
+            print(f"  - edge_distribution: {len(metrics['edge_distribution'])} connection types found")
+            print(f"  - degree_distributions: extracted for {len(metrics['degree_distributions'])} connection types")
+            print(f"  - concept_degree_distributions: extracted for {len(metrics['concept_degree_distributions'])} concept types")
+
             q_volume = """
-            MATCH (n)
-            WITH count(n) AS nodes, sum(size(keys(n))) AS node_props
-            MATCH ()-[r]->()
-            WITH nodes, node_props, count(r) AS edges, sum(size(keys(r))) AS edge_props
+            CALL {
+                MATCH (n)
+                RETURN count(n) AS nodes, sum(size(keys(n))) AS node_props
+            }
+            CALL {
+                MATCH ()-[r]->()
+                RETURN count(r) AS edges, sum(size(keys(r))) AS edge_props
+            }
             RETURN coalesce(nodes + edges + node_props + edge_props, 0) AS total_volume
             """
             res = session.run(q_volume).single()
@@ -90,58 +170,6 @@ class GraphComparator:
             metrics['avg_path_length'] = res['avg_path_length']
             print(f"  - avg_path_length: {metrics['avg_path_length']:.4f}")
 
-            q_edge_dist = """
-            MATCH (a)-[r]->(b)
-            WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target
-            RETURN source + '-[' + rel + ']->' + target AS edge_type, count(*) AS count
-            """
-            res = session.run(q_edge_dist)
-            edge_dist = {}
-            for record in res:
-                edge_dist[record['edge_type']] = record['count']
-            metrics['edge_distribution'] = edge_dist
-            print(f"  - edge_distribution: {len(edge_dist)} connection types found")
-
-            q_degree_dist = """
-            MATCH (a)-[r]->(b)
-            WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target, elementId(a) AS a_id
-            WITH source + '-[' + rel + ']->' + target AS edge_type, a_id, count(*) AS degree
-            WITH edge_type, degree, count(a_id) AS num_nodes
-            RETURN edge_type, degree, num_nodes
-            """
-            res = session.run(q_degree_dist)
-            degree_dists = {}
-            for record in res:
-                etype = record['edge_type']
-                deg = record['degree']
-                cnt = record['num_nodes']
-                if etype not in degree_dists:
-                    degree_dists[etype] = {}
-                degree_dists[etype][deg] = cnt
-            metrics['degree_distributions'] = degree_dists
-            print(f"  - degree_distributions: extracted for {len(degree_dists)} connection types")
-
-            q_concept_degree_dist = """
-            MATCH (n)
-            WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$')
-            WITH coalesce(labels(n)[0], 'UNKNOWN') AS concept_type, n
-            OPTIONAL MATCH (n)-[r]-()
-            WITH concept_type, elementId(n) AS n_id, count(r) AS degree
-            WITH concept_type, degree, count(n_id) AS num_nodes
-            RETURN concept_type, degree, num_nodes
-            """
-            res = session.run(q_concept_degree_dist)
-            concept_degree_dists = {}
-            for record in res:
-                ctype = record['concept_type']
-                deg = record['degree']
-                cnt = record['num_nodes']
-                if ctype not in concept_degree_dists:
-                    concept_degree_dists[ctype] = {}
-                concept_degree_dists[ctype][deg] = cnt
-            metrics['concept_degree_distributions'] = concept_degree_dists
-            print(f"  - concept_degree_distributions: extracted for {len(concept_degree_dists)} concept types")
-
         return metrics
 
     def compare_and_plot(self):
@@ -149,7 +177,7 @@ class GraphComparator:
         metrics_7691 = self.get_metrics(self.driver_7691, "Port 7691")
 
         print("\nGenerating plots...")
-        output_dir = "kg_stats/figures"
+        output_dir = "step_6_kg_stats/figures"
         os.makedirs(output_dir, exist_ok=True)
 
         concept_deg_dists_8083 = metrics_8083.pop('concept_degree_distributions')
