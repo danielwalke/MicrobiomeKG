@@ -4,8 +4,10 @@ import datetime
 import questionary
 import sys
 import os
+###  Exporting gene2go.gz...
 
 
+## Why use subprocess for python instead of just using it as function calling? Will change later
 def main():
     ## Config
     print("Fetching and installing requirements")
@@ -70,6 +72,7 @@ def main():
     ## Step 3
     print("\n--- Executing Metaconceptgraph Creation Script ---")
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_3_metaconcept_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
+    
     subprocess.run(["python -m step_3_metaconcept_graph.extract_concepts --suri bolt://localhost:7688 --suser neo4j --spass neo4j --turi bolt://localhost:7689 --tuser neo4j --tpass ''"],shell=True,
         check=True)
     print("\n You can access the metaconceptgraph here: http://localhost:7476. Pick port bolt://localhost:7689 without any username or password.")
@@ -78,13 +81,13 @@ def main():
     ## Step 4
     ## TODO topic selection
     print("\n--- Identifying relevant properties from the metagraph based on your topics ---")
-    subprocess.run(["python -m step_4_filtered_metaconcept_graph.identify_relevant_properties"], shell=True, check=True)
+    subprocess.run("python -m step_4_filtered_metaconcept_graph.identify_relevant_properties", shell=True, check=True)
     print("\n--- Filtering Metaconceptgraph based on selected intresting properties ---")
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_4_filtered_metaconcept_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
     subprocess.run(["python -m step_4_filtered_metaconcept_graph.filter_metagraph"], shell=True, check=True)
     print("\n You can access the filtered metaconceptgraph here: http://localhost:7477. Pick port bolt://localhost:7690 without any username or password.")
 
-    ## Step 5
+    # ## Step 5
     print("\n--- Refining the raw graph based on your metagraph ---")
     subprocess.run(["sudo", "python3", "step_5_filtered_knowledge_graph/clone_kg.py", "step_1_raw_knowledge_graph/workspace/neo4j/neo4j.db/data/", "step_5_filtered_knowledge_graph/"], check=True)
     subprocess.run(["docker compose -f ~/git/MicrobiomeKG/step_5_filtered_knowledge_graph/docker-compose.yml up -d  --wait"], shell=True, check=True)
