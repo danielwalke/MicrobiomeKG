@@ -29,7 +29,8 @@ def filter_properties(m_session, t_session):
             {{batchSize: 10000, parallel: false}}
         )
         """
-        t_session.run(batch_query)
+        t_session.run(batch_query).consume()
+    
 def indirect_relationship_roll_up(t_session):
     t_session.run(
         """
@@ -51,7 +52,7 @@ def indirect_relationship_roll_up(t_session):
             {batchSize: 10000, parallel: false}
         )
         """
-    )
+    ).consume()
 
 def property_roll_up(t_session):
     ## TODO TEST AGAIN
@@ -68,7 +69,7 @@ def property_roll_up(t_session):
             {batchSize: 10000, parallel: false}
         )
         """
-    )
+    ).consume()
 
 def direct_relationship_roll_up(t_session):
     t_session.run(
@@ -91,7 +92,7 @@ def direct_relationship_roll_up(t_session):
             {batchSize: 10000, parallel: false}
         )
         """
-    )
+    ).consume()
 
 def bridge_node_roll_up(t_session):
     ## I doubt the existence of this edge case but its better to keep rn
@@ -106,7 +107,7 @@ def bridge_node_roll_up(t_session):
             {batchSize: 10000, parallel: false}
         )
         """
-    )
+    ).consume()
 
 def delete_all_source_nodes_of_mapped_to(t_session):
     t_session.run(
@@ -118,7 +119,7 @@ def delete_all_source_nodes_of_mapped_to(t_session):
             {batchSize: 10000, parallel: false}
         )
         """
-    )
+    ).consume()
 
 ## TODO apoc.coll.toSet(arrayProps)
 
