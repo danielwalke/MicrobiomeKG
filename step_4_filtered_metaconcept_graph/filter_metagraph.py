@@ -26,7 +26,7 @@ def run_migration(args):
             for lbl in labels:
                 if lbl in allowed_props:
                     is_mapped = True
-                    allowed_keys.update(allowed_props[lbl])
+                    allowed_keys.update(list(allowed_props[lbl].keys()))
             
             if is_mapped:
                 filtered_props = {k: v for k, v in props.items() if k in allowed_keys}
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     parser.add_argument("--turi", default="bolt://localhost:7690", help="Target Bolt URI")
     parser.add_argument("--tuser", default="neo4j", help="Target username")
     parser.add_argument("--tpass", default="", help="Target password")
-    parser.add_argument("--props_file", default="interesting_properties.json", help="Path to JSON properties list")
+    parser.add_argument("--props_file", default="step_4_filtered_metaconcept_graph/interesting_properties.json", help="Path to JSON properties list")
     
     args = parser.parse_args()
     run_migration(args)

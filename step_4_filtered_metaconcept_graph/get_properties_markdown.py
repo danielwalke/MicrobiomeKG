@@ -1,7 +1,7 @@
 import argparse
 from neo4j import GraphDatabase
 
-def extract_schema_with_samples(port = 8083, user = "neo4j", password = "neo4j", only_concept_nodes = False):
+def extract_schema_with_samples_md(port = 8083, user = "neo4j", password = "neo4j", only_concept_nodes = False):
     user = user
     password = password
     port = port
@@ -9,7 +9,6 @@ def extract_schema_with_samples(port = 8083, user = "neo4j", password = "neo4j",
     driver = GraphDatabase.driver(f"bolt://localhost:{port}", auth=(user, password))
     
     markdown_output_label_map = {}
-    unique_properties = set()
 
     with driver.session() as session:
         schema_info = session.run("CALL db.schema.nodeTypeProperties()").data()
@@ -17,7 +16,6 @@ def extract_schema_with_samples(port = 8083, user = "neo4j", password = "neo4j",
         label_map = {}
         for row in schema_info:
             prop_name = row['propertyName']
-            unique_properties.add(prop_name)
             
             for label in row['nodeLabels']:
                 is_concept_node = label.isupper()
@@ -61,15 +59,13 @@ def extract_schema_with_samples(port = 8083, user = "neo4j", password = "neo4j",
             markdown_output_label_map[label] = "\n".join(markdown_rows)
 
     driver.close()
-    return markdown_output_label_map, sorted(list(unique_properties))
+    return markdown_output_label_map
 
 
 
 if __name__ == "__main__":
-    schema_dict, all_props = extract_schema_with_samples()
+    schema_dict = extract_schema_with_samples_md()
     
-    print("### Unique Properties In Database ###")
-    print(", ".join(all_props))
     print("\n")
     i = 0
     

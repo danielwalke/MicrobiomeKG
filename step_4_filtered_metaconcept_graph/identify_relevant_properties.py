@@ -6,15 +6,14 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
-from step_4_filtered_metaconcept_graph.get_properties_markdown import *
-
-
+from step_4_filtered_metaconcept_graph.get_properties_markdown import extract_schema_with_samples_md
+from step_4_filtered_metaconcept_graph.extract_properties_json import extract_json
 from tqdm import tqdm
 
 class ExtractionState(TypedDict):
     messages: Annotated[list, add_messages]
     all_props: List[str]
-    extracted_keys: List[str]
+    extracted_props: dict
     valid: bool
     attempts: int
     max_retries: int
@@ -38,12 +37,17 @@ def create_extraction_graph(model_name, api_key, base_url):
         
         try:
             parsed_json = json.loads(last_message)
-            extracted_keys = parsed_json.get("properties", [])
+            extracted_props = parsed_json.get("properties", {})
+            
+            if type(extracted_props) is not dict:
+                return {"valid": False, "messages": [HumanMessage(content="The 'properties' key must be a JSON object mapping keys to reasoning strings.")]}
+            
+            extracted_keys = list(extracted_props.keys())
             
             invalid_keys = [key for key in extracted_keys if key not in all_props]
             
             if not invalid_keys:
-                return {"valid": True, "extracted_keys": extracted_keys}
+                return {"valid": True, "extracted_props": extracted_props}
             
             error_msg = f"Invalid keys found: {invalid_keys}. Only return keys from this list: {all_props}"
             return {"valid": False, "messages": [HumanMessage(content=error_msg)]}
@@ -75,7 +79,16 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     You are an API that extracts relevant property keys for a given node label based on the provided markdown text. 
     Extract properties that have a clear or moderate relevance to the topics discussed in the text and remove any properties that might yield redundant information. 
     If you extract any properties, your final list must include at least one property key that represents a name or identifier to ensure the entity can be searched via the web.
-    You must return a JSON object with a single key "properties" containing a list of strings. Every string in this list must perfectly match a value from the "Property Key" column in the provided table.
+    
+    You must return a JSON object with a single key "properties" containing a dictionary. The keys of this dictionary must perfectly match a value from the "Property Key" column in the provided table. The values must be a short string explaining your reasoning for extracting that property.
+    
+    Example:
+    {
+        "properties": {
+            "name": "Essential identifier for web search.",
+            "sequence": "Highly relevant for sequencing analysis."
+        }
+    }
     """
     user_prompt = f"Topics: {topics}\n\nMarkdown Data:\n{markdown_content}"
     print(markdown_content)
@@ -85,7 +98,7 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
             HumanMessage(content=user_prompt)
         ],
         "all_props": all_props,
-        "extracted_keys": [],
+        "extracted_props": {},
         "valid": False,
         "attempts": 0,
         "max_retries": max_retries
@@ -94,47 +107,57 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     final_state = graph.invoke(initial_state)
     
     if final_state["valid"]:
-        return final_state["extracted_keys"]
+        return final_state["extracted_props"]
     else:
         raise ValueError("Failed to extract valid keys within retry limit.")
 
-def extract_relevant_properties_as_json(schema_dict, all_props, output_file="interesting_properties.json"):
+def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="step_4_filtered_metaconcept_graph/interesting_properties.json", output_removed_file="step_4_filtered_metaconcept_graph/removed_properties.json"):
 
     load_dotenv(find_dotenv())
     topics = "I want a knowledge graph for proteome, metaproteome and microbiome research with associated literature research and sequencing anylysis and associated treatments"
     
-
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
     custom_model = "qwen3-235b-a22b"
 
     relevant_props_dict = dict()
+    removed_props_dict = dict()
     
     for label in tqdm(schema_dict, desc="Iterating over labels"):
         print(label)
-        markdown_table = schema_dict.get(label) #GeneOntology_Header
+        markdown_table = schema_dict.get(label)
+        all_label_props = json_schema.get(label, [])
         
         try:
-            valid_keys = extract_validated_keys(
+            valid_keys_with_reasoning = extract_validated_keys(
                 markdown_table, 
                 topics, 
-                all_props, 
+                all_label_props,
                 custom_api_key, 
                 custom_base_url, 
                 custom_model
             )
-            if not valid_keys:
+            if not valid_keys_with_reasoning:
                 continue
-            relevant_props_dict[label] = valid_keys
+            relevant_props_dict[label] = valid_keys_with_reasoning
+            
+            removed_keys = [k for k in all_label_props if k not in valid_keys_with_reasoning]
+            removed_props_dict[label] = removed_keys
+            
         except Exception as e:
             print(e)
-    ## TODO run this and now it should also eclude node props -> but probably need to remove it in the actual filtering
+            
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(relevant_props_dict, f, indent=4)
+        
+    with open(output_removed_file, 'w', encoding='utf-8') as f:
+        json.dump(removed_props_dict, f, indent=4)
 
 if __name__ == "__main__":
     port = 8083
     user = "neo4j"
     password = "test"       
-    schema_dict, all_props = extract_schema_with_samples(port, user, password, only_concept_nodes = False)
-    extract_relevant_properties_as_json(schema_dict, all_props, output_file="interesting_properties.json")
+    schema_dict_md = extract_schema_with_samples_md(port, user, password, only_concept_nodes = False)
+    json_schema = extract_json(port, user, password) ## TODO: Might cache if speed will increase in relevance 
+    print(json_schema)
+    extract_relevant_properties_as_json(schema_dict_md, json_schema)
