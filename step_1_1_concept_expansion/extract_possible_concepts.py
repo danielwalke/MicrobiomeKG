@@ -22,9 +22,15 @@ with driver.session() as session:
     concept_labels = list(filter(lambda x: x.isupper(), unique_labels))
     database_labels = list(filter(lambda x: not x.isupper(), unique_labels))
     database_labels = filter_unmapped_database_labels(session, database_labels)
-    possible_concept_labels = list(set(map(lambda x: x.split("_")[-1], database_labels)))
+    
+    possible_concept_dict = {}
+    for db_label in database_labels:
+        key = db_label.split("_")[-1]
+        if key not in possible_concept_dict:
+            possible_concept_dict[key] = []
+        possible_concept_dict[key].append(db_label)
+        
     with open(concept_node_json_file, "w", encoding="utf-8") as f:
         json.dump(concept_labels, f, indent=4)
     with open(possible_concept_node_json_file, "w", encoding="utf-8") as f:
-        json.dump(possible_concept_labels, f, indent=4)
-    
+        json.dump(possible_concept_dict, f, indent=4)

@@ -117,7 +117,7 @@ with open("step_1_1_concept_expansion/concept_labels.json", "r") as f:
 
 valid_concepts = []
 with open("step_1_1_concept_expansion/possible_concept_labels.json", "r") as f:
-    possible_concept_labels = json.load(f)
+    possible_concept_labels = json.load(f).keys()
     for possible_concept in possible_concept_labels:
         if possible_concept in schema_md_dict and possible_concept.upper() not in existing_upper_concepts:
             valid_concepts.append(possible_concept)

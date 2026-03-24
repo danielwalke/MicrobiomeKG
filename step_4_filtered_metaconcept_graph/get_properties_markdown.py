@@ -1,7 +1,7 @@
 import argparse
 from neo4j import GraphDatabase
 
-def extract_schema_with_samples_md(port = 8083, user = "neo4j", password = "neo4j", only_concept_nodes = False):
+def extract_schema_with_samples_md(port = 8083, user = "neo4j", password = "neo4j", only_concept_nodes = False, properties_list = None):
     user = user
     password = password
     port = port
@@ -35,6 +35,7 @@ def extract_schema_with_samples_md(port = 8083, user = "neo4j", password = "neo4
             ]
             
             for p in props:
+                if properties_list is not None and p['property'] not in properties_list: continue
                 prop_name = p['property']
                 prop_type = p['type']
                 
