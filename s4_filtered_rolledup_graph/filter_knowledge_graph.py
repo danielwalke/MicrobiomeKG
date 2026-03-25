@@ -127,10 +127,7 @@ def remove_items(main_list, items_to_remove):
     remove_set = set(items_to_remove)
     return [item for item in main_list if item not in remove_set]
 
-def run_migration(args):
-    metagraph_driver = GraphDatabase.driver(args.muri, auth=(args.muser, args.mpass))
-    target_driver = GraphDatabase.driver(args.turi, auth=(args.tuser, args.tpass))
-
+def run_migration(metagraph_driver, target_driver):
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
         filter_properties(m_session, t_session)
         property_roll_up(t_session)
@@ -143,15 +140,13 @@ def run_migration(args):
     metagraph_driver.close()
 
 if __name__ == "__main__":
-    ## TODO: Bug: MAPPED_TO props sometimes not correctly rolled up? e.g. INTERPRO_DOMAIN -> PROTEIN_DOMAIN
-    parser = argparse.ArgumentParser(description="Migrate and filter Neo4j graph")
-    parser.add_argument("--muri", default="bolt://localhost:7690", help="Metagraph Bolt URI")
-    parser.add_argument("--muser", default="neo4j", help="Metagraph username")
-    parser.add_argument("--mpass", default="neo4j", help="Metagraph password")
-
-    parser.add_argument("--turi", default="bolt://localhost:7691", help="Target Bolt URI")
-    parser.add_argument("--tuser", default="neo4j", help="Target username")
-    parser.add_argument("--tpass", default="", help="Target password")
+    metagraph_uri = 'bolt://localhost:7689'
+    metagraph_user = 'neo4j'
+    metagraph_pass = 'neo4j'
+    target_uri = 'bolt://localhost:7690'
+    target_user = 'neo4j'
+    target_pass = ''
+    metagraph_driver = GraphDatabase.driver(metagraph_uri, auth=(metagraph_user, metagraph_pass))
+    target_driver = GraphDatabase.driver(target_uri, auth=(target_user, target_pass))
     
-    args = parser.parse_args()
-    run_migration(args)
+    run_migration(metagraph_driver, target_driver)

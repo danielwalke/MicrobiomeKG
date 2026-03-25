@@ -3,8 +3,8 @@ services:
     image: neo4j:latest
     container_name: neo4j-filtered-metaconceptgraph
     ports:
-      - "7477:7474"
-      - "7690:7687"
+      - "7476:7474"
+      - "7689:7687"
     volumes:
       - ./data:/data
       - ./logs:/logs

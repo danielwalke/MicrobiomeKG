@@ -1,9 +1,8 @@
-import argparse
 import json
 from neo4j import GraphDatabase
 
 def run_migration(source_driver, target_driver):
-    with open(args.props_file, 'r') as f:
+    with open("config/s3_filtered_raw_metagraph/interesting_properties.json", 'r') as f:
         allowed_props = json.load(f)
 
     with source_driver.session() as s_session, target_driver.session() as t_session:
@@ -123,10 +122,10 @@ def run_migration(source_driver, target_driver):
     target_driver.close()
 
 if __name__ == "__main__":
-    source_uri = 'bolt://localhost:7689'
+    source_uri = 'bolt://localhost:7688'
     source_user = 'neo4j'
     source_pass = 'neo4j'
-    target_uri = 'bolt://localhost:7690'
+    target_uri = 'bolt://localhost:7689'
     target_user = 'neo4j'
     target_pass = ''
 

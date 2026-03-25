@@ -17,9 +17,8 @@ Expand concept nodes: python -m s1_raw_graph.expand_concepts
 Start metagraph container: docker compose -f s2_raw_metagraph/docker-compose.yml up -d
 Extract Metagraph: python -m s2_raw_metagraph.extract_metagraph
 Start filtered metagraph container: docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
-
-TODO
-python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
-
--> müsste was in config landen
-TODO check tomorrow if also for all concept nodes besides TERM the properties were filtered correctly
+Identify relevant properties: python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
+Filter metagraph and store in filtered metagraph docker container: python -m s3_filtered_raw_metagraph.filter_metagraph 
+Clone raw graph: sudo python3 s4_filtered_rolledup_graph/clone_kg.py
+Start docker container for cloned graph: docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
+Filter and roll up knowledge graph: python -m s4_filtered_rolledup_graph.filter_knowledge_graph

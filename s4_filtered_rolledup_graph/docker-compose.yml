@@ -1,11 +1,11 @@
 services:
-  neo4j-metagraph:
+  filtered_rolledup_graph:
     image: neo4j:latest
-    container_name: filtered_knowledge_graph
+    container_name: filtered_rolledup_graph
     user: "7474:7474"
     ports:
-      - "7478:7474"
-      - "7691:7687"
+      - "7477:7474"
+      - "7690:7687"
     volumes:
       - ./data:/data
       - ./logs:/logs
