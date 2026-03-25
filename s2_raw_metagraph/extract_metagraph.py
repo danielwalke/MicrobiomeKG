@@ -1,4 +1,4 @@
-from utils.Neo4jDbConnection import Neo4jDbConnection
+from neo4j import GraphDatabase
 
 def run_migration(source_driver, target_driver):
     with source_driver.session() as session:
@@ -78,8 +78,8 @@ def main():
     target_uri = 'bolt://localhost:7688'
     target_user = 'neo4j'
     target_pass = ''
-    source_driver = Neo4jDbConnection(source_uri, source_user, source_pass).get_driver()
-    target_driver = Neo4jDbConnection(target_uri, target_user, target_pass).get_driver()
+    source_driver = GraphDatabase.driver(source_uri, auth=(source_user, source_pass))
+    target_driver = GraphDatabase.driver(target_uri, auth=(target_user, target_pass))
     run_migration(source_driver, target_driver)
 
 if __name__ == "__main__":

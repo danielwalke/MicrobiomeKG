@@ -2,12 +2,9 @@ import argparse
 import json
 from neo4j import GraphDatabase
 
-def run_migration(args):
+def run_migration(source_driver, target_driver):
     with open(args.props_file, 'r') as f:
         allowed_props = json.load(f)
-
-    source_driver = GraphDatabase.driver(args.suri, auth=(args.suser, args.spass))
-    target_driver = GraphDatabase.driver(args.turi, auth=(args.tuser, args.tpass))
 
     with source_driver.session() as s_session, target_driver.session() as t_session:
         t_session.run("MATCH (n) DETACH DELETE n")
@@ -126,14 +123,13 @@ def run_migration(args):
     target_driver.close()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Migrate a Neo4j graph and enrich node labels.")
-    parser.add_argument("--suri", default="bolt://localhost:7689", help="Source Bolt URI")
-    parser.add_argument("--suser", default="neo4j", help="Source username")
-    parser.add_argument("--spass", default="neo4j", help="Source password")
-    parser.add_argument("--turi", default="bolt://localhost:7690", help="Target Bolt URI")
-    parser.add_argument("--tuser", default="neo4j", help="Target username")
-    parser.add_argument("--tpass", default="", help="Target password")
-    parser.add_argument("--props_file", default="step_4_filtered_metaconcept_graph/interesting_properties.json", help="Path to JSON properties list")
-    
-    args = parser.parse_args()
-    run_migration(args)
+    source_uri = 'bolt://localhost:7689'
+    source_user = 'neo4j'
+    source_pass = 'neo4j'
+    target_uri = 'bolt://localhost:7690'
+    target_user = 'neo4j'
+    target_pass = ''
+
+    source_driver = GraphDatabase.driver(source_uri, auth=(source_user, source_pass))
+    target_driver = GraphDatabase.driver(target_uri, auth=(target_user, target_pass))
+    run_migration(source_driver, target_driver)

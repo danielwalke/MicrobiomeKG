@@ -6,10 +6,10 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
-from step_4_filtered_metaconcept_graph.get_properties_markdown import extract_schema_with_samples_md
-from step_4_filtered_metaconcept_graph.extract_properties_json import extract_json
+from utils.extract_properties_markdown import extract_schema_with_samples_md
+from utils.extract_properties_json import extract_json
 from tqdm import tqdm
-
+import time
 class ExtractionState(TypedDict):
     messages: Annotated[list, add_messages]
     all_props: List[str]
@@ -111,7 +111,7 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     else:
         raise ValueError("Failed to extract valid keys within retry limit.")
 
-def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="step_4_filtered_metaconcept_graph/interesting_properties.json", output_removed_file="step_4_filtered_metaconcept_graph/removed_properties.json"):
+def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="interesting_properties.json", output_removed_file="removed_properties.json"):
 
     load_dotenv(find_dotenv())
     topics = "I want a knowledge graph for proteome, metaproteome and microbiome research with associated literature research and sequencing anylysis and associated treatments"
@@ -140,7 +140,7 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="s
             if not valid_keys_with_reasoning:
                 continue
             relevant_props_dict[label] = valid_keys_with_reasoning
-            
+            time.sleep(15)  # Sleep to avoid hitting rate limits
             removed_keys = [k for k in all_label_props if k not in valid_keys_with_reasoning]
             removed_props_dict[label] = removed_keys
             

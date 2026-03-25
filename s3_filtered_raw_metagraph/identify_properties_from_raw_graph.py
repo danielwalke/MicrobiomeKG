@@ -2,7 +2,7 @@
 from utils.extract_properties_markdown import extract_schema_with_samples_md
 from utils.extract_properties_json import extract_json
 from utils.identify_relevant_properties import extract_relevant_properties_as_json
-
+import os
 
 
 if __name__ == "__main__":
@@ -12,4 +12,6 @@ if __name__ == "__main__":
     schema_dict_md = extract_schema_with_samples_md(port, user, password, only_concept_nodes = False)
     json_schema = extract_json(port, user, password) ## TODO: Might cache if speed will increase in relevance 
     print(json_schema)
-    extract_relevant_properties_as_json(schema_dict_md, json_schema)
+    output_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s3_filtered_raw_metagraph/interesting_properties.json")
+    output_removed_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s3_filtered_raw_metagraph/removed_properties.json")
+    extract_relevant_properties_as_json(schema_dict_md, json_schema, output_file_path, output_removed_file_path)

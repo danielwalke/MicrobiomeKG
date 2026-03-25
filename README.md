@@ -16,5 +16,10 @@ Identify matching properties for node types: python -m s1_raw_graph.identify_mat
 Expand concept nodes: python -m s1_raw_graph.expand_concepts
 Start metagraph container: docker compose -f s2_raw_metagraph/docker-compose.yml up -d
 Extract Metagraph: python -m s2_raw_metagraph.extract_metagraph
+Start filtered metagraph container: docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
 
 TODO
+python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
+
+-> müsste was in config landen
+TODO check tomorrow if also for all concept nodes besides TERM the properties were filtered correctly
