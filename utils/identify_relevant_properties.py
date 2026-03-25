@@ -114,7 +114,9 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
 def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="interesting_properties.json", output_removed_file="removed_properties.json"):
 
     load_dotenv(find_dotenv())
-    topics = "I want a knowledge graph for proteome, metaproteome and microbiome research with associated literature research and sequencing anylysis and associated treatments"
+    topic_path_file = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/topicDescription.txt")
+    with open(topic_path_file, 'r') as f:
+        topics = f.read().strip()
     
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
@@ -122,12 +124,31 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
 
     relevant_props_dict = dict()
     removed_props_dict = dict()
+
+    if os.path.exists(output_file):
+        with open(output_file, 'r', encoding='utf-8') as f:
+            try:
+                relevant_props_dict = json.load(f)
+            except json.JSONDecodeError:
+                pass
+
+    if os.path.exists(output_removed_file):
+        with open(output_removed_file, 'r', encoding='utf-8') as f:
+            try:
+                removed_props_dict = json.load(f)
+            except json.JSONDecodeError:
+                pass
     
     for label in tqdm(schema_dict, desc="Iterating over labels"):
+        if label in relevant_props_dict:
+            print(f"Skipping {label} as it has already been processed.")
+            continue
+
         print(label)
         markdown_table = schema_dict.get(label)
         all_label_props = json_schema.get(label, [])
-        
+        time.sleep(15)
+        print(f"Extracting properties for label: {label} with all props: {all_label_props} but waiting for 15 seconds to avoid rate limits.")     
         try:
             valid_keys_with_reasoning = extract_validated_keys(
                 markdown_table, 
@@ -140,18 +161,20 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
             if not valid_keys_with_reasoning:
                 continue
             relevant_props_dict[label] = valid_keys_with_reasoning
-            time.sleep(15)  # Sleep to avoid hitting rate limits
+            
             removed_keys = [k for k in all_label_props if k not in valid_keys_with_reasoning]
             removed_props_dict[label] = removed_keys
+
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(relevant_props_dict, f, indent=4)
+                
+            with open(output_removed_file, 'w', encoding='utf-8') as f:
+                json.dump(removed_props_dict, f, indent=4)
+
+            
             
         except Exception as e:
             print(e)
-            
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(relevant_props_dict, f, indent=4)
-        
-    with open(output_removed_file, 'w', encoding='utf-8') as f:
-        json.dump(removed_props_dict, f, indent=4)
 
 if __name__ == "__main__":
     port = 8083
