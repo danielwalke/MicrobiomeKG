@@ -1,0 +1,195 @@
+{
+    "GeneOntology_Subset": [
+        "__id"
+    ],
+    "InterPro_DBInfo": [
+        "__id",
+        "file_date"
+    ],
+    "PROTEIN": [
+        "__id",
+        "__mapped"
+    ],
+    "InterPro_HomologousSuperfamily": [
+        "__id",
+        "short_name",
+        "external_docs",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_PTM": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species_protein_counts"
+    ],
+    "GeneOntology_Term": [
+        "__id",
+        "xrefs",
+        "subsets",
+        "creation_date",
+        "alt_ids",
+        "comment",
+        "obsolete",
+        "property_values",
+        "created_by"
+    ],
+    "InterPro_ActiveSite": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "ENZYME_Protein": [
+        "__id"
+    ],
+    "InterPro_Classification": [
+        "__id",
+        "type",
+        "category"
+    ],
+    "InterPro_Domain": [
+        "__id",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_Repeat": [
+        "__id",
+        "short_name",
+        "key_species_protein_counts",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "InterPro_BindingSite": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_Family": [
+        "__id",
+        "short_name",
+        "members",
+        "key_species_protein_counts",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "InterPro_Publication": [
+        "__id",
+        "id",
+        "issue",
+        "pages",
+        "volume"
+    ],
+    "GeneOntology_Idspace": [
+        "__id",
+        "iri"
+    ],
+    "TERM": [
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "GeneOntology_Typedef": [
+        "__id",
+        "is_class_level",
+        "is_transitive",
+        "is_metadata_tag",
+        "namespace"
+    ],
+    "GeneOntology_Header": [
+        "__id",
+        "property_values",
+        "format_version"
+    ],
+    "ENZYME_Enzyme": [
+        "__id",
+        "comments",
+        "alternative_names"
+    ],
+    "PUBLICATION": [
+        "__id",
+        "names",
+        "__mapped"
+    ],
+    "PTM": [
+        "__id",
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "metadata": [
+        "__id",
+        "license",
+        "datasource_id",
+        "export_version",
+        "export_properties_hash",
+        "type",
+        "datasource_oai_id",
+        "version",
+        "license_url"
+    ],
+    "PROTEIN_DOMAIN": [
+        "__id",
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "InterPro_ConservedSite": [
+        "__id",
+        "short_name",
+        "members",
+        "key_species_protein_counts",
+        "external_docs",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "GeneOntology_SynonymType": [
+        "__id",
+        "description",
+        "id",
+        "scope"
+    ],
+    "FAMILY": [
+        "__id",
+        "__mapped"
+    ],
+    "METADATA": [
+        "__id",
+        "__mapped"
+    ],
+    "ENZYME": [
+        "__id",
+        "__mapped"
+    ],
+    "HOMOLOGOUSSUPERFAMILY": [
+        "__id",
+        "__mapped"
+    ]
+}

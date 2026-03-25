@@ -1,0 +1,15 @@
+[
+        "ADReCS", "BasicFormalOntology", "BRENDA", "CanadianNutrientFile",
+        "CancerDrugsDB", "ClinicalTrials.gov", "CMAUP", "DGIdb",
+        "DiseaseOntology", "DISEASES", "DrugBank", "DrugCentral",
+        "EFO", "EMA", "ENZYME", "GenCC", "Gene2Phenotype",
+        "GeneOntology", "GuideToPharmacology", "GWASCatalog", "HERB",
+        "HGNC", "HPO", "HPRD", "IntAct", "InterPro", "ITIS",
+        "KEGG", "MED-RT", "miRBase", "miRDB", "miRTarBase",
+        "Mondo", "NCBI", "NDF-RT", "Negatome", "OMIM",
+        "OpenTargets", "PathwayCommons", "PharmGKB", "PROSITE", "ReDO-DB",
+        "ReDOTrialsDB", "RefSeq", "RNADisease", "RNAInter", "RNALocate",
+        "SequenceOntology", "SIDER", "STITCH", "STRING", "T3DB",
+        "TarBase", "TISSUES", "TRRUST", "TTD", "UNII",
+        "UniProt", "USDA-PLANTS"
+]

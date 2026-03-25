@@ -1,0 +1,53 @@
+{
+    "Family": [
+        "InterPro_Family"
+    ],
+    "Subset": [
+        "GeneOntology_Subset"
+    ],
+    "ConservedSite": [
+        "InterPro_ConservedSite"
+    ],
+    "Term": [
+        "GeneOntology_Term"
+    ],
+    "BindingSite": [
+        "InterPro_BindingSite"
+    ],
+    "Typedef": [
+        "GeneOntology_Typedef"
+    ],
+    "SynonymType": [
+        "GeneOntology_SynonymType"
+    ],
+    "metadata": [
+        "metadata"
+    ],
+    "Enzyme": [
+        "ENZYME_Enzyme"
+    ],
+    "Idspace": [
+        "GeneOntology_Idspace"
+    ],
+    "HomologousSuperfamily": [
+        "InterPro_HomologousSuperfamily"
+    ],
+    "Classification": [
+        "InterPro_Classification"
+    ],
+    "PTM": [
+        "InterPro_PTM"
+    ],
+    "DBInfo": [
+        "InterPro_DBInfo"
+    ],
+    "ActiveSite": [
+        "InterPro_ActiveSite"
+    ],
+    "Repeat": [
+        "InterPro_Repeat"
+    ],
+    "Header": [
+        "GeneOntology_Header"
+    ]
+}

@@ -1,0 +1,115 @@
+{
+    "PROTEIN": {
+        "primary_accession": {
+            "property": "ids",
+            "index": 0,
+            "reasoning": "The 'ids' property contains UniProtKB identifiers, which are standard unique identifiers for proteins. It is an array, so the index 0 is used to select the first element. This is preferred over 'names' as identifiers are typically more stable and standardized than names."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "ids"
+            ],
+            "reasoning": "Both 'names' and 'ids' provide identifying information for the protein. Concatenating them provides a more comprehensive secondary identifier, combining common names and standard database identifiers."
+        }
+    },
+    "PUBLICATION": {
+        "primary_accession": {
+            "property": "pmid",
+            "index": null,
+            "reasoning": "The `pmid` property is an integer type and is likely a unique identifier for a publication (PubMed ID). It is the most suitable candidate for a primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "InterPro_Publication__title",
+                "InterPro_Publication__year",
+                "InterPro_Publication__journal",
+                "InterPro_Publication__authors"
+            ],
+            "reasoning": "Combining the title, year, journal, and authors provides a more descriptive and potentially unique identifier for a publication, especially if multiple publications share the same PMID (though this is less common). These properties together capture key bibliographic information."
+        }
+    },
+    "FAMILY": {
+        "primary_accession": {
+            "property": "InterPro_Family__external_docs",
+            "index": 0,
+            "reasoning": "The `InterPro_Family__external_docs` property contains an array of strings, likely representing external database identifiers. These identifiers are often used to uniquely identify a family or entry in external databases. Since the property is an array, we need to select an index. Index 0 is chosen as a default representative element from the array. If a specific element within the array is known to be the primary identifier, that index should be used instead."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "InterPro_Family__key_species",
+                "InterPro_Family__structure_db_links",
+                "InterPro_Family__protein_count"
+            ],
+            "reasoning": "Combining `InterPro_Family__key_species`, `InterPro_Family__structure_db_links`, and `InterPro_Family__protein_count` provides a more specific identifier. The key species associated with the family, the structural database links, and the protein count together can help distinguish between different families, especially if the primary accession (external docs) is not sufficient or needs further context. These properties are chosen because they provide different facets of information about the family (species, structure, size) that could collectively serve as a secondary identifier."
+        }
+    },
+    "TERM": {
+        "primary_accession": {
+            "property": "GeneOntology_Term__id",
+            "index": 0,
+            "reasoning": "The GeneOntology_Term__id property contains unique identifiers (GO numbers) for each term, making it the most suitable primary accession. It is a string array, so the index is 0 to select the first element."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "GeneOntology_Term__name",
+                "GeneOntology_Term__def"
+            ],
+            "reasoning": "The GeneOntology_Term__name provides a human-readable name for the term, and GeneOntology_Term__def provides the definition. Concatenating these two properties would provide a more descriptive secondary identifier for the term, supplementing the primary GO ID."
+        }
+    },
+    "METADATA": {
+        "primary_accession": {
+            "property": "ids",
+            "index": 0,
+            "reasoning": "The 'ids' property is an array of strings, which can serve as a unique identifier. While 'names' is also a string array, 'ids' is more likely to be a standard identifier format. Choosing the first element (index 0) provides a specific identifier."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names"
+            ],
+            "reasoning": "The 'names' property provides additional descriptive information that could contribute to uniqueness, especially if combined with the primary accession or used independently if 'ids' is insufficient."
+        }
+    },
+    "ENZYME": {
+        "primary_accession": {
+            "property": "ENZYME_Enzyme__id",
+            "index": 0,
+            "reasoning": "The `ENZYME_Enzyme__id` property contains Enzyme Commission numbers (e.g., '1.1.1.1'), which are standard unique identifiers for enzymes. It is an array, so the index is 0 to select the first element."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "ENZYME_Enzyme__official_name"
+            ],
+            "reasoning": "The `ENZYME_Enzyme__official_name` property provides the official name of the enzyme, which can serve as a secondary identifier, especially when combined with the primary EC number. Using only this property is not ideal as names might not be perfectly unique, but it's the most suitable secondary identifier among the available string properties."
+        }
+    },
+    "HOMOLOGOUSSUPERFAMILY": {
+        "primary_accession": {
+            "property": "InterPro_HomologousSuperfamily__id",
+            "index": 0,
+            "reasoning": "The property 'InterPro_HomologousSuperfamily__id' contains unique identifiers (IPR codes) for homologous superfamilies, which are suitable for primary identification. It is an array, so the index 0 is used to select the first element."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "InterPro_HomologousSuperfamily__name",
+                "InterPro_HomologousSuperfamily__protein_count"
+            ],
+            "reasoning": "The combination of 'InterPro_HomologousSuperfamily__name' and 'InterPro_HomologousSuperfamily__protein_count' provides additional information that could contribute to a secondary unique identifier, although the name might not be strictly unique across all superfamilies. The protein count adds another dimension."
+        }
+    },
+    "PTM": {
+        "primary_accession": {
+            "property": "InterPro_PTM__id",
+            "index": 0,
+            "reasoning": "The 'InterPro_PTM__id' property contains InterPro accession identifiers, which are typically unique identifiers for protein domains and families. It is an array, so the index 0 is used to select the first element. This is a suitable primary key as it is likely to be unique and is of string type."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "InterPro_PTM__key_species",
+                "InterPro_PTM__name"
+            ],
+            "reasoning": "Combining 'InterPro_PTM__key_species' and 'InterPro_PTM__name' provides additional context and potentially increases uniqueness. The species provides context for the PTM, and the name describes the specific PTM. Concatenating these two properties could serve as a secondary identifier."
+        }
+    }
+}

@@ -1,0 +1,137 @@
+{
+    "GeneOntology_Subset": {
+        "id": "Essential identifier for web search and linking to specific Gene Ontology subsets.",
+        "description": "Provides context about the purpose and usage of the Gene Ontology subset, relevant for proteome and metaproteome research."
+    },
+    "InterPro_DBInfo": {
+        "name": "Essential identifier for web search and database identification.",
+        "version": "Relevant for tracking database updates and compatibility with analysis tools.",
+        "entry_count": "Indicates database size and scope, important for proteome and metaproteome research context."
+    },
+    "PROTEIN": {
+        "names": "Essential identifier for web search and protein identification across species.",
+        "ids": "Critical for linking to external databases like UniProtKB for detailed protein information."
+    },
+    "InterPro_HomologousSuperfamily": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Critical for understanding the functional and structural context of the homologous superfamily.",
+        "protein_count": "Relevant for quantifying the prevalence of the superfamily across proteomes.",
+        "structure_db_links": "Important for structural analysis and linking to 3D protein structures in PDB."
+    },
+    "InterPro_PTM": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Describes the specific post-translational modification site, crucial for understanding functional aspects in proteome and metaproteome research.",
+        "external_docs": "Links to external documentation like PROSITE and REACTOME, which are important for literature research and pathway analysis.",
+        "structure_db_links": "Provides links to PDB structures, essential for structural analysis in proteome studies.",
+        "key_species": "Indicates key species where the PTM is observed, relevant for microbiome and cross-species comparative studies."
+    },
+    "GeneOntology_Term": {
+        "id": "Essential identifier for web search and cross-referencing with GO database.",
+        "name": "Essential identifier for web search and understanding the biological function or process.",
+        "def": "Provides detailed definition of the term, crucial for understanding its role in proteome, metaproteome, and microbiome research.",
+        "namespace": "Indicates whether the term is related to biological process, molecular function, or cellular component, which is relevant for categorizing research data."
+    },
+    "InterPro_ActiveSite": {
+        "id": "Essential identifier for web search and database reference.",
+        "name": "Critical for understanding the active site function and relevant to proteome and metaproteome research.",
+        "external_docs": "Provides links to external databases like EC numbers and Reactome pathways, important for literature and sequencing analysis.",
+        "structure_db_links": "Links to PDB structures which are crucial for structural analysis in proteome research."
+    },
+    "ENZYME_Protein": {
+        "name": "Essential identifier for web search and protein identification.",
+        "accession": "Highly relevant for protein database lookup and sequencing analysis."
+    },
+    "InterPro_Classification": {
+        "id": "Essential identifier for web search and linking to external databases like Gene Ontology.",
+        "description": "Highly relevant for understanding the functional and biological context of the classification."
+    },
+    "InterPro_Domain": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding domain function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand domain prevalence.",
+        "structure_db_links": "Highly relevant for structural analysis and linking to PDB for 3D structure studies.",
+        "external_docs": "Important for literature research and cross-referencing with other databases like REACTOME and PROSITE."
+    },
+    "InterPro_Repeat": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding the biological function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand the prevalence of the repeat across proteins.",
+        "structure_db_links": "Highly relevant for structural analysis and linking to PDB entries for 3D structure studies.",
+        "members": "Important for understanding associated protein families and domains from databases like PFAM and PROSITE.",
+        "key_species": "Relevant for microbiome and species-specific research to identify organisms where the repeat is prevalent.",
+        "external_docs": "Useful for linking to external documentation and pathways in databases like REACTOME."
+    },
+    "InterPro_BindingSite": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Critical for understanding the functional role of the binding site in proteome and metaproteome research.",
+        "structure_db_links": "Highly relevant for structural analysis in sequencing and proteome studies, linking to PDB entries for 3D structure exploration.",
+        "external_docs": "Important for connecting to external databases like EC numbers and Reactome pathways, supporting literature and treatment research."
+    },
+    "InterPro_Family": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding the family's biological function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand the scale of protein representation.",
+        "structure_db_links": "Highly relevant for structural analysis in proteome research, linking to PDB entries for 3D structures.",
+        "key_species": "Important for microbiome and proteome research to identify species where this family is prominent.",
+        "external_docs": "Relevant for literature research, providing links to Reactome and PROSITE documentation for functional context."
+    },
+    "InterPro_Publication": {
+        "pmid": "Essential identifier for linking to PubMed and associated literature research.",
+        "title": "Highly relevant for understanding the content and context of the publication in proteome and metaproteome research.",
+        "journal": "Important for categorizing the type of research and credibility of the source.",
+        "year": "Crucial for tracking the timeline of research developments in sequencing analysis and treatments.",
+        "authors": "Key for identifying contributors to specific studies in microbiome and proteome research."
+    },
+    "GeneOntology_Idspace": {
+        "id": "Essential identifier for web search and linking to external databases like KEGG, MetaCyc, and Reactome which are relevant to proteome and metaproteome research."
+    },
+    "TERM": {
+        "__id": "Essential identifier for web search and unique term reference in databases like Gene Ontology."
+    },
+    "GeneOntology_Typedef": {
+        "id": "Essential identifier for web search and unique reference to Gene Ontology terms.",
+        "name": "Provides human-readable label for the relationship type, important for understanding context in proteome and metaproteome research.",
+        "xrefs": "Contains cross-references to other ontologies (e.g., RO, BFO), which are critical for integrating knowledge across biological domains like microbiome and sequencing analysis."
+    },
+    "GeneOntology_Header": {
+        "ontology": "Essential identifier for the type of ontology, crucial for categorizing and searching within proteome and metaproteome research contexts.",
+        "default_namespace": "Provides context about the namespace used in the ontology, which is important for understanding the scope and structure of the Gene Ontology data relevant to microbiome and proteome studies.",
+        "data_version": "Indicates the version of the data, which is critical for ensuring up-to-date sequencing analysis and reproducibility in research."
+    },
+    "ENZYME_Enzyme": {
+        "id": "Essential identifier for enzyme classification and web search.",
+        "official_name": "Primary name for enzyme identification and relevance to proteome research.",
+        "catalyticActivities": "Directly relevant to enzyme function and sequencing analysis in proteome studies."
+    },
+    "PUBLICATION": {
+        "pmid": "Essential identifier for web search and linking to PubMed literature.",
+        "ids": "Contains PMID identifiers which are crucial for referencing specific publications in proteome, metaproteome, and microbiome research."
+    },
+    "PTM": {},
+    "metadata": {},
+    "PROTEIN_DOMAIN": {},
+    "InterPro_ConservedSite": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Provides descriptive information about the conserved site, relevant for understanding its biological function.",
+        "protein_count": "Indicates the number of proteins associated with the conserved site, important for proteome analysis.",
+        "structure_db_links": "Links to structural databases like PDB, crucial for structural biology and sequencing analysis.",
+        "key_species": "Lists key species where the conserved site is found, relevant for microbiome and metaproteome research."
+    },
+    "GeneOntology_SynonymType": {},
+    "FAMILY": {
+        "names": "Essential identifier for web search and distinguishing family entities in proteome, metaproteome, and microbiome research.",
+        "ids": "Provides unique identifiers for cross-referencing with literature, sequencing data, or treatment databases."
+    },
+    "METADATA": {
+        "names": "Essential identifier for web search and distinguishing metadata entries, especially in literature and dataset references.",
+        "ids": "Critical for linking metadata to specific datasets, studies, or external databases in proteome, metaproteome, and microbiome research."
+    },
+    "ENZYME": {
+        "names": "Essential identifier for web search and literature research, as enzyme names are critical for referencing and querying in proteome and metaproteome studies.",
+        "ids": "Useful for linking to external databases and sequencing analysis, ensuring traceability and integration with other datasets."
+    },
+    "HOMOLOGOUSSUPERFAMILY": {
+        "names": "Essential identifier for web search and linking to proteome/metaproteome research. Provides human-readable labels for homologous superfamilies, which are critical in comparative sequence analysis and functional annotation.",
+        "ids": "Moderately relevant for cross-referencing with external databases (e.g., Pfam, InterPro) or literature, enabling integration with sequencing analysis and treatment studies."
+    }
+}
