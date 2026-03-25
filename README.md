@@ -32,3 +32,4 @@ Clone knowledge graph again: sudo -E python3 -m s7_postfiltered_graph.clone_kg
 Postfilter Knowledge graph and remove database nodes: python -m s7_postfiltered_graph.filter_knowledge_graph
 Identify accessions: python -m s8_postfiltered_graph_with_accessions.identify_accession_keys
 Add accessions: python -m s8_postfiltered_graph_with_accessions.add_accessions_in_graph
+See statistics to compare against raw graph: python -m s9_kg_metrics.quant_compare

@@ -6,7 +6,6 @@ logs/
 .env
 .venv/
 .venv
-*.png
 *.json
 __pycache__
 *.jar

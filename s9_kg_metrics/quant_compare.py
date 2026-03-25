@@ -29,9 +29,6 @@ class GraphComparator:
             print(f"  - concept_nodes: {metrics['concept_nodes']}")
             print(f"  - db_nodes: {metrics['db_nodes']}")
 
-            q_all_ids = "MATCH (n) RETURN elementId(n) AS id"
-            all_ids = self.get_node_ids(session, q_all_ids)
-
             q_concept_ids = "MATCH (n) WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$') RETURN elementId(n) AS id"
             concept_ids = self.get_node_ids(session, q_concept_ids)
 
@@ -78,25 +75,9 @@ class GraphComparator:
                         metrics['concept_degree_distributions'][ctype][deg] = 0
                     metrics['concept_degree_distributions'][ctype][deg] += cnt
 
-            if len(concept_ids) > 0:
-                metrics['avg_concept_degree'] = total_concept_degree / len(concept_ids)
-                metrics['avg_props_concept'] = total_concept_props / len(concept_ids)
-                metrics['concept_concept_edges'] = concept_concept_edges / 2
-            else:
-                metrics['avg_concept_degree'] = 0
-                metrics['avg_props_concept'] = 0
-                metrics['concept_concept_edges'] = 0
-
-            print(f"  - avg_concept_degree: {metrics['avg_concept_degree']:.4f}")
-            print(f"  - concept_concept_edges: {metrics['concept_concept_edges']}")
-            print(f"  - avg_props_concept: {metrics['avg_props_concept']:.4f}")
-
-            for i in range(0, len(all_ids), batch_size):
-                batch_ids = all_ids[i:i + batch_size]
-                
                 q_ed = """
                 MATCH (a)-[r]->(b)
-                WHERE elementId(a) IN $batch_ids
+                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l =~ '^[A-Z]+$')
                 WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target
                 RETURN source + '-[' + rel + ']->' + target AS edge_type, count(*) AS count
                 """
@@ -107,7 +88,7 @@ class GraphComparator:
 
                 q_dd = """
                 MATCH (a)-[r]->(b)
-                WHERE elementId(a) IN $batch_ids
+                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l =~ '^[A-Z]+$')
                 WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target, elementId(a) AS a_id
                 WITH source + '-[' + rel + ']->' + target AS edge_type, a_id, count(*) AS degree
                 RETURN edge_type, degree, count(a_id) AS num_nodes
@@ -123,9 +104,20 @@ class GraphComparator:
                         metrics['degree_distributions'][etype][deg] = 0
                     metrics['degree_distributions'][etype][deg] += cnt
 
-            print(f"  - edge_distribution: {len(metrics['edge_distribution'])} connection types found")
-            print(f"  - degree_distributions: extracted for {len(metrics['degree_distributions'])} connection types")
-            print(f"  - concept_degree_distributions: extracted for {len(metrics['concept_degree_distributions'])} concept types")
+            if len(concept_ids) > 0:
+                metrics['avg_concept_degree'] = total_concept_degree / len(concept_ids)
+                metrics['avg_props_concept'] = total_concept_props / len(concept_ids)
+                metrics['concept_concept_edges'] = concept_concept_edges / 2
+            else:
+                metrics['avg_concept_degree'] = 0
+                metrics['avg_props_concept'] = 0
+                metrics['concept_concept_edges'] = 0
+
+            print(f"  - avg_concept_degree: {metrics['avg_concept_degree']:.4f}")
+            print(f"  - concept_concept_edges: {metrics['concept_concept_edges']}")
+            print(f"  - avg_props_concept: {metrics['avg_props_concept']:.4f}")
+            print(f"  - edge_distribution: {len(metrics['edge_distribution'])} concept-to-concept connections found")
+            print(f"  - degree_distributions: extracted for {len(metrics['degree_distributions'])} concept-to-concept connection types")
 
             q_volume = """
             CALL {
@@ -177,7 +169,7 @@ class GraphComparator:
         metrics_7691 = self.get_metrics(self.driver_7691, "Port 7691")
 
         print("\nGenerating plots...")
-        output_dir = "step_6_kg_stats/figures"
+        output_dir = os.path.expanduser("~/git/MicrobiomeKG/config/s9_kg_metrics/figures")
         os.makedirs(output_dir, exist_ok=True)
 
         concept_deg_dists_8083 = metrics_8083.pop('concept_degree_distributions')
@@ -236,7 +228,7 @@ class GraphComparator:
             x7 = sorted(d7.keys())
             y7 = [d7[k] for k in x7]
 
-            ax1.set_title(f'Edge Degree Distribution: {etype} - Port 8083 (Original)')
+            ax1.set_title(f'Concept-to-Concept Edge Distribution: {etype} - Port 8083 (Original)')
             ax1.set_ylabel('Node Count (log)')
             if x8:
                 ax1.bar(x8, y8, color='salmon', alpha=0.8)
@@ -245,9 +237,9 @@ class GraphComparator:
             else:
                 ax1.text(0.5, 0.5, 'No Data Available', ha='center', va='center', transform=ax1.transAxes)
 
-            ax2.set_title(f'Edge Degree Distribution: {etype} - Port 7691 (Refined)')
+            ax2.set_title(f'Concept-to-Concept Edge Distribution: {etype} - Port 7691 (Refined)')
             ax2.set_ylabel('Node Count (log)')
-            ax2.set_xlabel('Degree (Number of Outgoing Edges)')
+            ax2.set_xlabel('Degree (Number of Outgoing Edges to Concepts)')
             if x7:
                 ax2.bar(x7, y7, color='skyblue', alpha=0.8)
                 ax2.set_yscale('log')
@@ -257,7 +249,7 @@ class GraphComparator:
 
             plt.tight_layout()
             safe_name = etype.replace('-[', '_').replace(']->', '_')
-            deg_filepath = os.path.join(output_dir, f"edge_deg_dist_{safe_name}.png")
+            deg_filepath = os.path.join(output_dir, f"concept_edge_deg_dist_{safe_name}.png")
             plt.savefig(deg_filepath, bbox_inches='tight')
             plt.close(fig)
             print(f"Saved plot to {deg_filepath}")
@@ -275,14 +267,14 @@ class GraphComparator:
         x_pos = range(len(all_edges))
 
         ax1.bar(x_pos, counts_8083, color='salmon')
-        ax1.set_title('Total Edge Types Distribution - Port 8083 (Original)')
+        ax1.set_title('Concept-to-Concept Edge Types Distribution - Port 8083 (Original)')
         ax1.set_ylabel('Edge Count (log)')
         if any(counts_8083):
             ax1.set_yscale('log')
         ax1.grid(axis='y', linestyle='--', alpha=0.7)
 
         ax2.bar(x_pos, counts_7691, color='skyblue')
-        ax2.set_title('Total Edge Types Distribution - Port 7691 (Refined)')
+        ax2.set_title('Concept-to-Concept Edge Types Distribution - Port 7691 (Refined)')
         ax2.set_ylabel('Edge Count (log)')
         if any(counts_7691):
             ax2.set_yscale('log')
@@ -291,7 +283,7 @@ class GraphComparator:
         plt.xticks(x_pos, all_edges, rotation=90)
         plt.tight_layout()
 
-        edge_filepath = os.path.join(output_dir, "edge_totals.png")
+        edge_filepath = os.path.join(output_dir, "concept_edge_totals.png")
         plt.savefig(edge_filepath, bbox_inches='tight')
         plt.close(fig)
         print(f"Saved plot to {edge_filepath}")

@@ -12,10 +12,22 @@ def delete_database_nodes(t_session):
         """
     ).consume()
 
+def remove_redundant_edges(t_session):
+    t_session.run(
+        """
+        CALL apoc.periodic.iterate(
+        "MATCH ()-[r]->() WITH r.__id AS relId, collect(r) AS rels WHERE size(rels) > 1 RETURN rels",
+        "UNWIND tail(rels) AS relToRemove DELETE relToRemove",
+        {batchSize: 10000, parallel: false}
+        )
+        """
+    ).consume()
+
 def run_migration(metagraph_driver, target_driver):
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
         filter_properties(m_session, t_session)
         delete_database_nodes(t_session)
+        remove_redundant_edges(t_session)
 
     target_driver.close()
     metagraph_driver.close()
