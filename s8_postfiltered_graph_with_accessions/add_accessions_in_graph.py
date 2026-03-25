@@ -1,5 +1,5 @@
 import json
-import argparse
+import os
 from neo4j import GraphDatabase
 
 def apply_accessions_to_graph(uri, user, password, json_filepath):
@@ -36,13 +36,9 @@ def apply_accessions_to_graph(uri, user, password, json_filepath):
     driver.close()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=7691)
-    parser.add_argument("--user", type=str, default="neo4j")
-    parser.add_argument("--password", type=str, default="test")
-    parser.add_argument("--file", type=str, default="step_5_2_accession_aggregations/accession_keys.json")
-    
-    args = parser.parse_args()
-    
-    uri = f"bolt://localhost:{args.port}"
-    apply_accessions_to_graph(uri, args.user, args.password, args.file)
+    target_uri = "bolt://localhost:7693"
+    target_user = "neo4j"
+    target_password = "password"
+    accession_keys_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s8_postfiltered_graph_with_accessions/accession_keys.json")
+
+    apply_accessions_to_graph(target_uri, target_user, target_password, accession_keys_file_path)

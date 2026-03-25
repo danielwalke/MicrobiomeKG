@@ -30,4 +30,5 @@ Postfilter metagraph: python -m s6_postfiltered_metagraph.filter_metagraph
 Start docker container for post filtered graph: docker compose -f s7_postfiltered_graph/docker-compose.yml up -d
 Clone knowledge graph again: sudo -E python3 -m s7_postfiltered_graph.clone_kg
 Postfilter Knowledge graph and remove database nodes: python -m s7_postfiltered_graph.filter_knowledge_graph
-
+Identify accessions: python -m s8_postfiltered_graph_with_accessions.identify_accession_keys
+Add accessions: python -m s8_postfiltered_graph_with_accessions.add_accessions_in_graph

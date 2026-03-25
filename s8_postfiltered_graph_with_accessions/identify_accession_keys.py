@@ -180,11 +180,11 @@ def extract_accessions_for_label(label, markdown_content, json_schema_list, api_
         print(f"Failed to extract for {label}. Last message: {final_state['messages'][-1].content}")
         return None
 
-def extract_accession_keys(schema_dict_md, json_schema, output_file="step_5_2_accession_aggregations/accession_keys.json"):
+def extract_accession_keys(schema_dict_md, json_schema, output_file):
     load_dotenv(find_dotenv())
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
-    custom_model = "qwen3-235b-a22b"
+    custom_model = "medgemma-27b-it" #"qwen3-235b-a22b"
     
     results = {}
     
@@ -209,11 +209,11 @@ def extract_accession_keys(schema_dict_md, json_schema, output_file="step_5_2_ac
     print(f"Saved to {output_file}")
 
 if __name__ == "__main__":
-    port = 7691
+    port = 7693
     user = "neo4j"
     password = "test"       
     
     schema_dict_md = extract_schema_with_samples_md(port, user, password, only_concept_nodes=True)
     json_schema = extract_json(port, user, password) 
-    
-    extract_accession_keys(schema_dict_md, json_schema)
+    output_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s8_postfiltered_graph_with_accessions/accession_keys.json")
+    extract_accession_keys(schema_dict_md, json_schema, output_file_path)
