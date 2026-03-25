@@ -1,4 +1,0 @@
-Source Label	Source Property	Target Label	Target Property	Confidence	Sample Evidence	Reason
-GeneOntology_Term	id	InterPro_Classification	id	10	GO:0000001 appears in both databases as a valid GO term ID	Both use the standard Gene Ontology identifier format 'GO:XXXXXXX'
-PUBLICATION	pmid	InterPro_Publication	pmid	9	PUBLICATION.pmid values (10637605, 26001782) match InterPro_Publication.pmid format (3891096, 6373375) as PubMed ID integers	Both contain PubMed ID numbers as integers
-InterPro_ConservedSite	external_docs	GeneOntology_Term	xrefs	9	EC:3.2.2.21 (InterPro) matches EC:2.5.1.30 (GO) format	Both contain EC numbers in the exact 'EC:XXXXXX' format

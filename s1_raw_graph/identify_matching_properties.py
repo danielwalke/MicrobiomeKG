@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from langgraph.graph import StateGraph, END
-from step_4_filtered_metaconcept_graph.get_properties_markdown import extract_schema_with_samples_md
+from utils.extract_properties_markdown import extract_schema_with_samples_md
 from tqdm import tqdm
 
 OUTPUT_TSV_PATH = os.path.expanduser("~/git/MicrobiomeKG/config/s1_raw_graph/schema_overlaps.tsv")

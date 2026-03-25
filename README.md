@@ -19,7 +19,7 @@ Extract Metagraph: python -m s2_raw_metagraph.extract_metagraph
 Start filtered metagraph container: docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
 Identify relevant properties: python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
 Filter metagraph and store in filtered metagraph docker container: python -m s3_filtered_raw_metagraph.filter_metagraph 
-Clone raw graph: sudo python3 s4_filtered_rolledup_graph/clone_kg.py
+Clone raw graph: sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg
 Start docker container for cloned graph: docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
 Filter and roll up knowledge graph: python -m s4_filtered_rolledup_graph.filter_knowledge_graph
 Start docker container for filtered rolled up metagraph: docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d
@@ -28,3 +28,4 @@ Start docker container for post filtered metagraph: docker compose -f s6_postfil
 Identify relevant properties from concept nodes after roll up: python -m s6_postfiltered_metagraph.identify_relevant_concept_properties
 Postfilter metagraph: python -m s6_postfiltered_metagraph.filter_metagraph
 Start docker container for post filtered graph: docker compose -f s7_postfiltered_graph/docker-compose.yml up -d
+Clone knowledge graph again: sudo -E python3 -m s7_postfiltered_graph.clone_kg
