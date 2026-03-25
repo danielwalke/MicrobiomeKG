@@ -72,7 +72,7 @@ def create_extraction_graph(model_name, api_key, base_url):
     
     return workflow.compile()
 
-def extract_validated_keys(markdown_content, topics, all_props, api_key, base_url, model_name, max_retries=3):
+def extract_validated_keys(markdown_content, topics, all_props, api_key, base_url, model_name, max_retries=5):
     graph = create_extraction_graph(model_name, api_key, base_url)
     
     system_prompt = """
@@ -140,16 +140,16 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
                 pass
     
     for label in tqdm(schema_dict, desc="Iterating over labels"):
-        if label in relevant_props_dict:
+        if label in relevant_props_dict or label in removed_props_dict:
             print(f"Skipping {label} as it has already been processed.")
             continue
 
-        print(label)
         markdown_table = schema_dict.get(label)
         all_label_props = json_schema.get(label, [])
-        time.sleep(15)
+        time.sleep(30)
         print(f"Extracting properties for label: {label} with all props: {all_label_props} but waiting for 15 seconds to avoid rate limits.")     
         try:
+            
             valid_keys_with_reasoning = extract_validated_keys(
                 markdown_table, 
                 topics, 
@@ -158,8 +158,6 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
                 custom_base_url, 
                 custom_model
             )
-            if not valid_keys_with_reasoning:
-                continue
             relevant_props_dict[label] = valid_keys_with_reasoning
             
             removed_keys = [k for k in all_label_props if k not in valid_keys_with_reasoning]
