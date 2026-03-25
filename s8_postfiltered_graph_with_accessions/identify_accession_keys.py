@@ -7,8 +7,8 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
-from step_4_filtered_metaconcept_graph.get_properties_markdown import extract_schema_with_samples_md
-from step_4_filtered_metaconcept_graph.extract_properties_json import extract_json
+from utils.extract_properties_markdown import extract_schema_with_samples_md
+from utils.extract_properties_json import extract_json
 
 class ExtractionState(TypedDict):
     messages: Annotated[list, add_messages]

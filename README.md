@@ -29,3 +29,5 @@ Identify relevant properties from concept nodes after roll up: python -m s6_post
 Postfilter metagraph: python -m s6_postfiltered_metagraph.filter_metagraph
 Start docker container for post filtered graph: docker compose -f s7_postfiltered_graph/docker-compose.yml up -d
 Clone knowledge graph again: sudo -E python3 -m s7_postfiltered_graph.clone_kg
+Postfilter Knowledge graph and remove database nodes: python -m s7_postfiltered_graph.filter_knowledge_graph
+
