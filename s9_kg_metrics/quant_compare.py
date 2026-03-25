@@ -325,6 +325,6 @@ class GraphComparator:
         self.driver_7691.close()
 
 if __name__ == "__main__":
-    comparator = GraphComparator("bolt://localhost:8083", "bolt://localhost:7691", "neo4j", "password")
+    comparator = GraphComparator("bolt://localhost:8083", "bolt://localhost:7694", "neo4j", "password")
     comparator.compare_and_plot()
     comparator.close()

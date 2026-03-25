@@ -25,3 +25,6 @@ Filter and roll up knowledge graph: python -m s4_filtered_rolledup_graph.filter_
 Start docker container for filtered rolled up metagraph: docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d
 Extract metagraph from filtered rolled up graph: python -m s5_filtered_rolledup_metagraph.extract_metagraph
 Start docker container for post filtered metagraph: docker compose -f s6_postfiltered_metagraph/docker-compose.yml up -d
+Identify relevant properties from concept nodes after roll up: python -m s6_postfiltered_metagraph.identify_relevant_concept_properties
+Postfilter metagraph: python -m s6_postfiltered_metagraph.filter_metagraph
+Start docker container for post filtered graph: docker compose -f s7_postfiltered_graph/docker-compose.yml up -d
