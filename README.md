@@ -22,3 +22,5 @@ Filter metagraph and store in filtered metagraph docker container: python -m s3_
 Clone raw graph: sudo python3 s4_filtered_rolledup_graph/clone_kg.py
 Start docker container for cloned graph: docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
 Filter and roll up knowledge graph: python -m s4_filtered_rolledup_graph.filter_knowledge_graph
+Start docker container for filtered rolled up metagraph: docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d
+Extract metagraph from filtered rolled up graph: python -m s5_filtered_rolledup_metagraph.extract_metagraph
