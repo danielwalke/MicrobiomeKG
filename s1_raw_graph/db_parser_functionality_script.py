@@ -3,7 +3,7 @@ import os
 import subprocess
 import shutil
 
-available_dbs_file_path = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/.availableDatabases.json')
+available_dbs_file_path = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/availableDatabases.json')
 dbs_with_errors_json = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/dbs_with_errors.json')
 dbs_without_errors_json = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/dbs_without_errors.json')
 
@@ -77,11 +77,11 @@ def main():
             
         else:
             dbs_without_errors.append(db)
-    with open(dbs_with_errors_json, 'w') as f:
-        json.dump(dbs_with_errors, f, indent=4)
+        with open(dbs_with_errors_json, 'w') as f:
+            json.dump(dbs_with_errors, f, indent=4)
 
-    with open(dbs_without_errors_json, 'w') as f:
-        json.dump(dbs_without_errors, f, indent=4)
+        with open(dbs_without_errors_json, 'w') as f:
+            json.dump(dbs_without_errors, f, indent=4)
 
 if __name__ == "__main__":
     main()
