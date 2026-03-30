@@ -115,7 +115,6 @@ def main():
 
         with open(dbs_without_errors_json, 'w') as f:
             json.dump(dbs_without_errors, f, indent=4)
-        exit(0)
 
 if __name__ == "__main__":
     main()
