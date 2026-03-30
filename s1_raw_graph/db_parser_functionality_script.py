@@ -7,12 +7,18 @@ available_dbs_file_path = os.path.expanduser('~/git/MicrobiomeKG/config/s0_acces
 dbs_with_errors_json = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/dbs_with_errors.json')
 dbs_without_errors_json = os.path.expanduser('~/git/MicrobiomeKG/config/s0_access/dbs_without_errors.json')
 
+dbs_with_errors = dict()
+dbs_without_errors = []
 if os.path.exists(dbs_with_errors_json):
     print(f"Warning: The file {dbs_with_errors_json} already exists. Please review the contents before proceeding.")
-    exit(1)
+    with open(dbs_with_errors_json, 'r') as f:
+        dbs_with_errors = json.load(f)
+    input("Press Enter to continue...")
 if os.path.exists(dbs_without_errors_json):
     print(f"Warning: The file {dbs_without_errors_json} already exists. Please review the contents before proceeding.")
-    exit(1)
+    with open(dbs_without_errors_json, 'r') as f:
+        dbs_without_errors = json.load(f)
+    input("Press Enter to continue...")
 
 def open_available_dbs_file():
     with open(available_dbs_file_path, 'r') as f:
@@ -32,6 +38,11 @@ def update_workspace_with_db(db_name):
     shell_command = ["java", "-jar", "BioDWH2-v0.6.8.jar", "--add-data-source", workspace_path, db_name]
     subprocess.run(shell_command, check=True, capture_output=True, text=True)
     shell_command = ["java", "-jar", "BioDWH2-v0.6.8.jar", "-u", workspace_path]
+    subprocess.run(shell_command, check=True, capture_output=True, text=True)
+
+def rm_db_from_workspace(db_name):
+    workspace_path = os.path.expanduser("~/git/MicrobiomeKG/s1_raw_graph/workspace")
+    shell_command = ["java", "-jar", "BioDWH2-v0.6.8.jar", "--remove-data-source", workspace_path, db_name]
     subprocess.run(shell_command, check=True, capture_output=True, text=True)
 
 def create_graph_db():
@@ -74,13 +85,15 @@ def start_graph_db():
 
 def main():
     available_dbs = open_available_dbs_file()
-    dbs_with_errors = dict()
-    dbs_without_errors = []
+    
     
     remove_existing_workspace()
     create_new_workspace()
     
     for db in available_dbs:
+        if db in dbs_with_errors or db in dbs_without_errors:
+            print(f"Skipping {db} as it has already been processed. Check the error/success logs for details.")
+            continue
         current_step = ""
         print(f"Running BioDWH2 for database: {db}")
         try:
@@ -95,6 +108,10 @@ def main():
             current_step = "Starting graph DB"
             start_graph_db()
             print(f"Successfully processed database: {db}")
+
+            current_step = "Removing DB from workspace"
+            rm_db_from_workspace(db)
+            print(f"Removed {db} from workspace after successful processing.")
             
         except subprocess.CalledProcessError as e:
             error_details = e.stderr.strip() if e.stderr else str(e)
