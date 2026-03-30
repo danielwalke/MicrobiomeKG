@@ -42,7 +42,35 @@ def create_graph_db():
 def start_graph_db():
     workspace_path = os.path.expanduser("~/git/MicrobiomeKG/s1_raw_graph/workspace")
     shell_command = ["java", "-jar", "BioDWH2-Neo4j-Server-v1.3.2.jar", "--start", workspace_path]
-    subprocess.run(shell_command, check=True, capture_output=True, text=True)
+    
+    process = subprocess.Popen(
+        shell_command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True
+    )
+    
+    success = False
+    output_log = []
+    
+    try:
+        for line in process.stdout:
+            output_log.append(line)
+            if "bolt://0.0.0.0:8083" in line:
+                success = True
+                break
+    finally:
+        process.terminate()
+        process.wait()
+        
+    if not success:
+        full_output = "".join(output_log)
+        raise subprocess.CalledProcessError(
+            returncode=process.returncode or 1,
+            cmd=shell_command,
+            output=full_output,
+            stderr=full_output
+        )
 
 def main():
     available_dbs = open_available_dbs_file()
@@ -54,6 +82,7 @@ def main():
     
     for db in available_dbs:
         current_step = ""
+        print(f"Running BioDWH2 for database: {db}")
         try:
             current_step = "Updating workspace"
             update_workspace_with_db(db)
@@ -61,8 +90,11 @@ def main():
             current_step = "Creating graph DB"
             create_graph_db()
             
+            print(f"Successfully created graph DB for database: {db}")
+
             current_step = "Starting graph DB"
             start_graph_db()
+            print(f"Successfully processed database: {db}")
             
         except subprocess.CalledProcessError as e:
             error_details = e.stderr.strip() if e.stderr else str(e)
@@ -77,11 +109,13 @@ def main():
             
         else:
             dbs_without_errors.append(db)
+            
         with open(dbs_with_errors_json, 'w') as f:
             json.dump(dbs_with_errors, f, indent=4)
 
         with open(dbs_without_errors_json, 'w') as f:
             json.dump(dbs_without_errors, f, indent=4)
+        exit(0)
 
 if __name__ == "__main__":
     main()
