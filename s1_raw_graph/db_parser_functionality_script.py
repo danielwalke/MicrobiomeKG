@@ -38,7 +38,22 @@ def update_workspace_with_db(db_name):
     shell_command = ["java", "-jar", "BioDWH2-v0.6.8.jar", "--add-data-source", workspace_path, db_name]
     subprocess.run(shell_command, check=True, capture_output=True, text=True)
     shell_command = ["java", "-jar", "BioDWH2-v0.6.8.jar", "-u", workspace_path]
-    subprocess.run(shell_command, check=True, capture_output=True, text=True)
+
+    process = subprocess.Popen(
+        shell_command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1
+    )
+
+    for line in process.stdout:
+        print(line, end="")
+
+    process.wait()
+
+    if process.returncode != 0:
+        raise subprocess.CalledProcessError(process.returncode, shell_command)
 
 def rm_db_from_workspace(db_name):
     workspace_path = os.path.expanduser("~/git/MicrobiomeKG/s1_raw_graph/workspace")
@@ -48,7 +63,16 @@ def rm_db_from_workspace(db_name):
 def create_graph_db():
     workspace_path = os.path.expanduser("~/git/MicrobiomeKG/s1_raw_graph/workspace")
     shell_command = ["java", "-jar", "BioDWH2-Neo4j-Server-v1.3.2.jar", "--create", workspace_path]
-    subprocess.run(shell_command, check=True, capture_output=True, text=True)
+    
+    try:
+        result = subprocess.run(shell_command, check=True, capture_output=True, text=True)
+        print(result.stdout)
+        if result.stderr:
+            print(result.stderr)
+    except subprocess.CalledProcessError as e:
+        print(e.stdout)
+        print(e.stderr)
+        raise
 
 def start_graph_db():
     workspace_path = os.path.expanduser("~/git/MicrobiomeKG/s1_raw_graph/workspace")
@@ -66,6 +90,7 @@ def start_graph_db():
     
     try:
         for line in process.stdout:
+            print(line, end='')  # Print the output in real-time
             output_log.append(line)
             if "bolt://0.0.0.0:8083" in line:
                 success = True
@@ -98,9 +123,11 @@ def main():
         print(f"Running BioDWH2 for database: {db}")
         try:
             current_step = "Updating workspace"
+            print(f"Adding {db} to workspace and updating...")
             update_workspace_with_db(db)
             
             current_step = "Creating graph DB"
+            print(f"Creating graph DB for {db}...")
             create_graph_db()
             
             print(f"Successfully created graph DB for database: {db}")
