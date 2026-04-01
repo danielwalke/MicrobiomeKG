@@ -112,13 +112,14 @@ def main():
     available_dbs = open_available_dbs_file()
     
     
-    remove_existing_workspace()
-    create_new_workspace()
     
     for db in available_dbs:
         if db in dbs_with_errors or db in dbs_without_errors:
             print(f"Skipping {db} as it has already been processed. Check the error/success logs for details.")
             continue
+        remove_existing_workspace()
+        create_new_workspace()
+    
         current_step = ""
         print(f"Running BioDWH2 for database: {db}")
         try:
@@ -145,11 +146,13 @@ def main():
             full_error = f"Failed during '{current_step}'. Details: {error_details}"
             print(f"Command line error processing {db}:\n{full_error}")
             dbs_with_errors[db] = full_error
+            rm_db_from_workspace(db)
             
         except Exception as e:
             full_error = f"Python error during '{current_step}'. Details: {e}"
             print(f"Python error processing database {db}: {full_error}")
             dbs_with_errors[db] = full_error
+            rm_db_from_workspace(db)
             
         else:
             dbs_without_errors.append(db)
