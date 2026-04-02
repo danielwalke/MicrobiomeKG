@@ -5,5 +5,10 @@
     "GuideToPharmacology": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
     "HERB": "Running for over 24 hours and keeps saying '2026-03-31 12:23:39 [INFO ] de.unibi.agbi.biodwh2.herb.etl.HerbGraphExporter:86 - Exporting ingredients...r', but no graph DB is created. .txt files in source says 'Sorry, unavailable path.'",
     "KEGG": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
-    "Mondo": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1."
+    "Mondo": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
+    "NCBI": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
+    "PathwayCommons": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
+    "PharmGKB": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
+    "RNAInter": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1.",
+    "TTD": "Failed during 'Updating workspace'. Details: Command '['java', '-jar', 'BioDWH2-v0.6.8.jar', '-u', '/home/daniel.walke/git/MicrobiomeKG/s1_raw_graph/workspace']' returned non-zero exit status 1."
 }
