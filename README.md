@@ -14,6 +14,8 @@
 
 ---
 
+Just run bash s0_access/start.sh
+
 ## Setup and Dependencies
 
 Create .venv:
