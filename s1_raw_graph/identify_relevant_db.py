@@ -94,7 +94,7 @@ def main():
 
     app = workflow.compile()
 
-    available_path = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/availableDatabases.json")
+    available_path = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/dbs_without_errors.json")
     with open(available_path, "r") as f:
         available_dbs = json.load(f)
         
