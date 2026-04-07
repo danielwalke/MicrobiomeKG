@@ -1,5 +1,11 @@
 [
-    "PROTEIN",
+    "DRUG",
     "PUBLICATION",
-    "PROTEIN_DOMAIN"
+    "PROTEIN",
+    "RNA",
+    "TAXON",
+    "GENE",
+    "DISEASE",
+    "CLINICAL_TRIAL",
+    "COMPOUND"
 ]

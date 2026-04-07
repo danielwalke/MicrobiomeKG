@@ -1,53 +1,82 @@
 {
-    "Family": [
-        "InterPro_Family"
+    "Category": [
+        "DGIdb_Category"
     ],
-    "Subset": [
-        "GeneOntology_Subset"
-    ],
-    "ConservedSite": [
-        "InterPro_ConservedSite"
-    ],
-    "Term": [
-        "GeneOntology_Term"
-    ],
-    "BindingSite": [
-        "InterPro_BindingSite"
+    "Idspace": [
+        "GeneOntology_Idspace",
+        "HPO_Idspace"
     ],
     "Typedef": [
-        "GeneOntology_Typedef"
+        "GeneOntology_Typedef",
+        "HPO_Typedef",
+        "DiseaseOntology_Typedef"
+    ],
+    "Header": [
+        "HPO_Header",
+        "GeneOntology_Header",
+        "DiseaseOntology_Header"
+    ],
+    "Group": [
+        "ClinicalTrials.gov_Group"
     ],
     "SynonymType": [
-        "GeneOntology_SynonymType"
+        "GeneOntology_SynonymType",
+        "HPO_SynonymType",
+        "DiseaseOntology_SynonymType"
+    ],
+    "Person": [
+        "ClinicalTrials.gov_Person"
+    ],
+    "ClinicalResults": [
+        "ClinicalTrials.gov_ClinicalResults"
+    ],
+    "Term": [
+        "DiseaseOntology_Term",
+        "GeneOntology_Term",
+        "HPO_Term"
+    ],
+    "Location": [
+        "ClinicalTrials.gov_Location"
+    ],
+    "Outcome": [
+        "ClinicalTrials.gov_Outcome"
+    ],
+    "Drug": [
+        "DGIdb_Drug"
+    ],
+    "ParticipantFlow": [
+        "ClinicalTrials.gov_ParticipantFlow"
+    ],
+    "Subset": [
+        "DiseaseOntology_Subset",
+        "GeneOntology_Subset",
+        "HPO_Subset"
+    ],
+    "Gene": [
+        "DISEASES_Gene"
     ],
     "metadata": [
         "metadata"
     ],
-    "Enzyme": [
-        "ENZYME_Enzyme"
+    "Disease": [
+        "DISEASES_Disease"
     ],
-    "Idspace": [
-        "GeneOntology_Idspace"
+    "Period": [
+        "ClinicalTrials.gov_Period"
     ],
-    "HomologousSuperfamily": [
-        "InterPro_HomologousSuperfamily"
+    "ArmGroup": [
+        "ClinicalTrials.gov_ArmGroup"
     ],
-    "Classification": [
-        "InterPro_Classification"
+    "Document": [
+        "ClinicalTrials.gov_Document"
     ],
-    "PTM": [
-        "InterPro_PTM"
+    "Milestone": [
+        "ClinicalTrials.gov_Milestone"
     ],
-    "DBInfo": [
-        "InterPro_DBInfo"
+    "Intervention": [
+        "ClinicalTrials.gov_Intervention"
     ],
-    "ActiveSite": [
-        "InterPro_ActiveSite"
-    ],
-    "Repeat": [
-        "InterPro_Repeat"
-    ],
-    "Header": [
-        "GeneOntology_Header"
+    "Sponsor": [
+        "ClinicalTrials.gov_Sponsor"
     ]
 }
