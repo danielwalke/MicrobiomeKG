@@ -1,4 +1,3 @@
-import argparse
 from neo4j import GraphDatabase
 
 def filter_properties(m_session, t_session):

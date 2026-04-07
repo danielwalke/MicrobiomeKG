@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from langgraph.graph import StateGraph, START, END
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from step_4_filtered_metaconcept_graph.get_properties_markdown import extract_schema_with_samples_md
+from utils.extract_properties_markdown import extract_schema_with_samples_md
 from tqdm import tqdm
 
 load_dotenv()
