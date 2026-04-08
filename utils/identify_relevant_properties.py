@@ -140,16 +140,27 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
                 pass
     
     for label in tqdm(schema_dict, desc="Iterating over labels"):
-        if label in relevant_props_dict or label in removed_props_dict:
-            print(f"Skipping {label} as it has already been processed.")
+        clean_label = label.strip('`')
+        escaped_label = f"`{clean_label}`"
+
+        if clean_label in relevant_props_dict or clean_label in removed_props_dict:
+            print(f"Skipping {clean_label} as it has already been processed.")
             continue
 
         markdown_table = schema_dict.get(label)
-        all_label_props = json_schema.get(label, [])
-        time.sleep(30)
-        print(f"Extracting properties for label: {label} with all props: {all_label_props} but waiting for 15 seconds to avoid rate limits.")     
-        try:
+        
+        all_label_props = json_schema.get(clean_label)
+        if not all_label_props:
+            all_label_props = json_schema.get(escaped_label, [])
             
+        if not all_label_props:
+            print(f"Warning: No properties found in json_schema for label {clean_label}")
+            continue
+
+        time.sleep(30)
+        print(f"Extracting properties for label: {clean_label} with all props: {all_label_props} but waiting for 30 seconds to avoid rate limits.")     
+        
+        try:
             valid_keys_with_reasoning = extract_validated_keys(
                 markdown_table, 
                 topics, 
@@ -158,10 +169,10 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
                 custom_base_url, 
                 custom_model
             )
-            relevant_props_dict[label] = valid_keys_with_reasoning
+            relevant_props_dict[clean_label] = valid_keys_with_reasoning
             
             removed_keys = [k for k in all_label_props if k not in valid_keys_with_reasoning]
-            removed_props_dict[label] = removed_keys
+            removed_props_dict[clean_label] = removed_keys
 
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(relevant_props_dict, f, indent=4)
@@ -169,8 +180,6 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
             with open(output_removed_file, 'w', encoding='utf-8') as f:
                 json.dump(removed_props_dict, f, indent=4)
 
-            
-            
         except Exception as e:
             print(e)
 
