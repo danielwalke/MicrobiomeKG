@@ -25,7 +25,7 @@ def filter_properties(m_session, t_session):
         CALL apoc.periodic.iterate(
             "MATCH (n:{label}) RETURN n",
             "REMOVE {props_to_remove}",
-            {{batchSize: 10000, parallel: false}}
+            {{batchSize: 5000, parallel: false}}
         )
         """
         t_session.run(batch_query).consume()
@@ -48,7 +48,7 @@ def indirect_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 5000, parallel: false}
         )
         """
     ).consume()
@@ -65,7 +65,7 @@ def property_roll_up(t_session):
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
             CALL apoc.create.setProperty(sAgg, newKey, propValues) YIELD node
             RETURN node",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 5000, parallel: false}
         )
         """
     ).consume()
@@ -88,7 +88,7 @@ def direct_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 5000, parallel: false}
         )
         """
     ).consume()
@@ -103,7 +103,7 @@ def bridge_node_roll_up(t_session):
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
              SET new_r.source_labels = dbLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 5000, parallel: false}
         )
         """
     ).consume()
@@ -115,7 +115,7 @@ def delete_all_source_nodes_of_mapped_to(t_session):
             "MATCH (n)-[:MAPPED_TO]->()
              RETURN DISTINCT n",
             "DETACH DELETE n",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 5000, parallel: false}
         )
         """
     ).consume()
