@@ -120,7 +120,7 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
     
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
-    custom_model = "medgemma-27b-it" #"mistral-large-3-675b-instruct-2512" #"qwen3-235b-a22b"
+    custom_model = "qwen3.5-35b-a3b" #"mistral-large-3-675b-instruct-2512" #"qwen3-235b-a22b"
 
     relevant_props_dict = dict()
     removed_props_dict = dict()
