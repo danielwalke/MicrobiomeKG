@@ -38,13 +38,16 @@ def llm_generation_node(state: GraphState) -> GraphState:
     
     system_prompt = """Extract the tab-separated data and identify node labels and properties that require preprocessing for exact ID matching.
     
-    CRITICAL INSTRUCTION ON NEO4J DATA TYPES:
-    Many properties (like 'ids', 'xrefs', 'external_docs') are stored as String Arrays (Lists), not single strings. 
-    If you apply string functions like `replace()` or `split()` directly on a list, it will trigger a TypeError.
-    To safely handle these properties, ALWAYS use list comprehensions in your SET clause.
+    CRITICAL HEURISTIC RULE FOR NEO4J DATA TYPES:
+    You must look at the property name to determine if it is a String or a StringArray.
     
-    Correct pattern for Arrays: MATCH (n:`Label`) WHERE n.prop IS NOT NULL SET n.prop = [x IN n.prop | replace(x, 'EC:', '')]
-    Incorrect pattern (will fail): MATCH (n:`Label`) WHERE n.prop IS NOT NULL SET n.prop = replace(n.prop, 'EC:', '')
+    1. PLURAL PROPERTIES: If the property ends in 's', it is a StringArray.
+       YOU MUST USE LIST COMPREHENSIONS. 
+       Correct: MATCH (n:`Label`) WHERE n.xrefs IS NOT NULL SET n.xrefs = [x IN n.xrefs | replace(x, 'EC:', '')]
+       
+    2. SINGULAR PROPERTIES: If the property does not end in 's', it is a standard String.
+       YOU MUST USE STANDARD STRING FUNCTIONS.
+       Correct: MATCH (n:`Label`) WHERE n.id IS NOT NULL SET n.id = replace(n.id, 'ChEMBL:', '')
     
     Output ONLY a valid JSON object with the following structure:
     {
@@ -61,12 +64,11 @@ def llm_generation_node(state: GraphState) -> GraphState:
         HumanMessage(content=f"Here is the schema data:\n{state['tsv_content']}")
     ]
     
-    # If there are errors from a previous validation run, feed them back to the LLM
     if state.get("errors"):
-        error_feedback = "Your previous JSON attempt failed validation with the following errors:\n"
+        error_feedback = "CRITICAL: Your previous JSON attempt failed validation with these errors:\n"
         for err in state["errors"]:
             error_feedback += f"- {err}\n"
-        error_feedback += "\nPlease correct your Cypher queries. Pay special attention to Array TypeErrors and use list comprehensions `[x IN n.prop | ...]`."
+        error_feedback += "\nDO NOT REPEAT THE SAME MISTAKE. If it says 'got: StringArray', you MUST rewrite that specific query to use `[x IN n.propertyName | replace(x, ...)]`."
         messages.append(HumanMessage(content=error_feedback))
     
     try:
@@ -83,7 +85,7 @@ def llm_generation_node(state: GraphState) -> GraphState:
         return {"errors": [str(e)], "retry_count": state["retry_count"] + 1, "status": "llm_error"}
 
 def validate_neo4j_node(state: GraphState) -> GraphState:
-    print("-> Executing: Neo4j Validation Node (Syntax & Runtime Dry-Run)")
+    print("-> Executing: Neo4j Validation Node (Syntax, Type Rules & Runtime)")
     driver = GraphDatabase.driver("bolt://localhost:8083", auth=None)
     data = state["generated_json"]
     errors = []
@@ -91,35 +93,33 @@ def validate_neo4j_node(state: GraphState) -> GraphState:
     try:
         with driver.session() as session:
             for label, properties in tqdm(data.items(), desc="Validating Node Labels"):
-                label_check = session.run(
-                    "CALL db.labels() YIELD label WHERE label = $lbl RETURN count(label) AS c", 
-                    lbl=label
-                ).single()["c"]
-                
+                label_check = session.run("CALL db.labels() YIELD label WHERE label = $lbl RETURN count(label) AS c", lbl=label).single()["c"]
                 if label_check == 0:
                     errors.append(f"Label {label} not found in database.")
                     continue
                     
                 for prop, details in properties.items():
-                    prop_check = session.run(
-                        "MATCH (n:`" + label + "`) WHERE n." + prop + " IS NOT NULL RETURN count(n) AS c"
-                    ).single()["c"]
-                    
+                    prop_check = session.run("MATCH (n:`" + label + "`) WHERE n." + prop + " IS NOT NULL RETURN count(n) AS c").single()["c"]
                     if prop_check == 0:
                         errors.append(f"Property {prop} not found for label {label}.")
                         continue
                         
                     cypher_query = details["cypher"]
                     
-                    # 1. Check Syntax
+                    if prop.endswith('s') and re.search(r'(replace|split|toLower|toUpper)\(\s*[a-zA-Z0-9_]+\.' + prop + r'\s*,', cypher_query):
+                        errors.append(
+                            f"SYNTAX REJECTION for {label}.{prop}: You wrote `{cypher_query}`. "
+                            f"Because '{prop}' is a plural Array property, you CANNOT use `replace(n.{prop}, ...)`. "
+                            f"You MUST rewrite it as `SET n.{prop} = [x IN n.{prop} | replace(x, ...)]`"
+                        )
+                        continue
+                    
                     try:
                         session.run("EXPLAIN " + cypher_query)
                     except Exception as ce:
                         errors.append(f"Invalid Cypher syntax for {label}.{prop}: {str(ce)}")
-                        continue # Skip dry-run if syntax is broken
+                        continue
                         
-                    # 2. Runtime Dry-Run (Catches TypeErrors on Arrays)
-                    # We inject a 'WITH n LIMIT 1' before the SET clause to test on a single node
                     if " SET " in cypher_query:
                         dry_run_query = cypher_query.replace(" SET ", " WITH n LIMIT 1 SET ")
                     else:
@@ -132,11 +132,9 @@ def validate_neo4j_node(state: GraphState) -> GraphState:
                         err_msg = str(runtime_error)
                         errors.append(
                             f"Runtime Execution Error for {label}.{prop}: {err_msg}. "
-                            f"HINT: If this is an Array TypeError, rewrite your query to use a list comprehension: "
-                            f"`SET n.{prop} = [x IN n.{prop} | <string_function_here>]`"
+                            f"REWRITE REQUIREMENT: SET n.{prop} = [x IN n.{prop} | replace(x, ...)]"
                         )
                     finally:
-                        # ALWAYS rollback the transaction so the database remains completely unchanged
                         tx.rollback()
                         
     finally:
