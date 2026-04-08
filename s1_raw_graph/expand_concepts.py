@@ -51,8 +51,8 @@ def main():
                     criteria = f"__id: n.__id"
 
                 queries = [
-                    f"CREATE INDEX IF NOT EXISTS FOR (n:{new_concept_label}) ON (n.__id)",
-                    f"CREATE INDEX IF NOT EXISTS FOR (n:{raw_kg_label}) ON (n.__id)"
+                    f"CREATE INDEX IF NOT EXISTS FOR (n:`{new_concept_label}`) ON (n.__id)",
+                    f"CREATE INDEX IF NOT EXISTS FOR (n:`{raw_kg_label}`) ON (n.__id)"
                 ]
 
                 for q in queries:
@@ -60,8 +60,8 @@ def main():
                     
                 session.run(
                     f"""
-                    MATCH (n:{raw_kg_label})
-                    MERGE (c:{new_concept_label} {{{criteria}}})
+                    MATCH (n:`{raw_kg_label}`)
+                    MERGE (c:`{new_concept_label}` {{{criteria}}})
                     ON CREATE SET c.__mapped = true, c.ids = [], c.names = []
                     MERGE (n)-[:MAPPED_TO]->(c)
                     """
