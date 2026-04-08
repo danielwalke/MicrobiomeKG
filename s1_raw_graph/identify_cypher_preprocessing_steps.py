@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import re
 from typing import Dict, Any, List
 from typing_extensions import TypedDict
 from langchain_openai import ChatOpenAI
@@ -23,7 +24,7 @@ def read_tsv_node(state: GraphState) -> GraphState:
     print("-> Executing: Read TSV Node")
     with open("config/s1_raw_graph/schema_overlaps.tsv", "r") as f:
         content = f.read()
-    return {"tsv_content": content, "retry_count": state.get("retry_count", 0), "errors": [], "status": "read"}
+    return {"tsv_content": content, "retry_count": state.get("retry_count", 0), "errors": state.get("errors", []), "status": "read"}
 
 def llm_generation_node(state: GraphState) -> GraphState:
     attempt = state.get("retry_count", 0) + 1
@@ -36,6 +37,15 @@ def llm_generation_node(state: GraphState) -> GraphState:
     )
     
     system_prompt = """Extract the tab-separated data and identify node labels and properties that require preprocessing for exact ID matching.
+    
+    CRITICAL INSTRUCTION ON NEO4J DATA TYPES:
+    Many properties (like 'ids', 'xrefs', 'external_docs') are stored as String Arrays (Lists), not single strings. 
+    If you apply string functions like `replace()` or `split()` directly on a list, it will trigger a TypeError.
+    To safely handle these properties, ALWAYS use list comprehensions in your SET clause.
+    
+    Correct pattern for Arrays: MATCH (n:`Label`) WHERE n.prop IS NOT NULL SET n.prop = [x IN n.prop | replace(x, 'EC:', '')]
+    Incorrect pattern (will fail): MATCH (n:`Label`) WHERE n.prop IS NOT NULL SET n.prop = replace(n.prop, 'EC:', '')
+    
     Output ONLY a valid JSON object with the following structure:
     {
       "NodeLabel": {
@@ -46,17 +56,26 @@ def llm_generation_node(state: GraphState) -> GraphState:
       }
     }"""
     
+    messages = [
+        SystemMessage(content=system_prompt),
+        HumanMessage(content=f"Here is the schema data:\n{state['tsv_content']}")
+    ]
+    
+    # If there are errors from a previous validation run, feed them back to the LLM
+    if state.get("errors"):
+        error_feedback = "Your previous JSON attempt failed validation with the following errors:\n"
+        for err in state["errors"]:
+            error_feedback += f"- {err}\n"
+        error_feedback += "\nPlease correct your Cypher queries. Pay special attention to Array TypeErrors and use list comprehensions `[x IN n.prop | ...]`."
+        messages.append(HumanMessage(content=error_feedback))
+    
     try:
-        response = llm.invoke([
-            SystemMessage(content=system_prompt),
-            HumanMessage(content=state["tsv_content"])
-        ])
-        
+        response = llm.invoke(messages)
         raw_content = response.content.replace("```json", "").replace("```", "").strip()
         parsed_json = json.loads(raw_content)
         
         print("Successfully generated JSON from LLM.")
-        return {"generated_json": parsed_json, "status": "generated"}
+        return {"generated_json": parsed_json, "status": "generated", "errors": []}
         
     except Exception as e:
         print(f"LLM Error encountered: {e}. Waiting 30s before retry...")
@@ -64,7 +83,7 @@ def llm_generation_node(state: GraphState) -> GraphState:
         return {"errors": [str(e)], "retry_count": state["retry_count"] + 1, "status": "llm_error"}
 
 def validate_neo4j_node(state: GraphState) -> GraphState:
-    print("-> Executing: Neo4j Validation Node")
+    print("-> Executing: Neo4j Validation Node (Syntax & Runtime Dry-Run)")
     driver = GraphDatabase.driver("bolt://localhost:8083", auth=None)
     data = state["generated_json"]
     errors = []
@@ -91,27 +110,51 @@ def validate_neo4j_node(state: GraphState) -> GraphState:
                         continue
                         
                     cypher_query = details["cypher"]
+                    
+                    # 1. Check Syntax
                     try:
                         session.run("EXPLAIN " + cypher_query)
                     except Exception as ce:
-                        errors.append(f"Invalid Cypher logic for {label}.{prop}: {str(ce)}")
+                        errors.append(f"Invalid Cypher syntax for {label}.{prop}: {str(ce)}")
+                        continue # Skip dry-run if syntax is broken
+                        
+                    # 2. Runtime Dry-Run (Catches TypeErrors on Arrays)
+                    # We inject a 'WITH n LIMIT 1' before the SET clause to test on a single node
+                    if " SET " in cypher_query:
+                        dry_run_query = cypher_query.replace(" SET ", " WITH n LIMIT 1 SET ")
+                    else:
+                        dry_run_query = cypher_query + " LIMIT 1"
+                        
+                    tx = session.begin_transaction()
+                    try:
+                        tx.run(dry_run_query)
+                    except Exception as runtime_error:
+                        err_msg = str(runtime_error)
+                        errors.append(
+                            f"Runtime Execution Error for {label}.{prop}: {err_msg}. "
+                            f"HINT: If this is an Array TypeError, rewrite your query to use a list comprehension: "
+                            f"`SET n.{prop} = [x IN n.{prop} | <string_function_here>]`"
+                        )
+                    finally:
+                        # ALWAYS rollback the transaction so the database remains completely unchanged
+                        tx.rollback()
                         
     finally:
         driver.close()
         
     if errors:
-        print(f"Validation finished with {len(errors)} errors.")
-        return {"errors": errors, "status": "validation_failed"}
+        print(f"Validation failed with {len(errors)} errors. Routing back to LLM for correction.")
+        return {"errors": errors, "retry_count": state["retry_count"] + 1, "status": "validation_failed"}
         
-    print("Validation finished successfully. No errors found.")
+    print("Validation finished successfully. All queries are syntactically and type-safe.")
     return {"status": "validated"}
 
 def router(state: GraphState) -> str:
     print(f"-> Routing from status: {state['status']}")
     if state["status"] == "read":
         return "generate"
-    if state["status"] == "llm_error":
-        if state["retry_count"] < 3:
+    if state["status"] in ["llm_error", "validation_failed"]:
+        if state["retry_count"] <= 3:
             return "generate"
         return "end"
     if state["status"] == "generated":
@@ -132,22 +175,28 @@ workflow.add_conditional_edges(
     router, 
     {"generate": "generate", "validate": "validate", "end": END}
 )
-workflow.add_conditional_edges("validate", router, {"end": END})
+workflow.add_conditional_edges(
+    "validate", 
+    router, 
+    {"generate": "generate", "end": END}
+)
 
 app = workflow.compile()
 
 if __name__ == "__main__":
-    print("=== Starting LangGraph Execution ===")
-    initial_state = {"retry_count": 0}
+    print("=== Starting Self-Correcting LangGraph Execution ===")
+    initial_state = {"retry_count": 0, "errors": []}
     result = app.invoke(initial_state)
     
-    if "generated_json" in result:
+    if "generated_json" in result and result["status"] == "validated":
         with open("generated_queries.json", "w") as f:
             json.dump(result["generated_json"], f, indent=2)
-        print("Saved outputs to generated_queries.json")
+        print("Successfully saved validated queries to generated_queries.json")
+    else:
+        print("Failed to generate valid queries after maximum retries.")
             
     print("=== Execution Complete ===")
     if result.get("errors"):
-        print("Encountered Errors:")
+        print("Final Unresolved Errors:")
         for e in result.get("errors", []):
             print(f" - {e}")
