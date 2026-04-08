@@ -61,9 +61,12 @@ def main():
                 session.run(
                     f"""
                     MATCH (n:`{raw_kg_label}`)
-                    MERGE (c:`{new_concept_label}` {{{criteria}}})
-                    ON CREATE SET c.__mapped = true, c.ids = [], c.names = []
-                    MERGE (n)-[:MAPPED_TO]->(c)
+                    CALL {{
+                        WITH n
+                        MERGE (c:`{new_concept_label}` {{{criteria}}})
+                        ON CREATE SET c.__mapped = true, c.ids = [], c.names = []
+                        MERGE (n)-[:MAPPED_TO]->(c)
+                    }} IN TRANSACTIONS OF 10000 ROWS
                     """
                 ).consume()
 
