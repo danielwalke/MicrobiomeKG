@@ -7,6 +7,9 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.graph import StateGraph, END
 from neo4j import GraphDatabase
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 class GraphState(TypedDict):
     tsv_content: str
@@ -125,6 +128,9 @@ app = workflow.compile()
 if __name__ == "__main__":
     initial_state = {"retry_count": 0}
     result = app.invoke(initial_state)
-    with open("generated_queries.json", "w") as f:
-        json.dump(result.get("generated_json", {}), f, indent=2)
+    
+    if "generated_json" in result:
+        with open("generated_queries.json", "w") as f:
+            json.dump(result["generated_json"], f, indent=2)
+            
     print(json.dumps(result, indent=2))
