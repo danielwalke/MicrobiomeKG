@@ -139,7 +139,7 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
             except json.JSONDecodeError:
                 pass
     
-    for label in tqdm(schema_dict, desc="Iterating over labels"):
+    for label in tqdm(list(schema_dict.keys())[::-1], desc="Iterating over labels"):
         if label in relevant_props_dict or label in removed_props_dict:
             print(f"Skipping {label} as it has already been processed.")
             continue

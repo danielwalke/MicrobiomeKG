@@ -1,0 +1,68 @@
+{
+  "GeneOntology_Term": {
+    "xrefs": {
+      "cypher": "MATCH (n:`GeneOntology_Term`) WHERE n.xrefs IS NOT NULL SET n.xrefs = [x IN n.xrefs | replace(replace(replace(x, 'EC:', ''), 'skos:exactMatch ', ''), 'GO:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'EC:', 'skos:exactMatch ', and 'GO:' prefixes from EC/GO identifiers in the array."
+    }
+  },
+  "DRUG": {
+    "ids": {
+      "cypher": "MATCH (n:`DRUG`) WHERE n.ids IS NOT NULL SET n.ids = [x IN n.ids | replace(x, 'ChEMBL:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'ChEMBL:' prefix from ChEMBL compound identifiers in the array."
+    }
+  },
+  "PROTEIN": {
+    "ids": {
+      "cypher": "MATCH (n:`PROTEIN`) WHERE n.ids IS NOT NULL SET n.ids = [x IN n.ids | replace(x, 'ChEMBL:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'ChEMBL:' prefix from ChEMBL protein identifiers in the array."
+    }
+  },
+  "DGIdb_Drug": {
+    "id": {
+      "cypher": "MATCH (n:`DGIdb_Drug`) WHERE n.id IS NOT NULL SET n.id = replace(replace(n.id, 'chembl:', ''), 'CHEMBL:', '')",
+      "reasoning": "Property does not end in 's' = String. Must use standard string function. Removes 'chembl:' and 'CHEMBL:' prefix variations from compound identifier."
+    }
+  },
+  "CMAUP_Ingredient": {
+    "chembl_id": {
+      "cypher": "MATCH (n:`CMAUP_Ingredient`) WHERE n.chembl_id IS NOT NULL SET n.chembl_id = replace(n.chembl_id, 'CHEMBL:', '')",
+      "reasoning": "Property does not end in 's' = String. Must use standard string function. Removes 'CHEMBL:' prefix from compound identifier."
+    }
+  },
+  "ClinicalTrials.gov_Document": {
+    "url": {
+      "cypher": "MATCH (n:`ClinicalTrials.gov_Document`) WHERE n.url IS NOT NULL SET n.url = replace(n.url, 'NCT:', '')",
+      "reasoning": "Property does not end in 's' = String. Must use standard string function. Removes 'NCT:' prefix from document URL containing ClinicalTrials.gov identifier."
+    }
+  },
+  "ClinicalTrials.gov_Trial": {
+    "id": {
+      "cypher": "MATCH (n:`ClinicalTrials.gov_Trial`) WHERE n.id IS NOT NULL SET n.id = replace(n.id, 'NCT:', '')",
+      "reasoning": "Property does not end in 's' = String. Must use standard string function. Removes 'NCT:' prefix from ClinicalTrials.gov trial identifier."
+    }
+  },
+  "GeneOntology_Typedef": {
+    "xrefs": {
+      "cypher": "MATCH (n:`GeneOntology_Typedef`) WHERE n.xrefs IS NOT NULL SET n.xrefs = [x IN n.xrefs | replace(replace(x, 'RO:', ''), 'BFO:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'RO:' and 'BFO:' prefixes from relationship ontology identifiers in the array."
+    }
+  },
+  "HPO_Typedef": {
+    "xrefs": {
+      "cypher": "MATCH (n:`HPO_Typedef`) WHERE n.xrefs IS NOT NULL SET n.xrefs = [x IN n.xrefs | replace(replace(x, 'RO:', ''), 'BFO:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'RO:' and 'BFO:' prefixes from relationship ontology identifiers in the array."
+    }
+  },
+  "DiseaseOntology_Header": {
+    "property_values": {
+      "cypher": "MATCH (n:`DiseaseOntology_Header`) WHERE n.property_values IS NOT NULL SET n.property_values = [x IN n.property_values | replace(x, 'IAO:', '')]",
+      "reasoning": "Property does not end in 's' = StringArray (despite 'values' plural). Must use list comprehension. Removes 'IAO:' prefix from identifier values in the array."
+    }
+  },
+  "GeneOntology_Header": {
+    "property_values": {
+      "cypher": "MATCH (n:`GeneOntology_Header`) WHERE n.property_values IS NOT NULL SET n.property_values = [x IN n.property_values | replace(x, 'GO:', '')]",
+      "reasoning": "Property ends in 's' = StringArray. Must use list comprehension. Removes 'GO:' prefix from Gene Ontology identifiers in the array."
+    }
+  }
+}

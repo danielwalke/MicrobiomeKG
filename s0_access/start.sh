@@ -26,17 +26,19 @@ if [ ! -d "$HOME/git/MicrobiomeKG/s1_raw_graph/workspace/sources" ] || [ -z "$(l
     java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --create $HOME/git/MicrobiomeKG/s1_raw_graph/workspace/
 fi
 
-java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start $HOME/git/MicrobiomeKG/s1_raw_graph/workspace/ &
+#java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start $HOME/git/MicrobiomeKG/s1_raw_graph/workspace/ &
 
-sleep 15
+#sleep 15
 
 #python -m s1_raw_graph.extract_possible_concepts
 #python -m s1_raw_graph.identify_relevant_concepts
 #python -m s1_raw_graph.identify_matching_properties
-python -m s1_raw_graph.expand_concepts
-docker compose -f s2_raw_metagraph/docker-compose.yml up -d
-python -m s2_raw_metagraph.extract_metagraph
-docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
+#python -m s1_raw_graph.identify_cypher_preprocessing_steps
+#python -m s1_raw_graph.execute_identified_cypher_preprocessing
+#python -m s1_raw_graph.expand_concepts
+#docker compose -f s2_raw_metagraph/docker-compose.yml up -d
+#python -m s2_raw_metagraph.extract_metagraph
+#docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
 python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
 python -m s3_filtered_raw_metagraph.filter_metagraph
 sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg

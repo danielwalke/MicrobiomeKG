@@ -133,5 +133,167 @@
     "HOMOLOGOUSSUPERFAMILY": {
         "names": "Essential identifier for web search and linking to proteome/metaproteome research. Provides human-readable labels for homologous superfamilies, which are critical in comparative sequence analysis and functional annotation.",
         "ids": "Moderately relevant for cross-referencing with external databases (e.g., Pfam, InterPro) or literature, enabling integration with sequencing analysis and treatment studies."
+    },
+    "CMAUP_Plant": {
+        "name": "Essential identifier for web search and entity display.",
+        "species_tax_id": "Unique taxonomic identifier for linking to biological databases and literature.",
+        "id": "Internal unique identifier for the node within the knowledge graph."
+    },
+    "DRUG": {
+        "names": "Essential for identifying drug treatments in literature and research contexts.",
+        "ids": "Provides external database links (RxNorm, ChEMBL) crucial for cross-referencing treatments and compounds."
+    },
+    "ClinicalTrials.gov_Group": {
+        "id": "Unique identifier for the treatment arm within the trial.",
+        "title": "Descriptive name of the group, essential for web search and identification.",
+        "description": "Contains detailed treatment protocols and drug regimens relevant to the research topic."
+    },
+    "HPO_Subset": {
+        "id": "Standard identifier for HPO subsets, essential for linking to ontology resources and web search.",
+        "description": "Provides context on the clinical terminology or consequence, relevant for connecting phenotypes to research topics."
+    },
+    "RNA": {
+        "ids": "Contains specific biological identifiers (e.g., miRNA:hsa-...) essential for web search and linking to literature/databases.",
+        "rna_type": "Defines the molecular class (e.g., miRNA), relevant for sequencing analysis and functional research."
+    },
+    "DiseaseOntology_Subset": {
+        "id": "Unique semantic identifier for Disease Ontology subsets, essential for web search and linking to external databases.",
+        "description": "Describes the specific disease category, providing context relevant to treatments and microbiome research associations."
+    },
+    "TAXON": {
+        "names": "Scientific names are critical for identifying organisms in microbiome and proteome studies.",
+        "ids": "External taxonomy IDs enable precise database integration and web search."
+    },
+    "DiseaseOntology_SynonymType": {
+        "id": "External ontology identifier (e.g., OMO) enabling web search and linking disease data to treatments.",
+        "description": "Clarifies synonym classification, aiding literature research and data integration."
+    },
+    "ClinicalTrials.gov_Document": {
+        "id": "Primary external identifier (e.g., NCT, IRRID) for web search and entity resolution.",
+        "url": "Direct link to access the full document for detailed treatment and methodology review.",
+        "type": "Classifies document content (Protocol/ICF) relevant to research methodology.",
+        "date": "Establishes timeline for the clinical study and treatment data.",
+        "comment": "Includes literature citations and study context for research linkage."
+    },
+    "OUTCOME": {
+        "__id": "Unique internal identifier required for graph node integrity and linking.",
+        "names": "Human-readable names essential for web searchability and identification of outcomes.",
+        "ids": "External identifiers for linking to literature, treatments, and sequencing databases."
+    },
+    "INTERVENTION": {
+        "names": "Essential for identifying specific treatments or interventions in research literature.",
+        "ids": "Crucial for linking to external databases and ensuring web searchability of the entity."
+    },
+    "LOCATION": {
+        "names": "Provides human-readable location names essential for identification and search.",
+        "ids": "Contains external identifiers crucial for linking to web resources and literature."
+    },
+    "DiseaseOntology_Term": {
+        "name": "Essential identifier for web search and human readability.",
+        "id": "Primary ontology identifier for unique entity resolution.",
+        "xrefs": "Links to external medical databases (MESH, NCIt) crucial for literature and treatment integration.",
+        "def": "Provides disease context and includes reference URLs for literature research.",
+        "obsolete": "Indicates term validity to ensure current relevance for treatments and research."
+    },
+    "HPO_Term": {
+        "id": "Primary HPO identifier (e.g., HP:0000001) essential for web search and ontology linking.",
+        "name": "Human-readable label for the phenotype term, aiding in identification and readability.",
+        "def": "Formal definition of the phenotype, crucial for mapping to disease states in research.",
+        "xrefs": "Cross-references to external databases (UMLS, SNOMED) for integrating literature and treatment data.",
+        "obsolete": "Boolean flag to filter out deprecated terms, ensuring data quality in analysis."
+    },
+    "HPO_Idspace": {
+        "iri": "Unique web identifier for ontology namespace resolution and linking to external literature.",
+        "id": "Namespace prefix for concise reference and categorization of ontology sources."
+    },
+    "ClinicalTrials.gov_Milestone": {
+        "__id": "Unique identifier required for entity search and linking within the knowledge graph.",
+        "title": "Indicates the trial milestone status, relevant to tracking treatment progress and research stages."
+    },
+    "ClinicalTrials.gov_Person": {
+        "last_name": "Identifies researchers for literature and clinical trial searches.",
+        "affiliation": "Links researchers to institutions involved in proteome and microbiome research."
+    },
+    "HPO_SynonymType": {
+        "__id": "Unique internal identifier required for entity resolution and database indexing.",
+        "id": "Defines the specific synonym category (e.g., abbreviation, obsolete), serving as the human-readable name for search."
+    },
+    "ClinicalTrials.gov_ArmGroup": {
+        "__id": "Unique identifier essential for entity resolution and database linking.",
+        "description": "Contains detailed treatment protocols, drug regimens, and dosages relevant to associated treatments.",
+        "label": "Provides a human-readable name for the arm group to facilitate identification and search."
+    },
+    "ClinicalTrials.gov_ParticipantFlow": {
+        "__id": "Essential unique identifier for entity resolution and web search.",
+        "recruitment_details": "Describes enrollment criteria and sites, relevant for defining research cohorts.",
+        "pre_assignment_details": "Tracks participant status before treatment, crucial for analyzing treatment outcomes."
+    },
+    "ClinicalTrials.gov_Reference": {
+        "pmid": "Unique PubMed identifier enabling web search and linking to specific literature on treatments and research.",
+        "citation": "Contains full bibliographic details essential for literature research and verifying study contexts."
+    },
+    "ClinicalTrials.gov_Intervention": {
+        "name": "Essential identifier for web search and primary entity identification.",
+        "other_name": "Provides synonyms and aliases for comprehensive literature and treatment search.",
+        "type": "Classifies the intervention category, aiding in filtering relevant treatment types."
+    },
+    "ClinicalTrials.gov_Sponsor": {
+        "name": "Primary identifier for web search and entity recognition.",
+        "agency_type": "Indicates sponsor classification relevant to research context."
+    },
+    "DiseaseOntology_Typedef": {
+        "id": "Standard ontology identifier (e.g., IDO:0000664) enabling web search and linking to external resources.",
+        "def": "Provides semantic definition of the disease relationship, relevant for literature and treatment context."
+    },
+    "DGIdb_Gene": {
+        "gene_symbol": "Standard gene identifier essential for web search and literature retrieval.",
+        "uniprotkb_id": "Critical for mapping genes to proteins in proteome and metaproteome research.",
+        "id": "Contains external database references (HGNC, Ensembl) for sequencing and genomic analysis.",
+        "oncokb_gene_name": "Relevant for oncology-specific treatment and drug interaction research."
+    },
+    "COMPOUND": {
+        "names": "Contains chemical names and InChIKeys essential for web search and identifying compounds in treatments.",
+        "ids": "Provides external database references (ChEMBL, PubChem) critical for linking to literature and treatment data."
+    },
+    "CMAUP_Target": {
+        "uniprot_id": "Primary identifier for proteome and sequencing data integration.",
+        "gene_symbol": "Standard gene nomenclature for literature and genomic search.",
+        "protein_name": "Readable entity name for web search and identification.",
+        "chembl_id": "Links to chemical compounds for treatment analysis.",
+        "ttd_id": "Connects to therapeutic target database for literature research.",
+        "type": "Functional classification relevant to biological pathways.",
+        "is_therapeutic_target": "Boolean flag indicating relevance to treatment topics."
+    },
+    "DGIdb_Category": {
+        "name": "Represents drug-gene interaction categories (e.g., DRUG RESISTANCE) directly relevant to treatment research.",
+        "__id": "Unique identifier ensuring node distinctness and enabling internal graph retrieval."
+    },
+    "DGIdb_Drug": {
+        "id": "Unique ChEMBL identifier for cross-referencing drug data and linking to external databases.",
+        "name": "Human-readable drug name for search and identification within the knowledge graph.",
+        "sources": "Data provenance from databases like DrugBank and DTC for literature research validation."
+    },
+    "CLINICAL_TRIAL": {
+        "names": "Essential for human-readable identification and web searchability of the trial.",
+        "ids": "Contains unique external identifiers (NCT numbers) required for linking to external literature and treatment databases."
+    },
+    "CMAUP_Ingredient": {
+        "pref_name": "Essential for human-readable search and linking to treatment literature.",
+        "chembl_id": "Standard identifier for drug databases, crucial for treatment and interaction research.",
+        "pubchem_cid": "Universal chemical identifier for cross-referencing external knowledge bases.",
+        "inchi_key": "Unique chemical fingerprint for precise entity resolution in the graph.",
+        "molecular_weight": "Key physicochemical property for understanding drug behavior in proteome/metaproteome contexts."
+    },
+    "DISEASES_Disease": {
+        "name": "Essential for disease identification and web search.",
+        "id": "External identifier for linking to disease databases."
+    },
+    "DISEASE": {
+        "names": "Essential for human-readable identification and web searchability of the disease entity.",
+        "ids": "Provides external ontology identifiers (DOID) crucial for linking to literature, treatments, and research databases."
+    },
+    "GENE": {
+        "names": "Provides human-readable gene symbols essential for literature search and proteome mapping.",
+        "ids": "Contains HGNC identifiers crucial for unique entity resolution and cross-referencing in sequencing and treatment databases."
     }
 }

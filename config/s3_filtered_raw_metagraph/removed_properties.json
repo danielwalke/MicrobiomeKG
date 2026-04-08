@@ -191,5 +191,163 @@
     "HOMOLOGOUSSUPERFAMILY": [
         "__id",
         "__mapped"
+    ],
+    "CMAUP_Plant": [
+        "genus_tax_id",
+        "species_name",
+        "__id",
+        "family_tax_id",
+        "family_name",
+        "genus_name"
+    ],
+    "DRUG": [
+        "__id",
+        "__mapped"
+    ],
+    "ClinicalTrials.gov_Group": [
+        "__id"
+    ],
+    "HPO_Subset": [
+        "__id"
+    ],
+    "RNA": [
+        "__id",
+        "names",
+        "__mapped"
+    ],
+    "DiseaseOntology_Subset": [
+        "__id"
+    ],
+    "TAXON": [
+        "__id",
+        "__mapped"
+    ],
+    "DiseaseOntology_SynonymType": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Document": [
+        "__id",
+        "has_protocol",
+        "has_sap",
+        "has_icf"
+    ],
+    "OUTCOME": [
+        "__mapped"
+    ],
+    "INTERVENTION": [
+        "__id",
+        "__mapped"
+    ],
+    "LOCATION": [
+        "__id",
+        "__mapped"
+    ],
+    "DiseaseOntology_Term": [
+        "__id",
+        "subsets",
+        "created_by",
+        "comment",
+        "creation_date",
+        "alt_ids",
+        "property_values"
+    ],
+    "HPO_Term": [
+        "__id",
+        "subsets",
+        "alt_ids",
+        "comment",
+        "property_values"
+    ],
+    "HPO_Idspace": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Milestone": [],
+    "ClinicalTrials.gov_Person": [
+        "__id"
+    ],
+    "HPO_SynonymType": [
+        "description"
+    ],
+    "ClinicalTrials.gov_ArmGroup": [
+        "type"
+    ],
+    "ClinicalTrials.gov_ParticipantFlow": [],
+    "ClinicalTrials.gov_Reference": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Intervention": [
+        "__id",
+        "description",
+        "arm_group_label"
+    ],
+    "ClinicalTrials.gov_Sponsor": [
+        "__id"
+    ],
+    "DiseaseOntology_Typedef": [
+        "__id",
+        "name"
+    ],
+    "DGIdb_Gene": [
+        "__id",
+        "name",
+        "gene_name",
+        "primary_gene_name",
+        "ncbi_gene_name",
+        "sources",
+        "ensembl_gene_id"
+    ],
+    "COMPOUND": [
+        "__id",
+        "__mapped"
+    ],
+    "CMAUP_Target": [
+        "__id",
+        "id",
+        "target_class_level_displayed",
+        "target_class_level1",
+        "is_cyp",
+        "target_class_level2",
+        "target_class_level3",
+        "is_dtp"
+    ],
+    "DGIdb_Category": [],
+    "DGIdb_Drug": [
+        "__id",
+        "primary_name",
+        "primary_drug_name",
+        "drugs_at_fda_id",
+        "primary_drug_names",
+        "primary_names",
+        "drugs_at_fda_ids"
+    ],
+    "CLINICAL_TRIAL": [
+        "__id",
+        "__mapped"
+    ],
+    "CMAUP_Ingredient": [
+        "__id",
+        "id",
+        "rings",
+        "nhd",
+        "inchi",
+        "iupac_name",
+        "logp",
+        "logs",
+        "tpsa",
+        "smiles",
+        "rotatable_bonds",
+        "logd",
+        "nha"
+    ],
+    "DISEASES_Disease": [
+        "__id"
+    ],
+    "DISEASE": [
+        "__id",
+        "__mapped"
+    ],
+    "GENE": [
+        "__id",
+        "__mapped"
     ]
 }
