@@ -30,9 +30,9 @@ java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start $HOME/git/MicrobiomeKG/s1_raw_
 
 sleep 15
 
-python -m s1_raw_graph.extract_possible_concepts
-python -m s1_raw_graph.identify_relevant_concepts
-python -m s1_raw_graph.identify_matching_properties
+#python -m s1_raw_graph.extract_possible_concepts
+#python -m s1_raw_graph.identify_relevant_concepts
+#python -m s1_raw_graph.identify_matching_properties
 python -m s1_raw_graph.expand_concepts
 docker compose -f s2_raw_metagraph/docker-compose.yml up -d
 python -m s2_raw_metagraph.extract_metagraph

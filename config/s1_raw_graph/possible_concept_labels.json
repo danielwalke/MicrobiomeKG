@@ -1,56 +1,74 @@
 {
-    "Category": [
-        "DGIdb_Category"
-    ],
-    "Idspace": [
-        "GeneOntology_Idspace",
-        "HPO_Idspace"
-    ],
-    "Typedef": [
-        "GeneOntology_Typedef",
-        "HPO_Typedef",
-        "DiseaseOntology_Typedef"
-    ],
-    "Header": [
-        "HPO_Header",
-        "GeneOntology_Header",
-        "DiseaseOntology_Header"
-    ],
-    "Group": [
-        "ClinicalTrials.gov_Group"
-    ],
-    "SynonymType": [
-        "GeneOntology_SynonymType",
-        "HPO_SynonymType",
-        "DiseaseOntology_SynonymType"
-    ],
-    "Person": [
-        "ClinicalTrials.gov_Person"
-    ],
-    "ClinicalResults": [
-        "ClinicalTrials.gov_ClinicalResults"
-    ],
-    "Term": [
-        "DiseaseOntology_Term",
-        "GeneOntology_Term",
-        "HPO_Term"
-    ],
-    "Location": [
-        "ClinicalTrials.gov_Location"
-    ],
-    "Outcome": [
-        "ClinicalTrials.gov_Outcome"
-    ],
-    "Drug": [
-        "DGIdb_Drug"
-    ],
     "ParticipantFlow": [
         "ClinicalTrials.gov_ParticipantFlow"
     ],
     "Subset": [
         "DiseaseOntology_Subset",
-        "GeneOntology_Subset",
-        "HPO_Subset"
+        "HPO_Subset",
+        "GeneOntology_Subset"
+    ],
+    "Term": [
+        "HPO_Term",
+        "DiseaseOntology_Term",
+        "GeneOntology_Term"
+    ],
+    "ArmGroup": [
+        "ClinicalTrials.gov_ArmGroup"
+    ],
+    "Header": [
+        "GeneOntology_Header",
+        "HPO_Header",
+        "DiseaseOntology_Header"
+    ],
+    "Drug": [
+        "DGIdb_Drug"
+    ],
+    "SynonymType": [
+        "DiseaseOntology_SynonymType",
+        "HPO_SynonymType",
+        "GeneOntology_SynonymType"
+    ],
+    "Idspace": [
+        "HPO_Idspace",
+        "GeneOntology_Idspace"
+    ],
+    "ClinicalResults": [
+        "ClinicalTrials.gov_ClinicalResults"
+    ],
+    "Group": [
+        "ClinicalTrials.gov_Group"
+    ],
+    "Typedef": [
+        "HPO_Typedef",
+        "GeneOntology_Typedef",
+        "DiseaseOntology_Typedef"
+    ],
+    "Disease": [
+        "DISEASES_Disease"
+    ],
+    "Sponsor": [
+        "ClinicalTrials.gov_Sponsor"
+    ],
+    "Location": [
+        "ClinicalTrials.gov_Location"
+    ],
+    "Category": [
+        "DGIdb_Category"
+    ],
+    "Intervention": [
+        "ClinicalTrials.gov_Intervention"
+    ],
+    "Document": [
+        "ClinicalTrials.gov_Document"
+    ],
+    "Period": [
+        "ClinicalTrials.gov_Period"
+    ],
+    "Milestone": [
+        "ClinicalTrials.gov_Milestone"
+    ],
+    "Outcome": [
+        "ClinicalTrials.gov_Outcome"
     ],
     "Gene": [
         "DISEASES_Gene"
@@ -58,25 +76,7 @@
     "metadata": [
         "metadata"
     ],
-    "Disease": [
-        "DISEASES_Disease"
-    ],
-    "Period": [
-        "ClinicalTrials.gov_Period"
-    ],
-    "ArmGroup": [
-        "ClinicalTrials.gov_ArmGroup"
-    ],
-    "Document": [
-        "ClinicalTrials.gov_Document"
-    ],
-    "Milestone": [
-        "ClinicalTrials.gov_Milestone"
-    ],
-    "Intervention": [
-        "ClinicalTrials.gov_Intervention"
-    ],
-    "Sponsor": [
-        "ClinicalTrials.gov_Sponsor"
+    "Person": [
+        "ClinicalTrials.gov_Person"
     ]
 }
