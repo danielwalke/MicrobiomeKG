@@ -25,7 +25,7 @@ def filter_properties(m_session, t_session):
         CALL apoc.periodic.iterate(
             "MATCH (n:{label}) RETURN n",
             "REMOVE {props_to_remove}",
-            {{batchSize: 5000, parallel: false}}
+            {{batchSize: 10000, parallel: false}}
         )
         """
         t_session.run(batch_query).consume()
@@ -48,24 +48,25 @@ def indirect_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 5000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     ).consume()
 
 def property_roll_up(t_session):
-    ## TODO TEST AGAIN
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-            "MATCH (sAgg)<-[:MAPPED_TO]-(s)
-            UNWIND keys(properties(s)) AS key
-            WITH id(sAgg) AS sAggId, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
-            RETURN sAggId, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues)) AS propValues",
+            "MATCH (sAgg)
+             WHERE ()-[:MAPPED_TO]->(sAgg)
+             RETURN id(sAgg) AS sAggId",
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
-            CALL apoc.create.setProperty(sAgg, newKey, propValues) YIELD node
-            RETURN node",
-            {batchSize: 5000, parallel: false}
+             MATCH (sAgg)<-[:MAPPED_TO]-(s)
+             UNWIND keys(properties(s)) AS key
+             WITH sAgg, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
+             CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
+             RETURN node",
+            {batchSize: 10000, parallel: false}
         )
         """
     ).consume()
@@ -88,7 +89,7 @@ def direct_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 5000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     ).consume()
@@ -103,7 +104,7 @@ def bridge_node_roll_up(t_session):
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
              SET new_r.source_labels = dbLabels",
-            {batchSize: 5000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     ).consume()
@@ -115,7 +116,7 @@ def delete_all_source_nodes_of_mapped_to(t_session):
             "MATCH (n)-[:MAPPED_TO]->()
              RETURN DISTINCT n",
             "DETACH DELETE n",
-            {batchSize: 5000, parallel: false}
+            {batchSize: 10000, parallel: false}
         )
         """
     ).consume()
