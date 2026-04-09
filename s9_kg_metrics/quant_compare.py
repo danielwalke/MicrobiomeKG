@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from neo4j import GraphDatabase
 
 class GraphComparator:
-    def __init__(self, uri_8083, uri_7691, user, password):
+    def __init__(self, uri_8083, uri_7693, user, password):
         self.driver_8083 = GraphDatabase.driver(uri_8083, auth=(user, password))
-        self.driver_7691 = GraphDatabase.driver(uri_7691, auth=(user, password))
+        self.driver_7693 = GraphDatabase.driver(uri_7693, auth=(user, password))
 
     def get_node_ids(self, session, query):
         res = session.run(query)
@@ -166,16 +166,16 @@ class GraphComparator:
 
     def compare_and_plot(self):
         metrics_8083 = self.get_metrics(self.driver_8083, "Port 8083")
-        metrics_7691 = self.get_metrics(self.driver_7691, "Port 7691")
+        metrics_7693 = self.get_metrics(self.driver_7693, "Port 7693")
 
         print("\nGenerating plots...")
         output_dir = os.path.expanduser("~/git/MicrobiomeKG/config/s9_kg_metrics/figures")
         os.makedirs(output_dir, exist_ok=True)
 
         concept_deg_dists_8083 = metrics_8083.pop('concept_degree_distributions')
-        concept_deg_dists_7691 = metrics_7691.pop('concept_degree_distributions')
+        concept_deg_dists_7693 = metrics_7693.pop('concept_degree_distributions')
 
-        all_concept_types = set(concept_deg_dists_8083.keys()).union(set(concept_deg_dists_7691.keys()))
+        all_concept_types = set(concept_deg_dists_8083.keys()).union(set(concept_deg_dists_7693.keys()))
         for ctype in all_concept_types:
             fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
 
@@ -183,7 +183,7 @@ class GraphComparator:
             x8 = sorted(d8.keys())
             y8 = [d8[k] for k in x8]
 
-            d7 = concept_deg_dists_7691.get(ctype, {})
+            d7 = concept_deg_dists_7693.get(ctype, {})
             x7 = sorted(d7.keys())
             y7 = [d7[k] for k in x7]
 
@@ -196,7 +196,7 @@ class GraphComparator:
             else:
                 ax1.text(0.5, 0.5, 'No Data Available', ha='center', va='center', transform=ax1.transAxes)
 
-            ax2.set_title(f'Concept Node Degree Distribution: {ctype} - Port 7691 (Refined)')
+            ax2.set_title(f'Concept Node Degree Distribution: {ctype} - Port 7693 (Refined)')
             ax2.set_ylabel('Node Count (log)')
             ax2.set_xlabel('Degree (Total Connections)')
             if x7:
@@ -214,9 +214,9 @@ class GraphComparator:
             print(f"Saved plot to {cdeg_filepath}")
 
         deg_dists_8083 = metrics_8083.pop('degree_distributions')
-        deg_dists_7691 = metrics_7691.pop('degree_distributions')
+        deg_dists_7693 = metrics_7693.pop('degree_distributions')
 
-        all_edge_types = set(deg_dists_8083.keys()).union(set(deg_dists_7691.keys()))
+        all_edge_types = set(deg_dists_8083.keys()).union(set(deg_dists_7693.keys()))
         for etype in all_edge_types:
             fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
 
@@ -224,7 +224,7 @@ class GraphComparator:
             x8 = sorted(d8.keys())
             y8 = [d8[k] for k in x8]
 
-            d7 = deg_dists_7691.get(etype, {})
+            d7 = deg_dists_7693.get(etype, {})
             x7 = sorted(d7.keys())
             y7 = [d7[k] for k in x7]
 
@@ -237,7 +237,7 @@ class GraphComparator:
             else:
                 ax1.text(0.5, 0.5, 'No Data Available', ha='center', va='center', transform=ax1.transAxes)
 
-            ax2.set_title(f'Concept-to-Concept Edge Distribution: {etype} - Port 7691 (Refined)')
+            ax2.set_title(f'Concept-to-Concept Edge Distribution: {etype} - Port 7693 (Refined)')
             ax2.set_ylabel('Node Count (log)')
             ax2.set_xlabel('Degree (Number of Outgoing Edges to Concepts)')
             if x7:
@@ -255,13 +255,13 @@ class GraphComparator:
             print(f"Saved plot to {deg_filepath}")
 
         edge_dist_8083 = metrics_8083.pop('edge_distribution')
-        edge_dist_7691 = metrics_7691.pop('edge_distribution')
+        edge_dist_7693 = metrics_7693.pop('edge_distribution')
 
-        all_edges = set(edge_dist_8083.keys()).union(set(edge_dist_7691.keys()))
+        all_edges = set(edge_dist_8083.keys()).union(set(edge_dist_7693.keys()))
         all_edges = sorted(list(all_edges))
 
         counts_8083 = [edge_dist_8083.get(e, 0) for e in all_edges]
-        counts_7691 = [edge_dist_7691.get(e, 0) for e in all_edges]
+        counts_7693 = [edge_dist_7693.get(e, 0) for e in all_edges]
 
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(16, 12), sharex=True)
         x_pos = range(len(all_edges))
@@ -273,10 +273,10 @@ class GraphComparator:
             ax1.set_yscale('log')
         ax1.grid(axis='y', linestyle='--', alpha=0.7)
 
-        ax2.bar(x_pos, counts_7691, color='skyblue')
-        ax2.set_title('Concept-to-Concept Edge Types Distribution - Port 7691 (Refined)')
+        ax2.bar(x_pos, counts_7693, color='skyblue')
+        ax2.set_title('Concept-to-Concept Edge Types Distribution - Port 7693 (Refined)')
         ax2.set_ylabel('Edge Count (log)')
-        if any(counts_7691):
+        if any(counts_7693):
             ax2.set_yscale('log')
         ax2.grid(axis='y', linestyle='--', alpha=0.7)
 
@@ -291,8 +291,8 @@ class GraphComparator:
         keys = list(metrics_8083.keys())
         for key in keys:
             fig, ax = plt.subplots(figsize=(8, 5))
-            values = [metrics_8083[key], metrics_7691[key]]
-            labels = ['Port 8083 (Original)', 'Port 7691 (Refined)']
+            values = [metrics_8083[key], metrics_7693[key]]
+            labels = ['Port 8083 (Original)', 'Port 7693 (Refined)']
             colors = ['salmon', 'skyblue']
 
             bars = ax.bar(labels, values, color=colors)
@@ -314,7 +314,7 @@ class GraphComparator:
 
     def close(self):
         self.driver_8083.close()
-        self.driver_7691.close()
+        self.driver_7693.close()
 
 if __name__ == "__main__":
     comparator = GraphComparator("bolt://localhost:8083", "bolt://localhost:7693", "neo4j", "password")
