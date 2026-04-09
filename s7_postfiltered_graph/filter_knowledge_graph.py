@@ -2,6 +2,41 @@ from neo4j import GraphDatabase
 from s4_filtered_rolledup_graph.filter_knowledge_graph import filter_properties
   
 def delete_database_nodes(t_session):
+    labels_result = t_session.run(
+        """
+        CALL db.labels() YIELD label
+        WHERE NOT label =~ '^[A-Z]+$'
+        RETURN label AS lbl
+        """
+    ).data()
+
+    deleted_labels = [record["lbl"] for record in labels_result]
+
+    if deleted_labels:
+        constraints = t_session.run(
+            """
+            SHOW CONSTRAINTS YIELD name, labelsOrTypes
+            WHERE any(label IN labelsOrTypes WHERE label IN $deleted_labels)
+            RETURN name
+            """,
+            deleted_labels=deleted_labels
+        ).data()
+
+        for record in constraints:
+            t_session.run(f"DROP CONSTRAINT `{record['name']}`")
+
+        indexes = t_session.run(
+            """
+            SHOW INDEXES YIELD name, labelsOrTypes, type
+            WHERE type <> 'LOOKUP' AND any(label IN labelsOrTypes WHERE label IN $deleted_labels)
+            RETURN name
+            """,
+            deleted_labels=deleted_labels
+        ).data()
+
+        for record in indexes:
+            t_session.run(f"DROP INDEX `{record['name']}`")
+
     t_session.run(
         """
         CALL apoc.periodic.iterate(
