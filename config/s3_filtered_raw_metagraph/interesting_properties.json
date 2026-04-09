@@ -295,5 +295,100 @@
     "GENE": {
         "names": "Provides human-readable gene symbols essential for literature search and proteome mapping.",
         "ids": "Contains HGNC identifiers crucial for unique entity resolution and cross-referencing in sequencing and treatment databases."
+    },
+    "HPO_Typedef": {
+        "name": "Human-readable label for the relationship definition.",
+        "id": "Unique ontology identifier for precise web search and linking.",
+        "xrefs": "External references for cross-database integration and literature search."
+    },
+    "DISEASES_Gene": {
+        "name": "Essential identifier for web search and gene/proteome research.",
+        "id": "Relevant for microbiome and sequencing analysis (rRNA markers)."
+    },
+    "DiseaseOntology_Header": {
+        "__id": "Unique identifier essential for entity searchability and graph linking.",
+        "ontology": "Defines the specific disease vocabulary (DOID) used for standardizing disease terms in research.",
+        "data_version": "Ensures reproducibility and consistency when linking disease terms to literature and sequencing analysis.",
+        "date": "Indicates the release date of the ontology version for temporal context in research."
+    },
+    "HPO_Header": {
+        "__id": "Unique identifier essential for entity search and linking within the knowledge graph.",
+        "ontology": "Specifies the ontology source (hp.obo) relevant for standardizing phenotype data.",
+        "property_values": "Contains description and creators, linking phenotypes to human disease context for treatment research.",
+        "data_version": "Tracks the specific release version for data consistency and reproducibility in research."
+    },
+    "ClinicalTrials_gov_Group": {
+        "title": "Serves as a descriptive name and identifier for web searchability.",
+        "description": "Contains detailed treatment protocols relevant to the research context."
+    },
+    "ClinicalTrials_gov_Document": {
+        "id": "Essential unique identifier for web search and entity linking.",
+        "url": "Direct access link to the clinical trial document for detailed research.",
+        "comment": "Contains literature citations and study context relevant to research topics.",
+        "type": "Describes the document category (e.g., Protocol, ICF) within the trial.",
+        "date": "Indicates the timeline of the document for research tracking."
+    },
+    "ClinicalTrials_gov_Period": {
+        "__id": "Unique identifier required for graph integrity and entity linking.",
+        "title": "Describes the specific treatment phase, relevant to associated treatments and web searchability."
+    },
+    "ClinicalTrials_gov_ClinicalResults": {
+        "__id": "Essential unique identifier for web search and entity linking.",
+        "point_of_contact_organization": "Identifies the research institution conducting the clinical trial.",
+        "limitations_and_caveats": "Provides context on study validity and data quality for treatment analysis."
+    },
+    "ClinicalTrials_gov_Location": {
+        "facility_name": "Essential name for web search and identifying the research institution.",
+        "status": "Indicates if the trial is active, relevant for current treatment availability.",
+        "facility_address_city": "Provides specific geographic location context for the research site."
+    },
+    "ClinicalTrials_gov_Trial": {
+        "id": "Essential unique identifier (NCT number) for web search and entity resolution.",
+        "official_title": "Descriptive name of the clinical trial for identification.",
+        "conditions_mesh": "Standardized medical conditions targeted by the treatment.",
+        "interventions_mesh": "Specific drugs or interventions used in the treatment.",
+        "biospecimen_description": "Details on biological samples collected, relevant to proteome/microbiome sequencing.",
+        "phase": "Indicates the stage of treatment development (e.g., Phase 1, 2, 3).",
+        "url": "Direct link to the trial record for literature and data access.",
+        "detailed_description": "Comprehensive context on the research methodology and purpose.",
+        "source": "Research institutions conducting the study."
+    },
+    "ClinicalTrials_gov_Outcome": {
+        "__id": "Unique identifier required for entity search and linking.",
+        "description": "Provides narrative context on study design and sample collection.",
+        "measure": "Defines specific pharmacokinetic metrics recorded as outcomes.",
+        "time_frame": "Indicates temporal schedule for data collection and analysis."
+    },
+    "ClinicalTrials_gov_Sponsor": {
+        "name": "Essential identifier for the sponsoring organization, enabling web search and entity linking.",
+        "agency_type": "Indicates the funding source category (e.g., Industry, Academic), relevant to research context and treatment development."
+    },
+    "ClinicalTrials_gov_Intervention": {
+        "name": "Primary identifier for web search and entity recognition.",
+        "other_name": "Captures synonyms and trade names for literature linking.",
+        "type": "Categorizes the intervention (e.g., Drug) for filtering.",
+        "description": "Provides context on administration and formulation relevant to treatment protocols."
+    },
+    "ClinicalTrials_gov_Reference": {
+        "pmid": "PubMed ID serves as a unique, web-searchable identifier for biomedical literature.",
+        "citation": "Contains full bibliographic details necessary for literature research context."
+    },
+    "ClinicalTrials_gov_ParticipantFlow": {
+        "__id": "Essential unique identifier required for entity search and linking within the knowledge graph.",
+        "recruitment_details": "Captures enrollment timelines and sites, providing context on study population acquisition.",
+        "pre_assignment_details": "Details participant status and exclusions prior to group assignment, relevant for treatment flow analysis."
+    },
+    "ClinicalTrials_gov_ArmGroup": {
+        "__id": "Unique identifier essential for entity resolution and web search.",
+        "description": "Contains detailed treatment protocols, drug regimens, and dosages relevant to associated treatments.",
+        "label": "Provides a human-readable name for the arm group, useful for indexing and search."
+    },
+    "ClinicalTrials_gov_Person": {
+        "last_name": "Primary name identifier for web search and linking to research literature.",
+        "affiliation": "Links the person to institutions conducting proteome, microbiome, or treatment research."
+    },
+    "ClinicalTrials_gov_Milestone": {
+        "__id": "Unique identifier for the node, ensuring traceability and searchability within the knowledge graph.",
+        "title": "Indicates the current status or milestone state of the clinical trial, crucial for tracking treatment progress."
     }
 }

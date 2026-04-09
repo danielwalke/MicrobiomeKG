@@ -349,5 +349,148 @@
     "GENE": [
         "__id",
         "__mapped"
-    ]
+    ],
+    "HPO_Typedef": [
+        "__id"
+    ],
+    "DISEASES_Gene": [
+        "__id"
+    ],
+    "DiseaseOntology_Header": [
+        "default_namespace",
+        "remarks",
+        "format_version",
+        "property_values",
+        "saved_by"
+    ],
+    "HPO_Header": [
+        "default_namespace",
+        "format_version",
+        "remarks"
+    ],
+    "ClinicalTrials_gov_Group": [
+        "__id",
+        "id"
+    ],
+    "ClinicalTrials_gov_Document": [
+        "__id",
+        "has_protocol",
+        "has_sap",
+        "has_icf"
+    ],
+    "ClinicalTrials_gov_Period": [],
+    "ClinicalTrials_gov_ClinicalResults": [
+        "certain_agreements_pi_employee",
+        "point_of_contact_name_or_title",
+        "certain_agreements_restrictive_agreement"
+    ],
+    "ClinicalTrials_gov_Location": [
+        "__id",
+        "facility_address_state",
+        "facility_address_zip",
+        "facility_address_country"
+    ],
+    "ClinicalTrials_gov_Trial": [
+        "__id",
+        "intervention_model_description",
+        "eligibility_gender_based",
+        "last_update_posted_type",
+        "has_expanded_access",
+        "primary_purpose",
+        "study_first_submitted_qc",
+        "eligibility_healthy_volunteers",
+        "results_first_posted",
+        "disposition_first_submitted",
+        "biospecimen_retention",
+        "brief_title",
+        "study_first_posted",
+        "eligibility_sampling_method",
+        "keywords",
+        "conditions",
+        "brief_summary",
+        "results_first_submitted",
+        "is_ppsd",
+        "download_date",
+        "acronym",
+        "eligibility_gender_description",
+        "eligibility_minimum_age",
+        "expanded_access_type_individual",
+        "eligibility_study_population",
+        "has_dmc",
+        "eligibility_maximum_age",
+        "eligibility_gender",
+        "enrollment_type",
+        "start_date",
+        "org_study_id",
+        "start_date_type",
+        "location_countries",
+        "last_update_submitted",
+        "completion_date",
+        "secondary_ids",
+        "time_perspective",
+        "links",
+        "disposition_first_posted",
+        "completion_date_type",
+        "why_stopped",
+        "allocation",
+        "eligibility_criteria",
+        "primary_completion_date",
+        "last_known_status",
+        "ipd_time_frame",
+        "pending_results_submission_canceled",
+        "ipd_access_criteria",
+        "disposition_first_posted_type",
+        "is_us_export",
+        "masking_description",
+        "last_update_posted",
+        "link_text",
+        "nct_aliases",
+        "study_first_submitted",
+        "results_first_posted_type",
+        "pending_results_returned",
+        "number_of_arms",
+        "observational_model",
+        "pending_results_submitted",
+        "overall_status",
+        "is_fda_regulated_device",
+        "intervention_model",
+        "verification_date",
+        "results_first_submitted_qc",
+        "is_fda_regulated_drug",
+        "study_first_posted_type",
+        "enrollment",
+        "masking",
+        "primary_completion_date_type",
+        "number_of_groups",
+        "study_type",
+        "ipd_description",
+        "last_update_submitted_qc",
+        "expanded_access_type_treatment",
+        "target_duration",
+        "disposition_first_submitted_qc",
+        "ipd_info_type",
+        "sharing_ipd",
+        "is_unapproved_device",
+        "ipd_url",
+        "expanded_access_type_intermediate"
+    ],
+    "ClinicalTrials_gov_Outcome": [],
+    "ClinicalTrials_gov_Sponsor": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_Intervention": [
+        "__id",
+        "arm_group_label"
+    ],
+    "ClinicalTrials_gov_Reference": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_ParticipantFlow": [],
+    "ClinicalTrials_gov_ArmGroup": [
+        "type"
+    ],
+    "ClinicalTrials_gov_Person": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_Milestone": []
 }

@@ -6,9 +6,9 @@ if [ -z "$TMUX" ]; then
     exit 0
 fi
 
-python -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
+#python -m venv .venv
+#. .venv/bin/activate
+#pip install -r requirements.txt
 
 if [ ! -f "BioDWH2-v0.6.8.jar" ]; then
     curl -LO https://github.com/BioDWH2/BioDWH2/releases/download/v0.6.8/BioDWH2-v0.6.8.jar
@@ -36,13 +36,14 @@ fi
 #python -m s1_raw_graph.identify_cypher_preprocessing_steps
 #python -m s1_raw_graph.execute_identified_cypher_preprocessing
 #python -m s1_raw_graph.expand_concepts
+#python -m s1_raw_graph.remove_dot_from_node_labels
 #docker compose -f s2_raw_metagraph/docker-compose.yml up -d
 #python -m s2_raw_metagraph.extract_metagraph
 #docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
-python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
-python -m s3_filtered_raw_metagraph.filter_metagraph
-sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg
-docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
+#python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
+#python -m s3_filtered_raw_metagraph.filter_metagraph
+#sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg
+#docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
 python -m s4_filtered_rolledup_graph.filter_knowledge_graph
 docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d
 python -m s5_filtered_rolledup_metagraph.extract_metagraph

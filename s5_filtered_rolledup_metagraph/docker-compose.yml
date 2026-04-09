@@ -13,6 +13,9 @@ services:
     environment:
       - NEO4J_AUTH=none
       - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_server_memory_heap_initial__size=10G
+      - NEO4J_server_memory_heap_max__size=10G
+      - NEO4J_server_memory_pagecache_size=10G
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
       interval: 10s
