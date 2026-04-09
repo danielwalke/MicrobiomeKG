@@ -37,21 +37,21 @@ fi
 #python -m s1_raw_graph.execute_identified_cypher_preprocessing
 #python -m s1_raw_graph.expand_concepts
 #python -m s1_raw_graph.remove_dot_from_node_labels
-#docker compose -f s2_raw_metagraph/docker-compose.yml up -d
+#docker compose -f s2_raw_metagraph/docker-compose.yml up -d --wait
 #python -m s2_raw_metagraph.extract_metagraph
-#docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d
+#docker compose -f s3_filtered_raw_metagraph/docker-compose.yml up -d --wait
 #python -m s3_filtered_raw_metagraph.identify_properties_from_raw_graph
 #python -m s3_filtered_raw_metagraph.filter_metagraph
 #sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg
-#docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d
-python -m s4_filtered_rolledup_graph.filter_knowledge_graph
-docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d
-python -m s5_filtered_rolledup_metagraph.extract_metagraph
-docker compose -f s6_postfiltered_metagraph/docker-compose.yml up -d
-python -m s6_postfiltered_metagraph.identify_relevant_concept_properties
-python -m s6_postfiltered_metagraph.filter_metagraph
-docker compose -f s7_postfiltered_graph/docker-compose.yml up -d
-sudo -E python3 -m s7_postfiltered_graph.clone_kg
+#docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d --wait
+#python -m s4_filtered_rolledup_graph.filter_knowledge_graph
+#docker compose -f s5_filtered_rolledup_metagraph/docker-compose.yml up -d --wait
+#python -m s5_filtered_rolledup_metagraph.extract_metagraph
+#docker compose -f s6_postfiltered_metagraph/docker-compose.yml up -d --wait
+#python -m s6_postfiltered_metagraph.identify_relevant_concept_properties
+#python -m s6_postfiltered_metagraph.filter_metagraph
+#sudo -E python3 -m s7_postfiltered_graph.clone_kg
+# docker compose -f s7_postfiltered_graph/docker-compose.yml up -d --wait
 python -m s7_postfiltered_graph.filter_knowledge_graph
 python -m s8_postfiltered_graph_with_accessions.identify_accession_keys
 python -m s8_postfiltered_graph_with_accessions.add_accessions_in_graph
