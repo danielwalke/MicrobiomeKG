@@ -28,7 +28,13 @@ def apply_accessions_to_graph(uri, user, password, json_filepath):
             else:
                 s_expr = "[]"
                 
-            query = f"MATCH (n:`{label}`) SET n.primary_accession = {p_expr}, n.secondary_accession = {s_expr}"
+            query = f"""
+            MATCH (n:`{label}`)
+            CALL {{
+                WITH n
+                SET n.primary_accession = {p_expr}, n.secondary_accession = {s_expr}
+            }} IN TRANSACTIONS OF 10000 ROWS
+            """
             
             session.run(query)
             print(f"Successfully processed label: {label}")
