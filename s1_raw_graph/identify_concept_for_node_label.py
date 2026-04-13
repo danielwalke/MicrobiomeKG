@@ -1,7 +1,7 @@
 import os
 import json
 import logging
-from typing import TypedDict, List
+from typing import TypedDict, Dict, Any
 from dotenv import load_dotenv, find_dotenv
 from neo4j import GraphDatabase
 from pydantic import BaseModel, Field
@@ -22,7 +22,7 @@ logging.basicConfig(
 class MappingState(TypedDict):
     database_label: str
     markdown_schema: str
-    concept_labels: List[str]
+    concept_labels: Dict[str, Any]
     mapped_concept: str
     reasoning: str
     error: str
@@ -46,10 +46,9 @@ def generate_mapping(state: MappingState) -> MappingState:
         (
             "system", 
             "You are a strict ontology mapping assistant. Your task is to evaluate the provided database label, schema, and samples.\n\n"
-            "Allowed Concept Labels: {concept_labels}\n\n"
+            "Allowed Concept Labels with Explanations and Examples:\n{concept_definitions}\n\n"
             "CRITICAL INSTRUCTION: You must ONLY map to an allowed concept label if there is a direct, undeniable semantic match. "
-            "Do not force a fit. If the entity represents a concept not explicitly listed (e.g., mapping an experiment to PUBLICATION, "
-            "or a sub-protein feature to PROTEIN is INVALID), you MUST return 'UNCLASSIFIED' as the mapped_concept."
+            "Do not force a fit. If the entity represents a concept not explicitly listed, you MUST return 'UNCLASSIFIED' as the mapped_concept."
         ),
         (
             "user", 
@@ -64,7 +63,7 @@ def generate_mapping(state: MappingState) -> MappingState:
     
     try:
         result = chain.invoke({
-            "concept_labels": json.dumps(state["concept_labels"]),
+            "concept_definitions": json.dumps(state["concept_labels"], indent=2),
             "database_label": state["database_label"],
             "markdown_schema": state["markdown_schema"],
             "error": state["error"]
@@ -76,7 +75,7 @@ def generate_mapping(state: MappingState) -> MappingState:
 
 def validate_mapping(state: MappingState) -> MappingState:
     mapped = state.get("mapped_concept")
-    valid_concepts = state.get("concept_labels", [])
+    valid_concepts = list(state.get("concept_labels", {}).keys())
     
     if not mapped:
         return {"error": "Mapping generation failed.", "retries": state["retries"] + 1}
@@ -119,7 +118,7 @@ def get_node_database_labels_without_mappings(session):
 
 def get_concept_labels():
     with open("config/s1_raw_graph/concept_labels.json", "r") as f:
-        return list(set(json.load(f)))
+        return json.load(f)
 
 def main():
     logging.info("Initializing Neo4j driver connection.")
@@ -128,7 +127,7 @@ def main():
     logging.info("Extracting markdown schema samples...")
     markdown_output_label_map = extract_schema_with_samples_md(port=8083, user="neo4j", password="neo4j", only_concept_nodes=False)
     
-    logging.info("Loading valid concept labels.")
+    logging.info("Loading valid concept labels and their definitions.")
     concept_labels = get_concept_labels()
     
     logging.info("Building LangGraph mapping workflow.")
