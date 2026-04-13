@@ -30,11 +30,19 @@ fi
 
 #sleep 15
 
+# I do not think that I need these anylonger or need to refactor?
 #python -m s1_raw_graph.extract_possible_concepts
 #python -m s1_raw_graph.identify_relevant_concepts
 #python -m s1_raw_graph.identify_matching_properties
 #python -m s1_raw_graph.identify_cypher_preprocessing_steps
 #python -m s1_raw_graph.execute_identified_cypher_preprocessing
+
+
+python -m s1_raw_graph.add_missing_mapping_connections
+#python -m s1_raw_graph.identify_concept_for_node_label
+
+
+
 #python -m s1_raw_graph.expand_concepts
 #python -m s1_raw_graph.remove_dot_from_node_labels
 #docker compose -f s2_raw_metagraph/docker-compose.yml up -d --wait
@@ -52,7 +60,7 @@ fi
 #python -m s6_postfiltered_metagraph.filter_metagraph
 #sudo -E python3 -m s7_postfiltered_graph.clone_kg
 # docker compose -f s7_postfiltered_graph/docker-compose.yml up -d --wait
-python -m s7_postfiltered_graph.filter_knowledge_graph
-python -m s8_postfiltered_graph_with_accessions.identify_accession_keys
+#python -m s7_postfiltered_graph.filter_knowledge_graph
+#python -m s8_postfiltered_graph_with_accessions.identify_accession_keys
 python -m s8_postfiltered_graph_with_accessions.add_accessions_in_graph
 python -m s9_kg_metrics.quant_compare
