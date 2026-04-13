@@ -1,6 +1,6 @@
 from neo4j import GraphDatabase
+## Create missing MAPPED_TO connections for database nodes that share the same label as an already mapped node, but currently lack a mapping. This ensures that all nodes with the same database label are connected to the same concept node, improving consistency in the graph.
 
-## TODO: Try
 def add_missing_mapping_connections(driver):
     errors = []
     
@@ -25,8 +25,9 @@ def add_missing_mapping_connections(driver):
                     session.run(f"""
                         MATCH (other_db_node:{source_label})
                         WHERE NOT EXISTS {{ (other_db_node)-[:MAPPED_TO]->() }}
-                        CALL (other_db_node) {{
-                            MERGE (other_db_node)-[:MAPPED_TO]->(other_concept_node{target_label_str} {{__mapped: true, ids: [], names: []}})
+                        CALL {{
+                            WITH other_db_node
+                            CREATE (other_db_node)-[:MAPPED_TO]->(other_concept_node{target_label_str} {{__mapped: true, ids: [], names: []}})
                         }} IN TRANSACTIONS OF 10000 ROWS
                     """)
                 except Exception as inner_e:
