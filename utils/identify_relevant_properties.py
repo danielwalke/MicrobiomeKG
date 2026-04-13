@@ -114,13 +114,13 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
 def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="interesting_properties.json", output_removed_file="removed_properties.json"):
 
     load_dotenv(find_dotenv())
-    topic_path_file = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/topicDescription.txt")
-    with open(topic_path_file, 'r') as f:
-        topics = f.read().strip()
-    
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
     custom_model = "qwen3.5-35b-a3b" #"mistral-large-3-675b-instruct-2512" #"qwen3-235b-a22b"
+
+    topic_path_file = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/topicDescription.txt")
+    with open(topic_path_file, 'r') as f:
+        topics = f.read().strip()    
 
     relevant_props_dict = dict()
     removed_props_dict = dict()
