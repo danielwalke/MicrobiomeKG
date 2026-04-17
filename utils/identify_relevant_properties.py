@@ -116,7 +116,7 @@ def extract_relevant_properties_as_json(schema_dict, json_schema, output_file="i
     load_dotenv(find_dotenv())
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
-    custom_model = "qwen3.5-35b-a3b" #"mistral-large-3-675b-instruct-2512" #"qwen3-235b-a22b"
+    custom_model = "qwen3.5-397b-a17b" #"mistral-large-3-675b-instruct-2512" #"qwen3-235b-a22b"
 
     topic_path_file = os.path.expanduser("~/git/MicrobiomeKG/config/s0_access/topicDescription.txt")
     with open(topic_path_file, 'r') as f:
