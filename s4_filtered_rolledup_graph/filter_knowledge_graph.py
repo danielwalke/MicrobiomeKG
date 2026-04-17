@@ -1,3 +1,4 @@
+
 from neo4j import GraphDatabase
 
 def filter_properties(m_session, t_session):
@@ -6,15 +7,19 @@ def filter_properties(m_session, t_session):
                     UNWIND nodeLabels AS label
                     RETURN label, collect(DISTINCT propertyName) AS properties
             """
+
     metagraph_label_props_results = m_session.run(query)
     metagraph_schema_dict = {record["label"]: record["properties"] for record in metagraph_label_props_results if record["label"]}
-
     target_label_props_results = t_session.run(query)
     target_schema_dict = {record["label"]: record["properties"] for record in target_label_props_results if record["label"]}
 
 
     for label in target_schema_dict:
+        if label not in metagraph_schema_dict:
+            print(f"Label {label} not found in metagraph schema, skipping property filtering for this label (Not in metagraph means no properties in complete graph and therefore irrelevant).")
+            continue
         all_props = target_schema_dict[label]
+        
         intresting_props = metagraph_schema_dict[label]
         irrelevant_props = remove_items(all_props, intresting_props)
         if not irrelevant_props:
@@ -25,7 +30,7 @@ def filter_properties(m_session, t_session):
         CALL apoc.periodic.iterate(
             "MATCH (n:{label}) RETURN n",
             "REMOVE {props_to_remove}",
-            {{batchSize: 10000, parallel: false}}
+            {{batchSize: 1000, parallel: false}}
         )
         """
         t_session.run(batch_query).consume()
