@@ -95,6 +95,7 @@ class Neo4jConnector:
                     WITH * WHERE is_regex_match = true
                     RETURN 1 AS total_count, 1 AS distinct_count
                 }
+                WITH *
                 WHERE is_regex_match OR (total_count = distinct_count AND total_count > 0)
                 RETURN label, collect(propertyName) AS unique_properties
                 """) #|name_
@@ -243,8 +244,8 @@ class EntityResolver:
 if __name__ == "__main__":
     preprocessinmg_time_start = time.time()
     connector = Neo4jConnector()
-    connector.pre_process_ids()
-    connector.expand_array_properties()
+    # connector.pre_process_ids()
+    # connector.expand_array_properties()
     print(f"Preprocessing time: {time.time() - preprocessinmg_time_start:.2f} seconds")
     
 
