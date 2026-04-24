@@ -1,0 +1,45 @@
+from pydantic import Field
+from typing import List
+from mapping.models import HprdGene, Gene
+from mapping.integrations.base_merged import BaseMergedEntity
+
+class MergedGene(BaseMergedEntity):
+    __label__ = "MergedGene"
+    __source_mappings__ = {
+        "ncbi_ids": (HprdGene, "entrez_gene_id"),
+        "omim_ids": (HprdGene, "omim_id"),
+        "gene_ids": (Gene, "ids")
+    }
+
+    ncbi_ids: List[int] = Field(default_factory=list)
+    omim_ids: List[int] = Field(default_factory=list)
+    gene_ids: List[str] = Field(default_factory=list)
+
+    mapped: bool = True
+    merged_ids: List[str] = Field(default_factory=list)
+
+    @classmethod
+    def standardize_id_for_resolver(cls, orm_class, prop_name, raw_val):
+        """Ensure Resolver sees '12345' and 'PubMed:12345' as the same string."""
+        val_str = str(raw_val)
+        if orm_class == HprdGene and prop_name == "entrez_gene_id":
+            return f"NCBIGene:{val_str}"
+        if orm_class == HprdGene and prop_name == "omim_id":
+            return f"OMIM:{val_str}"
+        return val_str
+
+    def preprocess(self):
+        """The actual processing logic that runs inside the Integrator."""
+        if self.ncbi_ids:
+            self.ncbi_ids = [f"NCBIGene:{id}" for id in self.ncbi_ids if id is not None]
+        if self.omim_ids:
+            self.omim_ids = [f"OMIM:{id}" for id in self.omim_ids if id is not None]
+        if self.gene_ids:
+            self.gene_ids = [str(id) for id in self.gene_ids if id is not None]
+
+    def integrate(self):
+        unique_ids = set()
+        unique_ids.update(self.ncbi_ids)
+        unique_ids.update(self.omim_ids)
+        unique_ids.update(self.gene_ids)
+        self.merged_ids = list(unique_ids)
