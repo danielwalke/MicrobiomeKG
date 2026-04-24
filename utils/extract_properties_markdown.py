@@ -71,7 +71,8 @@ if __name__ == "__main__":
     i = 0
     
     for label, md in schema_dict.items():
-        print(md)
-        if i == 4:
-            break
-        i = i+1
+        if "disease" in label.lower():
+            print(md)
+        # if i == 4:
+        #     break
+        # i = i+1

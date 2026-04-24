@@ -1,0 +1,192 @@
+{
+    "PROTEIN": [
+        "ENZYME_Protein__name",
+        "ENZYME_Protein__accession"
+    ],
+    "PUBLICATION": [
+        "ids",
+        "InterPro_Publication__pmid"
+    ],
+    "PROTEIN_DOMAIN": [
+        "InterPro_Domain__protein_count",
+        "InterPro_Domain__name"
+    ],
+    "FAMILY": [
+        "InterPro_Family__name",
+        "InterPro_Family__id"
+    ],
+    "TERM": [
+        "__id",
+        "InterPro_Classification__description",
+        "InterPro_Classification__id",
+        "GeneOntology_Term__namespace"
+    ],
+    "METADATA": [],
+    "ENZYME": [],
+    "HOMOLOGOUSSUPERFAMILY": [
+        "ids",
+        "InterPro_HomologousSuperfamily__structure_db_links"
+    ],
+    "PTM": [
+        "InterPro_PTM__structure_db_links"
+    ],
+    "DRUG": [
+        "DGIdb_Drug__id",
+        "DGIdb_Drug__name"
+    ],
+    "RNA": [],
+    "TAXON": [
+        "CMAUP_Plant__name",
+        "CMAUP_Plant__species_tax_id",
+        "CMAUP_Plant__id"
+    ],
+    "GENE": [
+        "DGIdb_Gene__id",
+        "DGIdb_Gene__oncokb_gene_name",
+        "DGIdb_Gene__gene_symbol"
+    ],
+    "DISEASE": [
+        "DISEASES_Disease__id",
+        "DISEASES_Disease__name"
+    ],
+    "CLINICAL_TRIAL": [
+        "names",
+        "ids",
+        "ClinicalTrials_gov_Trial__detailed_description",
+        "ClinicalTrials_gov_Trial__source",
+        "ClinicalTrials_gov_Trial__url"
+    ],
+    "COMPOUND": [
+        "names",
+        "ids"
+    ],
+    "LOCATION": [
+        "names",
+        "ids",
+        "ClinicalTrials_gov_Location__facility_address_city"
+    ],
+    "INTERVENTION": [
+        "names",
+        "ids"
+    ],
+    "OUTCOME": [
+        "names",
+        "ids"
+    ],
+    "ALIGNMENT": [
+        "RefSeq_cDNAMatch__splices",
+        "RefSeq_SequenceComparison__function",
+        "RefSeq_SequenceComparison__id",
+        "RefSeq_cDNAMatch__pct_coverage",
+        "RefSeq_Match__bit_score",
+        "RefSeq_cDNAMatch__pct_identity_ungap",
+        "RefSeq_Match__pct_coverage",
+        "RefSeq_Match__target_accession",
+        "search_names"
+    ],
+    "REGULATORY_ELEMENT": [
+        "RefSeq_ReplicationStartSite__experiment",
+        "RefSeq_ReplicationStartSite__id",
+        "RefSeq_OriginOfReplication__direction",
+        "names",
+        "RefSeq_Promoter__experiment",
+        "RefSeq_ReplicationRegulatoryRegion__note",
+        "RefSeq_OriginOfReplication__function",
+        "RefSeq_OriginOfReplication__id",
+        "RefSeq_ProteinBindingSite__id",
+        "RefSeq_NucleotideMotif__end_range",
+        "RefSeq_Promoter__function",
+        "RefSeq_ReplicationRegulatoryRegion__id",
+        "RefSeq_ResponseElement__experiment",
+        "RefSeq_NucleotideMotif__function",
+        "RefSeq_ProteinBindingSite__function",
+        "RefSeq_ReplicationRegulatoryRegion__experiment",
+        "RefSeq_NucleotideMotif__experiment",
+        "RefSeq_Promoter__id",
+        "RefSeq_ProteinBindingSite__note",
+        "RefSeq_ResponseElement__function",
+        "RefSeq_OriginOfReplication__experiment",
+        "RefSeq_ResponseElement__id",
+        "RefSeq_NucleotideMotif__id",
+        "RefSeq_ReplicationRegulatoryRegion__function",
+        "RefSeq_ReplicationStartSite__function"
+    ],
+    "EXPERIMENT": [
+        "names"
+    ],
+    "CLASSIFICATION": [
+        "search_names",
+        "BRENDA_Term__id",
+        "DGIdb_Category____id",
+        "DiseaseOntology_Subset__description",
+        "DiseaseOntology_Subset__id",
+        "InterPro_Classification__id"
+    ],
+    "INTERACTION": [
+        "search_names",
+        "IntAct_Interaction__primary_xref"
+    ],
+    "PROTEIN_FEATURE": [
+        "InterPro_Repeat__id",
+        "InterPro_Repeat__name",
+        "InterPro_ConservedSite__protein_count",
+        "InterPro_ConservedSite__id",
+        "UniProt_Feature__description",
+        "names",
+        "InterPro_ConservedSite__structure_db_links",
+        "InterPro_ActiveSite__id",
+        "InterPro_ConservedSite__name",
+        "InterPro_PTM__name",
+        "InterPro_ActiveSite__structure_db_links",
+        "InterPro_BindingSite__id",
+        "InterPro_Repeat__structure_db_links",
+        "InterPro_PTM__key_species",
+        "InterPro_BindingSite__external_docs",
+        "InterPro_ConservedSite__key_species",
+        "InterPro_ActiveSite__external_docs",
+        "InterPro_Repeat__protein_count",
+        "InterPro_PTM__structure_db_links",
+        "InterPro_Repeat__key_species",
+        "InterPro_Repeat__members",
+        "InterPro_PTM__id",
+        "InterPro_Repeat__external_docs",
+        "UniProt_Feature__type",
+        "InterPro_ActiveSite__name"
+    ],
+    "GENETIC_VARIATION": [
+        "search_names",
+        "RefSeq_NonAllelicHomologousRecombinationRegion__end_range",
+        "RefSeq_RecombinationFeature__experiment",
+        "RefSeq_NonAllelicHomologousRecombinationRegion__refseq_feature_id",
+        "ids",
+        "RefSeq_RecombinationFeature__recombination_class",
+        "RefSeq_RepeatInstabilityRegion__note",
+        "RefSeq_RecombinationFeature__standard_name",
+        "RefSeq_RecombinationFeature__note",
+        "search_ids",
+        "RefSeq_RepeatInstabilityRegion__experiment",
+        "RefSeq_NonAllelicHomologousRecombinationRegion__experiment",
+        "RefSeq_RecombinationFeature__pseudo",
+        "RefSeq_RepeatInstabilityRegion__refseq_feature_id",
+        "RefSeq_RecombinationFeature__id",
+        "RefSeq_NonAllelicHomologousRecombinationRegion__note"
+    ],
+    "MOBILE_GENETIC_ELEMENT": [
+        "ids",
+        "search_names",
+        "names",
+        "search_ids"
+    ],
+    "CHROMOSOMAL_STRUCTURE": [
+        "names",
+        "ids",
+        "search_ids",
+        "search_names"
+    ],
+    "ONTOLOGY": [
+        "search_names",
+        "names",
+        "search_ids",
+        "ids"
+    ]
+}

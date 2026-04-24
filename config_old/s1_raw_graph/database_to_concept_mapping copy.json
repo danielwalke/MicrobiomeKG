@@ -1,0 +1,577 @@
+{
+    "RefSeq_Match": {
+        "mapped_concept": "ALIGNMENT",
+        "reasoning": "The database label 'RefSeq_Match' and the associated schema properties explicitly describe sequence alignment results. Fields such as 'blast_score', 'bit_score', 'e_value', 'pct_identity_ungap', 'gap' (containing CIGAR-like strings), and 'target' (containing RefSeq accession numbers and coordinates) are definitive characteristics of sequence alignment data. The entity represents the computational match or alignment between sequences rather than a biological entity like a Gene or Protein, or an experimental protocol. Therefore, it directly matches the allowed concept 'ALIGNMENT'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ReplicationRegulatoryRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_ReplicationRegulatoryRegion` represents a specific annotated region within a genomic DNA sequence that regulates replication. The schema properties indicate it is defined by sequence coordinates (mentioned in `note` as 'position 61100 to position 63754'), has a `gbkey` of 'regulatory', and describes a functional element rather than a gene product (protein/RNA) or a gene locus itself. In biological sequence annotation standards (such as those used by RefSeq), regulatory regions are classified as sequence features. Among the allowed concepts, `SEQUENCE_FEATURE` is the direct semantic match for annotated functional regions within a biological sequence that do not fall under `GENE`, `PROTEIN`, or `RNA`.",
+        "status": "SUCCESS"
+    },
+    "HPO_Subset": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Subset' refers to definitions of subsets within the Human Phenotype Ontology (e.g., 'hposlim_core', 'secondary_consequence'). These entities represent structural grouping mechanisms or categories used to organize ontology terms, rather than the ontology resource itself (`ONTOLOGY`), specific phenotypic abnormalities (`PHENOTYPE`), or general technical metadata (`METADATA`). Since 'Ontology Subset' or 'Ontology Category' is not an explicitly allowed concept label, and mapping to `ONTOLOGY` or `PHENOTYPE` would require forcing a semantic fit that is not direct or undeniable (a subset is not an ontology, nor is it a phenotype), the entity must be returned as unclassified according to the critical instructions.",
+        "status": "UNCLASSIFIED"
+    },
+    "metadata": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label is explicitly 'metadata', and the schema properties (datasource_id, version, license, export_version, export_properties_hash) describe administrative and provenance information about the data sources integrated into the system. This content defines metadata (data about data). Since 'METADATA' is explicitly included in the Allowed Concept Labels list, there is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Experiment": {
+        "mapped_concept": "EXPERIMENT",
+        "reasoning": "The database label `IntAct_Experiment` explicitly identifies the entity type as an experiment. The allowed concept list includes `EXPERIMENT`. While the schema contains bibliographic information (authors, journal, PubMed ID) because experiments in the IntAct database are defined by their source publication, the entity also includes specific data curation attributes (e.g., 'curation depth', 'dataset', 'full coverage') that distinguish it as an experimental record rather than solely a publication. Therefore, there is a direct semantic match to `EXPERIMENT`.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Term": {
+        "mapped_concept": "TAXON",
+        "reasoning": "The sample values for the `id` property (e.g., 'NCBITaxon:10090', 'NCBITaxon:10116') explicitly use the NCBI Taxonomy prefix. These identifiers represent specific biological organisms or taxonomic groups. This corresponds directly to the allowed concept label 'TAXON'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_telomeraseRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The entity represents a specific non-coding RNA transcript record from the RefSeq database. The label 'RefSeq_telomeraseRNA' explicitly mentions RNA. The schema properties confirm this: the 'id' starts with 'rna-', the 'gbkey' is 'ncRNA' (non-coding RNA), and the 'product' is described as 'telomerase RNA component'. This aligns directly and undeniably with the allowed concept label 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DGeneSegment": {
+        "mapped_concept": "GENE",
+        "reasoning": "The entity represents Immunoglobulin or T-cell receptor Diversity (D) segments (e.g., TRBD1, TRDD1). In major biological databases such as NCBI Gene and RefSeq, these segments are assigned official gene symbols and unique Gene IDs (e.g., HGNC classifies TRBD1 as a gene). The schema explicitly includes a property named `gene` containing these symbols, indicating the database treats these segments as gene entities. Therefore, despite being recombination segments, they semantically align with the `GENE` concept label within the provided allowed list.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Interactor": {
+        "mapped_concept": "PROTEIN",
+        "reasoning": "The provided schema and samples for 'IntAct_Interactor' overwhelmingly indicate that the entities are proteins. Specifically: 1) The 'primary_xref' field contains UniProtKB identifiers (e.g., 'uniprotkb:P0A817'), which are unique to protein sequences. 2) The 'sequence' field contains amino acid sequences. 3) The 'type_full_name' field explicitly states 'protein' for all samples. 4) The 'full_name' field lists specific protein names (e.g., 'S-adenosylmethionine synthase', 'Thioredoxin 1'). Although the 'type_alias' field mentions DNA/RNA in some arrays, the definitive instance data (IDs, sequences, explicit type field) confirms these are protein records. Therefore, there is a direct semantic match to the allowed concept label 'PROTEIN'.",
+        "status": "SUCCESS"
+    },
+    "HPRD_PostTranslationalModification": {
+        "mapped_concept": "MODIFICATION",
+        "reasoning": "The database label 'HPRD_PostTranslationalModification' explicitly refers to post-translational modifications. The schema properties include 'type' (e.g., Acetylation), 'residue' (e.g., S, K), and 'site' (position numbers), which collectively describe specific chemical modifications occurring on protein sequences. The allowed concept list includes 'MODIFICATION', which is a direct and undeniable semantic match for this entity type.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_SynonymType": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The entity `DiseaseOntology_SynonymType` represents a definition for the type of synonym associated with a disease term (e.g., 'acronym'). The sample ID `OMO:0003012` comes from the Ontology Metadata Ontology (OMO). Since the entity describes properties of the labels (metadata) rather than being a biological entity (like DISEASE or GENE) or the ontology resource itself (ONTOLOGY), and the source ontology explicitly defines itself as 'Metadata', the most accurate allowed concept label is METADATA.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_EnhancerBlockingElement": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_EnhancerBlockingElement` represents a specific regulatory region annotated on a genomic DNA sequence. The schema property `gbkey` is set to 'regulatory', which is the standard annotation key in GenBank/RefSeq for sequence features that control gene expression but are not genes themselves. The `note` property describes physical sequence fragments (e.g., '230 bp', '1.8 kb'), confirming it is a defined locus on a sequence. While it is associated with GeneIDs (seen in the `id` property), the entity itself is a non-coding regulatory element, not a gene, protein, or RNA. Therefore, it semantically matches `SEQUENCE_FEATURE`, which covers annotated regions like promoters, enhancers, and binding sites on biological sequences.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_EpigeneticallyModifiedRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_EpigeneticallyModifiedRegion' and the schema property 'gbkey' (value: 'regulatory') indicate that this entity represents an annotated region on a biological sequence (specifically a genomic locus defined in RefSeq/GenBank). In bioinformatics, annotations defined by GenBank keys (gbkey) and coordinates are classified as sequence features. While the region is characterized by epigenetic modifications (as noted in the 'note' and 'regulatory_class' fields), the entity itself is a spatial region on the sequence, not the chemical modification event itself. Therefore, 'SEQUENCE_FEATURE' is the most direct and semantically accurate match among the allowed concepts, whereas 'MODIFICATION' would describe the chemical mark rather than the genomic region.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Silencer": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_Silencer` represents a specific regulatory region on a genome (DNA sequence) defined by genomic coordinates (e.g., 'fragment chr1:772694-772873' in the `note` field) and annotated with a regulatory function (silencing/repression). In biological ontologies (such as Sequence Ontology), a silencer is a type of sequence feature. It is not a `GENE` (as it is a regulatory element rather than a coding unit), nor is it an `EXPERIMENT` (though it cites experimental evidence). Therefore, it maps directly to `SEQUENCE_FEATURE` as it denotes a specific functional region within a biological sequence.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ChromosomeBreakpoint": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_ChromosomeBreakpoint` represents a specific annotated region or location on a genomic DNA sequence where a break or recombination event occurs. The schema includes the `gbkey` property with values like 'misc_recomb', which is a standard GenBank feature key used to annotate specific elements on sequence records. The `note` property describes genomic coordinates (e.g., 'GRCh38 reference genome'), strands, and structural changes (deletions, breakpoints). Among the allowed concepts, `SEQUENCE_FEATURE` is the only label that accurately encompasses annotated regions, sites, or structural elements within a biological sequence that are not specifically Genes, RNAs, or Proteins. Therefore, it is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MeioticRecombinationRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_MeioticRecombinationRegion' represents specific annotated regions on a genomic sequence where meiotic recombination occurs (e.g., hotspots, double-strand break sites). The presence of the 'gbkey' property with value 'misc_recomb' is standard terminology for sequence annotations in RefSeq/GenBank databases. The 'note' field describes physical DNA locations ('upstream Rhesus box', 'recombination hotspot'). This aligns directly with the concept of a sequence feature, which defines distinct regions or elements within a biological sequence. It is not a gene itself (though linked to GeneIDs), nor an experiment (though it cites experimental evidence).",
+        "status": "SUCCESS"
+    },
+    "HPO_Typedef": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label `HPO_Typedef` and the sample values indicate that this table defines relationship types (object properties) used within the Human Phenotype Ontology (HPO). The sample values for `id` and `name` (e.g., 'part_of', 'inheres_in') are standard ontology relations, and the `xrefs` column contains identifiers from the Relation Ontology (RO) and Basic Formal Ontology (BFO) (e.g., 'RO:0000052'). While these are specifically ontology relations rather than phenotype terms (which would map to `PHENOTYPE`), they are undeniable entities belonging to formal ontologies. Given the allowed concept labels, `ONTOLOGY` is the direct semantic match for entities derived from ontology resources (like RO and BFO) that do not fit more specific biological categories like `GENE` or `PHENOTYPE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RNaseMRPRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The entity is explicitly identified as an RNA molecule based on multiple schema attributes. The database label 'RefSeq_RNaseMRPRNA' contains 'RNA'. The 'id' field uses the prefix 'rna-'. The 'name' field 'NR_003051.4' corresponds to a RefSeq Non-coding RNA accession number. The 'gbkey' property is 'ncRNA' (non-coding RNA). The 'product' description states it is the 'RNA component of mitochondrial RNA processing endoribonuclease'. Therefore, there is a direct semantic match to the allowed concept label 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_NucleotideCleavageSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_NucleotideCleavageSite' represents a specific functional location or region annotated within a nucleotide sequence. The schema properties 'feat_class' (value: 'nucleotide_cleavage_site') and 'gbkey' (value: 'misc_feature') are standard indicators of sequence annotations in bioinformatics databases like GenBank/RefSeq. This entity describes a site on the sequence rather than the sequence molecule itself (which would be RNA or GENE) or a physical compound. Therefore, it directly matches the concept of a 'SEQUENCE_FEATURE', which encompasses annotated regions, sites, and loci on biological sequences.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_TandemRepeat": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_TandemRepeat` describes specific annotated regions within biological sequences, characterized by nucleotide repeat units (`rpt_unit_seq`), coordinates (`rpt_unit_range`), and a GenBank feature key (`gbkey`: 'repeat_region'). In bioinformatics, tandem repeats are classified as structural annotations or features within a sequence record. This aligns directly with the allowed concept label `SEQUENCE_FEATURE`, which encompasses defined regions such as repeats, exons, or binding sites within a DNA or RNA sequence.",
+        "status": "SUCCESS"
+    },
+    "PROTEIN_DOMAIN": {
+        "mapped_concept": "PROTEIN_DOMAIN",
+        "reasoning": "Overwritten by human",
+        "status": "SUCCESS"
+    },
+    "IntAct_BioSource": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'IntAct_BioSource' represents biological sources including tissues (e.g., 'liver', 'brain', 'leaf'), cell lines (e.g., '293 cells', 'CHO'), and organisms (e.g., 'Rat', 'Baker's yeast'). While it contains taxonomic information, the entity semantically encompasses anatomical parts and cell lines which are distinct from the allowed concept 'TAXON' (which refers to species/organism classification). There are no allowed labels for 'TISSUE', 'CELL_LINE', or 'ANATOMY'. 'METADATA' is typically reserved for technical descriptive data (e.g., version, date) rather than biological entity attributes. Therefore, there is no direct, undeniable semantic match among the allowed concepts.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_ProteinBindingSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_ProteinBindingSite` represents a specific annotated region within a biological sequence where a protein interacts, as indicated by the label and the `gbkey` property value 'protein_bind'. The `bound_moiety` property lists transcription factors (proteins) that bind to this site, confirming the entity is the sequence locus itself rather than the protein molecule. In bioinformatics, binding sites are standard examples of sequence features (annotations on a sequence), distinct from the gene entity (`GENE`) or the molecule (`RNA`/`PROTEIN`). Therefore, it directly matches the allowed concept `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_scaRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_scaRNA' and the sample data explicitly identify the entities as RNA molecules. The 'product' field contains values like 'small Cajal body-specific RNA', the 'gbkey' is 'ncRNA' (non-coding RNA), the 'note' is 'scaRNA', and the ID prefixes ('rna-', 'XR_', 'NR_') are standard RefSeq identifiers for RNA sequences. Since 'RNA' is an available allowed concept label and directly matches the semantic type of the data, it is the correct mapping.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_JGeneSegment": {
+        "mapped_concept": "GENE",
+        "reasoning": "The entity represents Immunoglobulin Kappa Joining (J) segments (e.g., IGKJ5). The schema explicitly defines a `gene` property containing standard gene symbols, and the database label (`RefSeq_JGeneSegment`) indicates these are treated as gene entities within the RefSeq context. In major biological databases (such as NCBI Gene), these segments are annotated as distinct gene loci with unique Gene IDs, providing a direct semantic match to the `GENE` concept rather than the broader `SEQUENCE_FEATURE` or `UNCLASSIFIED`.",
+        "status": "SUCCESS"
+    },
+    "InterPro_Classification": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The sample values in the `id` column (e.g., GO:0000001) are standard Gene Ontology identifiers. The `category` column contains values corresponding to the three main namespaces of the Gene Ontology (molecular_function, biological_process, cellular_component), and the `description` column contains ontology term names. Although the database label is 'InterPro_Classification', the semantic content of the records is unequivocally ontology terms.",
+        "status": "SUCCESS"
+    },
+    "InterPro_Repeat": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `InterPro_Repeat` represents specific protein repeats and domains (e.g., 'LDLR class B repeat', 'Armadillo', 'Involucrin repeat') identified by InterPro accession numbers (IPR...). These entities define conserved structural or functional regions within protein sequences, rather than representing whole protein molecules, genes, or organisms. The schema properties, such as `protein_count` (indicating how many proteins contain this feature) and `members` (linking to signature databases like Pfam and SMART), confirm that these are annotations of specific regions on biological sequences. Therefore, the semantic match is 'SEQUENCE_FEATURE' rather than 'PROTEIN' or 'ONTOLOGY'.",
+        "status": "SUCCESS"
+    },
+    "HPO_Header": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The entity `HPO_Header` contains metadata defining the Human Phenotype Ontology (HPO) resource itself, rather than specific phenotype terms. Properties such as `ontology` ('hp.obo'), `default_namespace` ('human_phenotype'), and `property_values` (explicitly describing 'The Human Phenotype Ontology') confirm that this record represents the ontology resource identity and versioning. Among the allowed concepts, `ONTOLOGY` is the most specific and semantically accurate label for a controlled vocabulary resource definition, distinguishing it from individual `PHENOTYPE` terms or generic `METADATA`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RepeatInstabilityRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_RepeatInstabilityRegion` represents a specific annotated region within a genomic sequence. The schema properties `feat_class` (value: 'repeat_instability_region') and `gbkey` (value: 'misc_feature') are standard terminology used in sequence annotation databases (like GenBank/RefSeq) to define features on a sequence. The `note` field describes specific sequence motifs such as VNTRs, minisatellites, and trinucleotide repeats. As this entity defines a specific locus or element within a biological sequence rather than the gene itself, a protein, or a disease, it semantically aligns directly with the concept of a `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Interaction": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The entity `IntAct_Interaction` represents a molecular interaction record (specifically between proteins or complexes), as evidenced by the label, the `short_label` format (e.g., 'metk-metk-1'), and attributes describing structural assembly and 3D resolution. The allowed concept labels do not include 'INTERACTION', 'COMPLEX', or 'STRUCTURE'. Mapping to `PROTEIN` is semantically incorrect as the entity describes a relationship between proteins rather than a protein itself. Mapping to `EXPERIMENT` is also inaccurate because, in data models like IntAct/PSI-MI, an 'Interaction' (the finding/relationship) is distinct from an 'Experiment' (the method/process). Per the critical instruction to not force a fit when a direct semantic match is not available in the allowed list, the entity must be classified as 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "HPRD_Domain": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label `HPRD_Domain` and sample values (e.g., `IGFLMN`, `UBQ`, `TM`) indicate that the entities represent protein domains. Protein domains are distinct structural or functional regions within a protein sequence. The allowed concept list includes `SEQUENCE_FEATURE`, which semantically encompasses domains, motifs, and other annotated regions of a biological sequence. Mapping to `PROTEIN` would be invalid as per the instruction warning against mapping sub-protein features to `PROTEIN`. Therefore, `SEQUENCE_FEATURE` is the direct and undeniable semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ImprintingControlRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_ImprintingControlRegion' refers to a specific functional region within the genomic DNA sequence that regulates gene expression (imprinting). The schema properties `gbkey: regulatory` and `regulatory_class: imprinting_control_region` confirm this is a regulatory element rather than a gene, protein, or RNA molecule itself. Among the allowed concept labels, 'SEQUENCE_FEATURE' is the most semantically accurate category, as it encompasses annotated functional regions or elements located on a biological sequence (such as DNA regulatory regions), whereas 'GENE' would be scientifically inaccurate for a non-coding regulatory locus.",
+        "status": "SUCCESS"
+    },
+    "DGIdb_Category": {
+        "mapped_concept": "CLASSIFICATION",
+        "reasoning": "The database label is 'DGIdb_Category', and the sample values (e.g., 'NUCLEAR HORMONE RECEPTOR', 'CLINICALLY ACTIONABLE', 'DRUG RESISTANCE') represent categories or classes used to group drugs, genes, or interactions within the Drug-Gene Interaction database. These entities do not represent specific biological molecules (like a specific 'GENE', 'PROTEIN', or 'DRUG') but rather classification terms or attributes. Among the allowed concept labels, 'CLASSIFICATION' is the direct semantic equivalent of 'Category', capturing the function of these entities as grouping labels within a taxonomy or ontology.",
+        "status": "SUCCESS"
+    },
+    "InterPro_ConservedSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'InterPro_ConservedSite' and the sample data (e.g., 'Helix-turn-helix motif', 'conserved site', 'Alkylbase DNA glycosidase, conserved site') describe specific functional or structural regions within protein sequences. These entities represent motifs, domains, or active sites, which are biologically defined as features annotated on biological sequences. Among the allowed concepts, 'SEQUENCE_FEATURE' is the direct semantic match for protein motifs and conserved sites, distinguishing them from whole proteins, genes, or classification systems.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MitoticRecombinationRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_MitoticRecombinationRegion` represents a specific annotated region within a biological sequence stored in the RefSeq database. The schema property `gbkey` contains the value `misc_recomb`, which is a standard GenBank/RefSeq feature key used to define miscellaneous recombination sites on a sequence. The `note` property describes the region's location relative to introns and genes (e.g., 'NUP98 intron 12'), confirming it is a positional element on a sequence rather than a gene product, disease, or experiment itself. In bioinformatics, annotated regions such as exons, introns, and recombination sites are collectively classified as sequence features. Therefore, there is a direct semantic match to the allowed concept label `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceAlterationArtifact": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity represents a specific genomic interval defined by coordinates (e.g., 'NC_000009.12:70701802..70719794') and is annotated with a GenBank key ('gbkey': 'Region'). In the context of sequence databases like RefSeq and GenBank, annotated regions on a sequence\u2014including technical annotations such as assembly artifacts\u2014are structurally classified as sequence features. Among the allowed concepts, 'SEQUENCE_FEATURE' is the only label that accurately captures coordinate-based annotations on biological sequences.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Term": {
+        "mapped_concept": "TAXON",
+        "reasoning": "The sample values in the `id` column (e.g., 'NCBITaxon:10029', 'NCBITaxon:10030') are explicit identifiers from the NCBI Taxonomy database. These identifiers represent specific biological taxa. Among the allowed concept labels, 'TAXON' is the direct and undeniable semantic match for entities defined by NCBI Taxonomy IDs.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DNaseIHypersensitiveSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_DNaseIHypersensitiveSite' represents specific regions on a DNA genome that are sensitive to DNase I cleavage, indicating open chromatin. The schema properties confirm this is a genomic annotation: the 'gbkey' property holds the value 'regulatory' (a standard key for sequence features in GenBank/RefSeq), and the 'note' property explicitly mentions 'nucleotide coordinates'. Since the entity defines a functional locus located on a biological sequence, it semantically matches the concept of a sequence feature.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ResponseElement": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_ResponseElement' represents specific regulatory regions (response elements) located on genomic sequences. The schema property 'gbkey' contains the value 'regulatory', which is a standard feature key in sequence databases (like GenBank/RefSeq) used to annotate specific functional regions on a sequence. Furthermore, the 'note' property provides coordinate ranges (e.g., '-2131 to -2028'), indicating specific locations on a sequence rather than a whole molecule like a GENE or RNA. Therefore, it semantically matches the concept of a sequence feature.",
+        "status": "SUCCESS"
+    },
+    "HPRD_ProteinComplex": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label `HPRD_ProteinComplex` refers to protein complexes, which are assemblies of multiple protein subunits. The allowed concept label `PROTEIN` typically refers to individual protein entities. Since 'COMPLEX' or 'ASSEMBLY' is not included in the allowed concept labels, and a protein complex is semantically distinct from a single protein (quaternary structure vs. individual entity), mapping it to `PROTEIN` would violate the strict instruction against forcing a fit. Therefore, there is no direct, undeniable semantic match among the allowed labels.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_CAATSignal": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_CAATSignal` represents a CAAT box, which is a specific DNA sequence motif found in the promoter region of genes. The schema property `gbkey` is set to 'regulatory', which is the standard annotation key in RefSeq/GenBank for defining functional regions (features) on a biological sequence. The `function` property explicitly identifies it as a 'CCAAT box'. Since this entity describes a specific, annotated functional region within a genomic sequence rather than the gene itself, a protein, or an experimental record, it directly matches the definition of a `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "InterPro_HomologousSuperfamily": {
+        "mapped_concept": "CLASSIFICATION",
+        "reasoning": "The database label 'InterPro_HomologousSuperfamily' refers to entries representing homologous superfamilies within the InterPro database. A homologous superfamily is a biological classification group that clusters proteins or domains based on shared evolutionary origin and structural similarity (e.g., CATH, SUPERFAMILY). The schema properties (e.g., 'members', 'protein_count', 'key_species') describe the characteristics of this group rather than a specific physical molecule. Among the allowed concept labels, 'CLASSIFICATION' is the most direct semantic match, as a superfamily is inherently a category within a taxonomic or structural classification system. It is not a specific 'PROTEIN' (molecule), 'SEQUENCE_FEATURE' (specific region instance), or 'ONTOLOGY' (the system itself), but rather a term within a classification hierarchy.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_NonAllelicHomologousRecombinationRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_NonAllelicHomologousRecombinationRegion' represents a specific annotated region on a genomic sequence within the RefSeq database. The schema includes the property 'gbkey' with the value 'misc_recomb', which is a standard GenBank/RefSeq feature key used to define specific elements on a sequence record. Additionally, the presence of coordinate-related data ('end_range') and evidence codes supporting the existence of the region confirms it is a biological feature mapped to a sequence. It is distinct from a 'GENE' (as indicated by the 'misc_recomb' key rather than 'gene') and is not an 'EXPERIMENT' itself, though it cites experimental evidence. Therefore, it maps directly to 'SEQUENCE_FEATURE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_CAGECluster": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_CAGECluster` represents Cap Analysis of Gene Expression clusters annotated within the RefSeq database. The schema properties `gbkey` (value: 'misc_feature') and `feat_class` (value: 'CAGE_cluster') are standard identifiers used in GenBank/RefSeq to define specific annotated regions or features on a biological sequence. Since the entity describes a specific genomic region/annotation rather than a whole gene, protein, or experimental protocol, it semantically aligns with `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Source": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The entity `IntAct_Source` represents a data source or database repository (e.g., IntAct, MINT, DIP, UniProt) that provides molecular interaction data. The schema contains administrative information such as URLs, contact details, definitions, and cross-references to PSI-MI ontology terms identifying the source. \n\nEvaluating against the allowed concept labels:\n- It is not a biological entity (GENE, PROTEIN, RNA, TAXON, DISEASE, PHENOTYPE, COMPOUND, MODIFICATION, SEQUENCE_FEATURE).\n- It is not a specific scientific artifact listed like `PUBLICATION` or `EXPERIMENT`.\n- It is not an `ONTOLOGY` itself, although it references ontology terms (PSI-MI) to identify the sources.\n- It is not `METADATA` in the strict sense of descriptive attributes attached to another entity; it is a standalone resource/entity definition.\n- There is no `DATABASE`, `RESOURCE`, or `REPOSITORY` label in the allowed list.\n\nPer the critical instruction to not force a fit if there is no direct, undeniable semantic match, and since 'Database/Source' is not explicitly listed, the correct mapping is 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "UniProt_Feature": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'UniProt_Feature' combined with schema properties defining spatial coordinates ('location_begin', 'location_end') relative to a parent sequence accession ('location_sequence') indicates that these entities represent specific annotated regions or segments within a biological sequence. The 'type' property (e.g., 'chain') confirms these are structural features of a protein sequence. This aligns precisely with the allowed concept 'SEQUENCE_FEATURE', which denotes specific sites or regions on a sequence. Mapping to 'PROTEIN' would be less accurate as the entity describes a sub-component (feature) of a protein sequence defined by coordinates, rather than the canonical protein entry itself.",
+        "status": "SUCCESS"
+    },
+    "HPO_SynonymType": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The entity `HPO_SynonymType` represents a controlled vocabulary or schema definition used to categorize synonyms (e.g., 'abbreviation', 'layperson') within the Human Phenotype Ontology database. It does not represent a biological entity (such as GENE, PROTEIN, DISEASE, PHENOTYPE), nor is it an ontology term itself (which would map to ONTOLOGY). While it is related to the ontology structure, it is a database schema element defining property types rather than a semantic concept within the allowed list. Therefore, it does not meet the criteria for a direct, undeniable semantic match to any allowed label.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_SynonymType": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The entity `GeneOntology_SynonymType` defines the categories or types of synonyms used within the Gene Ontology database (e.g., 'EXACT', 'systematic_synonym'). It is a database schema construct or controlled vocabulary for data structure, rather than a biological entity (like GENE, PROTEIN, DISEASE), an ontology term itself (ONTOLOGY), or dataset-level descriptive information (METADATA, which typically covers publication, version, or author info). While it describes data properties, mapping it to `METADATA` might be a force fit given the strict instruction for 'direct, undeniable semantic match' where `METADATA` usually implies record-level metadata. Therefore, it is best classified as `UNCLASSIFIED` as it represents a specific database schema element not explicitly covered by the allowed biological or research concept labels.",
+        "status": "UNCLASSIFIED"
+    },
+    "HPRD_Tissue": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPRD_Tissue' and the sample values ('Allantois', 'Semen', 'Lacrimal gland', etc.) clearly represent anatomical tissues or body fluids. Reviewing the Allowed Concept Labels, there is no specific label for 'TISSUE', 'ANATOMY', or 'CELL_TYPE'. While these entities are biological, they do not semantically match 'PROTEIN', 'GENE', 'DISEASE', 'TAXON', or 'PHENOTYPE'. Mapping to 'METADATA' would be forcing a fit, as tissues are distinct biological entities rather than descriptive data about a dataset (e.g., version, author). Per the critical instruction to return 'UNCLASSIFIED' if there is no direct, undeniable semantic match, this entity cannot be mapped to the provided list.",
+        "status": "UNCLASSIFIED"
+    },
+    "BRENDA_TextValue": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The entity `BRENDA_TextValue` stores auxiliary textual information associated with enzyme entries, specifically containing chemical reaction equations (e.g., 'L-ascorbate = L-dehydroascorbate') and annotations (e.g., 'gene name', 'isozyme'). The allowed concept list does not include labels for 'REACTION', 'ENZYME', or 'ANNOTATION'. While the content references `COMPOUND`s (in reactions) and `PROTEIN`s (enzymes), the entity itself represents the functional relationship or descriptive text rather than the biological entities themselves. Additionally, this data represents core biological knowledge rather than administrative `METADATA`. Therefore, there is no direct, undeniable semantic match among the allowed labels.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_MobileGeneticElement": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_MobileGeneticElement` represents annotated regions within genomic sequences, such as SINEs, retrotransposons, and other transposable elements. The schema property `gbkey` explicitly contains the value 'mobile_element', which is a specific feature key in GenBank/RefSeq distinct from the 'gene' key. Biologically, mobile genetic elements are structural or functional regions located on a sequence (often non-coding repeats), which aligns semantically with the concept of a sequence feature. While some samples reference GeneIDs, the fundamental nature of the entity is a genomic annotation rather than a canonical protein-coding gene, making `SEQUENCE_FEATURE` the most direct and accurate match among the allowed labels.",
+        "status": "SUCCESS"
+    },
+    "HPO_Idspace": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label `HPO_Idspace` and the sample values (`dc`, `oboInOwl`, `terms` with corresponding IRIs) indicate that this entity defines the namespace prefixes and identifier spaces used within the Human Phenotype Ontology (HPO). While these are technically metadata vocabularies, in the context of biomedical knowledge graphs and the provided allowed labels, structural components intrinsic to an ontology's definition (such as its idspaces) are best categorized under `ONTOLOGY`. This distinguishes the entity from generic dataset `METADATA` (like versioning or provenance) and biological entities (like `GENE` or `DISEASE`). The entity represents the structural framework of the ontology itself.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Chromosome": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity represents RefSeq records for chromosomes, which are genomic DNA sequences characterized by accession numbers (e.g., NC_000001.11), coordinates (start, end), and molecule type ('genomic DNA'). In standard biological ontologies (such as the Sequence Ontology), a 'chromosome' is explicitly classified as a type of 'sequence_feature' (SO:0000340 is_a SO:0000110). Since the allowed concept list does not include specific labels for 'DNA' or 'GENOME', and the entity is distinct from 'GENE', 'RNA', or 'PROTEIN', 'SEQUENCE_FEATURE' is the direct semantic parent and the most accurate available mapping.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Term": {
+        "mapped_concept": "DISEASE",
+        "reasoning": "The database label 'DiseaseOntology_Term' explicitly indicates terms from the Disease Ontology. The sample values for the 'name' property include specific medical conditions such as 'angiosarcoma', 'pterygium', 'disease of metabolism', 'shrimp allergy', and 'aspirin allergy'. The 'def' property provides definitions characterizing these entities as 'A vascular cancer', 'A corneal disease', 'A disease that involves errors...', etc. The identifiers use the 'DOID' prefix (Disease Ontology Identifier). Given the Allowed Concept Labels include 'DISEASE', and the entities represent specific diseases or medical conditions defined within a disease ontology, there is a direct and undeniable semantic match to 'DISEASE'.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_NumericValue": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label `BRENDA_NumericValue` and its schema (properties like `num_value`, `substrate`, `inhibitor`, `min_value`, `max_value`) indicate that this table stores specific quantitative measurements, likely enzyme kinetic parameters (e.g., Km, Ki, Vmax) associated with specific reaction conditions. While these values are derived from experiments and relate to proteins (enzymes) and compounds (substrates/inhibitors), the entity itself represents a 'Numeric Value' or 'Kinetic Parameter'. None of the allowed concept labels (such as `EXPERIMENT`, `PROTEIN`, `COMPOUND`, or `METADATA`) provide a direct, undeniable semantic match for a quantitative data point or parameter table. `EXPERIMENT` typically refers to the process or study instance rather than atomic measurement values. Therefore, per the critical instruction to not force a fit, it must be unclassified.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_ReplicationStartSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_ReplicationStartSite' and the schema properties indicate this entity represents a specific functional region annotated on a biological sequence (DNA). The property 'feat_class' explicitly values 'replication_start_site', and 'gbkey' values 'misc_feature', which are standard terminologies used in GenBank/RefSeq to define sequence annotations. The entity describes a location ('initiation site') and evidence for that location on a sequence, rather than representing a gene, protein, or experiment itself. Therefore, it semantically matches the allowed concept 'SEQUENCE_FEATURE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceSecondaryStructure": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_SequenceSecondaryStructure' and the schema properties (specifically `gbkey`: 'misc_structure' and `note` describing motifs like 'stem-loop', 'G-quadruplex', 'cruciform') indicate that this entity represents specific structural elements annotated within biological sequences. In the context of RefSeq and GenBank, these are recorded as sequence features. The concept 'SEQUENCE_FEATURE' is the direct semantic match for annotated regions or elements (such as structures, exons, or binding sites) defined on a biological sequence. It is distinct from 'GENE' (the whole locus), 'RNA'/'PROTEIN' (the molecule type), or 'MODIFICATION' (chemical changes), making it the only valid mapping among the allowed labels.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_LocusControlRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_LocusControlRegion' represents a Locus Control Region (LCR), which is a specific cis-regulatory DNA region involved in the regulation of gene expression. The schema properties, particularly 'gbkey' (value: 'regulatory') and 'regulatory_class' (value: 'locus_control_region'), indicate that this entity is an annotated feature on a genomic sequence rather than a gene, protein, or RNA molecule itself. In bioinformatics databases like RefSeq and GenBank, such elements are defined as features within the sequence feature table. Among the allowed concept labels, 'SEQUENCE_FEATURE' is the only category that accurately and directly encompasses genomic annotations and regulatory regions without forcing a fit into 'GENE' (which implies a coding unit or distinct hereditary unit) or other molecular types.",
+        "status": "SUCCESS"
+    },
+    "GeneOntology_Subset": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label 'GeneOntology_Subset' explicitly references the Gene Ontology. The sample values (e.g., 'goslim_agr', 'gocheck_do_not_annotate') are standard identifiers for Gene Ontology subsets (slims) and ontology property checks. These entities define structured vocabularies, constraints, and views within the ontology ecosystem. Among the allowed concepts, 'ONTOLOGY' is the only label that semantically encompasses ontology-related structures, terms, and subsets, whereas labels like 'METADATA' or 'CLASSIFICATION' are either too generic or less specific to the domain.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_GCRichPromoterRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_GCRichPromoterRegion` represents a specific annotated region on a DNA sequence (RefSeq) that functions as a promoter. The schema properties `gbkey` ('regulatory') and `regulatory_class` ('GC_signal') are standard annotations for sequence features in genomic databases. While it is associated with genes (indicated by `GeneID` in the `id` field), it is not a gene itself but a functional sub-genic element. It is not an `EXPERIMENT` although it cites experimental evidence. Among the allowed concepts, `SEQUENCE_FEATURE` is the direct semantic match for annotated biological sequence regions such as promoters, binding sites, or exons.",
+        "status": "SUCCESS"
+    },
+    "InterPro_DBInfo": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The table `InterPro_DBInfo` contains administrative information about the external databases (e.g., PFAM, PRINTS, CDD) that contribute to InterPro. The properties include `version`, `entry_count`, and `file_date`, which describe the state and release information of these data sources rather than representing biological entities like genes, proteins, or diseases. Since this data provides information about the data resources themselves, it semantically aligns with the concept of METADATA.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MiniSatellite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_MiniSatellite` describes specific repetitive DNA regions (minisatellites/VNTRs) annotated within RefSeq records. The schema properties provide definitive evidence: `gbkey` is set to 'repeat_region', which is a standard GenBank/RefSeq feature key denoting a specific location and characteristic on a biological sequence. Additionally, `rpt_unit_seq` provides the nucleotide sequence of the repeat unit, and `satellite` specifies the type ('minisatellite'). These are structural elements annotated on a genome sequence, not functional gene products (excluding `GENE`, `PROTEIN`, `RNA`). Therefore, the entity represents a specific annotation or region within a sequence, which directly maps to the concept `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RecombinationFeature": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_RecombinationFeature' and the property 'gbkey' with value 'misc_recomb' explicitly identify this entity as a feature annotated on a biological sequence (specifically regarding recombination events like hotspots, breakpoints, and RSS). The properties describe genomic locations and structural elements (e.g., 'recombination_hotspot', 'RSS_heptamer') rather than a gene product, protein, or disease. Among the allowed concepts, 'SEQUENCE_FEATURE' is the direct semantic match for annotated regions within a sequence.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Subset": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'DiseaseOntology_Subset' and the sample values (e.g., 'DO_AGR_slim', 'DO_childhood_cancer_slim') represent specific subsets or 'slims' of the Disease Ontology. These are structural grouping mechanisms or views within an ontology, rather than specific disease instances (DISEASE), the ontology resource itself (ONTOLOGY), or a general classification system (CLASSIFICATION). While related to ontologies and diseases, an 'ontology subset' is a distinct technical concept not explicitly covered by the allowed labels. Per the critical instruction to not force a fit when there is no direct, undeniable semantic match, this entity must be marked as unclassified.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_Typedef": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label 'GeneOntology_Typedef' explicitly identifies the data as structural components of the Gene Ontology. The sample values (e.g., 'has_part', 'negatively_regulates', 'ends_during') are standard relationship types (object properties) used within the Gene Ontology and Relation Ontology (indicated by 'RO:' xrefs) to define logical connections between ontology terms. Among the allowed concept labels, 'ONTOLOGY' is the only category that semantically encompasses the structural definitions, terms, and relationships that constitute a biological ontology. While the schema includes a boolean flag for 'is_metadata_tag', the entities themselves are fundamental logical definitions within the ontology framework, not administrative metadata about experiments or publications.",
+        "status": "SUCCESS"
+    },
+    "InterPro_ActiveSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'InterPro_ActiveSite' and the sample data (e.g., 'serine active site', 'cysteine active site') explicitly describe specific functional regions located within protein sequences. In biological semantics, an active site is a canonical example of a sequence feature (a specific motif or region responsible for function). While InterPro entries serve as signatures for classification, the specific content of this table defines types of sequence features (sites) rather than whole proteins, genes, or the ontology schema itself. Among the allowed labels, 'SEQUENCE_FEATURE' is the only one that directly captures the semantic nature of a protein active site.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DirectRepeat": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_DirectRepeat` represents a specific annotated region within a biological sequence, evidenced by the `gbkey` property value 'repeat_region' and the `rpt_unit_seq` property describing the sequence content. In bioinformatics databases like RefSeq and GenBank, repeat regions are classified as features annotated on a sequence rather than independent genes, proteins, or organisms. Therefore, it directly matches the concept of a `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "HPRD_Interactor": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The provided samples for the label `HPRD_Interactor` include a heterogeneous mix of molecular entities: nucleic acids (DNA, dsRNA) and small chemical molecules/lipids (Hydrogen peroxide, Glutathione, Phosphatidyl inositol 3,4,5-triphosphate). While HPRD is a protein database, these specific samples are non-protein interactors. There is no single allowed concept label that accurately encompasses this mixed group without semantic error. `PROTEIN` is incorrect as none of the samples are proteins. `RNA` is incorrect as it excludes DNA and chemical compounds. `COMPOUND` is typically reserved for small molecules and does not undeniably cover macromolecular nucleic acids like DNA. Therefore, there is no direct, undeniable semantic match to a single allowed concept label.",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_Family": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'InterPro_Family' refers to entries in the InterPro database, which integrate predictive models representing protein domains, families, and functional sites. These entries define specific signatures or regions within protein sequences (e.g., domains, motifs) used to classify and annotate proteins. Among the allowed concept labels, 'SEQUENCE_FEATURE' is the most semantically appropriate match because InterPro entries describe features found within biological sequences (domains, sites, repeats). The critical instruction warns against mapping sub-protein features to 'PROTEIN', implying that 'SEQUENCE_FEATURE' is the intended category for protein domains and signatures when a specific 'PROTEIN_FAMILY' label is unavailable. While 'ONTOLOGY' or 'CLASSIFICATION' could describe the database structure, 'SEQUENCE_FEATURE' accurately captures the biological entity type defined by the schema (signatures/domains within sequences).",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceComparison": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity is identified as a 'SEQUENCE_FEATURE' based on the following evidence: 1) The `gbkey` property value is 'misc_feature', which is a standard designation for sequence features in GenBank/RefSeq database schemas. 2) The `note` property describes specific genomic regions and coordinates ('region almost identical', '5' and 3' borders', 'range is defined'), indicating the entity represents a located annotation on a biological sequence. 3) While the `feat_class` is 'sequence_comparison' and evidence cites alignment, the entity itself is structured as an annotated feature on a sequence record (consistent with Sequence Ontology where 'sequence_comparison' is a subtype of 'sequence_feature'), rather than a standalone alignment object.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DispersedRepeat": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_DispersedRepeat` represents a specific annotated region within a genomic sequence, as evidenced by the `gbkey` property value 'repeat_region'. In bioinformatics databases like RefSeq and GenBank, 'repeat_region' is a standard feature key used to annotate dispersed repeats on nucleotide sequences. Since this entity describes a structural element located on a biological sequence rather than a gene product (PROTEIN/RNA), a gene itself (GENE), or an experimental process (EXPERIMENT), it aligns directly with the concept of a `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_PseudoGene": {
+        "mapped_concept": "GENE",
+        "reasoning": "The database entity `RefSeq_PseudoGene` represents genomic loci identified as pseudogenes. While pseudogenes are non-functional copies, the provided schema explicitly classifies them under `gbkey: 'Gene'`, uses identifiers prefixed with 'gene-' (e.g., `gene-DDX11L1`), and provides external references to gene-centric databases like NCBI `GeneID` and `HGNC`. In standard biological ontologies (such as the Sequence Ontology), pseudogenes are categorized as a subclass of genes. Given the allowed concept labels, `GENE` is the direct semantic match supported by the database's own classification metadata and standard bio-ontological hierarchy.",
+        "status": "SUCCESS"
+    },
+    "PROSITE_Rule": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'PROSITE_Rule' refers to entries in the PROSITE database that define patterns or profiles for identifying protein families, domains, and sites. The schema provides a critical hint via the 'data_classes' property, which contains the sample value ['Domain']. In biological ontology, a protein domain is a specific type of sequence feature. Although the entity is technically a 'Rule' (logic for identification), it semantically represents the definition and existence of a sequence feature (the domain) within the context of this database. Among the allowed concepts, 'SEQUENCE_FEATURE' is the direct semantic match for protein domains and sites.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ConservedRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_ConservedRegion` represents a specific annotated segment within a biological sequence record from the RefSeq database. The schema properties `feat_class` (value: 'conserved_region') and `gbkey` (value: 'misc_feature') are standard terminology used in GenBank/RefSeq flatfiles to define sequence features. The sample data describes functional elements (e.g., 'enhancer activity', 'binding motifs') and conservation evidence associated with specific sequence coordinates, rather than representing a whole gene, protein, or experiment. Therefore, it maps directly to `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "HPRD_Motif": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'HPRD_Motif' and the sample values (NLS, CC, SP, HLH, LZ) refer to specific structural or functional motifs found within protein sequences (e.g., Nuclear Localization Signal, Coiled Coil, Signal Peptide). These are not whole proteins, genes, or post-translational modifications, but rather distinct regions or patterns defined within a biological sequence. Therefore, they align directly with the allowed concept label 'SEQUENCE_FEATURE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceFeature": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label is 'RefSeq_SequenceFeature', and the schema includes a property 'feat_class' with the value 'sequence_feature'. The sample values describe specific annotated regions within a genetic sequence (e.g., 'leader sequence', 'recombination hotspot', 'misc_feature') rather than whole genes, proteins, or organisms. Since 'SEQUENCE_FEATURE' is explicitly included in the allowed concept labels and directly matches the semantic meaning of the data, this is a valid mapping.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Header": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The entity labeled 'DiseaseOntology_Header' contains metadata explicitly defining the 'Human Disease Ontology' (DOID). Properties such as 'ontology' ('doid'), 'default_namespace' ('disease_ontology'), and 'property_values' (containing the title 'Human Disease Ontology' and description of the ontology) confirm that this record represents the ontology resource itself rather than a specific disease term or generic metadata. Since 'ONTOLOGY' is an allowed concept label and directly matches the semantic type of this entity, it is the correct mapping.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MicroSatellite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_MicroSatellite' and the schema properties indicate that this entity represents specific annotated regions within a genomic sequence. The property 'gbkey' has the value 'repeat_region', which is a standard GenBank/RefSeq feature key. Properties like 'rpt_unit_seq' (e.g., 'cag', 'at') and 'satellite' ('microsatellite') describe the structural characteristics of these DNA regions. In bioinformatics ontology, microsatellites and repeat regions are classified as sequence features (distinct elements within a biological sequence). Therefore, this maps directly to 'SEQUENCE_FEATURE'. It is not a 'GENE' itself but rather a feature associated with or located within a gene locus (as indicated by the GeneID references in the 'id' field).",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Protein": {
+        "mapped_concept": "PROTEIN",
+        "reasoning": "The database label 'BRENDA_Protein' explicitly identifies the entity as a protein. The schema includes an 'accession' property with values matching UniProt protein accession formats (e.g., A0A015JJF9), and the 'source' property references protein sequence databases such as 'swissprot' and 'uniprot'. This provides a direct and undeniable semantic match to the allowed concept label 'PROTEIN'.",
+        "status": "SUCCESS"
+    },
+    "UniProt_Reference": {
+        "mapped_concept": "PUBLICATION",
+        "reasoning": "The database label `UniProt_Reference` explicitly identifies the entities as bibliographic references associated with UniProt entries. In the context of biological databases, specifically UniProt, a 'Reference' entity corresponds to a scientific publication or citation that supports the data in the entry. The property `scopes` (e.g., 'NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]') describes the specific content or evidence supported by that publication, which is a standard attribute of UniProt reference objects. Therefore, the entity semantically matches the concept of a Publication.",
+        "status": "SUCCESS"
+    },
+    "InterPro_BindingSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'InterPro_BindingSite' and the sample values (e.g., 'IQ motif', 'EF-hand binding site', 'zinc-binding site') describe specific functional regions, domains, or motifs located within protein sequences. In biological ontologies (such as the Sequence Ontology), binding sites and motifs are defined types of sequence features. Among the allowed concept labels, 'SEQUENCE_FEATURE' is the most direct semantic match for these entities. While InterPro is a classification database, the entities themselves represent biological features rather than abstract classification schemes ('CLASSIFICATION') or whole protein molecules ('PROTEIN').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Region": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_Region' represents a specific annotated segment within a biological sequence, as indicated by the label and the property 'gbkey' with the value 'repeat_region'. In bioinformatics (specifically GenBank/RefSeq standards), a 'repeat_region' is a standard feature key denoting a sequence feature. Additional properties like 'rpt_type' (tandem) and 'satellite' (minisatellite) describe structural characteristics of this sequence segment. Therefore, it maps directly to 'SEQUENCE_FEATURE', which covers annotated regions like repeats, exons, or domains within a biological sequence.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_CGeneSegment": {
+        "mapped_concept": "GENE",
+        "reasoning": "The database entity `RefSeq_CGeneSegment` contains a `gene` property with values such as 'IGKC', 'TRGC2', and 'PCDHACT'. These are standard, recognized gene symbols (e.g., Immunoglobulin Kappa Constant, T-Cell Receptor Gamma Constant 2). Although the label includes 'Segment' and the `gbkey` is 'C_region' (common terminology in immunogenetics for V, D, J, and C regions), these constant regions function as distinct genetic units and are cataloged with official gene symbols. Among the allowed concepts, `GENE` is the most direct semantic match for entities identified by gene symbols, overriding the more granular `SEQUENCE_FEATURE` which typically refers to sub-genic elements like exons or binding sites.",
+        "status": "SUCCESS"
+    },
+    "GeneOntology_Header": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label `GeneOntology_Header` and the schema properties explicitly identify the entity as the Gene Ontology (GO). Specific properties such as `ontology: \"go\"`, `dc:title \"Gene Ontology\"`, and `has_ontology_root_term` directly describe the ontology resource itself. While the record contains versioning information (which is metadata), the primary semantic subject is the Ontology, making `ONTOLOGY` the most direct and specific match from the allowed list compared to the generic `METADATA`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_antisenseRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_antisenseRNA' explicitly identifies the entities as RNA molecules. The sample IDs (e.g., 'rna-NR_037806.1') and RefSeq accessions (e.g., 'NR_037806.1') are standard identifiers for non-coding RNA transcripts. Additionally, the 'gbkey' property is consistently 'ncRNA', and the 'product' property describes specific antisense RNA transcripts (e.g., 'NPPA antisense RNA 1'). This constitutes a direct semantic match to the allowed concept label 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Assembly": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_Assembly' refers to a specific version of a genome assembly (e.g., GRCh38.p14, accession GCF_000001405.40). While the Sequence Ontology technically classifies 'assembly' under 'sequence_feature', in common bioinformatics semantics, an assembly is the reference sequence container upon which features (like genes, variants) are mapped, rather than a feature itself. The allowed list contains specific molecular entities (GENE, PROTEIN, RNA) and 'SEQUENCE_FEATURE', but lacks a direct 'GENOME' or 'ASSEMBLY' label. Mapping to 'TAXON' is incorrect because an assembly is a versioned build for a taxon, not the taxon itself (evidenced by the separate 'ncbi_taxid' field). Mapping to 'SEQUENCE_FEATURE' would be forcing a fit as an assembly is not a sub-region or annotation. Therefore, there is no direct, undeniable semantic match in the allowed list.",
+        "status": "UNCLASSIFIED"
+    },
+    "DGIdb_Drug": {
+        "mapped_concept": "DRUG",
+        "reasoning": "The database label 'DGIdb_Drug' explicitly identifies the entity as a drug. The schema properties reinforce this with fields like 'drugs_at_fda_id', 'primary_drug_name', and sources referencing 'DrugBank', 'RxNorm', and 'GuideToPharmacology'. The sample values consist of specific pharmaceutical agents and chemical compounds used as medications (e.g., 'FLURBIPROFEN SODIUM', 'APRACLONIDINE HYDROCHLORIDE', 'ertapenem'). There is a direct and undeniable semantic match to the allowed concept label 'DRUG'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MatrixAttachmentSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_MatrixAttachmentSite' represents a Matrix Attachment Region (MAR), which is a specific functional region of DNA that binds to the nuclear matrix. The schema properties such as 'gbkey' (value: 'regulatory'), 'regulatory_class' (value: 'matrix_attachment_region'), and 'note' (describing specific fragments and locations like '3' MAR', '5' proximal MAR') indicate that this entity is an annotated region within a genomic sequence. In bioinformatics databases like RefSeq, such elements are classified as sequence features rather than genes, proteins, or experiments themselves. Therefore, it directly matches the concept of a biological sequence annotation.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RepeatRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_RepeatRegion` is explicitly identified as a 'repeat_region' by the `gbkey` property, which is a standard feature key in GenBank/RefSeq sequence annotations. The properties `rpt_type` (e.g., tandem, flanking) and `rpt_unit_seq` (e.g., 'ta') describe specific structural characteristics of a segment within a biological sequence. While linked to GeneIDs, the entity represents a sub-component or annotated region rather than the gene itself (`GENE`) or the molecule (`RNA`/`PROTEIN`). Therefore, it semantically matches the allowed concept `SEQUENCE_FEATURE`, which encompasses annotated regions like repeats, exons, and binding sites within biological sequences.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Typedef": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label 'DiseaseOntology_Typedef' and the sample values (e.g., 'IDO:0000664', 'RO:is_a', 'has material basis in') indicate that this entity defines relationship types (object properties) within biomedical ontologies (Infectious Disease Ontology, Relation Ontology). While these are not biological entities like diseases or genes, they are fundamental structural components of an ontology. Among the allowed concepts, 'ONTOLOGY' is the only label that semantically encompasses ontology-specific structures and definitions. Mapping to 'DISEASE' would be incorrect as these are relations, not disease instances. Mapping to 'UNCLASSIFIED' would ignore the explicit ontology nature of the data, which fits the 'ONTOLOGY' category in the context of biomedical data types.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Insulator": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_Insulator' represents a specific regulatory DNA element (insulator) annotated within a genome. The schema fields confirm this: `gbkey` is 'regulatory', `regulatory_class` is 'insulator', and the `note` field contains genomic coordinates (e.g., '+43104 to +44079') and fragment descriptions. These characteristics define it as a functional region within a biological sequence rather than a gene, protein, or RNA molecule. Therefore, it maps directly to 'SEQUENCE_FEATURE', which encompasses annotated regions like promoters, enhancers, and insulators.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_OriginOfReplication": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_OriginOfReplication` represents a specific functional region on a DNA sequence where replication is initiated, as indicated by the `gbkey` value 'rep_origin'. In bioinformatics and sequence ontology, an origin of replication is classified as a sequence feature rather than a gene (which typically encodes a protein or RNA product), protein, or RNA molecule. Since `SEQUENCE_FEATURE` is an allowed label and accurately describes annotated regions or elements within a biological sequence without forcing an incorrect biological classification (like GENE), it is the direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RegulatoryRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_RegulatoryRegion' refers to specific functional segments annotated within a genomic DNA sequence (e.g., micrococcal_nuclease_hypersensitive_site). The schema property 'gbkey' having the value 'regulatory' confirms this is a feature annotation within a sequence record (standard in GenBank/RefSeq formats). Among the allowed concepts, this entity is not a Gene, Protein, or RNA molecule itself, but rather a distinct functional element located on a sequence. Therefore, it semantically aligns directly with 'SEQUENCE_FEATURE', which encompasses annotated regions like domains, motifs, and regulatory elements within biological sequences.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Enhancer": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_Enhancer' represents specific genomic regulatory regions (enhancers) annotated on DNA sequences. The schema includes properties defining genomic coordinates ('start_range', 'end_range', 'note' with chr coordinates), regulatory classification ('regulatory_class': 'enhancer', 'gbkey': 'regulatory'), and association with genes ('gene': 'IGH'). In bioinformatics, enhancers are defined as functional elements located at specific positions within a genomic sequence. Among the allowed concepts, 'SEQUENCE_FEATURE' is the direct semantic match for annotated regions or elements (such as exons, promoters, enhancers) within a biological sequence. It is not a 'GENE' itself (as it is a regulatory element), nor an 'EXPERIMENT' (though it cites experimental evidence).",
+        "status": "SUCCESS"
+    },
+    "GeneOntology_Idspace": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'GeneOntology_Idspace' and the sample values (EC, KEGG_REACTION, MetaCyc, RHEA, Reactome) indicate that this entity represents an identifier namespace registry or 'ID Space'. This is a technical concept used to define the source ontology or database for specific identifiers within a knowledge graph. While the values reference external ontologies (like EC or Reactome), the entity itself is a configuration record for identifier resolution, not a biological ontology term, gene, protein, or experimental metadata. There is no direct, undeniable semantic match in the allowed concept list for 'Identifier Namespace' or 'Registry'.",
+        "status": "UNCLASSIFIED"
+    },
+    "HPRD_Disease": {
+        "mapped_concept": "DISEASE",
+        "reasoning": "The database label 'HPRD_Disease' explicitly indicates the content relates to diseases. Furthermore, the sample values provided in the 'name' property (e.g., 'Myasthenic syndrome, congenital', 'Alcohol sensitivity, acute') are specific medical conditions and disorders. This aligns directly and undeniably with the allowed concept label 'DISEASE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_NucleotideMotif": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_NucleotideMotif` represents specific patterns or regions annotated within nucleotide sequences. The schema explicitly defines the `feat_class` as 'nucleotide_motif' and the `gbkey` as 'misc_feature', which are standard annotations for sequence features in GenBank/RefSeq databases. The presence of coordinate data (`end_range`, `partial`) and sequence pattern descriptions (`note`) confirms this entity describes a specific characteristic or region within a biological sequence rather than the sequence molecule itself (RNA/PROTEIN) or the gene container (GENE). Therefore, it directly matches the allowed concept `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_TranscriptionalCisRegulatoryRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_TranscriptionalCisRegulatoryRegion` represents specific functional regions on a genomic DNA sequence (such as enhancers or promoters) that regulate gene expression. The schema properties (`regulatory_class`, `gbkey: regulatory`, coordinate references in `note`) confirm these are annotated segments of a biological sequence. While associated with genes (evident by `id-GeneID` links), they are distinct from the gene itself (multiple regions can exist per gene, and they regulate rather than constitute the gene). Among the allowed labels, `SEQUENCE_FEATURE` is the direct semantic match for annotated regions within a biological sequence (DNA/RNA/Protein), whereas `GENE` would be inaccurate as these are sub-genic or intergenic features.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Exon": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_Exon' and the provided schema describe specific regions within a biological sequence (genomic or transcript). The samples include properties such as 'start_range', 'end_range', 'exon_number', and 'gene', which define the location and identity of an exon relative to a gene or transcript. Biologically, an exon is a specific segment of a DNA or RNA molecule. Among the allowed concept labels, 'SEQUENCE_FEATURE' is the most precise and semantically accurate category, as it explicitly covers defined regions or elements within a biological sequence (such as exons, introns, CDS, etc.). Mapping to 'GENE' is incorrect because 'gene' is listed as a property of this entity, and mapping to 'RNA' is less accurate because exons are structural features defined on both genomic DNA and RNA transcripts.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_TATABox": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_TATABox` represents a specific DNA sequence motif (TATA box) located within the promoter region of genes. The schema properties provide clear evidence for this classification: `gbkey` is set to 'regulatory', `regulatory_class` is 'TATA_box', and the `experiment` field references 'COORDINATES' and 'motif similarity'. In bioinformatics and sequence ontology, a TATA box is defined as a specific functional region annotated on a genomic sequence. Therefore, it maps directly to `SEQUENCE_FEATURE` rather than `GENE` (as it is a sub-component/regulatory element) or `PUBLICATION` (which is only cited as evidence).",
+        "status": "SUCCESS"
+    },
+    "InterPro_PTM": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database entries represent specific functional sites within protein sequences (e.g., 'hydroxyl_site', 'phosphorylation site', 'urydylation_site') defined by sequence patterns (indicated by PROSITE members like 'PROSITE:PS00010'). While the database label 'InterPro_PTM' indicates these features are associated with Post-Translational Modifications, the entities themselves are definitions of sequence locations or motifs rather than the chemical modifications or events themselves. Therefore, 'SEQUENCE_FEATURE' is the most direct and semantically accurate label among the allowed options, as it correctly categorizes protein sites, domains, and motifs defined by sequence signatures.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Promoter": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_Promoter` represents a specific regulatory region of DNA (a promoter) annotated within the RefSeq database. The schema property `gbkey` contains the value 'regulatory', which is a standard feature key in sequence databases (like GenBank/RefSeq) used to define specific functional regions on a sequence, distinct from the `gene` key. Additionally, `regulatory_class` is explicitly 'promoter'. While associated with a gene (evident in the `id` property linking to GeneID), a promoter is a sub-genic regulatory element, not the gene locus or product itself, making `GENE` semantically imprecise. The allowed label `SEQUENCE_FEATURE` accurately encompasses annotated regions of biological sequences, including regulatory elements like promoters. Therefore, this is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "GeneOntology_Term": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label 'GeneOntology_Term' and the sample values (e.g., 'GO:0000001', 'biological_process', 'molecular_function') explicitly identify these entities as terms from the Gene Ontology. Among the allowed concept labels, 'ONTOLOGY' is the direct semantic match for concepts or terms belonging to an ontology structure. This is analogous to the 'TAXON' label which covers taxonomy terms; therefore, GO terms fall under 'ONTOLOGY'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_BiologicalRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_BiologicalRegion' and the sample data describe specific genomic intervals (e.g., 'H3K4me1 hESC enhancer', 'heterochromatin model') defined by chromosomal coordinates (e.g., 'GRCh37_chr1:20498-21346'). These entities represent annotated functional elements or segments of a reference DNA sequence. Among the allowed concepts, 'SEQUENCE_FEATURE' is the most accurate semantic match, as these regions are features of the genome sequence distinct from full genes, proteins, or RNAs.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Centromere": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity 'RefSeq_Centromere' represents specific annotated regions (centromeres) located on genomic sequences. The 'id' property provides genomic coordinates (e.g., 'NC_000001.11:122026460..125184587'), and the 'gbkey' property explicitly values 'centromere', which is a standard feature key in GenBank/RefSeq annotations. Since a centromere is a structural region defined on a DNA sequence rather than a gene, protein, or RNA molecule, it semantically aligns directly with the allowed concept label 'SEQUENCE_FEATURE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_cDNAMatch": {
+        "mapped_concept": "ALIGNMENT",
+        "reasoning": "The database label 'RefSeq_cDNAMatch' and the schema properties explicitly describe a sequence alignment record. Properties such as 'pct_identity_ungap', 'gap', 'num_mismatch', 'splices', 'align_id', and 'curated_alignment' are standard metrics and identifiers used to quantify and identify sequence alignments (specifically between cDNA and a reference). Since 'ALIGNMENT' is an available concept label and directly corresponds to the semantic nature of the data (a computational match/alignment between sequences), it is the correct classification.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Publication": {
+        "mapped_concept": "PUBLICATION",
+        "reasoning": "The database label is 'BRENDA_Publication', and the schema attributes include standard bibliographic fields such as 'title', 'authors', 'journal', 'year', 'pmid', 'pages', and 'volume'. The sample values confirm these are scientific articles (e.g., PubMed IDs, journal names). This represents a direct and undeniable semantic match to the allowed concept label 'PUBLICATION'.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Organism": {
+        "mapped_concept": "TAXON",
+        "reasoning": "The database label 'BRENDA_Organism' and the sample values (e.g., 'Escherichia coli', 'Vicia faba', 'Bacillus subtilis') represent biological species. In the context of biomedical ontologies and the provided allowed concept labels, biological organisms and species names are classified under 'TAXON' (taxonomic entities). This is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Transcript": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_Transcript' explicitly refers to transcript records. The sample values provide strong evidence for mapping to 'RNA': 1) The `id` property values start with the prefix 'rna-' (e.g., 'rna-NR_046018.2'). 2) The `gbkey` property values are consistently 'misc_RNA'. 3) The `inference` property references similarity to 'RNA sequence'. 4) Biologically, a transcript is an RNA molecule. Therefore, there is a direct semantic match to the allowed concept 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Value": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'BRENDA_Value' suggests a generic Entity-Attribute-Value (EAV) table used to store various types of data values (numeric, text, etc.) associated with enzyme entries. While the provided samples specifically contain text descriptions of experimental methods (e.g., 'X-ray diffraction', 'crystal structure analysis') and conditions, the entity itself (the table) is a general-purpose value store rather than a dedicated record of experiments. In the BRENDA database schema, 'Value' tables typically hold diverse properties (kinetic constants, pH, temperature, comments), not just experimental records. Therefore, mapping this generic container to the specific concept 'EXPERIMENT' would be forcing a fit, as the table is not exclusively dedicated to experiments. It does not fit 'METADATA' (usually dataset-level info) or other biological concepts directly. Thus, it is best classified as 'UNCLASSIFIED' to adhere to the strict instruction of only mapping when there is an undeniable semantic match for the entity itself.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_SequenceAlteration": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label `RefSeq_SequenceAlteration` and the schema properties indicate that these entities represent specific variations (such as SNPs or alleles) annotated on a reference sequence. Evidence includes the `feat_class` value 'sequence_alteration', the `gbkey` value 'misc_feature', and `xrefs` linking to dbSNP (Single Nucleotide Polymorphism Database). In the context of sequence databases like RefSeq and GenBank, variations are recorded as entries in the sequence feature table. Among the allowed concepts, `SEQUENCE_FEATURE` is the direct semantic match for annotated regions or points of interest on a biological sequence, encompassing variations when a specific 'VARIANT' label is not available. It is not a `GENE`, `PROTEIN`, or `RNA` itself, nor is it a `MODIFICATION` in the sense of post-translational or chemical modification.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_VGeneSegment": {
+        "mapped_concept": "GENE",
+        "reasoning": "The database label `RefSeq_VGeneSegment` explicitly includes the term 'Gene'. The schema contains a property named `gene` with values corresponding to standard gene symbols (e.g., `IGKV4-1`, `LOC107985528`) and a `standard_name` property describing immunoglobulin variable genes. In biological databases (such as NCBI Gene and IMGT), immunoglobulin variable segments are classified and indexed as genes. Although the `gbkey` property indicates `V_segment` (a sequence feature key), the presence of gene identifiers and the explicit naming convention confirm the entity represents a genetic locus classified under the concept of a Gene.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RNasePRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_RNasePRNA' explicitly indicates an RNA entity. The schema samples confirm this: the 'id' field uses RNA-specific accessions (e.g., 'rna-NR_002312.1', 'NR_002312.1'), the 'gbkey' is 'ncRNA' (non-coding RNA), and the 'product' description is 'ribonuclease P RNA component H1'. While there is a 'gene' property linking to 'RPPH1', the entity itself represents the RNA transcript/sequence, not the gene locus. Therefore, there is a direct semantic match to the allowed concept 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "HPO_Term": {
+        "mapped_concept": "PHENOTYPE",
+        "reasoning": "The database label 'HPO_Term' explicitly refers to terms from the Human Phenotype Ontology (HPO). The sample values provided (e.g., 'Abnormality of body height', 'Multicystic kidney dysplasia', 'Autosomal dominant inheritance') describe observable clinical characteristics, abnormalities, or traits associated with human health. This semantic content aligns directly and undeniably with the allowed concept label 'PHENOTYPE'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DLoop": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The entity `RefSeq_DLoop` represents the D-loop (Displacement Loop) region of the mitochondrial genome. The sample `id` (`id-NC_012920.1:1..16569`) follows the standard format for genomic coordinates on a RefSeq accession, and the `gbkey` property value 'D-loop' corresponds to a GenBank feature key. In bioinformatics, the D-loop is a specific non-coding regulatory region within the DNA sequence, not a gene, protein, or RNA molecule itself. Therefore, it is semantically equivalent to a specific annotated region within a biological sequence, which maps directly to the allowed concept `SEQUENCE_FEATURE`.",
+        "status": "SUCCESS"
+    }
+}

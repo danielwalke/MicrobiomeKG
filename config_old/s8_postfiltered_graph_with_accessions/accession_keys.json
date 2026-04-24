@@ -1,0 +1,169 @@
+{
+    "PROTEIN": {
+        "primary_accession": {
+            "property": "__id",
+            "index": null,
+            "reasoning": "The `__id` property is a Long type and appears to be a unique numerical identifier for each PROTEIN node based on the sample values provided. It is the most suitable candidate for a primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "ids"
+            ],
+            "reasoning": "The `names` property contains UniProt accession-like identifiers (e.g., 'NP_057283.1'). The `ids` property contains Ensembl protein identifiers (e.g., 'ENSEMBL:ENSP00000252622.8'). Both are StringArrays and represent common ways to identify proteins. Concatenating these properties provides a robust secondary identifier, covering different protein identification systems."
+        }
+    },
+    "PUBLICATION": {
+        "primary_accession": {
+            "property": "pmid",
+            "index": null,
+            "reasoning": "The `pmid` property is an Integer type and contains unique identifiers (PubMed IDs) for publications. It is a standard and reliable identifier for publications. The `__id` property is a Long type, which is likely an internal database ID and not a standard publication identifier. StringArray properties like `search_names`, `names`, and `ids` can contain multiple values or be empty, making them unsuitable as primary unique identifiers."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "pmid",
+                "ids"
+            ],
+            "reasoning": "The `pmid` property provides a primary identifier. The `ids` property contains a list of other potential identifiers like DOI or PMID, which can serve as secondary identifiers. Combining `pmid` and `ids` provides a robust secondary unique identifier, as `ids` might contain additional identifiers or formats related to the publication."
+        }
+    },
+    "TAXON": {
+        "primary_accession": {
+            "property": "__id",
+            "index": null,
+            "reasoning": "The '__id' property is a Long type and appears to be a unique numerical identifier for each TAXON node, as evidenced by the distinct sample values provided. It is the most suitable candidate for a primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "ids",
+                "search_ids"
+            ],
+            "reasoning": "The 'ids' property contains NCBI Taxonomy IDs (e.g., 'NCBITaxon:151779'), which are standard identifiers for taxonomic classifications. The 'search_ids' property is an array of strings, but the sample values are empty arrays. However, combining 'ids' and 'search_ids' might provide a more comprehensive secondary identifier, although 'search_ids' currently adds no value. If 'search_ids' were populated, it could potentially contain other relevant identifiers. Given the presence of 'ids' which contains NCBI Taxonomy IDs, it is a strong candidate for secondary accession. Combining it with 'search_ids' anticipates potential future use or alternative identifier schemes."
+        }
+    },
+    "GENE": {
+        "primary_accession": {
+            "property": "__id",
+            "index": null,
+            "reasoning": "The `__id` property is a Long type and appears to be a unique numerical identifier for each gene entry, making it the most suitable primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "search_names",
+                "names",
+                "ids"
+            ],
+            "reasoning": "The `search_names`, `names`, and `ids` properties are all StringArrays containing various identifiers and names associated with the gene. Concatenating these properties would provide a comprehensive secondary identifier for the gene node."
+        }
+    },
+    "DRUG": {
+        "primary_accession": {
+            "property": "__id",
+            "index": null,
+            "reasoning": "The '__id' property is a Long type and appears to be a unique numerical identifier for each DRUG node, making it suitable as the primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "ids"
+            ],
+            "reasoning": "The 'names' property is a StringArray containing various names for the drug (e.g., CHEMBL identifiers, common names). The 'ids' property is a StringArray containing other identifiers (e.g., ChEMBL, RxNorm). Combining these two arrays provides a more comprehensive secondary identifier, capturing different naming conventions and ID systems associated with the drug."
+        }
+    },
+    "RNA": {
+        "primary_accession": {
+            "property": "__id",
+            "index": null,
+            "reasoning": "The `__id` property is a Long type and appears to be a unique numerical identifier for each RNA node, as evidenced by the distinct sample values provided. It is the most suitable candidate for a primary accession."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "search_names"
+            ],
+            "reasoning": "The `names` property contains string arrays representing external identifiers (e.g., NM_ accession numbers). The `search_names` property also contains string arrays. Combining these two properties provides a more comprehensive set of identifiers for the RNA molecule, potentially serving as a secondary unique identifier or useful for searching and cross-referencing."
+        }
+    },
+    "ALIGNMENT": {
+        "primary_accession": {
+            "property": "search_names",
+            "index": 0,
+            "reasoning": "The `search_names` property contains values like 'id-geneid:107548112-27' and 'ng_000002.2', which appear to be unique identifiers. It is an array, so the index 0 is used to select the first element. Other properties like `names`, `search_ids`, and `ids` are either empty arrays or contain less specific identifiers."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names"
+            ],
+            "reasoning": "The `names` property contains values like 'NG_139271.1', which are also potential identifiers, often related to genomic sequences. While `search_names` seems more unique, `names` provides additional identifying information and is included as a secondary accession."
+        }
+    },
+    "EXPERIMENT": {
+        "primary_accession": {
+            "property": "search_names",
+            "index": 0,
+            "reasoning": "The `search_names` property is a StringArray containing values like 'imex:im-10766'. These values appear to be unique identifiers, similar to accession numbers, and are specifically designed for searching. The property is an array, and the instruction is to provide the integer index of the element to use. Assuming the first element of the array is the intended primary identifier."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names"
+            ],
+            "reasoning": "The `names` property is a StringArray containing values like 'imex:IM-18675'. These also appear to be identifiers, potentially related to the experiment. Since `search_names` is chosen as the primary accession (using its first element), `names` serves as a reasonable secondary identifier, providing additional information or context."
+        }
+    },
+    "CLASSIFICATION": {
+        "primary_accession": {
+            "property": "search_names",
+            "index": 0,
+            "reasoning": "The `search_names` property contains string values that appear to be unique identifiers (e.g., 'dgidb:abc_transporter'). It is an array. Assuming the first element of the array is the primary identifier for the node, the index is 0. String types are preferred over integers for primary accessions when available and meaningful."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "ids"
+            ],
+            "reasoning": "The `names` property contains string arrays, likely representing taxonomic identifiers (NCBITaxon IDs). The `ids` property also contains string arrays. Combining these two properties could provide a more specific secondary identifier, potentially useful for disambiguation or linking to other databases. Both are string arrays and seem relevant to the classification context."
+        }
+    },
+    "INTERACTION": {
+        "primary_accession": {
+            "property": "names",
+            "index": 0,
+            "reasoning": "The 'names' property contains unique identifiers (e.g., 'intact:EBI-1135898') that are likely to serve as the primary key for an interaction. It is a StringArray. Assuming the first element of the array is the primary identifier, the index is 0."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "search_names",
+                "search_ids"
+            ],
+            "reasoning": "Combining 'search_names' and 'search_ids' might provide a secondary unique identifier, as they both relate to search results or identifiers associated with the interaction. Although they are currently empty arrays in the sample data, they are likely intended to hold additional identifying information."
+        }
+    },
+    "ONTOLOGY": {
+        "primary_accession": {
+            "property": "names",
+            "index": 0,
+            "reasoning": "The 'names' property contains strings like 'GO:0000001', which appear to be standard ontology identifiers. It is an array of strings. 'search_names' also contains similar strings, but 'names' is listed first and seems more likely to be the primary identifier. 'search_ids' and 'ids' are empty arrays, making them unsuitable. Since 'names' is a StringArray, we need to select an index. Assuming the first element of the array is the primary identifier, the index is 0."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "search_names"
+            ],
+            "reasoning": "The 'search_names' property contains strings similar to the primary accession ('names'). It could serve as a secondary identifier or a search key. Combining it with the primary accession might provide a more robust unique identifier, although in this specific schema, 'names' and 'search_names' seem to contain identical values. If a secondary identifier is needed, 'search_names' is the most plausible candidate among the available non-empty string properties."
+        }
+    },
+    "DISEASE": {
+        "primary_accession": {
+            "property": "search_names",
+            "index": 0,
+            "reasoning": "The `search_names` property is a StringArray containing DOID identifiers, which are commonly used as unique identifiers for diseases. It is the most likely candidate for a primary accession. The index is 0 as it's the first element of the array."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "names",
+                "search_ids",
+                "ids"
+            ],
+            "reasoning": "The `names` property also contains DOID identifiers, similar to `search_names`. `search_ids` and `ids` are present but empty in the sample values. Combining `names`, `search_ids`, and `ids` might provide a more comprehensive secondary identifier, although their utility depends on whether they contain distinct or overlapping information compared to `search_names` and `names`. Given the empty samples for `search_ids` and `ids`, they might not be reliable secondary accessions, but including them covers all potential identifier properties."
+        }
+    }
+}

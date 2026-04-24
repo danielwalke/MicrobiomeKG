@@ -1,0 +1,308 @@
+{
+    "RNA": [
+        "ids_str",
+        "id_0",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_Header": [
+        "default_namespace",
+        "ontology",
+        "format_version",
+        "data_version_str",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "PROTEIN": [
+        "ids_str",
+        "id_0",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_Publication": [
+        "id",
+        "pmid",
+        "db_references_str",
+        "pmid",
+        "db_references_str",
+        "db_reference_0",
+        "pmid"
+    ],
+    "metadata": [
+        "datasource_id",
+        "version",
+        "datasource_oai_id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_BindingSite": [
+        "id",
+        "structure_db_links_str",
+        "members_names_str",
+        "protein_count",
+        "short_name",
+        "members_protein_counts_str",
+        "external_docs_str",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_Subset": [
+        "description",
+        "id",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "MergedNode": [
+        "merged_node_id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_Repeat": [
+        "id",
+        "members_names_str",
+        "short_name",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Tissue": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "UniProt_Feature": [
+        "id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_Term": [
+        "alt_ids_str",
+        "id",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "PROTEIN_DOMAIN": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Protein": [
+        "refseq_id",
+        "processed_refseq_id",
+        "id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Disease": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Gene": [
+        "entrez_gene_id",
+        "omim_id",
+        "changed_omim_id",
+        "processed_omim_id",
+        "processed_entrez_gene_id",
+        "id",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "TAXON": [
+        "ids_str",
+        "id_0",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_Domain": [
+        "id",
+        "short_name",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_mRNA": [
+        "refseq_id",
+        "processed_refseq_id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_ActiveSite": [
+        "id",
+        "members_names_str",
+        "protein_count",
+        "short_name",
+        "members_protein_counts_str",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_ConservedSite": [
+        "id",
+        "members_names_str",
+        "short_name",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "PUBLICATION": [
+        "id_0",
+        "pmid",
+        "ids_str",
+        "id_1",
+        "db_references_str",
+        "pmid",
+        "db_references_str",
+        "db_reference_0",
+        "pmid"
+    ],
+    "UniProt_Organism": [
+        "scientific_names_str",
+        "db_references_str",
+        "processed_db_references_str",
+        "id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_DBInfo": [
+        "entry_count",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GENE": [
+        "ids_str",
+        "id_0",
+        "id_1",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "UniProt_Citation": [
+        "db_references_str",
+        "processed_db_references_str",
+        "db_references_str",
+        "pmid",
+        "db_references_str",
+        "db_reference_0",
+        "pmid"
+    ],
+    "UniProt_Reference": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Domain": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_Classification": [
+        "description",
+        "id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_SynonymType": [
+        "description",
+        "id",
+        "scope",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "HPRD_Motif": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_PTM": [
+        "id",
+        "members_names_str",
+        "structure_db_links_str",
+        "protein_count",
+        "short_name",
+        "key_species_protein_counts_str",
+        "members_protein_counts_str",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "InterPro_HomologousSuperfamily": [
+        "id",
+        "short_name",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_ProteinComplex": [
+        "id",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_Idspace": [
+        "id",
+        "iri",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ],
+    "InterPro_Family": [
+        "id",
+        "short_name",
+        "members_str",
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_PostTranslationalModification": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "HPRD_Interactor": [
+        "db_references_str",
+        "db_references_str"
+    ],
+    "UniProt_Protein": [
+        "accession",
+        "processed_accession",
+        "processed_db_references_str",
+        "db_references_str"
+    ],
+    "GeneOntology_Typedef": [
+        "xrefs_str",
+        "id",
+        "name",
+        "names_str",
+        "db_references_str",
+        "ids_str",
+        "name",
+        "names_str",
+        "db_references_str"
+    ]
+}

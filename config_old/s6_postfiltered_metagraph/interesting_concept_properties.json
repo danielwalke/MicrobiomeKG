@@ -1,0 +1,178 @@
+{
+    "PROTEIN": {
+        "names": "Essential identifier for web search and represents the protein's common names across different organisms.",
+        "ids": "Essential identifier for web search, specifically UniProtKB IDs, which are standard protein identifiers."
+    },
+    "PUBLICATION": {
+        "pmid": "Unique identifier for the publication, essential for searching and linking to external databases.",
+        "InterPro_Publication__title": "Title of the publication, providing a summary of the content.",
+        "InterPro_Publication__year": "Year of publication, useful for filtering and understanding the context of the research.",
+        "InterPro_Publication__journal": "Journal where the publication appeared, indicating the source and potential scope.",
+        "InterPro_Publication__authors": "Authors of the publication, relevant for attribution and expertise."
+    },
+    "PROTEIN_DOMAIN": {
+        "InterPro_Domain__id": "Unique identifier for the domain, crucial for linking to external databases and literature.",
+        "InterPro_Domain__structure_db_links": "Links to protein structure databases (e.g., PDB), relevant for structural analysis and understanding protein function.",
+        "InterPro_Domain__external_docs": "Links to external databases and resources (e.g., EC, REACTOME, METACYC) providing functional information and context."
+    },
+    "FAMILY": {
+        "names": "Provides the name(s) of the protein family, crucial for identification and literature search.",
+        "ids": "Provides unique identifiers for the protein family, useful for database lookups and linking to other resources.",
+        "InterPro_Family__external_docs": "Links to external documentation (e.g., REACTOME, PROSITE) providing detailed information about the family, relevant for research.",
+        "InterPro_Family__key_species": "Indicates the key species associated with this protein family, relevant for microbiome, proteome, and metaproteome research.",
+        "InterPro_Family__structure_db_links": "Links to protein structure databases (e.g., PDB), important for structural analysis and understanding function.",
+        "InterPro_Family__protein_count": "Indicates the number of proteins belonging to this family, providing context on its prevalence."
+    },
+    "TERM": {
+        "GeneOntology_Term__name": "Represents the name of the Gene Ontology term, crucial for identifying the biological process or function.",
+        "GeneOntology_Term__id": "Unique identifier for the Gene Ontology term, essential for precise referencing and web search.",
+        "GeneOntology_Term__def": "Provides the definition of the Gene Ontology term, explaining its meaning and context."
+    },
+    "METADATA": {
+        "names": "Essential identifier for web search and representing the entity.",
+        "ids": "Important for unique identification and linking to external databases."
+    },
+    "ENZYME": {
+        "names": "Essential identifier for web search and common reference.",
+        "ids": "Essential identifier for web search and common reference (EC number).",
+        "ENZYME_Enzyme__official_name": "Specific name of the enzyme, relevant for detailed information.",
+        "ENZYME_Enzyme__id": "Specific ID of the enzyme (EC number), relevant for detailed information.",
+        "ENZYME_Enzyme__catalyticActivities": "Describes the function of the enzyme, highly relevant to proteome/metaproteome research."
+    },
+    "HOMOLOGOUSSUPERFAMILY": {
+        "names": "Essential identifier for web search.",
+        "InterPro_HomologousSuperfamily__id": "Specific identifier for the homologous superfamily.",
+        "InterPro_HomologousSuperfamily__protein_count": "Provides information about the prevalence of the superfamily.",
+        "InterPro_HomologousSuperfamily__name": "Describes the superfamily."
+    },
+    "PTM": {
+        "InterPro_PTM__name": "Essential identifier for the PTM, crucial for searching and linking to specific modifications.",
+        "InterPro_PTM__id": "Specific identifier for the PTM within the InterPro database.",
+        "InterPro_PTM__external_docs": "Links to external databases (e.g., PROSITE, REACTOME) providing further information about the PTM.",
+        "InterPro_PTM__key_species": "Indicates the species in which this PTM is found, relevant for proteome/metaproteome research."
+    },
+    "DRUG": {
+        "names": "Essential for web search and identifying drug treatments.",
+        "ids": "Provides unique identifiers (RxNorm, ChEMBL) for accurate knowledge graph linking.",
+        "DGIdb_Drug__sources": "Captures data provenance from databases like ChEMBL and RxNorm for research validation."
+    },
+    "RNA": {
+        "ids": "Primary unique identifier for the RNA molecule, essential for web search and precise sequencing analysis.",
+        "rna_type": "Classifies the RNA species (e.g., miRNA), critical for interpreting sequencing data and functional context.",
+        "DISEASES_Gene__id": "Links the RNA to specific diseases, directly supporting research on associated treatments and literature."
+    },
+    "TAXON": {
+        "names": "Primary identifier for human-readable search and literature association.",
+        "ids": "Standardized NCBI Taxonomy IDs enable cross-referencing with proteome and microbiome databases."
+    },
+    "GENE": {
+        "names": "Primary gene symbol for web search and general identification.",
+        "ids": "Standard HGNC unique identifier for precise gene resolution.",
+        "DGIdb_Gene__uniprotkb_id": "Links gene to protein sequences for proteome and metaproteome analysis."
+    },
+    "DISEASE": {
+        "ids": "Unique Disease Ontology identifiers enable linking disease entities to external literature and treatment databases.",
+        "names": "Standardized disease names facilitate searchability and human interpretation within the research context."
+    },
+    "CLINICAL_TRIAL": {
+        "ClinicalTrials_gov_Trial__id": "Unique identifier for web search and entity linking.",
+        "ClinicalTrials_gov_Trial__official_title": "Descriptive name of the clinical trial.",
+        "ClinicalTrials_gov_Trial__interventions_mesh": "Relevant to associated treatments and interventions.",
+        "ClinicalTrials_gov_Trial__conditions_mesh": "Relevant to the medical conditions being studied.",
+        "ClinicalTrials_gov_Trial__biospecimen_description": "Relevant to sequencing analysis and sample collection for proteome/metaproteome research.",
+        "ClinicalTrials_gov_Trial__phase": "Indicates the stage of clinical development."
+    },
+    "COMPOUND": {
+        "CMAUP_Ingredient__pref_name": "Preferred name for human-readable search and identification.",
+        "CMAUP_Ingredient__chembl_id": "Standard identifier for drug and compound data linking.",
+        "CMAUP_Ingredient__pubchem_cid": "Standard identifier for chemical structure and data linking.",
+        "CMAUP_Ingredient__inchi_key": "Unique chemical structure identifier for exact matching.",
+        "CMAUP_Ingredient__molecular_weight": "Physical property relevant for compound characterization in research."
+    },
+    "LOCATION": {
+        "ClinicalTrials_gov_Location__facility_name": "Acts as the primary name identifier for the location, facilitating web search and linking to specific treatment centers.",
+        "ClinicalTrials_gov_Location__status": "Provides context on the availability of associated clinical trials, relevant to treatment research."
+    },
+    "INTERVENTION": {
+        "ClinicalTrials_gov_Intervention__name": "Essential identifier for web search and entity resolution.",
+        "ClinicalTrials_gov_Intervention__other_name": "Captures synonyms and alternative names for comprehensive literature search.",
+        "ClinicalTrials_gov_Intervention__type": "Categorizes the intervention (e.g., Drug) for filtering treatment types.",
+        "ClinicalTrials_gov_Intervention__description": "Provides context on administration and dosage relevant to treatment protocols."
+    },
+    "OUTCOME": {
+        "__id": "Primary unique identifier for the node within the knowledge graph.",
+        "ClinicalTrials_gov_Outcome____id": "External identifier enabling web search and linking to ClinicalTrials.gov literature.",
+        "ClinicalTrials_gov_Outcome__measure": "Details specific pharmacokinetic metrics relevant to treatment analysis.",
+        "ClinicalTrials_gov_Outcome__description": "Provides context on the outcome measurements and sample collection.",
+        "ClinicalTrials_gov_Outcome__time_frame": "Indicates the duration of outcome measurement for treatment efficacy."
+    },
+    "ALIGNMENT": {
+        "names": "Essential identifier for web search and entity resolution using RefSeq accessions.",
+        "RefSeq_SequenceComparison__experiment": "Contains PMIDs linking alignment data to associated literature research.",
+        "RefSeq_Match__pct_identity_ungap": "Key metric for evaluating sequencing analysis quality and alignment accuracy.",
+        "RefSeq_Match__e_value": "Statistical significance indicator for validating alignment reliability.",
+        "RefSeq_SequenceComparison__note": "Provides clinical context and phenotypic details relevant to associated treatments.",
+        "RefSeq_cDNAMatch__target_accession": "Links genomic alignment to specific transcriptome entries for proteome research.",
+        "RefSeq_cDNAMatch__qtaxid": "Taxonomy identifier crucial for microbiome and metaproteome classification."
+    },
+    "REGULATORY_ELEMENT": {
+        "search_names": "Essential identifier for web search and entity resolution.",
+        "RefSeq_ProteinBindingSite__bound_moiety": "Links regulatory elements to specific proteins, supporting proteome research.",
+        "RefSeq_ResponseElement__note": "Identifies response to hormones or drugs, relevant for treatment analysis.",
+        "RefSeq_ProteinBindingSite__experiment": "Provides literature evidence (PMIDs) for protein interactions.",
+        "RefSeq_NucleotideMotif__note": "Describes sequence motifs essential for sequencing analysis."
+    },
+    "EXPERIMENT": {
+        "IntAct_Experiment__full_name": "Human-readable name providing context for the proteome experiment.",
+        "IntAct_Experiment__imex_id": "Unique identifier for web search, selected over redundant 'names' property.",
+        "IntAct_Experiment__primary_xref": "Links to PubMed IDs for associated literature research."
+    },
+    "CLASSIFICATION": {
+        "names": "Primary identifier (NCBITaxon) essential for microbiome organism identification and web search.",
+        "DGIdb_Category__name": "Categorizes gene/protein targets relevant for treatment and drug interaction research.",
+        "InterPro_Classification__description": "Defines protein function and biological processes crucial for proteome and sequencing analysis."
+    },
+    "INTERACTION": {
+        "names": "Unique IntAct identifier essential for web search and literature retrieval.",
+        "IntAct_Interaction__short_label": "Displays interacting protein partners, essential for proteome mapping.",
+        "IntAct_Interaction__attributes": "Contains experimental details, stoichiometry, and methods relevant for literature research and analysis.",
+        "IntAct_Interaction__secondary_xref": "Links to GO terms for functional annotation relevant to proteome research.",
+        "IntAct_Interaction__negative": "Distinguishes negative interactions, vital for accurate proteome network analysis."
+    },
+    "PROTEIN_FEATURE": {
+        "UniProt_Feature__id": "Unique identifier for the specific protein feature instance.",
+        "UniProt_Feature__location_sequence": "Protein accession number essential for sequencing analysis and web search.",
+        "UniProt_Feature__location_begin": "Start position coordinate for sequencing analysis.",
+        "UniProt_Feature__location_end": "End position coordinate for sequencing analysis.",
+        "InterPro_BindingSite__name": "Human-readable name for functional site identification and search.",
+        "InterPro_BindingSite__structure_db_links": "PDB structure links crucial for structural analysis and treatment design.",
+        "InterPro_PTM__external_docs": "Literature and pathway references for research and treatment context."
+    },
+    "GENETIC_VARIATION": {
+        "names": "Standard identifier for the genetic region entity.",
+        "RefSeq_SequenceAlteration__dbsnp_rs_id": "Specific variant identifier essential for web search and literature lookup.",
+        "RefSeq_SequenceAlteration__function": "Links genetic variation to disease susceptibility and associated treatments.",
+        "RefSeq_SequenceAlteration__experiment": "Provides sequencing analysis evidence and literature references (PMIDs).",
+        "RefSeq_RecombinationFeature__gene": "Associates variation with specific gene symbols for proteome context.",
+        "RefSeq_SequenceAlteration__note": "Details allele-specific effects and mechanisms relevant to sequencing analysis."
+    },
+    "MOBILE_GENETIC_ELEMENT": {
+        "RefSeq_MobileGeneticElement__id": "Unique identifier essential for database linkage and web search.",
+        "RefSeq_MobileGeneticElement__mobile_element_type": "Classification critical for microbiome and sequencing analysis context.",
+        "RefSeq_MobileGeneticElement__function": "Links to literature (PMID) and biological roles relevant to treatments.",
+        "RefSeq_MobileGeneticElement__experiment": "Provides evidence codes and sequencing validation data."
+    },
+    "CHROMOSOMAL_STRUCTURE": {
+        "RefSeq_Chromosome__id": "Unique RefSeq accession number essential for web search and database linking in sequencing analysis.",
+        "RefSeq_Chromosome__chromosome": "Identifies specific chromosome number, crucial for organizing genomic structure in microbiome research.",
+        "RefSeq_Chromosome__start": "Genomic start position required for sequencing analysis and mapping proteomic data.",
+        "RefSeq_Chromosome__end": "Genomic end position required for sequencing analysis and mapping proteomic data.",
+        "RefSeq_Chromosome__mol_type": "Specifies molecule type such as genomic DNA, relevant for distinguishing genetic material in research contexts."
+    },
+    "ONTOLOGY": {
+        "GeneOntology_Term__id": "Standard unique identifier required for linking ontology terms to proteome and microbiome data.",
+        "GeneOntology_Term__name": "Human-readable label essential for web search and entity identification.",
+        "GeneOntology_Term__def": "Contains definitions and literature citations (PMID) relevant for associated literature research.",
+        "GeneOntology_Term__namespace": "Categorizes terms into processes or functions, aiding sequencing analysis context."
+    }
+}

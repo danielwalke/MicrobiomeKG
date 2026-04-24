@@ -1,0 +1,588 @@
+{
+    "ALIGNMENT": {
+        "RefSeq_Match": {
+            "raw_property_name": "target",
+            "final_property_name": "target_accession",
+            "reasoning": "The `target` property contains RefSeq accession numbers (NG_*, NM_*, etc.) with coordinates and strand information. RefSeq accessions are stable, universal biological standards. However, the property contains additional data (coordinates, strand) that should be extracted for a clean identifier.",
+            "preprocessing": {
+                "new_property_name": "target_accession",
+                "reasoning": "Extract the RefSeq accession number (first space-delimited token) from the target property to create a clean, universal identifier.",
+                "description": "Extract RefSeq accession from target string (e.g., 'NG_139271.1 1 1049 +' -> 'NG_139271.1')",
+                "cypher_query": "MATCH (n:RefSeq_Match) WHERE n.target IS NOT NULL SET n.target_accession = split(n.target, ' ')[0]"
+            }
+        },
+        "RefSeq_SequenceComparison": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains structured identifiers with GeneID references (e.g., 'id-GeneID:133206433-3'). GeneID is a stable NCBI identifier. This is not a UUID or MD5 hash, but a deterministic identifier based on biological data. No preprocessing needed as the full value is stable and traceable.",
+            "preprocessing": null
+        },
+        "RefSeq_cDNAMatch": {
+            "raw_property_name": "target",
+            "final_property_name": "target_accession",
+            "reasoning": "The `target` property contains RefSeq accession numbers (NM_*, etc.) with coordinates and strand information. RefSeq accessions are stable, universal biological standards. Similar to RefSeq_Match, the accession should be extracted for a clean identifier.",
+            "preprocessing": {
+                "new_property_name": "target_accession",
+                "reasoning": "Extract the RefSeq accession number (first space-delimited token) from the target property to create a clean, universal identifier.",
+                "description": "Extract RefSeq accession from target string (e.g., 'NM_001405667.2 1 227 +' -> 'NM_001405667.2')",
+                "cypher_query": "MATCH (n:RefSeq_cDNAMatch) WHERE n.target IS NOT NULL SET n.target_accession = split(n.target, ' ')[0]"
+            }
+        }
+    },
+    "REGULATORY_ELEMENT": {
+        "RefSeq_ReplicationRegulatoryRegion": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains a deterministic string referencing NCBI GeneID (e.g., 'id-GeneID:106867047-13'). This is a stable biological identifier, unlike the internal `__id`. No preprocessing is required as the value is already a unique, traceable identifier.",
+            "preprocessing": null
+        },
+        "RefSeq_ProteinBindingSite": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Consistent with other RefSeq labels, `id` encodes the NCBI GeneID and feature index. It is stable and universally recognizable within the RefSeq/NCBI ecosystem.",
+            "preprocessing": null
+        },
+        "RefSeq_ResponseElement": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property provides a unique feature identifier linked to a GeneID. It avoids internal database IDs and random hashes.",
+            "preprocessing": null
+        },
+        "RefSeq_ReplicationStartSite": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property is the only stable external identifier available. It follows the standard RefSeq feature ID pattern.",
+            "preprocessing": null
+        },
+        "RefSeq_OriginOfReplication": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property links the origin to a specific GeneID context, ensuring stability and traceability.",
+            "preprocessing": null
+        },
+        "RefSeq_NucleotideMotif": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property is the unique key for the motif feature, referencing the parent GeneID.",
+            "preprocessing": null
+        },
+        "RefSeq_Promoter": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property uniquely identifies the promoter feature within the GeneID context. It is consistent with other regulatory element schemas.",
+            "preprocessing": null
+        }
+    },
+    "METADATA": {
+        "metadata": {
+            "raw_property_name": "datasource_id",
+            "final_property_name": "datasource_id",
+            "reasoning": "Stable, human-readable identifier for the data source (e.g., 'GeneOntology', 'BRENDA'). Avoids internal `__id`.",
+            "preprocessing": null
+        },
+        "RefSeq_SequenceAlterationArtifact": {
+            "raw_property_name": "id",
+            "final_property_name": "refseq_artifact_locus",
+            "reasoning": "The `id` contains a RefSeq accession and coordinates (biological standard) but has a non-standard 'id-' prefix. Preprocessing cleans this to expose the universal biological identifier.",
+            "preprocessing": {
+                "new_property_name": "refseq_artifact_locus",
+                "reasoning": "Strips the 'id-' prefix to leave the standard RefSeq accession and coordinate range.",
+                "description": "Strips the 'id-' prefix to leave the standard RefSeq accession and coordinate range.",
+                "cypher_query": "MATCH (n:RefSeq_SequenceAlterationArtifact) WHERE n.id STARTS WITH 'id-' SET n.refseq_artifact_locus = substring(n.id, 4);"
+            }
+        },
+        "IntAct_Term": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Contains standard CURIE identifiers (e.g., 'NCBITaxon:10029') which are universal biological standards.",
+            "preprocessing": null
+        },
+        "IntAct_Source": {
+            "raw_property_name": "primary_xref",
+            "final_property_name": "primary_xref",
+            "reasoning": "Contains PSI-MI identifiers (e.g., 'psi-mi:MI:0469') which are the standard ontology IDs for interaction databases.",
+            "preprocessing": null
+        },
+        "GeneOntology_SynonymType": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Unique string identifier for the synonym type within the ontology structure.",
+            "preprocessing": null
+        },
+        "BRENDA_TextValue": {
+            "raw_property_name": "value",
+            "final_property_name": "content_hash",
+            "reasoning": "No stable biological ID exists for text value entries. A deterministic hash of the content (`value` + `comment`) serves as a unique identifier for this metadata-like record, adhering to Rule 2 exception for deterministic hashes of data.",
+            "preprocessing": {
+                "new_property_name": "content_hash",
+                "reasoning": "Generates a deterministic MD5 hash of the concatenated value and comment to ensure uniqueness without using internal DB IDs.",
+                "description": "Generates a deterministic MD5 hash of the concatenated value and comment to ensure uniqueness without using internal DB IDs.",
+                "cypher_query": "MATCH (n:BRENDA_TextValue) SET n.content_hash = apoc.crypto.md5(n.value + '|' + n.comment);"
+            }
+        },
+        "BRENDA_NumericValue": {
+            "raw_property_name": "num_value",
+            "final_property_name": "entry_hash",
+            "reasoning": "No stable biological ID exists for numeric value entries. A deterministic hash of the key measurement properties creates a unique identifier.",
+            "preprocessing": {
+                "new_property_name": "entry_hash",
+                "reasoning": "Generates a deterministic MD5 hash of the numeric value, substrate, and inhibitor to uniquely identify the measurement record.",
+                "description": "Generates a deterministic MD5 hash of the numeric value, substrate, and inhibitor to uniquely identify the measurement record.",
+                "cypher_query": "MATCH (n:BRENDA_NumericValue) SET n.entry_hash = apoc.crypto.md5(n.num_value + '|' + n.substrate + '|' + n.inhibitor);"
+            }
+        },
+        "GeneOntology_Subset": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Unique identifier for the GO subset (e.g., 'goslim_agr').",
+            "preprocessing": null
+        },
+        "InterPro_DBInfo": {
+            "raw_property_name": "name",
+            "final_property_name": "name",
+            "reasoning": "The database name (e.g., 'PFAM', 'CDD') is the stable identifier for the DB info record.",
+            "preprocessing": null
+        },
+        "GeneOntology_Typedef": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Unique identifier for the relationship type (e.g., 'has_part').",
+            "preprocessing": null
+        },
+        "GeneOntology_Header": {
+            "raw_property_name": "ontology",
+            "final_property_name": "ontology",
+            "reasoning": "Identifies the ontology itself (e.g., 'go'). There is typically only one header node per ontology.",
+            "preprocessing": null
+        },
+        "RefSeq_Assembly": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Contains the RefSeq Assembly accession (e.g., 'GCF_000001405.40'), a universal biological standard.",
+            "preprocessing": null
+        },
+        "GeneOntology_Idspace": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Unique prefix identifier for the ID space (e.g., 'EC', 'RHEA').",
+            "preprocessing": null
+        },
+        "BRENDA_Value": {
+            "raw_property_name": "comment",
+            "final_property_name": "value_hash",
+            "reasoning": "No stable biological ID exists. A deterministic hash of the comment (which describes the value context) serves as a unique identifier.",
+            "preprocessing": {
+                "new_property_name": "value_hash",
+                "reasoning": "Generates a deterministic MD5 hash of the comment to uniquely identify the value record.",
+                "description": "Generates a deterministic MD5 hash of the comment to uniquely identify the value record.",
+                "cypher_query": "MATCH (n:BRENDA_Value) SET n.value_hash = apoc.crypto.md5(n.comment);"
+            }
+        },
+        "DiseaseOntology_SynonymType": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Contains standard ontology IDs (e.g., 'OMO:0003012').",
+            "preprocessing": null
+        },
+        "DiseaseOntology_Typedef": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "Contains standard relationship IDs (e.g., 'IDO:0000664', 'RO:is_a').",
+            "preprocessing": null
+        },
+        "DiseaseOntology_Header": {
+            "raw_property_name": "ontology",
+            "final_property_name": "ontology",
+            "reasoning": "Identifies the ontology itself (e.g., 'doid').",
+            "preprocessing": null
+        }
+    },
+    "EXPERIMENT": {
+        "IntAct_Experiment": {
+            "raw_property_name": "secondary_xref",
+            "final_property_name": "imex_id",
+            "reasoning": "The `secondary_xref` property contains IMEx consortium identifiers (e.g., 'imex:IM-18675'), which are stable, universal standards for interaction/experiment records across member databases (IntAct, MINT, DIP). The `primary_xref` property points to PubMed IDs, which identify Publications rather than specific Experiments (one publication can contain multiple experiments). The `__id` is an internal database identifier and must be avoided. Since `secondary_xref` is an array, a preprocessing step is required to extract the specific `imex:` identifier into a scalar property for reliable indexing and matching.",
+            "preprocessing": {
+                "new_property_name": "imex_id",
+                "reasoning": "Extracts the universal IMEx identifier from the `secondary_xref` array to create a clean, scalar unique key.",
+                "description": "This query filters the `secondary_xref` list for entries starting with 'imex:' and assigns the first match to the new `imex_id` property.",
+                "cypher_query": "MATCH (n:IntAct_Experiment)\nWHERE n.secondary_xref IS NOT NULL AND n.imex_id IS NULL\nSET n.imex_id = [xref IN n.secondary_xref WHERE xref STARTS WITH 'imex:'][0];"
+            }
+        }
+    },
+    "CLASSIFICATION": {
+        "BRENDA_Term": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains stable NCBI Taxonomy CURIEs (e.g., 'NCBITaxon:10029'), which are universal biological standards. No transformation is required.",
+            "preprocessing": null
+        },
+        "InterPro_Classification": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains stable Gene Ontology (GO) identifiers (e.g., 'GO:0000001'), which are universal biological standards. No transformation is required.",
+            "preprocessing": null
+        },
+        "DGIdb_Category": {
+            "raw_property_name": "name",
+            "final_property_name": "id",
+            "reasoning": "No external ontology ID is provided. The `name` property is the unique key. To align with the unified `CLASSIFICATION` concept and other sources (which use namespaced, space-free IDs), a preprocessing step is required to create a deterministic, namespaced `id` property.",
+            "preprocessing": {
+                "new_property_name": "id",
+                "reasoning": "Transforms the human-readable `name` into a namespaced, space-free identifier consistent with BRENDA and InterPro standards.",
+                "description": "Creates a new `id` property by prefixing the `name` with 'DGIdb:' and replacing spaces with underscores to ensure a clean, URI-compatible identifier.",
+                "cypher_query": "MATCH (n:DGIdb_Category) SET n.id = 'DGIdb:' + replace(n.name, ' ', '_')"
+            }
+        },
+        "DiseaseOntology_Subset": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains stable string identifiers for the subsets (e.g., 'DO_AGR_slim', 'DO_CFDE_slim'). No preprocessing is required.",
+            "preprocessing": null
+        }
+    },
+    "PROTEIN":{
+        "IntAct_Interactor": {
+            "raw_property_name": "primary_xref",
+            "final_property_name": "primary_xref",
+            "reasoning": "Overwritten by human.",
+            "preprocessing": null
+        }
+    },
+    "INTERACTION": {
+        "IntAct_Interaction": {
+            "raw_property_name": "primary_xref",
+            "final_property_name": "primary_xref",
+            "reasoning": "Overwritten by human.",
+            "preprocessing": null
+        }
+    },
+    "SEQUENCE_FEATURE": {
+        "RefSeq_NucleotideCleavageSite": {
+            "raw_property_name": "id",
+            "final_property_name": "gene_id",
+            "reasoning": "The `id` property contains NCBI GeneID (e.g., 'id-GeneID:106804547-15') which is a stable biological standard. However, it's wrapped in a database-specific format. Preprocessing extracts just the GeneID portion for a cleaner universal identifier. Note: GeneID alone doesn't uniquely identify individual cleavage sites without coordinates.",
+            "preprocessing": {
+                "new_property_name": "gene_id",
+                "reasoning": "Extract the NCBI GeneID from the composite identifier string to create a cleaner, more universal identifier.",
+                "description": "Extracts the numeric GeneID from the 'id-GeneID:XXXXXX-YY' format",
+                "cypher_query": "MATCH (n:RefSeq_NucleotideCleavageSite)\nWHERE n.id IS NOT NULL\nSET n.gene_id = CASE \n  WHEN n.id STARTS WITH 'id-GeneID:' THEN toInteger(split(split(n.id, ':')[1], '-')[0]) ELSE NULL\nEND"
+            }
+        },
+        "RefSeq_SequenceSecondaryStructure": {
+            "raw_property_name": "id",
+            "final_property_name": "gene_id",
+            "reasoning": "The `id` property contains NCBI GeneID (e.g., 'id-GeneID:106699567-10') which is a stable biological standard. Preprocessing extracts just the GeneID portion for consistency across labels. Note: GeneID alone doesn't uniquely identify individual secondary structure features without coordinates.",
+            "preprocessing": {
+                "new_property_name": "gene_id",
+                "reasoning": "Extract the NCBI GeneID from the composite identifier string to create a cleaner, more universal identifier.",
+                "description": "Extracts the numeric GeneID from the 'id-GeneID:XXXXXX-YY' format",
+                "cypher_query": "MATCH (n:RefSeq_SequenceSecondaryStructure)\nWHERE n.id IS NOT NULL\nSET n.gene_id = CASE \n  WHEN n.id STARTS WITH 'id-GeneID:' THEN toInteger(split(split(n.id, ':')[1], '-')[0]) ELSE NULL\nEND"
+            }
+        },
+        "RefSeq_ConservedRegion": {
+            "raw_property_name": "id",
+            "final_property_name": "gene_id",
+            "reasoning": "The `id` property contains NCBI GeneID (e.g., 'id-GeneID:108175348-4') which is a stable biological standard. Preprocessing extracts just the GeneID portion for consistency across labels. Note: GeneID alone doesn't uniquely identify individual conserved regions without coordinates.",
+            "preprocessing": {
+                "new_property_name": "gene_id",
+                "reasoning": "Extract the NCBI GeneID from the composite identifier string to create a cleaner, more universal identifier.",
+                "description": "Extracts the numeric GeneID from the 'id-GeneID:XXXXXX-YY' format",
+                "cypher_query": "MATCH (n:RefSeq_ConservedRegion)\nWHERE n.id IS NOT NULL\nSET n.gene_id = CASE \n  WHEN n.id STARTS WITH 'id-GeneID:' THEN toInteger(split(split(n.id, ':')[1], '-')[0]) ELSE NULL\nEND"
+            }
+        },
+        "RefSeq_SequenceFeature": {
+            "raw_property_name": "gene",
+            "final_property_name": "gene",
+            "reasoning": "The `gene` property contains standard gene symbols (e.g., 'IGKV4-1', 'IGKV5-2') following IMGT nomenclature for immunoglobulin genes. These are more universal and human-readable than GeneID numbers. The `id` property is inconsistent (some contain GeneID, some contain gene symbols), making `gene` the more reliable choice. Note: Gene symbol alone doesn't uniquely identify individual sequence features without coordinates or feature type.",
+            "preprocessing": null
+        }
+    },
+    "GENOMIC_REPEAT": {
+        "RefSeq_TandemRepeat": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `__id` is an internal auto-increment long and must be avoided. The `id` property (e.g., 'id-GeneID:110599576-5') is a stable, deterministic string referencing NCBI GeneID, which is a universal biological standard. Although it contains a database-specific prefix ('id-'), it is the only consistent unique identifier available across the schema. No RefSeq Accessions or absolute chromosomal coordinates are provided in this schema. Preprocessing is required to remove the 'id-' prefix for cleanliness.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Removes the 'id-' prefix to expose the underlying GeneID reference, making the identifier cleaner and more interpretable while retaining uniqueness.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_TandemRepeat) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_MiniSatellite": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "Similar to RefSeq_TandemRepeat, `id` is the only stable unique key referencing NCBI GeneID. `__id` is internal. No absolute coordinates or Accessions are available. The 'id-' prefix is removed for consistency.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Standardizes the identifier format across all GENOMIC_REPEAT sources by removing the database-specific prefix.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_MiniSatellite) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_DirectRepeat": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `id` property is the consistent unique identifier referencing GeneID. Other properties like `note` are unstructured. `__id` is internal. Preprocessing ensures a clean identifier.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Removes the 'id-' prefix to expose the underlying GeneID reference.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_DirectRepeat) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_DispersedRepeat": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `id` property is the only stable unique key available. It references NCBI GeneID. `__id` is internal. Preprocessing removes the artifact prefix.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Standardizes the identifier format across all GENOMIC_REPEAT sources.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_DispersedRepeat) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_MicroSatellite": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `id` property provides a stable link to NCBI GeneID. No universal Accessions or coordinates are present in the schema. `__id` is internal.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Removes the 'id-' prefix to expose the underlying GeneID reference.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_MicroSatellite) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_Region": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `id` property is the consistent unique identifier referencing GeneID. `__id` is internal. Preprocessing ensures a clean identifier.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Standardizes the identifier format across all GENOMIC_REPEAT sources.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_Region) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_RepeatRegion": {
+            "raw_property_name": "id",
+            "final_property_name": "source_identifier",
+            "reasoning": "The `id` property is the only stable unique key available, referencing NCBI GeneID. `__id` is internal. Preprocessing removes the artifact prefix.",
+            "preprocessing": {
+                "new_property_name": "source_identifier",
+                "reasoning": "Removes the 'id-' prefix to expose the underlying GeneID reference.",
+                "description": "Create a new property `source_identifier` by stripping the 'id-' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_RepeatRegion) WHERE n.id IS NOT NULL SET n.source_identifier = replace(n.id, 'id-', '')"
+            }
+        }
+    },
+    "PROTEIN_DOMAIN": {
+        "PROTEIN_DOMAIN": {
+            "raw_property_name": "ids",
+            "final_property_name": "domain_accession",
+            "reasoning": "The `ids` property is intended for domain identifiers but is currently empty in the sample data. The `__id` is an internal database ID and must be avoided. This label requires preprocessing to populate the `ids` array with standard domain accessions (e.g., InterPro IPR... or PROSITE PS...) from external sources before it can serve as a reliable identifier. A new property `domain_accession` should be created once proper identifiers are available.",
+            "preprocessing": {
+                "new_property_name": "domain_accession",
+                "reasoning": "Since `ids` array is empty and `__id` is internal, this label needs external data integration to establish proper domain identifiers. Once populated with standard accessions, extract to a dedicated property.",
+                "description": "This label currently lacks usable identifiers. Recommend deprecating in favor of InterPro_HomologousSuperfamily and InterPro_Family labels which have proper IPR accession numbers, or populate `ids` with standard domain accessions from external sources before creating `domain_accession` property.",
+                "cypher_query": "MATCH (n:PROTEIN_DOMAIN)\nWHERE n.ids IS NOT NULL AND size(n.ids) > 0\nSET n.domain_accession = n.ids[0]"
+            }
+        },
+        "InterPro_HomologousSuperfamily": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological standards for protein domain superfamilies. These are deterministic, externally recognized identifiers that do not require preprocessing.",
+            "preprocessing": null
+        },
+        "InterPro_Family": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological standards for protein domain families. These are deterministic, externally recognized identifiers that do not require preprocessing.",
+            "preprocessing": null
+        },
+        "PROSITE_Rule": {
+            "raw_property_name": "accession",
+            "final_property_name": "accession",
+            "reasoning": "The `accession` property contains PROSITE rule accession numbers (PRU...) which are stable, universal biological standards for protein domain rules/patterns. These are deterministic, externally recognized identifiers that do not require preprocessing.",
+            "preprocessing": null
+        }
+    },
+    "TAXON": {
+        "IntAct_BioSource": {
+            "raw_property_name": "alias",
+            "final_property_name": "taxon_name",
+            "reasoning": "The `IntAct_BioSource` label represents biological sources which include organisms, tissues, and cell lines. The provided schema does not expose the standard NCBI Taxonomy ID. The `alias` property contains organism common names (e.g., 'Rat', \"Baker's yeast\") in the sample data, whereas `full_name` often indicates experimental conditions ('In vitro') and other properties refer to tissues or cell lines. `alias` is the best available proxy for the organism taxon. However, it is stored as a StringArray with annotations (e.g., '[synonym (MI:1041)]'), requiring preprocessing to extract a clean identifier.",
+            "preprocessing": {
+                "new_property_name": "taxon_name",
+                "reasoning": "The `alias` property is an array of strings containing annotations. A clean scalar property is needed for identification.",
+                "description": "Extracts the first alias, removes the bracketed annotation suffix, and trims whitespace.",
+                "cypher_query": "MATCH (n:IntAct_BioSource)\nWHERE n.alias IS NOT NULL AND size(n.alias) > 0\nSET n.taxon_name = trim(split(head(n.alias), '[')[0])"
+            }
+        },
+        "BRENDA_Organism": {
+            "raw_property_name": "name",
+            "final_property_name": "name",
+            "reasoning": "The `BRENDA_Organism` label specifically represents organisms. The `name` property contains scientific binomial names (e.g., 'Escherichia coli', 'Vicia faba'), which are stable, universal biological standards for identifying taxa. No preprocessing is required as the values are clean strings suitable for use as identifiers in the absence of an explicit NCBI TaxID column in the provided schema.",
+            "preprocessing": null
+        }
+    },
+    "PROTEIN_FEATURE": {
+        "InterPro_Repeat": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological identifiers. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        },
+        "InterPro_ConservedSite": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological identifiers. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        },
+        "UniProt_Feature": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains UniProt PRO accession numbers (PRO_...) which are stable, universal biological identifiers for protein features. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        },
+        "InterPro_ActiveSite": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological identifiers. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        },
+        "InterPro_BindingSite": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological identifiers. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        },
+        "InterPro_PTM": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains InterPro accession numbers (IPR...) which are stable, universal biological identifiers. The `__id` is an internal database ID and should be avoided per Rule 1.",
+            "preprocessing": null
+        }
+    },
+    "GENETIC_VARIATION": {
+        "RefSeq_RepeatInstabilityRegion": {
+            "raw_property_name": "id",
+            "final_property_name": "refseq_feature_id",
+            "reasoning": "The `id` property contains a structured RefSeq feature identifier (e.g., 'id-GeneID:110599576-3'). While not a universal biological standard like dbSNP, it is the stable, deterministic primary key for this specific annotation within RefSeq. There are no dbSNP or accession numbers available in the schema for these regions. The 'id-' prefix is noise and should be removed for a cleaner identifier.",
+            "preprocessing": {
+                "new_property_name": "refseq_feature_id",
+                "reasoning": "The raw `id` contains a non-standard prefix 'id-'. Removing this creates a canonical RefSeq feature identifier.",
+                "description": "Remove the 'id-' prefix from the `id` property to standardize the identifier format.",
+                "cypher_query": "MATCH (n:RefSeq_RepeatInstabilityRegion)\nWHERE n.id IS NOT NULL\nSET n.refseq_feature_id = REPLACE(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_NonAllelicHomologousRecombinationRegion": {
+            "raw_property_name": "id",
+            "final_property_name": "refseq_feature_id",
+            "reasoning": "Similar to the RepeatInstabilityRegion, the `id` property (e.g., 'id-GeneID:106501712-2') is the unique, deterministic identifier for these recombination regions within the RefSeq annotation system. No universal external identifiers (like rsIDs) are present in the provided schema.",
+            "preprocessing": {
+                "new_property_name": "refseq_feature_id",
+                "reasoning": "The raw `id` contains a non-standard prefix 'id-'. Removing this creates a canonical RefSeq feature identifier.",
+                "description": "Remove the 'id-' prefix from the `id` property to standardize the identifier format.",
+                "cypher_query": "MATCH (n:RefSeq_NonAllelicHomologousRecombinationRegion)\nWHERE n.id IS NOT NULL\nSET n.refseq_feature_id = REPLACE(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_RecombinationFeature": {
+            "raw_property_name": "id",
+            "final_property_name": "refseq_feature_id",
+            "reasoning": "The `id` property (e.g., 'id-GeneID:108281192-5', 'id-TRB') serves as the unique key for these features. While some values reference GeneIDs, others reference specific feature names (TRB). Cleaning the 'id-' prefix provides a consistent identifier space for these RefSeq-defined recombination features.",
+            "preprocessing": {
+                "new_property_name": "refseq_feature_id",
+                "reasoning": "The raw `id` contains a non-standard prefix 'id-'. Removing this creates a canonical RefSeq feature identifier.",
+                "description": "Remove the 'id-' prefix from the `id` property to standardize the identifier format.",
+                "cypher_query": "MATCH (n:RefSeq_RecombinationFeature)\nWHERE n.id IS NOT NULL\nSET n.refseq_feature_id = REPLACE(n.id, 'id-', '')"
+            }
+        },
+        "RefSeq_SequenceAlteration": {
+            "raw_property_name": "xrefs",
+            "final_property_name": "dbsnp_rs_id",
+            "reasoning": "For sequence alterations (SNPs, indels), the dbSNP rsID is the gold standard universal identifier. The `xrefs` property contains references in the format 'dbSNP:<number>' or 'dbSNP:rs<number>'. Mapping to this value ensures interoperability with other genetic databases, adhering to the rule to prefer stable, universal biological standards over internal RefSeq IDs.",
+            "preprocessing": {
+                "new_property_name": "dbsnp_rs_id",
+                "reasoning": "The `xrefs` property is a StringArray containing prefixed identifiers (e.g., 'dbSNP:1570113'). To create a universal identifier, the 'dbSNP:' prefix must be removed, and the 'rs' prefix must be ensured for consistency.",
+                "description": "Extract the first dbSNP reference from the `xrefs` array, remove the 'dbSNP:' prefix, and ensure the value starts with 'rs'.",
+                "cypher_query": "MATCH (n:RefSeq_SequenceAlteration)\nWHERE n.xrefs IS NOT NULL AND SIZE(n.xrefs) > 0\nWITH n, REPLACE(n.xrefs[0], 'dbSNP:', '') AS raw_rs\nSET n.dbsnp_rs_id = CASE \n    WHEN raw_rs STARTS WITH 'rs' THEN raw_rs \n    ELSE 'rs' + raw_rs \nEND"
+            }
+        }
+    },
+    "MOBILE_GENETIC_ELEMENT": {
+        "RefSeq_MobileGeneticElement": {
+            "raw_property_name": "id",
+            "final_property_name": "mge_id",
+            "reasoning": "The `__id` property is an internal database identifier and must be avoided (Rule 1). The `id` property (e.g., 'id-GeneID:111721714-3') is the only unique identifier available in this schema. While it is not a standard RefSeq Accession (Rule 3), it is deterministically derived from Entrez GeneIDs, which are stable biological standards. Other properties (`rpt_family`, `mobile_element_type`) are classificatory and not unique per instance. A preprocessing step is required to remove the database-specific namespace prefix ('id-GeneID:') to create a cleaner identifier (`mge_id`) for the unified graph.",
+            "preprocessing": {
+                "new_property_name": "mge_id",
+                "reasoning": "The raw `id` contains a non-standard prefix ('id-GeneID:') generated by the ingestion pipeline. Removing this prefix yields a cleaner identifier while preserving the unique GeneID-based reference.",
+                "description": "Create a new property `mge_id` by stripping the 'id-GeneID:' prefix from the `id` property.",
+                "cypher_query": "MATCH (n:RefSeq_MobileGeneticElement)\nWHERE n.id IS NOT NULL\nSET n.mge_id = replace(n.id, 'id-GeneID:', '');\n"
+            }
+        }
+    },
+    "CHROMOSOMAL_STRUCTURE": {
+        "RefSeq_Chromosome": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The property `id` contains RefSeq Accession numbers (e.g., 'NC_000001.11'), which are stable, universal biological standards for identifying specific chromosomal sequences (Rule 3). This is preferred over `__id` (internal DB ID, Rule 1) and `name`/`chromosome` (ambiguous without assembly context). The value is already in a clean, standard format, so no preprocessing transformation is required.",
+            "preprocessing": null
+        }
+    },
+    "GENE": {
+        "RefSeq_PseudoGene": {
+            "raw_property_name": "gene",
+            "final_property_name": "gene",
+            "reasoning": "The `gene` property contains standard gene symbols (e.g., 'DDX11L1', 'WASH7P', 'OR4G4P') which are explicitly recognized as universally accepted biological standards per the domain rules. This property is clean, always present, and doesn't require preprocessing. While `xrefs` contains HGNC IDs which are more stable long-term, the `gene` symbol is sufficient for GENE concept mapping and is explicitly mentioned in the rules as acceptable ('standard gene symbols... are universally recognized'). The `__id` and `id` properties are avoided as they are internal database identifiers.",
+            "preprocessing": null
+        }
+    },
+    "PUBLICATION": {
+        "UniProt_Reference": {
+            "raw_property_name": "None",
+            "final_property_name": "None",
+            "reasoning": "None of the provided properties (`__id`, `scopes`, `key`) satisfy the Critical Domain Rules for a universal publication identifier. `__id` is an internal database ID (Rule 1). `scopes` is descriptive text (Rule 3). `key` is a non-unique local integer (Rule 3). A valid mapping to the `PUBLICATION` concept requires a stable universal identifier such as a PubMed ID (PMID) or DOI, which is missing from this schema.",
+            "preprocessing": null,
+            "VALIDATION_ERROR": "Warning: 'None' was not found in the markdown schema."
+        }
+    },
+    "RNA": {
+        "RefSeq_antisenseRNA": {
+            "raw_property_name": "name",
+            "final_property_name": "name",
+            "reasoning": "The 'name' property contains clean RefSeq Accession numbers (NR_XXXXXX.X format) which are stable, universal biological standards for non-coding RNA transcripts. No preprocessing needed as values are already in standard RefSeq format.",
+            "preprocessing": null
+        },
+        "RefSeq_RNasePRNA": {
+            "raw_property_name": "name",
+            "final_property_name": "name",
+            "reasoning": "The 'name' property contains clean RefSeq Accession numbers (NR_XXXXXX.X format) which are stable, universal biological standards for non-coding RNA transcripts. No preprocessing needed as values are already in standard RefSeq format.",
+            "preprocessing": null
+        }
+    },
+    "ONTOLOGY": {
+        "GeneOntology_Term": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The 'id' property contains Gene Ontology accession numbers (GO:0000001, GO:0000002, etc.) which are stable, universal biological standards universally recognized in bioinformatics. These are not internal database IDs or auto-generated hashes, but canonical GO term identifiers. No preprocessing is required as the values are already clean identifiers.",
+            "preprocessing": null
+        }
+    },
+    "DISEASE": {
+        "DiseaseOntology_Term": {
+            "raw_property_name": "id",
+            "final_property_name": "id",
+            "reasoning": "The `id` property contains DOID identifiers (e.g., 'DOID:0001816'), which are stable, universal biological standards for the Disease Ontology. No preprocessing is required.",
+            "preprocessing": null
+        },
+        "HPRD_Disease": {
+            "raw_property_name": "name",
+            "final_property_name": "name",
+            "reasoning": "No external ontology ID (like DOID or MeSH) is provided in the schema for this label. The `__id` is an internal database ID and must be avoided. The `name` property contains the specific human-readable disease name (e.g., 'Alcohol sensitivity, acute') and serves as the best available primary identifier for HPRD diseases.",
+            "preprocessing": null
+        }
+    }
+}

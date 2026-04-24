@@ -1,0 +1,562 @@
+{
+    "RefSeq_Match": {
+        "mapped_concept": "ALIGNMENT",
+        "reasoning": "The database label 'RefSeq_Match' is explicitly listed in the 'examples' array for the 'ALIGNMENT' concept label. Additionally, the schema properties (e.g., 'blast_score', 'pct_identity', 'e_value', 'gap', 'target') describe sequence homology and alignment metrics, which directly corresponds to the explanation for 'ALIGNMENT' ('Homology mappings, crucial for comparing microbial genomes').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ReplicationRegulatoryRegion": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label `RefSeq_ReplicationRegulatoryRegion` is explicitly listed in the `examples` array for the `REGULATORY_ELEMENT` concept label. The schema properties (e.g., `regulatory_class`, `function` describing replication origin activity and factor loading) semantically align with the definition of regulatory elements controlling genomic processes like replication. Although some sample data references human genes (HBB), the label itself is authorized under `REGULATORY_ELEMENT` and is not present in the `UNCLASSIFIED` list.",
+        "status": "SUCCESS"
+    },
+    "HPO_Subset": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Subset' refers to subsets within the Human Phenotype Ontology, which describes human diseases and phenotypic abnormalities. The allowed concept list explicitly includes 'HPO_Subset' as an example under the 'UNCLASSIFIED' category. The explanation for 'UNCLASSIFIED' specifies labels that are exclusively human or otherwise irrelevant to a core microbiome knowledge graph. Since HPO is human-specific and not microbial, it fits this category perfectly.",
+        "status": "UNCLASSIFIED"
+    },
+    "metadata": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label is explicitly 'metadata', which is listed as the first example under the allowed concept 'METADATA'. Furthermore, the schema properties (datasource_id, version, license_url, export_version) describe provenance, licensing, and administrative tracking of external data sources. This aligns perfectly with the 'METADATA' concept explanation: 'Provenance, graph data tracking, and external ontology administrative nodes.'",
+        "status": "SUCCESS"
+    },
+    "IntAct_Experiment": {
+        "mapped_concept": "EXPERIMENT",
+        "reasoning": "The database label 'IntAct_Experiment' is explicitly listed in the 'examples' array of the allowed concept 'EXPERIMENT'. The schema content, which includes publication references (PubMed IDs), authors, journals, and titles describing specific studies (e.g., kinetic studies, crystal structures), aligns perfectly with the explanation for 'EXPERIMENT' ('Interaction studies and high-throughput assays'). This is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Term": {
+        "mapped_concept": "CLASSIFICATION",
+        "reasoning": "The database label `BRENDA_Term` is explicitly listed as an example under the `CLASSIFICATION` concept in the provided Allowed Concept Labels. While the sample values (`NCBITaxon:...`) represent taxonomy identifiers, the BRENDA database schema distinguishes between `BRENDA_Organism` (mapped to `TAXON` in the allowed concepts) and `BRENDA_Term` (mapped to `CLASSIFICATION`). `BRENDA_Term` serves as a container for controlled vocabulary terms (ontologies) used to classify enzyme data, which aligns with the `CLASSIFICATION` definition ('Systems to group enzyme functions or drug categories'). Therefore, despite the taxonomic content of the samples, the label mapping provided in the ontology definitions takes precedence.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_telomeraseRNA": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_telomeraseRNA' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided allowed concepts. Biologically, telomerase RNA is associated with eukaryotic telomere maintenance (linear chromosome ends), which is not a feature of typical prokaryotic microbial genomes targeted by this microbiome ontology. The 'UNCLASSIFIED' definition specifically excludes labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_DGeneSegment": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'RefSeq_DGeneSegment' refers to Diversity gene segments involved in V(D)J recombination, a mechanism specific to the adaptive immune system of vertebrates (humans/mammals). Microbes do not possess these genetic structures. Furthermore, the provided ontology instructions explicitly list 'RefSeq_DGeneSegment' as an example under the 'UNCLASSIFIED' category, defining it as irrelevant to a core microbiome knowledge graph due to being exclusively human/eukaryotic.",
+        "status": "UNCLASSIFIED"
+    },
+    "IntAct_Interactor": {
+        "mapped_concept": "PROTEIN",
+        "reasoning": "Overwritte by human",
+        "status": "SUCCESS"
+    },
+    "HPRD_PostTranslationalModification": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPRD_PostTranslationalModification' originates from the Human Protein Reference Database (HPRD), which is exclusively focused on human proteins. The provided ontology is designed for a microbiome knowledge graph, as evidenced by allowed concepts like 'TAXON', 'MOBILE_GENETIC_ELEMENT', and explanations specifying 'microbial' contexts (e.g., 'PROTEIN_FEATURE' specifies 'microbial protein', 'MODIFICATION' specifies 'microbial DNA methylation'). The 'UNCLASSIFIED' category explicitly defines its scope to include 'Labels that are exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Furthermore, the 'UNCLASSIFIED' examples already contain multiple HPRD-derived labels (e.g., 'HPRD_Protein', 'HPRD_Domain', 'HPRD_Gene'), establishing a consistent pattern that HPRD data is out-of-scope for this ontology. Therefore, despite the semantic similarity to 'PROTEIN_FEATURE', the human-specific origin mandates classification as 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "DiseaseOntology_SynonymType": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'DiseaseOntology_SynonymType' is explicitly listed in the provided examples for the 'UNCLASSIFIED' concept. Additionally, the explanation for 'UNCLASSIFIED' specifies labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' While 'GeneOntology_SynonymType' is mapped to 'METADATA' (as Gene Ontology is used for microbial gene function), Disease Ontology is human-centric and thus excluded from the core microbiome schema.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_EnhancerBlockingElement": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label `RefSeq_EnhancerBlockingElement` describes a genomic feature that blocks enhancer-promoter interactions, functionally acting as an insulator. The sample data explicitly references eukaryotic cell lines (HEK293, HepG2, K562) and zebrafish, confirming this is a eukaryotic-specific regulatory mechanism involving chromatin architecture. The allowed concept label `REGULATORY_ELEMENT` is explicitly defined to 'focus on microbial gene control... rather than complex eukaryotic chromatin architecture.' Consequently, this entity falls under the `UNCLASSIFIED` label, which is designated for 'Labels that are exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.'",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_EpigeneticallyModifiedRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although the label 'RefSeq_EpigeneticallyModifiedRegion' is listed as an example under the 'MODIFICATION' concept in the allowed labels, the provided schema and samples explicitly indicate a eukaryotic context. The 'note' field references 'H3K27ac and H3K4me1 histone modifications' and 'HeLa cells' (a human cell line). Histone modifications are characteristic of eukaryotic chromatin, not microbial genomes. The 'MODIFICATION' concept explanation specifies 'microbial DNA methylation for restriction-modification systems'. Conversely, the 'UNCLASSIFIED' concept explanation explicitly includes 'Labels that are exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph'. Since the data represents human epigenetic features rather than microbial modifications, there is no direct semantic match with the microbial-focused 'MODIFICATION' category, and it fits the criteria for 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Silencer": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'RefSeq_Silencer' is explicitly listed in the 'examples' array under the 'UNCLASSIFIED' concept in the provided ontology instructions. Additionally, the sample data confirms a eukaryotic context (human cell lines K562, HepG2, GM12878 and GRCh37/hg19 assembly), which aligns with the 'UNCLASSIFIED' explanation covering labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' The 'REGULATORY_ELEMENT' category is explicitly restricted to microbial gene control (e.g., oriC, operators) rather than complex eukaryotic chromatin architecture like silencers.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_ChromosomeBreakpoint": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_ChromosomeBreakpoint' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided ontology. Additionally, the sample data references human-specific genomic contexts (e.g., 'GRCh38 reference genome', 'RHD gene', 'HPFH deletion'), which aligns with the 'UNCLASSIFIED' explanation that covers labels 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Therefore, it must be mapped to UNCLASSIFIED rather than GENETIC_VARIATION.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_MeioticRecombinationRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_MeioticRecombinationRegion' is explicitly listed in the 'UNCLASSIFIED' examples provided in the allowed concept definitions. Biologically, meiotic recombination is a process specific to eukaryotes (involving germ cells, sexual reproduction, and factors like PRDM9 as seen in the samples), whereas the target ontology is streamlined for microbial genomes (prokaryotes) which do not undergo meiosis. Therefore, it fits the criteria for 'UNCLASSIFIED' as it is exclusively eukaryotic and irrelevant to a core microbiome knowledge graph.",
+        "status": "UNCLASSIFIED"
+    },
+    "HPO_Typedef": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Typedef' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided allowed concept list. Additionally, the Human Phenotype Ontology (HPO) is specific to human phenotypes, which aligns with the 'UNCLASSIFIED' explanation regarding labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Although ontology typedefs from Gene Ontology are permitted under 'METADATA', the specific guidelines designate HPO structural elements as unclassified.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_RNaseMRPRNA": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_RNaseMRPRNA' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided ontology definition. Additionally, the 'RNA' concept is defined specifically for transcripts and functional RNA molecules found in prokaryotes, whereas RNase MRP RNA is a eukaryotic-specific non-coding RNA involved in mitochondrial RNA processing. Therefore, it fits the 'UNCLASSIFIED' criteria for labels that are exclusively human/eukaryotic or irrelevant to a core microbiome knowledge graph.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_NucleotideCleavageSite": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_NucleotideCleavageSite' is explicitly listed in the 'examples' array for the 'SEQUENCE_FEATURE' concept in the provided ontology. Furthermore, the entity describes a specific structural location on a nucleotide sequence (a site where cleavage occurs), which aligns perfectly with the explanation for 'SEQUENCE_FEATURE' ('Cleaned up structural features of a genome...').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_TandemRepeat": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_TandemRepeat' is explicitly listed in the 'examples' array for the allowed concept 'GENOMIC_REPEAT'. Furthermore, the schema properties (e.g., 'rpt_unit_seq', 'rpt_type', 'gbkey': 'repeat_region') describe repetitive DNA sequences, which aligns perfectly with the concept explanation: 'Crucial for identifying bacterial features like CRISPR arrays and tandem repeats.'",
+        "status": "SUCCESS"
+    },
+    "PROTEIN_DOMAIN": {
+        "mapped_concept": "PROTEIN_DOMAIN",
+        "reasoning": "The database label 'PROTEIN_DOMAIN' is an exact string match to the allowed concept label 'PROTEIN_DOMAIN'. Furthermore, the allowed concept's examples list explicitly includes 'PROTEIN_DOMAIN', confirming that this specific label is intended to be mapped to this concept. The definition regarding independent folding structures aligns with the standard biological meaning of the label.",
+        "status": "SUCCESS"
+    },
+    "IntAct_BioSource": {
+        "mapped_concept": "TAXON",
+        "reasoning": "The database label 'IntAct_BioSource' is explicitly listed as an example under the 'TAXON' concept in the provided allowed concepts list. Semantically, this entity represents the biological source or organism associated with the interaction data, which aligns with the 'TAXON' definition used to define specific species or strains within the knowledge graph. Although the sample values include eukaryotic cell lines and tissues (common in the IntAct database), the ontology schema explicitly categorizes this label as a taxonomic entity.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ProteinBindingSite": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_ProteinBindingSite' is explicitly listed in the 'examples' array for the 'REGULATORY_ELEMENT' concept in the provided allowed ontology. Semantically, the schema properties (e.g., 'bound_moiety' specifying transcription factors, 'function' describing transcriptional activity, and 'gbkey' as 'protein_bind') define a genomic region involved in gene regulation via protein interaction. This aligns with the 'REGULATORY_ELEMENT' explanation focusing on gene control regions. Although the specific sample values are eukaryotic, the label itself is not excluded in the 'UNCLASSIFIED' list (which contains other RefSeq regulatory labels like 'RefSeq_Enhancer' or 'RefSeq_Silencer') and is positively included under 'REGULATORY_ELEMENT'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_scaRNA": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_scaRNA' refers to small Cajal body-specific RNAs, which are eukaryotic non-coding RNAs involved in the modification of spliceosomal snRNAs within the nucleus. They are not found in prokaryotes or microbial genomes, which are the focus of this ontology. Furthermore, 'RefSeq_scaRNA' is explicitly listed as an example under the 'UNCLASSIFIED' category in the provided allowed concept labels, which is designated for labels that are exclusively human, eukaryotic, or otherwise irrelevant to a core microbiome knowledge graph.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_JGeneSegment": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_JGeneSegment' refers to Joining segments involved in V(D)J recombination within immunoglobulin or T-cell receptor loci (evidenced by sample values like 'IGKJ5' and 'J_segment'). These are exclusive features of the vertebrate adaptive immune system. The 'UNCLASSIFIED' concept definition explicitly states it includes 'Labels that are exclusively human, eukaryotic (centromeres, introns, immune V/D/J segments), or otherwise irrelevant to a core microbiome knowledge graph.' Additionally, similar labels such as 'RefSeq_VGeneSegment' and 'RefSeq_DGeneSegment' are listed in the 'UNCLASSIFIED' examples. As this entity represents host genomic architecture rather than microbial elements, it must be mapped to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_Classification": {
+        "mapped_concept": "CLASSIFICATION",
+        "reasoning": "The database label 'InterPro_Classification' is explicitly listed in the 'examples' array for the allowed concept 'CLASSIFICATION'. Furthermore, the schema content consists of Gene Ontology terms (GO:...) and functional descriptions (e.g., 'DNA binding', 'molecular_function'), which aligns with the explanation for 'CLASSIFICATION' as systems to group enzyme functions or categories.",
+        "status": "SUCCESS"
+    },
+    "InterPro_Repeat": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label `InterPro_Repeat` is explicitly listed as an example under the `PROTEIN_FEATURE` concept in the provided allowed concept labels. While the samples include eukaryotic species, InterPro covers all taxa including microbes (e.g., sample name 'Bacterial ice-nucleation'), and the ontology definition explicitly categorizes `InterPro_Repeat` as a protein feature (specific sites/motifs within a protein) rather than a genomic repeat (`GENOMIC_REPEAT`) or a full protein domain (`PROTEIN_DOMAIN`).",
+        "status": "SUCCESS"
+    },
+    "HPO_Header": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Header' is explicitly listed within the examples for the 'UNCLASSIFIED' concept in the provided Allowed Concept Labels. Additionally, the explanation for 'UNCLASSIFIED' specifies that it includes labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Since the Human Phenotype Ontology (HPO) is human-specific and not directly relevant to microbial genomes or microbiome interactions, it fits the criteria for 'UNCLASSIFIED' as defined in this schema.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_RepeatInstabilityRegion": {
+        "mapped_concept": "GENETIC_VARIATION",
+        "reasoning": "The database label 'RefSeq_RepeatInstabilityRegion' is explicitly listed as an example under the 'GENETIC_VARIATION' concept in the provided allowed concept labels. Semantically, this label describes genomic regions prone to mutation, expansion, or contraction (instability), which aligns with the definition of 'GENETIC_VARIATION' as 'Mutations and recombination events driving microbial evolution and strain differences.' Although the sample data contains human-specific references (e.g., Alu, intellectual disability), the concept of repeat instability is applicable to microbial genomes (e.g., phase variation), and the ontology explicitly permits this label under this category.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Interaction": {
+        "mapped_concept": "PATHWAY",
+        "reasoning": "The database label 'IntAct_Interaction' is explicitly listed as an example under the 'PATHWAY' concept label in the provided allowed concept definitions. Additionally, the schema properties (describing molecular assemblies, subunit interactions, stoichiometry, and structural data) align semantically with the concept's explanation of 'Microbial protein-protein interactions and metabolic pathways.'",
+        "status": "SUCCESS"
+    },
+    "HPRD_Domain": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPRD_Domain' originates from the Human Protein Reference Database (HPRD). The provided ontology is streamlined for microbial genomes and microbiome knowledge graphs. The 'UNCLASSIFIED' concept label is explicitly defined to include 'Labels that are exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Furthermore, the examples list for 'UNCLASSIFIED' explicitly includes 'HPRD_Domain'. Therefore, despite 'Domain' semantically relating to protein structures, the specific human-centric source mandates classification as UNCLASSIFIED within this specific microbiome-focused schema.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_ImprintingControlRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_ImprintingControlRegion' is explicitly listed in the examples for the 'UNCLASSIFIED' concept. Genomic imprinting is a mammalian/eukaryotic epigenetic phenomenon involving parent-of-origin-specific gene expression, which does not occur in prokaryotic microbiomes. Furthermore, the 'REGULATORY_ELEMENT' category specifically excludes complex eukaryotic chromatin architecture, focusing instead on microbial gene control (e.g., operators, promoters). Therefore, this entity is irrelevant to a core microbiome knowledge graph.",
+        "status": "UNCLASSIFIED"
+    },
+    "DGIdb_Category": {
+        "mapped_concept": "CLASSIFICATION",
+        "reasoning": "The input label 'DGIdb_Category' is explicitly listed as an example under the allowed concept 'CLASSIFICATION'. Additionally, the sample values (e.g., 'NUCLEAR HORMONE RECEPTOR', 'DRUG RESISTANCE', 'G PROTEIN COUPLED RECEPTOR') represent categorical groupings for drug targets or interaction types, which aligns perfectly with the explanation for 'CLASSIFICATION' ('Systems to group enzyme functions or drug categories interacting with the microbiome').",
+        "status": "SUCCESS"
+    },
+    "InterPro_ConservedSite": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label `InterPro_ConservedSite` is explicitly listed in the examples provided for the `PROTEIN_FEATURE` concept label. Semantically, InterPro Conserved Sites define specific functional residues or motifs within protein sequences (such as active sites or binding sites), which aligns directly with the `PROTEIN_FEATURE` explanation ('Specific sites on a microbial protein, such as binding pockets or active catalytic sites').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MitoticRecombinationRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'RefSeq_MitoticRecombinationRegion' is explicitly listed in the 'UNCLASSIFIED' examples within the provided ontology definition. Biologically, mitotic recombination is a process specific to eukaryotes (occurring during mitosis), whereas the target knowledge graph focuses on microbiomes (prokaryotes) which do not undergo mitosis. Furthermore, the sample data references human genes (e.g., NUP98, HOX), confirming this entity is exclusively human/eukaryotic and irrelevant to the core microbiome scope.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_SequenceAlterationArtifact": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'RefSeq_SequenceAlterationArtifact' is explicitly listed in the 'examples' array for the 'METADATA' concept in the provided allowed concepts JSON. Semantically, this label refers to data quality issues and provenance (assembly artifacts identified by the Genome Reference Consortium) rather than biological features or genetic variations. This aligns with the 'METADATA' explanation ('Provenance, graph data tracking, and external ontology administrative nodes'). Although the sample data references human chromosomes (GRCh38), the concept of tracking assembly artifacts is defined as valid metadata within this ontology, distinguishing it from human-specific biological features (like Exons or Centromeres) which are listed under 'UNCLASSIFIED'.",
+        "status": "SUCCESS"
+    },
+    "IntAct_Term": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label `IntAct_Term` is explicitly listed as an example under the `METADATA` concept in the provided Allowed Concept Labels. While the sample values (`NCBITaxon:...`) represent taxonomic identifiers, the `IntAct_Term` table in the IntAct database serves as a generic container for controlled vocabulary terms (ontology administrative nodes) rather than specifically representing biological organisms (which are mapped to `TAXON` via `IntAct_BioSource` in this ontology). Therefore, based on the explicit classification in the allowed concepts and the broader semantic role of the table as an ontology term holder, `METADATA` is the correct mapping.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DNaseIHypersensitiveSite": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_DNaseIHypersensitiveSite' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided ontology instructions. Biologically, DNase I hypersensitive sites are features of eukaryotic chromatin structure (indicating nucleosome-free regions), which are not present in prokaryotic or microbial genomes. The 'UNCLASSIFIED' explanation specifically includes labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Additionally, the 'REGULATORY_ELEMENT' category explicitly excludes 'complex eukaryotic chromatin architecture.' Therefore, this label must be mapped to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_ResponseElement": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_ResponseElement' is explicitly listed in the 'examples' array for the 'REGULATORY_ELEMENT' concept in the provided Allowed Concept Labels. Semantically, response elements are DNA sequences involved in transcriptional regulation, which aligns with the concept's definition. It is not present in the 'UNCLASSIFIED' exclusion list.",
+        "status": "SUCCESS"
+    },
+    "HPRD_ProteinComplex": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPRD_ProteinComplex' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept within the provided ontology definition. Furthermore, HPRD stands for Human Protein Reference Database, indicating that the data is exclusively human-specific. This aligns perfectly with the 'UNCLASSIFIED' explanation, which categorizes labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph'. Therefore, it must be mapped to UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_CAATSignal": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_CAATSignal' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label. Furthermore, the CCAAT box is a eukaryotic promoter element (confirmed by sample data referencing 'beta-globin promoter' and 'HBE1'), which fits the 'UNCLASSIFIED' explanation criteria of being 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' The 'REGULATORY_ELEMENT' category is specifically restricted to microbial gene control (e.g., oriC, operators) and excludes complex eukaryotic architecture.",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_HomologousSuperfamily": {
+        "mapped_concept": "PROTEIN_DOMAIN",
+        "reasoning": "The database label 'InterPro_HomologousSuperfamily' is explicitly listed in the 'examples' array for the allowed concept label 'PROTEIN_DOMAIN'. Semantically, a homologous superfamily in InterPro represents a group of protein domains that share a common evolutionary ancestor and structural fold, which aligns perfectly with the definition of 'PROTEIN_DOMAIN' ('Independent folding structures predicting microbial enzyme functions'). The schema supports this with properties like 'structure_db_links' (PDB IDs), 'protein_count', and 'members' referencing structural classification databases (CATH, SSF).",
+        "status": "SUCCESS"
+    },
+    "RefSeq_NonAllelicHomologousRecombinationRegion": {
+        "mapped_concept": "GENETIC_VARIATION",
+        "reasoning": "The database label 'RefSeq_NonAllelicHomologousRecombinationRegion' is explicitly listed as an example under the 'GENETIC_VARIATION' concept in the provided allowed concept labels. The semantic meaning of the label (a genomic region involved in recombination events) aligns directly with the explanation for 'GENETIC_VARIATION' ('Mutations and recombination events driving microbial evolution and strain differences'). It is not present in the 'UNCLASSIFIED' list.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_CAGECluster": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label `RefSeq_CAGECluster` is explicitly listed in the `UNCLASSIFIED` examples provided in the ontology instructions. Biologically, CAGE (Cap Analysis of Gene Expression) clusters identify transcription start sites based on the 5' cap of mRNA, a mechanism specific to eukaryotes (prokaryotic mRNA lacks the 7-methylguanosine cap). The sample data confirms this eukaryotic context by referencing 'HeLa cells' (human). As the ontology is designed for a core microbiome knowledge graph, eukaryotic-specific features are designated as `UNCLASSIFIED`.",
+        "status": "UNCLASSIFIED"
+    },
+    "IntAct_Source": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'IntAct_Source' is explicitly listed in the examples provided for the 'METADATA' concept label in the allowed ontology. Semantically, the schema describes external database resources (IntAct, DIP, MINT, UniProt) including their URLs, definitions, and contact information, which aligns with the 'METADATA' explanation of 'Provenance, graph data tracking, and external ontology administrative nodes.'",
+        "status": "SUCCESS"
+    },
+    "UniProt_Feature": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label 'UniProt_Feature' is explicitly listed in the 'examples' array for the allowed concept 'PROTEIN_FEATURE'. Furthermore, the schema properties (location_begin, location_end, location_sequence, type) describe specific annotated regions or sites within a protein sequence, which aligns perfectly with the concept explanation ('Specific sites on a microbial protein, such as binding pockets or active catalytic sites').",
+        "status": "SUCCESS"
+    },
+    "HPO_SynonymType": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label `HPO_SynonymType` refers to the Human Phenotype Ontology, which is specific to human phenotypic abnormalities. The provided allowed concept list explicitly includes `HPO_SynonymType` in the examples for the `UNCLASSIFIED` category. The explanation for `UNCLASSIFIED` specifies that labels exclusively human or irrelevant to a core microbiome knowledge graph should be categorized here, distinguishing them from general ontology metadata like `GeneOntology_SynonymType` which falls under `METADATA`.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_SynonymType": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The input label 'GeneOntology_SynonymType' is explicitly listed as an example under the 'METADATA' concept label in the provided allowed list. Semantically, this entity describes administrative types for synonyms within an ontology structure rather than a biological entity, which aligns perfectly with the 'METADATA' explanation of 'external ontology administrative nodes'.",
+        "status": "SUCCESS"
+    },
+    "HPRD_Tissue": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'HPRD_Tissue' refers to human anatomical structures and fluids (e.g., Lacrimal gland, Saliva). The provided ontology explicitly defines the 'UNCLASSIFIED' category for labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Additionally, 'HPRD_Tissue' is explicitly listed in the examples provided for the 'UNCLASSIFIED' concept. Therefore, it does not fit any microbial-specific categories like TAXON, GENE, or PROTEIN.",
+        "status": "UNCLASSIFIED"
+    },
+    "BRENDA_TextValue": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'BRENDA_TextValue' is explicitly listed in the 'examples' array for the 'METADATA' concept label in the provided allowed concept definitions. This category is defined to include external ontology administrative nodes and graph data tracking elements, which aligns with the function of storing specific textual property values (such as comments and reaction equations) as distinct nodes within the knowledge graph structure.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MobileGeneticElement": {
+        "mapped_concept": "MOBILE_GENETIC_ELEMENT",
+        "reasoning": "The database label 'RefSeq_MobileGeneticElement' is explicitly listed in the 'examples' array for the allowed concept label 'MOBILE_GENETIC_ELEMENT'. Additionally, the schema properties (e.g., 'mobile_element_type', 'gbkey': 'mobile_element') semantically align with the concept's explanation of tracking transposons and elements driving horizontal gene transfer.",
+        "status": "SUCCESS"
+    },
+    "HPO_Idspace": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Idspace' refers to identifier space metadata for the Human Phenotype Ontology. According to the provided allowed concept labels, 'HPO_Idspace' is explicitly listed as an example under the 'UNCLASSIFIED' category. Furthermore, the explanation for 'UNCLASSIFIED' specifies labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Since HPO is human-centric and the context is a microbiome knowledge graph, this label fits the 'UNCLASSIFIED' criteria perfectly, overriding the similar 'GeneOntology_Idspace' found under 'METADATA'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Chromosome": {
+        "mapped_concept": "CHROMOSOMAL_STRUCTURE",
+        "reasoning": "The database label 'RefSeq_Chromosome' is explicitly listed in the 'examples' array for the allowed concept 'CHROMOSOMAL_STRUCTURE'. The schema properties (start, end, mol_type: genomic DNA, type: chromosome) align with the explanation 'Broad physical elements of the microbial chromosome'. Although the specific sample values provided (NC_000001.11) correspond to human chromosomes, the label itself is not exclusively human (as microbial chromosomes also use RefSeq accessions) and is explicitly authorized under this concept in the provided ontology.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Term": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'DiseaseOntology_Term' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided allowed list. Additionally, the explanation for 'UNCLASSIFIED' specifies that it includes labels that are exclusively human or irrelevant to a core microbiome knowledge graph, which aligns with the sample data showing human diseases (e.g., angiosarcoma, allergies).",
+        "status": "UNCLASSIFIED"
+    },
+    "BRENDA_NumericValue": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'BRENDA_NumericValue' is explicitly listed in the 'examples' array for the 'METADATA' concept label in the provided allowed concepts. Additionally, the schema represents auxiliary numeric data points (values, ranges, comments) associated with enzyme entries rather than core biological entities like proteins, genes, or taxa, which aligns with the METADATA description of 'external ontology administrative nodes' and graph data tracking.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ReplicationStartSite": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_ReplicationStartSite' is explicitly listed in the 'examples' array for the allowed concept label 'REGULATORY_ELEMENT'. Semantically, a replication start site is a specific genomic region controlling the initiation of DNA replication, which aligns with the concept's explanation focusing on microbial gene control elements (e.g., oriC, operators). Therefore, there is a direct and undeniable semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceSecondaryStructure": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_SequenceSecondaryStructure' is explicitly listed in the 'examples' array for the allowed concept label 'SEQUENCE_FEATURE'. The schema data describes physical conformations of nucleic acids (e.g., cruciform structures, G-quadruplexes, stem-loops), which aligns perfectly with the explanation for 'SEQUENCE_FEATURE' ('Cleaned up structural features of a genome...'). Since there is an exact match in the provided ontology examples, this is a direct semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_LocusControlRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_LocusControlRegion' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided ontology. Biologically, Locus Control Regions (LCRs) are complex eukaryotic regulatory elements (often involving chromatin looping and DNase hypersensitivity sites) that control the expression of gene clusters (e.g., beta-globin). They are not found in microbial genomes. The 'UNCLASSIFIED' explanation specifically covers labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Therefore, it must be mapped to UNCLASSIFIED rather than REGULATORY_ELEMENT.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_Subset": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'GeneOntology_Subset' represents an administrative structure within the Gene Ontology framework (used for defining GO slims or subsets). The allowed concept 'METADATA' explicitly includes 'external ontology administrative nodes' and lists examples such as 'GeneOntology_Typedef', 'GeneOntology_SynonymType', 'GeneOntology_Header', and 'GeneOntology_Idspace'. While 'HPO_Subset' and 'DiseaseOntology_Subset' are listed under 'UNCLASSIFIED', the 'UNCLASSIFIED' definition specifies labels that are 'exclusively human... or otherwise irrelevant'. Since the Gene Ontology is universal and crucial for microbial functional annotation (unlike the human-specific HPO), its administrative structures are considered relevant metadata for a microbiome knowledge graph. Therefore, it semantically matches 'METADATA'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_GCRichPromoterRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_GCRichPromoterRegion' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided ontology definition. Additionally, the sample data references human/eukaryotic specific entities such as 'NCCIT embryonal carcinoma cells', 'POU5F1', and 'hOct4', which confirms this is a eukaryotic regulatory element. The 'REGULATORY_ELEMENT' category is strictly defined for microbial gene control (e.g., oriC, operators) and explicitly excludes complex eukaryotic chromatin architecture. Therefore, per the instruction to return 'UNCLASSIFIED' for concepts irrelevant to a core microbiome knowledge graph or explicitly listed as such, this is the correct mapping.",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_DBInfo": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'InterPro_DBInfo' is explicitly listed as an example under the 'METADATA' concept label in the provided allowed concepts. The schema properties (version, file_date, entry_count) describe administrative information and provenance regarding the source databases (PFAM, PRINTS, etc.) rather than biological entities themselves, which aligns perfectly with the METADATA explanation: 'Provenance, graph data tracking, and external ontology administrative nodes.'",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MiniSatellite": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_MiniSatellite' is explicitly listed in the examples for the 'GENOMIC_REPEAT' concept label. Furthermore, the schema properties (e.g., 'satellite': 'minisatellite', 'gbkey': 'repeat_region', 'rpt_type': 'tandem') confirm that this entity represents a repetitive genomic sequence element, which aligns perfectly with the explanation for 'GENOMIC_REPEAT' ('Crucial for identifying bacterial features like CRISPR arrays and tandem repeats').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RecombinationFeature": {
+        "mapped_concept": "GENETIC_VARIATION",
+        "reasoning": "The database label `RefSeq_RecombinationFeature` is explicitly listed in the examples for the `GENETIC_VARIATION` concept within the provided Allowed Concept Labels. Semantically, recombination features represent genetic variation events (mutations, rearrangements). Although the provided samples describe human immune system recombination (T-cell receptor loci, meiotic events), which is eukaryotic, the ontology schema explicitly authorizes this label under `GENETIC_VARIATION`, distinguishing it from other specifically eukaryotic recombination labels (e.g., `RefSeq_MeioticRecombinationRegion`) that are listed under `UNCLASSIFIED`. Therefore, based on the explicit schema definition provided, it maps to `GENETIC_VARIATION`.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Subset": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'DiseaseOntology_Subset' represents an administrative grouping within the Disease Ontology. The 'UNCLASSIFIED' category is defined to include labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' The examples provided for 'UNCLASSIFIED' explicitly include other Disease Ontology structures such as 'DiseaseOntology_Term', 'DiseaseOntology_Header', 'DiseaseOntology_Typedef', and 'DiseaseOntology_SynonymType'. This establishes a clear pattern that Disease Ontology entities are considered human-centric clinical data irrelevant to the core microbiome graph, unlike Gene Ontology entities which are mapped to 'ONTOLOGY' or 'METADATA'. Therefore, consistent with the other Disease Ontology labels, this must be mapped to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_Typedef": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'GeneOntology_Typedef' is explicitly listed as an example under the 'METADATA' concept label in the provided allowed concepts. Semantically, these entities represent relationship types (e.g., 'has_part', 'negatively_regulates') that define the structure of the ontology graph rather than biological entities themselves. This aligns perfectly with the 'METADATA' explanation which includes 'external ontology administrative nodes'.",
+        "status": "SUCCESS"
+    },
+    "InterPro_ActiveSite": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label 'InterPro_ActiveSite' is explicitly listed in the examples for the allowed concept 'PROTEIN_FEATURE'. Furthermore, the explanation for 'PROTEIN_FEATURE' defines it as 'Specific sites on a microbial protein, such as binding pockets or active catalytic sites,' which semantically matches the schema data describing protein active sites (e.g., 'Serine proteases, V8 family, serine active site').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DirectRepeat": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_DirectRepeat' is explicitly listed as an example under the 'GENOMIC_REPEAT' concept in the provided allowed concept labels. The schema properties (e.g., 'rpt_type': 'direct', 'gbkey': 'repeat_region') confirm that this entity represents a repetitive sequence structure within the genome, which aligns perfectly with the explanation for 'GENOMIC_REPEAT' ('Crucial for identifying bacterial features like CRISPR arrays and tandem repeats').",
+        "status": "SUCCESS"
+    },
+    "HPRD_Interactor": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'HPRD_Interactor' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided allowed concept definitions. Additionally, the explanation for 'UNCLASSIFIED' specifies that it includes labels that are 'exclusively human' or 'irrelevant to a core microbiome knowledge graph.' Since HPRD (Human Protein Reference Database) is human-centric, it fits this criteria perfectly, overriding any semantic similarity to 'IntAct_Interactor' (which is mapped to PATHWAY).",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_Family": {
+        "mapped_concept": "PROTEIN_DOMAIN",
+        "reasoning": "The database label 'InterPro_Family' is explicitly listed in the 'examples' array for the 'PROTEIN_DOMAIN' concept in the provided allowed concept labels. InterPro Families represent groups of homologous proteins that share structural and functional characteristics, which aligns with the concept's explanation of 'Independent folding structures predicting microbial enzyme functions.'",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceComparison": {
+        "mapped_concept": "ALIGNMENT",
+        "reasoning": "The database label 'RefSeq_SequenceComparison' is explicitly listed in the 'examples' array for the 'ALIGNMENT' concept label in the provided ontology. Additionally, the schema properties (e.g., 'feat_class': 'sequence_comparison', 'experiment': 'sequence alignment evidence') semantically match the 'ALIGNMENT' explanation regarding homology mappings and sequence comparisons. Although the specific sample values reference eukaryotic development, the label itself is a generic RefSeq feature type authorized under 'ALIGNMENT' and is not present in the 'UNCLASSIFIED' exclusion list.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_DispersedRepeat": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_DispersedRepeat' is explicitly listed in the examples provided for the 'GENOMIC_REPEAT' concept label. Additionally, the schema properties (specifically 'gbkey': 'repeat_region' and 'rpt_type': 'dispersed') confirm that this entity represents a genomic repeat structure, which aligns directly with the explanation for 'GENOMIC_REPEAT' regarding the identification of bacterial features like repeats.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_PseudoGene": {
+        "mapped_concept": "GENE",
+        "reasoning": "The database label `RefSeq_PseudoGene` is explicitly listed as an example under the allowed concept label `GENE` in the provided ontology configuration. Although the specific samples provided contain human gene identifiers (HGNC) and descriptions, the ontology rules define `RefSeq_PseudoGene` as a valid fundamental genetic unit within the `GENE` category, distinguishing it from the specific human-specific or non-coding RNA labels (e.g., `RefSeq_miRNA`, `HPO_*`) listed under `UNCLASSIFIED`.",
+        "status": "SUCCESS"
+    },
+    "PROSITE_Rule": {
+        "mapped_concept": "PROTEIN_DOMAIN",
+        "reasoning": "The database label 'PROSITE_Rule' is explicitly listed as an example under the 'PROTEIN_DOMAIN' concept in the provided allowed concepts list. Additionally, the sample data for the property 'data_classes' contains the value ['Domain'], which semantically confirms that these rules are used to define protein domains. This constitutes a direct and undeniable semantic match.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_ConservedRegion": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label 'RefSeq_ConservedRegion' is explicitly listed in the 'examples' array for the 'SEQUENCE_FEATURE' concept label within the provided allowed concepts. While the sample data contains annotations related to eukaryotic regulatory functions (e.g., enhancer activity, binding motifs), the ontology schema explicitly categorizes this specific RefSeq feature type under sequence features. The mapping follows the explicit schema definition provided for the label rather than inferring classification solely from the potentially noisy sample content.",
+        "status": "SUCCESS"
+    },
+    "HPRD_Motif": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPRD_Motif' is explicitly listed in the examples provided under the 'UNCLASSIFIED' concept label in the allowed ontology. Furthermore, HPRD stands for Human Protein Reference Database, which is exclusively human-centric. The ontology definition for 'UNCLASSIFIED' specifies that it includes 'Labels that are exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Therefore, this label does not fit the microbial focus of categories like 'PROTEIN_FEATURE' and must be mapped to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_SequenceFeature": {
+        "mapped_concept": "SEQUENCE_FEATURE",
+        "reasoning": "The database label `RefSeq_SequenceFeature` is explicitly listed as an example under the `SEQUENCE_FEATURE` concept in the provided allowed ontology. Although the sample data contains human immunoglobulin segments (IGKV) and meiotic recombination hotspots (which align with the `UNCLASSIFIED` description for immune/eukaryotic segments), the schema label itself is designated as a valid sequence feature category within the ontology's structure. The mapping is based on the explicit inclusion of the label in the `SEQUENCE_FEATURE` examples, indicating that this table structure is intended to capture genomic structural features, even if specific instances in the sample set are eukaryotic.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Header": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'DiseaseOntology_Header' is explicitly listed in the examples provided for the 'UNCLASSIFIED' concept label in the allowed concepts list. Furthermore, the schema samples indicate this entity describes the 'Human Disease Ontology' (e.g., property values mention 'human disease', 'Human Disease Ontology'), which aligns with the 'UNCLASSIFIED' explanation that covers labels 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Although 'GeneOntology_Header' is listed under 'METADATA', the specific inclusion of 'DiseaseOntology_Header' under 'UNCLASSIFIED' in the provided guidelines takes precedence for this mapping task.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_MicroSatellite": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_MicroSatellite' is explicitly listed as an example under the 'GENOMIC_REPEAT' concept label in the provided allowed ontology. The schema properties (e.g., 'satellite': 'microsatellite', 'gbkey': 'repeat_region', 'rpt_type': 'tandem') confirm that this entity represents a tandem repeat structure within the genome, which aligns perfectly with the 'GENOMIC_REPEAT' explanation ('Crucial for identifying bacterial features like CRISPR arrays and tandem repeats').",
+        "status": "SUCCESS"
+    },
+    "UniProt_Reference": {
+        "mapped_concept": "PUBLICATION",
+        "reasoning": "The database label 'UniProt_Reference' is explicitly listed as an example under the 'PUBLICATION' concept label in the provided allowed concept list. Semantically, UniProt References represent bibliographic citations and literature references associated with protein entries, which directly aligns with the 'PUBLICATION' explanation ('Scientific literature and literature references').",
+        "status": "SUCCESS"
+    },
+    "InterPro_BindingSite": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label 'InterPro_BindingSite' is explicitly listed in the examples for the allowed concept 'PROTEIN_FEATURE'. The explanation for 'PROTEIN_FEATURE' describes 'Specific sites on a microbial protein, such as binding pockets or active catalytic sites', which semantically matches the nature of InterPro binding sites (e.g., zinc-binding site, EF-hand binding site) as evidenced by the schema samples showing protein counts, PDB links, and binding motif names.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Region": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "Although the database label `RefSeq_Region` is listed as an example under `SEQUENCE_FEATURE`, the schema properties and sample values provide undeniable semantic evidence that the specific entities in this table are genomic repeats. The `gbkey` property is consistently `repeat_region`, `rpt_type` is `tandem`, and `satellite` specifies `minisatellite`. These attributes align directly with the `GENOMIC_REPEAT` concept explanation ('Crucial for identifying bacterial features like... tandem repeats') and its examples (`RefSeq_RepeatRegion`, `RefSeq_TandemRepeat`, `RefSeq_MiniSatellite`). Mapping to `GENOMIC_REPEAT` captures the specific biological nature of the data rather than the generic container label.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_CGeneSegment": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_CGeneSegment' refers to Constant gene segments of Immunoglobulin (e.g., IGKC) and T-cell Receptor (e.g., TRGC1, TRBC1) loci. These are components of the vertebrate adaptive immune system (V(D)J recombination machinery) and are exclusively found in eukaryotes (humans/vertebrates), not microbes. The allowed concept 'GENE' is specified as 'Kept streamlined for microbial genomes.' Furthermore, the 'UNCLASSIFIED' concept explanation explicitly excludes 'Labels that are exclusively human, eukaryotic... immune V/D/J segments' and lists similar RefSeq segment types (RefSeq_DGeneSegment, RefSeq_JGeneSegment, RefSeq_VGeneSegment) as examples. Therefore, this entity is irrelevant to a core microbiome knowledge graph and must be mapped to UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_Header": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'GeneOntology_Header' is explicitly listed as an example under the 'METADATA' concept label in the provided allowed concepts. The schema properties (format_version, data_version, ontology, default_namespace) describe administrative information and provenance regarding the ontology file itself, rather than a specific biological entity or an ontology term (which would fall under 'ONTOLOGY'). This aligns perfectly with the 'METADATA' explanation: 'Provenance, graph data tracking, and external ontology administrative nodes.'",
+        "status": "SUCCESS"
+    },
+    "RefSeq_antisenseRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_antisenseRNA' is explicitly listed in the 'examples' array for the 'RNA' concept label in the provided ontology. While the specific sample values (e.g., NPPA-AS1, HTT-AS) indicate human/eukaryotic origin, the ontology definition specifically whitelists this RefSeq feature type under 'RNA', distinguishing it from other eukaryotic-specific RNA types (such as 'RefSeq_lncRNA', 'RefSeq_miRNA', 'RefSeq_snoRNA') that are explicitly listed under 'UNCLASSIFIED'. Additionally, antisense RNA is a functional transcript type found in prokaryotes (microbiomes), aligning with the 'RNA' concept explanation.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Assembly": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'RefSeq_Assembly' is explicitly listed as an example under the 'METADATA' concept in the provided allowed concept labels. It represents provenance and administrative tracking of the genome assembly version (e.g., accession numbers like GCF_...), which aligns with the 'METADATA' explanation of 'Provenance, graph data tracking, and external ontology administrative nodes.' Although the specific sample provided is human (GRCh38), the label itself is not exclusively human (microbial assemblies exist) and is authorized by the ontology schema.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_MatrixAttachmentSite": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_MatrixAttachmentSite' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided ontology. Biologically, Matrix Attachment Sites (MARs) are DNA regions that bind to the nuclear matrix, a structure specific to eukaryotic cells. Microbial genomes (prokaryotes) lack a nucleus and nuclear matrix, making this feature irrelevant to a core microbiome knowledge graph. Furthermore, the 'REGULATORY_ELEMENT' definition explicitly states it is cleaned up to focus on microbial gene control 'rather than complex eukaryotic chromatin architecture,' further confirming that eukaryotic structural regulatory elements like MARs belong in 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_RepeatRegion": {
+        "mapped_concept": "GENOMIC_REPEAT",
+        "reasoning": "The database label 'RefSeq_RepeatRegion' is explicitly listed in the examples provided for the 'GENOMIC_REPEAT' concept label. Furthermore, the schema properties (e.g., 'rpt_type' indicating 'tandem' or 'flanking', 'rpt_unit_seq', and notes describing direct repeats and consensus sequences) semantically align perfectly with the definition of 'GENOMIC_REPEAT' which covers tandem repeats and other genomic repetitive features.",
+        "status": "SUCCESS"
+    },
+    "DiseaseOntology_Typedef": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'DiseaseOntology_Typedef' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided instructions. While 'GeneOntology_Typedef' is listed under 'METADATA', the instructions distinguish Disease Ontology elements as 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph', necessitating the 'UNCLASSIFIED' mapping.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Insulator": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although insulators are regulatory elements in general genomics, the provided ontology is specifically designed for microbiome data. The 'UNCLASSIFIED' concept label explicitly lists 'RefSeq_Insulator' in its examples, defining it as a label that is 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Furthermore, the 'REGULATORY_ELEMENT' explanation specifies a focus on microbial gene control (e.g., oriC, operators) 'rather than complex eukaryotic chromatin architecture,' which characterizes insulators. Therefore, based on the explicit exclusion in the provided schema examples and the scope definition, this label must be mapped to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_OriginOfReplication": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_OriginOfReplication' is explicitly listed in the 'examples' array for the 'REGULATORY_ELEMENT' concept in the provided allowed concepts. Additionally, the explanation for 'REGULATORY_ELEMENT' specifies a focus on microbial gene control including 'oriC' (origins of replication), which aligns perfectly with the schema data indicating replication origins (gbkey: 'rep_origin', function: 'origin of replication'). This constitutes a direct, undeniable semantic match according to the provided ontology definitions.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_RegulatoryRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although the label 'RefSeq_RegulatoryRegion' is listed as an example under 'REGULATORY_ELEMENT', the provided schema samples explicitly describe eukaryotic chromatin features ('nucleosome phasing', 'micrococcal_nuclease_hypersensitive_site'). The 'REGULATORY_ELEMENT' concept definition states it is 'Cleaned up to focus on microbial gene control... rather than complex eukaryotic chromatin architecture.' Since bacteria/prokaryotes do not possess nucleosomes, these samples represent eukaryotic data that violates the semantic constraints of the 'REGULATORY_ELEMENT' concept in this microbiome-focused ontology. Furthermore, similar features like 'RefSeq_DNaseIHypersensitiveSite' are explicitly listed under 'UNCLASSIFIED'. Therefore, based on the semantic content of the samples, this entity fits the 'UNCLASSIFIED' criteria for eukaryotic-specific features irrelevant to a core microbiome knowledge graph.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Enhancer": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'RefSeq_Enhancer' is explicitly listed in the examples for the 'UNCLASSIFIED' concept. Additionally, the definition of 'REGULATORY_ELEMENT' specifies a focus on microbial gene control (e.g., oriC, operators, standard promoters) rather than complex eukaryotic chromatin architecture. The sample data confirms this entity is eukaryotic/human-specific (IGH gene, H9 embryonic stem cells, GRCh37/hg19 assembly coordinates, H3K4me1 marks), making it irrelevant to the core microbiome knowledge graph scope.",
+        "status": "UNCLASSIFIED"
+    },
+    "GeneOntology_Idspace": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'GeneOntology_Idspace' is explicitly listed as an example under the 'METADATA' concept label in the provided allowed list. Semantically, an 'idspace' defines the namespace or administrative source for identifiers within an ontology structure, which aligns perfectly with the 'METADATA' explanation covering 'external ontology administrative nodes' and provenance.",
+        "status": "SUCCESS"
+    },
+    "HPRD_Disease": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The label 'HPRD_Disease' refers to human disease conditions derived from the Human Protein Reference Database. The provided ontology guidelines explicitly define the 'UNCLASSIFIED' category as containing labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Furthermore, 'HPRD_Disease' is explicitly listed in the examples array for the 'UNCLASSIFIED' concept. There is no allowed concept for 'DISEASE' or 'PHENOTYPE' in this microbiome-focused schema.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_NucleotideMotif": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_NucleotideMotif' is explicitly listed in the 'examples' array for the 'REGULATORY_ELEMENT' concept within the provided Allowed Concept Labels. Although the sample data references eukaryotic motifs (PRDM9), the ontology definition provided categorizes this specific RefSeq label under Regulatory Elements, distinguishing it from other eukaryotic-specific labels (such as 'RefSeq_Enhancer' or 'RefSeq_TATABox') which are listed under 'UNCLASSIFIED'. Therefore, there is a direct semantic match based on the provided ontology schema.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_TranscriptionalCisRegulatoryRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although the label 'RefSeq_TranscriptionalCisRegulatoryRegion' appears in the examples for 'REGULATORY_ELEMENT', the explanation for that category explicitly states it is cleaned up to focus on 'microbial gene control... rather than complex eukaryotic chromatin architecture.' The provided samples unequivocally describe human eukaryotic data: they reference 'K562 erythroleukemia cells' (human cell line), 'GRCh37/hg19 assembly coordinates' (human genome), and 'Neanderthal adaptively introgressed variant.' Furthermore, the sample function and notes explicitly identify the regions as 'enhancers,' a feature listed under the 'UNCLASSIFIED' examples (e.g., 'RefSeq_Enhancer') and defined in the 'UNCLASSIFIED' explanation as 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Therefore, based on the semantic content of the samples, this entity fits the 'UNCLASSIFIED' category.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Exon": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_Exon' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept in the provided ontology. Furthermore, exons are structural features specific to eukaryotic gene architecture (split genes with introns), which are generally irrelevant to a core microbiome knowledge graph focused on prokaryotes where genes are typically contiguous. The sample data supports this exclusion, containing human-specific annotations such as 'immunoglobulin kappa variable', 'MANE Select', and 'miRBase' references.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_TATABox": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_TATABox' is explicitly listed in the examples provided for the 'UNCLASSIFIED' concept label. The explanation for 'UNCLASSIFIED' specifies that it includes labels that are exclusively human, eukaryotic, or otherwise irrelevant to a core microbiome knowledge graph. TATA boxes are primarily associated with eukaryotic transcription initiation (as evidenced by the sample notes mentioning 'mammals', 'beta-globin', etc.), whereas microbial promoters typically utilize -10/-35 regions. Additionally, the 'REGULATORY_ELEMENT' category is defined to focus on microbial gene control (e.g., oriC, operators) rather than eukaryotic architecture. Therefore, based on the explicit exclusion in the provided ontology examples and the eukaryotic nature of the entity, it maps to 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "InterPro_PTM": {
+        "mapped_concept": "PROTEIN_FEATURE",
+        "reasoning": "The database label 'InterPro_PTM' is explicitly listed in the 'examples' array for the 'PROTEIN_FEATURE' concept label in the provided ontology. Furthermore, the schema data describes specific functional sites on proteins (e.g., phosphorylation sites, hydroxylation sites), which aligns perfectly with the explanation for 'PROTEIN_FEATURE' ('Specific sites on a microbial protein, such as binding pockets or active catalytic sites').",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Promoter": {
+        "mapped_concept": "REGULATORY_ELEMENT",
+        "reasoning": "The database label 'RefSeq_Promoter' is explicitly listed in the 'examples' array for the 'REGULATORY_ELEMENT' concept. The schema properties (e.g., 'regulatory_class': 'promoter', 'gbkey': 'regulatory') confirm the entity functions as a transcriptional control region. While the sample data contains human cell lines, the label itself represents a standard promoter, which is distinguished from complex eukaryotic elements like enhancers or silencers (listed under 'UNCLASSIFIED') and is explicitly sanctioned under 'REGULATORY_ELEMENT' in the provided ontology.",
+        "status": "SUCCESS"
+    },
+    "GeneOntology_Term": {
+        "mapped_concept": "ONTOLOGY",
+        "reasoning": "The database label 'GeneOntology_Term' is explicitly listed as an example under the allowed concept label 'ONTOLOGY'. The schema content (GO IDs, definitions, namespaces like biological_process/molecular_function) represents standardized functional vocabularies, which matches the explanation for 'ONTOLOGY'.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_BiologicalRegion": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although 'RefSeq_BiologicalRegion' is listed as an example under 'SEQUENCE_FEATURE', the provided samples explicitly describe human-specific eukaryotic features (e.g., 'hESC enhancer', 'GRCh37_chr1', 'heterochromatin'). The ontology is designed for microbiomes (prokaryotes), and the 'SEQUENCE_FEATURE' explanation specifies a focus on coding sequences and structural boundaries rather than regulation, while 'REGULATORY_ELEMENT' is restricted to microbial gene control. The 'UNCLASSIFIED' category explicitly includes labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph'. Therefore, these human enhancer regions do not semantically match the microbial concepts and must be classified as UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_Centromere": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_Centromere' refers to a specific structural component of eukaryotic chromosomes (specifically human chromosomes based on the sample accession numbers NC_000001, etc.). Centromeres are not found in prokaryotic microbial genomes. The 'UNCLASSIFIED' concept definition explicitly states it includes 'Labels that are exclusively human, eukaryotic (centromeres, introns, immune V/D/J segments), or otherwise irrelevant to a core microbiome knowledge graph' and explicitly lists 'RefSeq_Centromere' in its examples. Therefore, it must be mapped to UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_cDNAMatch": {
+        "mapped_concept": "ALIGNMENT",
+        "reasoning": "The database label 'RefSeq_cDNAMatch' is explicitly listed as an example under the 'ALIGNMENT' concept in the provided allowed concept definitions. Furthermore, the schema properties (e.g., 'pct_identity', 'gap', 'matches', 'target', 'curated_alignment') semantically describe homology mappings and sequence comparison statistics, which aligns perfectly with the 'ALIGNMENT' explanation ('Homology mappings, crucial for comparing microbial genomes'). Although the sample data contains human taxonomy (9606), the ontology definition explicitly authorizes this label under 'ALIGNMENT', and it is not present in the 'UNCLASSIFIED' exclusion list.",
+        "status": "SUCCESS"
+    },
+    "BRENDA_Organism": {
+        "mapped_concept": "TAXON",
+        "reasoning": "The database label 'BRENDA_Organism' is explicitly listed in the 'examples' array for the 'TAXON' concept label. The sample values (e.g., 'Escherichia coli', 'Bacillus subtilis', 'Vicia faba') represent biological organisms or species, which semantically aligns with the 'TAXON' definition used to define specific species or strains within the knowledge graph.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_Transcript": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "Although 'RefSeq_Transcript' is listed as an example under the allowed 'RNA' concept, the definition for 'RNA' explicitly restricts the scope to 'Transcripts and functional RNA molecules found in prokaryotes.' The provided samples (e.g., gene symbols 'DDX11L1', 'TNFRSF4', evidence types like 'cap analysis' and 'polyA evidence') are unequivocally human/eukaryotic. The 'UNCLASSIFIED' concept definition includes 'Labels that are exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph.' Since the data represented by this label and schema is human-derived, it does not semantically match the prokaryotic constraint of the 'RNA' category and fits the exclusion criteria of 'UNCLASSIFIED'.",
+        "status": "UNCLASSIFIED"
+    },
+    "BRENDA_Value": {
+        "mapped_concept": "METADATA",
+        "reasoning": "The database label 'BRENDA_Value' is explicitly listed in the examples provided for the 'METADATA' concept in the allowed concept definitions. In the context of the BRENDA ontology structure, these nodes typically serve as administrative or data-holding structures that store specific values, comments, or conditions associated with enzyme properties, rather than representing core biological entities like proteins or genes directly.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_SequenceAlteration": {
+        "mapped_concept": "GENETIC_VARIATION",
+        "reasoning": "The database label `RefSeq_SequenceAlteration` is explicitly listed as an example under the allowed concept label `GENETIC_VARIATION`. Semantically, the schema properties (e.g., `feat_class: sequence_alteration`, `xrefs: dbSNP`, `note: allele`, `function: susceptibility`) describe genetic mutations, SNPs, and variations, which aligns directly with the `GENETIC_VARIATION` explanation ('Mutations and recombination events'). Although the specific sample values provided refer to human data (COVID-19, dbSNP), the label itself is a valid genomic feature type applicable to microbial strain differences and is explicitly permitted in the provided ontology under `GENETIC_VARIATION` rather than `UNCLASSIFIED`.",
+        "status": "SUCCESS"
+    },
+    "RefSeq_VGeneSegment": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_VGeneSegment' refers to Immunoglobulin Variable gene segments, which are components of the vertebrate adaptive immune system involved in V(D)J recombination. The allowed concept label 'UNCLASSIFIED' explicitly includes 'RefSeq_VGeneSegment' in its examples list. Furthermore, the explanation for 'UNCLASSIFIED' states it covers 'Labels that are exclusively human, eukaryotic... immune V/D/J segments, or otherwise irrelevant to a core microbiome knowledge graph.' Since this entity is a eukaryotic immune feature and not relevant to the microbial focus of the other allowed labels (e.g., GENE is streamlined for microbial genomes), it must be mapped to UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_RNasePRNA": {
+        "mapped_concept": "RNA",
+        "reasoning": "The database label 'RefSeq_RNasePRNA' is explicitly listed in the examples provided for the 'RNA' concept label. Semantically, it represents a functional non-coding RNA molecule (Ribonuclease P RNA), which aligns with the 'RNA' category definition ('Transcripts and functional RNA molecules'). While the sample gene symbol (RPPH1) is human, RNase P is a universal enzyme found in prokaryotes and eukaryotes, and the label itself is not listed under 'UNCLASSIFIED' (which reserves exclusively human/eukaryotic specific RNA types like miRNA or snoRNA). Therefore, it is a direct match to 'RNA'.",
+        "status": "SUCCESS"
+    },
+    "HPO_Term": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'HPO_Term' refers to terms from the Human Phenotype Ontology. According to the provided allowed concept labels, 'HPO_Term' is explicitly listed in the examples for the 'UNCLASSIFIED' category. Additionally, the explanation for 'UNCLASSIFIED' specifies labels that are 'exclusively human... or otherwise irrelevant to a core microbiome knowledge graph.' Since HPO describes human clinical phenotypes rather than microbial entities, it fits this exclusion criteria perfectly.",
+        "status": "UNCLASSIFIED"
+    },
+    "RefSeq_DLoop": {
+        "mapped_concept": "UNCLASSIFIED",
+        "reasoning": "The database label 'RefSeq_DLoop' is explicitly listed in the 'examples' array for the 'UNCLASSIFIED' concept label in the provided ontology definition. Furthermore, the sample ID 'NC_012920.1' corresponds to the human mitochondrial genome, and the 'UNCLASSIFIED' explanation specifies labels that are 'exclusively human, eukaryotic... or otherwise irrelevant to a core microbiome knowledge graph'. Therefore, it fits the criteria for UNCLASSIFIED.",
+        "status": "UNCLASSIFIED"
+    }
+}

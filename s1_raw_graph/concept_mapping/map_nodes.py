@@ -4,6 +4,12 @@ import os
 from tqdm import tqdm
 import json
 import time
+import re
+
+def lower(string):
+    if isinstance(string, str):
+        return string.lower()
+    return string
 
 def create_secure_id():
     return str(uuid.uuid4())
@@ -45,6 +51,15 @@ class Neo4jConnector:
                 WITH n
                 SET n.db_references = [ref IN n.db_references | replace(ref, 'NCBI Taxonomy:', 'NCBITaxon:')]
             }} IN TRANSACTIONS OF {batch_size} ROWS
+            """,
+            """
+            CALL apoc.periodic.iterate(
+            "MATCH (n) WHERE n.name = '-' OR n.names_str = '-' OR n.name_0 = '-' RETURN n",
+            "SET n.name = CASE WHEN n.name = '-' THEN null ELSE n.name END, 
+                n.names_str = CASE WHEN n.names_str = '-' THEN null ELSE n.names_str END, 
+                n.name_0 = CASE WHEN n.name_0 = '-' THEN null ELSE n.name_0 END",
+            {batchSize: 10000, parallel: false}
+)
             """
         ]
         
@@ -117,7 +132,7 @@ class Neo4jConnector:
                 UNWIND nodeLabels AS label
                 WITH DISTINCT label, propertyName
                 WHERE label <> 'Entity'  AND NOT propertyName IN coalesce($known_props[label], [])
-                WITH label, propertyName, (propertyName =~ '(?i)(id_).*') AS is_regex_match 
+                WITH label, propertyName, (propertyName =~ '(?i)(id_|processed_).*') AS is_regex_match 
                 CALL {
                     WITH label, propertyName, is_regex_match
                     WITH * WHERE is_regex_match = false
@@ -142,28 +157,33 @@ class Neo4jConnector:
         if os.path.exists(self.id_properties_per_node_label_path):
             with open(self.id_properties_per_node_label_path, "r") as f:
                 id_properties = json.load(f)
-                return id_properties
+                # return id_properties
         print(f"Loaded known ID properties from cache: {id_properties}")
-        result = self.fetch_id_properties_per_node_label(known_properties=id_properties)
+        # result = self.fetch_id_properties_per_node_label(known_properties=id_properties)
 
-        has_new_properties = False
-        for record in result:
-            node_label = record["label"]
-            properties = record["unique_properties"]
+        # for record in result:
+        #     node_label = record["label"]
+        #     properties = record["unique_properties"]
             
-            new_props = [p for p in properties if p != "neo4j_id"]
+        #     new_props = [p for p in properties if p != "neo4j_id" and not re.search(r"db_reference_\d+", p) and not re.search(r"name.*", p, re.DOTALL)]
             
-            if new_props:
-                has_new_properties = True
-                if node_label not in id_properties:
-                    id_properties[node_label] = []
+        #     if new_props:
+        #         if node_label not in id_properties:
+        #             id_properties[node_label] = []
                 
-                id_properties[node_label].extend(new_props)
-                id_properties[node_label] = list(set(id_properties[node_label]))
-
-        if has_new_properties or not os.path.exists(self.id_properties_per_node_label_path):
-            with open(self.id_properties_per_node_label_path, "w") as f:
-                json.dump(id_properties, f, indent=4)
+        #         id_properties[node_label].extend(new_props)
+        #         id_properties[node_label] = list(set(id_properties[node_label]))
+        for label in id_properties:
+            id_properties[label] = [p for p in id_properties[label] if p != "neo4j_id" and not re.search(r"db_reference_\d+", p) and not p == "__id"]
+            if "gene" in lower(label):
+                id_properties[label].extend(["ids_str", "name", "names_str"])
+            id_properties[label].append("db_references_str")
+            if "publication" in lower(label) or "citation" in lower(label):
+                id_properties[label].extend(["db_reference_0", "pmid"])
+            if label == "Uniprot_Protein":
+                id_properties[label] = list(filter(lambda p: p in ["accession", "processed_accession"], id_properties[label]))
+        with open(self.id_properties_per_node_label_path, "w") as f:
+            json.dump(id_properties, f, indent=4)
         return id_properties
 
     def get_nodes_by_label(self, label):
@@ -202,7 +222,7 @@ class Neo4jConnector:
             current_batch = []
             for u_id, n_ids in ids_dict.items():
                 if len(n_ids) > 1:
-                    kkeys_set = set()
+                    keys_set = set()
                     values_set = set()
                     
                     for k, v in kv_dict[u_id]:
@@ -315,9 +335,18 @@ class EntityResolver:
                     self.resolve_node(node.id, valid_key_values)
 
 if __name__ == "__main__":
+    # print("Sleeping for 12 minutes to allow for any necessary preparations...")
+    # time.sleep(720)
+
     preprocessinmg_time_start = time.time()
     connector = Neo4jConnector()
-    # connector.pre_process_ids()
+    with connector.driver.session() as session:
+        session.run("""MATCH (n:MergedNode)
+CALL {
+  WITH n
+  DETACH DELETE n
+} IN TRANSACTIONS OF 100000 ROWS;""")
+    connector.pre_process_ids()
     # connector.expand_array_properties()
     print(f"Preprocessing time: {time.time() - preprocessinmg_time_start:.2f} seconds")
 

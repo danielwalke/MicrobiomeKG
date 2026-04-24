@@ -1,0 +1,260 @@
+{
+  "GENE": {
+    "explanation": "Fundamental genetic units. Kept streamlined for microbial genomes.",
+    "examples": [
+      "GENE",
+      "RefSeq_Gene",
+      "DGIdb_Gene",
+      "RefSeq_PseudoGene"
+    ]
+  },
+  "DRUG": {
+    "explanation": "Pharmaceuticals and compounds, highly relevant for pharmacomicrobiomics (how microbes affect drug metabolism).",
+    "examples": [
+      "DRUG",
+      "DGIdb_Drug"
+    ]
+  },
+  "PROTEIN": {
+    "explanation": "Translated gene products and enzymes produced by the microbiome.",
+    "examples": [
+      "PROTEIN",
+      "UniProt_Protein",
+      "BRENDA_Enzyme",
+      "BRENDA_Protein",
+      "IntAct_Interactor"
+    ]
+  },
+  "TAXON": {
+    "explanation": "Crucial for microbiomes to define the specific microbial species or strain.",
+    "examples": [
+      "TAXON",
+      "UniProt_Organism",
+      "IntAct_BioSource",
+      "BRENDA_Organism"
+    ]
+  },
+  "RNA": {
+    "explanation": "Transcripts and functional RNA molecules found in prokaryotes.",
+    "examples": [
+      "RNA",
+      "RefSeq_rRNA",
+      "RefSeq_tRNA",
+      "RefSeq_antisenseRNA",
+      "RefSeq_PrimaryTranscript",
+      "RefSeq_RNasePRNA",
+      "RefSeq_mRNA",
+      "RefSeq_Transcript"
+    ]
+  },
+  "CLASSIFICATION": {
+    "explanation": "Systems to group enzyme functions or drug categories interacting with the microbiome.",
+    "examples": [
+      "BRENDA_Term",
+      "InterPro_Classification",
+      "DGIdb_Category",
+      "DiseaseOntology_Subset"
+    ]
+  },
+  "PUBLICATION": {
+    "explanation": "Scientific literature and literature references.",
+    "examples": [
+      "PUBLICATION",
+      "UniProt_Citation",
+      "InterPro_Publication",
+      "BRENDA_Publication",
+      "UniProt_Reference"
+    ]
+  },
+  "METADATA": {
+    "explanation": "Provenance, graph data tracking, and external ontology administrative nodes.",
+    "examples": [
+      "metadata",
+      "IntAct_Term",
+      "GeneOntology_SynonymType",
+      "GeneOntology_Typedef",
+      "GeneOntology_Header",
+      "RefSeq_Assembly",
+      "GeneOntology_Idspace",
+      "InterPro_DBInfo",
+      "BRENDA_Value",
+      "BRENDA_TextValue",
+      "BRENDA_NumericValue",
+      "IntAct_Source",
+      "RefSeq_SequenceAlterationArtifact",
+      "DiseaseOntology_SynonymType",
+      "DiseaseOntology_Typedef",
+      "DiseaseOntology_Header"
+    ]
+  },
+  "EXPERIMENT": {
+    "explanation": "Interaction studies and high-throughput assays.",
+    "examples": [
+      "IntAct_Experiment"
+    ]
+  },
+  "MOBILE_GENETIC_ELEMENT": {
+    "explanation": "NEW SUBCATEGORY: Crucial for microbiomes to track plasmids, phages, and transposons driving horizontal gene transfer.",
+    "examples": [
+      "RefSeq_MobileGeneticElement"
+    ]
+  },
+  "SEQUENCE_FEATURE": {
+    "explanation": "Cleaned up structural features of a genome, primarily focused on coding sequences and structural boundaries rather than regulation.",
+    "examples": [
+      "RefSeq_CDS",
+      "RefSeq_ConservedRegion",
+      "RefSeq_SequenceFeature",
+      "RefSeq_Region",
+      "RefSeq_BiologicalRegion",
+      "RefSeq_NucleotideCleavageSite",
+      "RefSeq_SequenceSecondaryStructure"
+    ]
+  },
+  "MODIFICATION": {
+    "explanation": "Chemical marks on DNA/RNA, such as microbial DNA methylation for restriction-modification systems.",
+    "examples": [
+      "RefSeq_EpigeneticallyModifiedRegion"
+    ]
+  },
+  "ALIGNMENT": {
+    "explanation": "Homology mappings, crucial for comparing microbial genomes.",
+    "examples": [
+      "RefSeq_Match",
+      "RefSeq_cDNAMatch",
+      "RefSeq_SequenceComparison"
+    ]
+  },
+  "ONTOLOGY": {
+    "explanation": "Standardized functional vocabularies.",
+    "examples": [
+      "GeneOntology_Term"
+    ]
+  },
+  "PROTEIN_DOMAIN": {
+    "explanation": "Independent folding structures predicting microbial enzyme functions.",
+    "examples": [
+      "PROTEIN_DOMAIN",
+      "InterPro_Domain",
+      "InterPro_Family",
+      "PROSITE_Rule",
+      "InterPro_HomologousSuperfamily"
+    ]
+  },
+  "PROTEIN_FEATURE": {
+    "explanation": "Specific sites on a microbial protein, such as binding pockets or active catalytic sites.",
+    "examples": [
+      "UniProt_Feature",
+      "InterPro_ConservedSite",
+      "InterPro_ActiveSite",
+      "InterPro_BindingSite",
+      "InterPro_PTM",
+      "InterPro_Repeat"
+    ]
+  },
+  "REGULATORY_ELEMENT": {
+    "explanation": "Cleaned up to focus on microbial gene control (e.g., oriC, operators, standard promoters) rather than complex eukaryotic chromatin architecture.",
+    "examples": [
+      "RefSeq_ReplicationRegulatoryRegion",
+      "RefSeq_ResponseElement",
+      "RefSeq_OriginOfReplication",
+      "RefSeq_RegulatoryRegion",
+      "RefSeq_NucleotideMotif",
+      "RefSeq_TranscriptionalCisRegulatoryRegion",
+      "RefSeq_Promoter",
+      "RefSeq_ReplicationStartSite",
+      "RefSeq_ProteinBindingSite"
+    ]
+  },
+  "CHROMOSOMAL_STRUCTURE": {
+    "explanation": "Broad physical elements of the microbial chromosome.",
+    "examples": [
+      "RefSeq_Chromosome"
+    ]
+  },
+  "GENETIC_VARIATION": {
+    "explanation": "Mutations and recombination events driving microbial evolution and strain differences.",
+    "examples": [
+      "RefSeq_RepeatInstabilityRegion",
+      "RefSeq_NonAllelicHomologousRecombinationRegion",
+      "RefSeq_RecombinationFeature",
+      "RefSeq_SequenceAlteration"
+    ]
+  },
+  "INTERACTION": {
+    "explanation": "Microbial protein-protein interactions and metabolic pathways.",
+    "examples": [
+      "IntAct_Interaction"
+    ]
+  },
+  "GENOMIC_REPEAT": {
+    "explanation": "Crucial for identifying bacterial features like CRISPR arrays and tandem repeats.",
+    "examples": [
+      "RefSeq_TandemRepeat",
+      "RefSeq_MiniSatellite",
+      "RefSeq_DirectRepeat",
+      "RefSeq_DispersedRepeat",
+      "RefSeq_MicroSatellite",
+      "RefSeq_RepeatRegion"
+    ]
+  },
+  "DISEASE": {
+    "explanation": "Human diseases, conditions, and clinical phenotypes relevant to studying host-microbiome interactions and dysbiosis.",
+    "examples": [
+      "DiseaseOntology_Term",
+      "HPRD_Disease"
+    ]
+  },
+  "UNCLASSIFIED": {
+    "explanation": "Labels that are exclusively human, eukaryotic (centromeres, introns, immune V/D/J segments), or otherwise irrelevant to a core microbiome knowledge graph.",
+    "examples": [
+      "HPO_Subset",
+      "RefSeq_telomeraseRNA",
+      "HPRD_mRNA",
+      "RefSeq_DGeneSegment",
+      "RefSeq_miRNA",
+      "HPRD_PostTranslationalModification",
+      "RefSeq_snoRNA",
+      "RefSeq_EnhancerBlockingElement",
+      "RefSeq_Silencer",
+      "RefSeq_ChromosomeBreakpoint",
+      "RefSeq_MeioticRecombinationRegion",
+      "HPO_Typedef",
+      "RefSeq_RNaseMRPRNA",
+      "HPRD_Protein",
+      "RefSeq_scaRNA",
+      "RefSeq_JGeneSegment",
+      "RefSeq_lncRNA",
+      "HPO_Header",
+      "HPRD_Domain",
+      "RefSeq_ImprintingControlRegion",
+      "RefSeq_MitoticRecombinationRegion",
+      "RefSeq_DNaseIHypersensitiveSite",
+      "HPRD_ProteinComplex",
+      "RefSeq_CAATSignal",
+      "RefSeq_CAGECluster",
+      "HPO_SynonymType",
+      "HPRD_Tissue",
+      "RefSeq_vaultRNA",
+      "RefSeq_YRNA",
+      "HPO_Idspace",
+      "RefSeq_LocusControlRegion",
+      "RefSeq_GCRichPromoterRegion",
+      "RefSeq_scRNA",
+      "HPRD_Interactor",
+      "RefSeq_snRNA",
+      "HPRD_Motif",
+      "RefSeq_CGeneSegment",
+      "RefSeq_MatrixAttachmentSite",
+      "RefSeq_Insulator",
+      "RefSeq_Enhancer",
+      "HPRD_Gene",
+      "RefSeq_Exon",
+      "RefSeq_TATABox",
+      "RefSeq_Centromere",
+      "RefSeq_VGeneSegment",
+      "HPO_Term",
+      "RefSeq_DLoop"
+    ]
+  }
+}

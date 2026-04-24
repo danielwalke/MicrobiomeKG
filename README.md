@@ -219,3 +219,11 @@ See statistics to compare against raw graph:
 ```bash
 python -m s9_kg_metrics.quant_compare
 ```
+
+
+Delete merged ndoes:
+:auto MATCH (n:MergedNode)
+CALL {
+  WITH n
+  DETACH DELETE n
+} IN TRANSACTIONS OF 100000 ROWS;
