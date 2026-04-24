@@ -21,13 +21,13 @@ class MergedRna(BaseMergedEntity):
         """Ensure Resolver sees '12345' and 'PubMed:12345' as the same string."""
         val_str = str(raw_val)
         if orm_class == HprdMrna and prop_name == "refseq_id":
-            return f"Genbank:{val_str}"
+            return f"Genbank:{val_str.split('.')[0]}"
         return val_str
 
     def preprocess(self):
         """The actual processing logic that runs inside the Integrator."""
         if self.genbank_ids:
-            self.genbank_ids = [f"Genbank:{id}" for id in self.genbank_ids if id is not None]
+            self.genbank_ids = [f"Genbank:{id.split('.')[0]}" for id in self.genbank_ids if id is not None]
         if self.rna_ids:
             self.rna_ids = [str(id) for id in self.rna_ids if id is not None]
 

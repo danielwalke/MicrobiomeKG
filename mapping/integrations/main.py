@@ -3,6 +3,7 @@ from neo4j import GraphDatabase
 from mapping.integrations.integrator import NodeIntegrator
 from mapping.integrations.publication import MergedPublication
 from mapping.integrations.gene import MergedGene
+from mapping.integrations.rna import MergedRna
 from mapping.integrations.protein_domain import MergedProteinDomain
 from mapping.integrations.entity_resolver import EntityResolver
 from mapping.integrations.connector import Neo4jConnector
@@ -12,8 +13,8 @@ connector = Neo4jConnector()
 
 # 1. Resolve matching nodes purely using the Blueprint configuration
 resolver = EntityResolver(connector)
-for blue_print_class in [ MergedGene, MergedPublication, MergedProteinDomain]:  # Add more Blueprint classes as needed
-    if blue_print_class.__label__ == "MergedGene" or blue_print_class.__label__ == "MergedPublication": continue
+for blue_print_class in [ MergedGene, MergedPublication, MergedProteinDomain, MergedRna]:  # Add more Blueprint classes as needed
+    if blue_print_class.__label__ in ["MergedProteinDomain", "MergedGene", "MergedPublication"]: continue
     resolver.process_graph(blueprint_class=blue_print_class)
 
     # 2. Run the Pydantic preprocessing and integrate them into Neo4j
