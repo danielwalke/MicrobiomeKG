@@ -19,7 +19,7 @@ class GraphComparator:
         with driver.session(fetch_size=1000) as session:
             q_nodes = """
             MATCH (n)
-            WITH n, all(l IN labels(n) WHERE l =~ '^[A-Z]+$') AS is_concept
+            WITH n, all(l IN labels(n) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/) AS is_concept
             RETURN coalesce(sum(CASE WHEN is_concept THEN 1 ELSE 0 END), 0) AS concept_nodes,
                    coalesce(sum(CASE WHEN NOT is_concept THEN 1 ELSE 0 END), 0) AS db_nodes
             """
@@ -29,7 +29,7 @@ class GraphComparator:
             print(f"  - concept_nodes: {metrics['concept_nodes']}")
             print(f"  - db_nodes: {metrics['db_nodes']}")
 
-            q_concept_ids = "MATCH (n) WHERE all(l IN labels(n) WHERE l =~ '^[A-Z]+$') RETURN elementId(n) AS id"
+            q_concept_ids = "MATCH (n) WHERE all(l IN labels(n) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/) RETURN elementId(n) AS id"
             concept_ids = self.get_node_ids(session, q_concept_ids)
 
             total_concept_degree = 0
@@ -53,7 +53,7 @@ class GraphComparator:
 
                 q_cc_edges = """
                 MATCH (n)-[r]-(m)
-                WHERE elementId(n) IN $batch_ids AND all(l IN labels(m) WHERE l =~ '^[A-Z]+$')
+                WHERE elementId(n) IN $batch_ids AND all(l IN labels(m) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/)
                 RETURN count(r) AS cc_edges
                 """
                 res = session.run(q_cc_edges, batch_ids=batch_ids).single()
@@ -77,7 +77,7 @@ class GraphComparator:
 
                 q_ed = """
                 MATCH (a)-[r]->(b)
-                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l =~ '^[A-Z]+$')
+                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/)
                 WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target
                 RETURN source + '-[' + rel + ']->' + target AS edge_type, count(*) AS count
                 """
@@ -88,7 +88,7 @@ class GraphComparator:
 
                 q_dd = """
                 MATCH (a)-[r]->(b)
-                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l =~ '^[A-Z]+$')
+                WHERE elementId(a) IN $batch_ids AND all(l IN labels(b) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/)
                 WITH coalesce(labels(a)[0], 'UNKNOWN') AS source, type(r) AS rel, coalesce(labels(b)[0], 'UNKNOWN') AS target, elementId(a) AS a_id
                 WITH source + '-[' + rel + ']->' + target AS edge_type, a_id, count(*) AS degree
                 RETURN edge_type, degree, count(a_id) AS num_nodes
@@ -150,10 +150,10 @@ class GraphComparator:
 
             q_path = """
             MATCH (a)
-            WHERE all(l IN labels(a) WHERE l =~ '^[A-Z]+$')
+            WHERE all(l IN labels(a) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/)
             WITH a ORDER BY rand() LIMIT 20
             MATCH (a)-[*1..4]-(b)
-            WHERE all(l IN labels(b) WHERE l =~ '^[A-Z]+$') AND elementId(a) < elementId(b)
+            WHERE all(l IN labels(b) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/) AND elementId(a) < elementId(b)
             WITH DISTINCT a, b LIMIT 200
             MATCH p = shortestPath((a)-[*1..4]-(b))
             RETURN coalesce(avg(length(p)), 0) AS avg_path_length

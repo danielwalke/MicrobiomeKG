@@ -1,0 +1,286 @@
+{
+    "Publication": [
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_0"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_1"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "names_str"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "name"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "omim_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_omim_id"
+        },
+        {
+            "nodelabel": "InterPro_Publication",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_Publication",
+            "attribute": "pmid"
+        },
+        {
+            "nodelabel": "PUBLICATION",
+            "attribute": "id_0"
+        },
+        {
+            "nodelabel": "PUBLICATION",
+            "attribute": "id_1"
+        },
+        {
+            "nodelabel": "PUBLICATION",
+            "attribute": "pmid"
+        },
+        {
+            "nodelabel": "UniProt_Citation",
+            "attribute": "db_reference_0"
+        }
+    ],
+    "Gene": [
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_0"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_1"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "names_str"
+        },
+        {
+            "nodelabel": "GeneOntology_Term",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "GeneOntology_Term",
+            "attribute": "name"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "name"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "omim_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_omim_id"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "protein_count"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "InterPro_BindingSite",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_BindingSite",
+            "attribute": "protein_count"
+        },
+        {
+            "nodelabel": "InterPro_BindingSite",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "InterPro_Classification",
+            "attribute": "description"
+        },
+        {
+            "nodelabel": "InterPro_Classification",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_DBInfo",
+            "attribute": "entry_count"
+        },
+        {
+            "nodelabel": "InterPro_Domain",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_Domain",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "InterPro_Family",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_Family",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "InterPro_PTM",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_PTM",
+            "attribute": "protein_count"
+        },
+        {
+            "nodelabel": "InterPro_PTM",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "UniProt_Organism",
+            "attribute": "id"
+        }
+    ],
+    "Protein": [
+        {
+            "nodelabel": "HPRD_Protein",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "HPRD_Protein",
+            "attribute": "processed_refseq_id"
+        },
+        {
+            "nodelabel": "HPRD_Protein",
+            "attribute": "refseq_id"
+        },
+        {
+            "nodelabel": "PROTEIN",
+            "attribute": "id_0"
+        },
+        {
+            "nodelabel": "UniProt_Protein",
+            "attribute": "accession"
+        },
+        {
+            "nodelabel": "UniProt_Protein",
+            "attribute": "processed_accession"
+        }
+    ],
+    "Rna": [
+        {
+            "nodelabel": "HPRD_mRNA",
+            "attribute": "processed_refseq_id"
+        },
+        {
+            "nodelabel": "HPRD_mRNA",
+            "attribute": "refseq_id"
+        },
+        {
+            "nodelabel": "RNA",
+            "attribute": "id_0"
+        }
+    ],
+    "Inter": [
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_0"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "id_1"
+        },
+        {
+            "nodelabel": "GENE",
+            "attribute": "names_str"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "name"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "omim_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_entrez_gene_id"
+        },
+        {
+            "nodelabel": "HPRD_Gene",
+            "attribute": "processed_omim_id"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "protein_count"
+        },
+        {
+            "nodelabel": "InterPro_ActiveSite",
+            "attribute": "short_name"
+        },
+        {
+            "nodelabel": "InterPro_Family",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "InterPro_Family",
+            "attribute": "short_name"
+        }
+    ],
+    "GeneOntology_Term": [
+        {
+            "nodelabel": "GeneOntology_Term",
+            "attribute": "id"
+        },
+        {
+            "nodelabel": "GeneOntology_Term",
+            "attribute": "name"
+        }
+    ]
+}

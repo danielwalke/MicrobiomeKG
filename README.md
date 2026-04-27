@@ -73,7 +73,7 @@ Start raw database:
 java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/s1_raw_graph/workspace/
 ```
 
-Extract concept nodes with MAPPED_TO connections and possible additional concept nodes:
+Extract concept nodes with MERGED_INTO connections and possible additional concept nodes:
 ```bash
 python -m s1_raw_graph.extract_possible_concepts
 ```

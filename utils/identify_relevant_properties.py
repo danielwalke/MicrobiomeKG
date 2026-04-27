@@ -77,7 +77,7 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     
     system_prompt = """
     You are an API that extracts relevant property keys for a given node label based on the provided markdown text. 
-    Extract properties that have a clear or moderate relevance to the topics discussed in the text and remove any properties that might yield redundant information. 
+    Extract any properties that have even a minor or tangential relevance to the topics discussed in the text. Only discard a property if it is completely irrelevant or entirely disconnected from the context.
     If you extract any properties, your final list must include at least one property key that represents a name or identifier to ensure the entity can be searched via the web.
     
     You must return a JSON object with a single key "properties" containing a dictionary. The keys of this dictionary must perfectly match a value from the "Property Key" column in the provided table. The values must be a short string explaining your reasoning for extracting that property.
@@ -86,7 +86,7 @@ def extract_validated_keys(markdown_content, topics, all_props, api_key, base_ur
     {
         "properties": {
             "name": "Essential identifier for web search.",
-            "sequence": "Highly relevant for sequencing analysis."
+            "sequence": "Somehow relevant for sequencing analysis."
         }
     }
     """

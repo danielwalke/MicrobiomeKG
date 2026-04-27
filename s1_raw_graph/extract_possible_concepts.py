@@ -8,7 +8,7 @@
 #     return [record["label"] for record in result]
 
 # def filter_unmapped_database_labels(session, unique_labels):
-#     query = "MATCH (n) WHERE any(label IN labels(n) WHERE label IN $labels) AND NOT (n)-[:MAPPED_TO]->() RETURN DISTINCT labels(n) AS possible_concept_labels"
+#     query = "MATCH (n) WHERE any(label IN labels(n) WHERE label IN $labels) AND NOT (n)-[:MERGED_INTO]->() RETURN DISTINCT labels(n) AS possible_concept_labels"
 #     result = session.run(query, labels=unique_labels)
     
 #     unique_flattened_labels = {label for record in result for label in record["possible_concept_labels"]}

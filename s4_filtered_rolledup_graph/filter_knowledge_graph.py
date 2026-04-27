@@ -34,12 +34,18 @@ def filter_properties(m_session, t_session):
         )
         """
         t_session.run(batch_query).consume()
+
+def edge_roll_up(t_session):
+    query = """
+    MATCH (n:UniProt_Protein)-[]-(r:UniProt_Reference)-[]-(c:UniProt_Citation)
+    apoc.create.relationship(n, 'HAS_REFERENCE', properties(r), c) YIELD rel
+    """
     
 def indirect_relationship_roll_up(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-            "MATCH (sAgg)<-[:MAPPED_TO]-(s)-[r]-(t)-[:MAPPED_TO]->(tAgg)
+            "MATCH (sAgg)<-[:MERGED_INTO]-(s)-[r]-(t)-[:MERGED_INTO]->(tAgg)
             WHERE id(sAgg) <> id(tAgg) AND id(s) <> id(sAgg) AND id(t) <> id(tAgg)
             RETURN
                 CASE WHEN id(startNode(r)) = id(s) THEN id(sAgg) ELSE id(tAgg) END AS newStartId,
@@ -63,10 +69,10 @@ def property_roll_up(t_session):
         """
         CALL apoc.periodic.iterate(
             "MATCH (sAgg)
-             WHERE ()-[:MAPPED_TO]->(sAgg)
+             WHERE ()-[:MERGED_INTO]->(sAgg)
              RETURN id(sAgg) AS sAggId",
             "MATCH (sAgg) WHERE id(sAgg) = sAggId
-             MATCH (sAgg)<-[:MAPPED_TO]-(s)
+             MATCH (sAgg)<-[:MERGED_INTO]-(s)
              UNWIND keys(properties(s)) AS key
              WITH sAgg, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
              CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
@@ -80,8 +86,8 @@ def direct_relationship_roll_up(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-            "MATCH (sAgg)<-[:MAPPED_TO]-(s)-[r]-(t)
-            WHERE id(sAgg) <> id(t) AND id(s) <> id(sAgg) AND type(r) <> 'MAPPED_TO' AND NOT (t)-[:MAPPED_TO]->()
+            "MATCH (sAgg)<-[:MERGED_INTO]-(s)-[r]-(t)
+            WHERE id(sAgg) <> id(t) AND id(s) <> id(sAgg) AND type(r) <> 'MERGED_INTO' AND NOT (t)-[:MERGED_INTO]->()
             RETURN 
                 CASE WHEN id(startNode(r)) = id(s) THEN id(sAgg) ELSE id(t) END AS newStartId,
                 CASE WHEN id(endNode(r)) = id(s) THEN id(sAgg) ELSE id(t) END AS newEndId,
@@ -104,7 +110,7 @@ def bridge_node_roll_up(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-            "MATCH (c1)<-[:MAPPED_TO]-(dbN)-[:MAPPED_TO]->(c2)
+            "MATCH (c1)<-[:MERGED_INTO]-(dbN)-[:MERGED_INTO]->(c2)
              WHERE id(c1) < id(c2)
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
@@ -114,11 +120,11 @@ def bridge_node_roll_up(t_session):
         """
     ).consume()
 
-def delete_all_source_nodes_of_mapped_to(t_session):
+def delete_all_source_nodes_of_MERGED_INTO(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-            "MATCH (n)-[:MAPPED_TO]->()
+            "MATCH (n)-[:MERGED_INTO]->()
              RETURN DISTINCT n",
             "DETACH DELETE n",
             {batchSize: 10000, parallel: false}
@@ -135,11 +141,13 @@ def remove_items(main_list, items_to_remove):
 def run_migration(metagraph_driver, target_driver):
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
         filter_properties(m_session, t_session)
+        ##TODO Test this:
+        edge_roll_up(t_session)
         property_roll_up(t_session)
         indirect_relationship_roll_up(t_session)
         direct_relationship_roll_up(t_session)
         bridge_node_roll_up(t_session)
-        delete_all_source_nodes_of_mapped_to(t_session)
+        delete_all_source_nodes_of_MERGED_INTO(t_session)
 
     target_driver.close()
     metagraph_driver.close()

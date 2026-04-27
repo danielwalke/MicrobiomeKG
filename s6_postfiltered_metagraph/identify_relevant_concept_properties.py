@@ -9,7 +9,9 @@ if __name__ == "__main__":
     user = "neo4j"
     password = "test"       
     schema_dict_md = extract_schema_with_samples_md(port, user, password, only_concept_nodes = True)
+    print(schema_dict_md)
     json_schema = extract_json(port, user, password) 
+    os.makedirs(os.path.expanduser("~/git/MicrobiomeKG/config/s6_postfiltered_metagraph/"), exist_ok=True)
     output_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s6_postfiltered_metagraph/interesting_concept_properties.json")
     output_removed_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s6_postfiltered_metagraph/removed_concept_properties.json")
     extract_relevant_properties_as_json(schema_dict_md, json_schema, output_file=output_file_path, output_removed_file=output_removed_file_path)

@@ -1,0 +1,1182 @@
+{
+    "GeneOntology_Subset": [
+        "__id"
+    ],
+    "InterPro_DBInfo": [
+        "__id",
+        "file_date"
+    ],
+    "PROTEIN": [
+        "__id",
+        "__mapped"
+    ],
+    "InterPro_HomologousSuperfamily": [
+        "__id",
+        "short_name",
+        "external_docs",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_PTM": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species_protein_counts"
+    ],
+    "GeneOntology_Term": [
+        "__id",
+        "xrefs",
+        "subsets",
+        "creation_date",
+        "alt_ids",
+        "comment",
+        "obsolete",
+        "property_values",
+        "created_by"
+    ],
+    "InterPro_ActiveSite": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "ENZYME_Protein": [
+        "__id"
+    ],
+    "InterPro_Classification": [
+        "__id",
+        "type",
+        "category"
+    ],
+    "InterPro_Domain": [
+        "__id",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_Repeat": [
+        "__id",
+        "short_name",
+        "key_species_protein_counts",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "InterPro_BindingSite": [
+        "__id",
+        "protein_count",
+        "short_name",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names",
+        "members",
+        "key_species",
+        "key_species_protein_counts"
+    ],
+    "InterPro_Family": [
+        "__id",
+        "short_name",
+        "members",
+        "key_species_protein_counts",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "InterPro_Publication": [
+        "__id",
+        "id",
+        "issue",
+        "pages",
+        "volume"
+    ],
+    "GeneOntology_Idspace": [
+        "__id",
+        "iri"
+    ],
+    "TERM": [
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "GeneOntology_Typedef": [
+        "__id",
+        "is_class_level",
+        "is_transitive",
+        "is_metadata_tag",
+        "namespace"
+    ],
+    "GeneOntology_Header": [
+        "__id",
+        "property_values",
+        "format_version"
+    ],
+    "ENZYME_Enzyme": [
+        "__id",
+        "comments",
+        "alternative_names"
+    ],
+    "PUBLICATION": [
+        "__id",
+        "names",
+        "__mapped"
+    ],
+    "PTM": [
+        "__id",
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "metadata": [
+        "__id",
+        "license",
+        "datasource_id",
+        "export_version",
+        "export_properties_hash",
+        "type",
+        "datasource_oai_id",
+        "version",
+        "license_url"
+    ],
+    "PROTEIN_DOMAIN": [
+        "__id",
+        "names",
+        "__mapped",
+        "ids"
+    ],
+    "InterPro_ConservedSite": [
+        "__id",
+        "short_name",
+        "members",
+        "key_species_protein_counts",
+        "external_docs",
+        "key_species_ncbi_taxids",
+        "members_protein_counts",
+        "members_names"
+    ],
+    "GeneOntology_SynonymType": [
+        "__id",
+        "description",
+        "id",
+        "scope"
+    ],
+    "FAMILY": [
+        "__id",
+        "__mapped"
+    ],
+    "METADATA": [
+        "__id",
+        "__mapped"
+    ],
+    "ENZYME": [
+        "__id",
+        "__mapped"
+    ],
+    "HOMOLOGOUSSUPERFAMILY": [
+        "__id",
+        "__mapped"
+    ],
+    "CMAUP_Plant": [
+        "genus_tax_id",
+        "species_name",
+        "__id",
+        "family_tax_id",
+        "family_name",
+        "genus_name"
+    ],
+    "DRUG": [
+        "__id",
+        "__mapped"
+    ],
+    "ClinicalTrials.gov_Group": [
+        "__id"
+    ],
+    "HPO_Subset": [
+        "__id"
+    ],
+    "RNA": [
+        "__id",
+        "names",
+        "__mapped"
+    ],
+    "DiseaseOntology_Subset": [
+        "__id"
+    ],
+    "TAXON": [
+        "__id",
+        "__mapped"
+    ],
+    "DiseaseOntology_SynonymType": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Document": [
+        "__id",
+        "has_protocol",
+        "has_sap",
+        "has_icf"
+    ],
+    "OUTCOME": [
+        "__mapped"
+    ],
+    "INTERVENTION": [
+        "__id",
+        "__mapped"
+    ],
+    "LOCATION": [
+        "__id",
+        "__mapped"
+    ],
+    "DiseaseOntology_Term": [
+        "__id",
+        "subsets",
+        "created_by",
+        "comment",
+        "creation_date",
+        "alt_ids",
+        "property_values"
+    ],
+    "HPO_Term": [
+        "__id",
+        "subsets",
+        "alt_ids",
+        "comment",
+        "property_values"
+    ],
+    "HPO_Idspace": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Milestone": [],
+    "ClinicalTrials.gov_Person": [
+        "__id"
+    ],
+    "HPO_SynonymType": [
+        "description"
+    ],
+    "ClinicalTrials.gov_ArmGroup": [
+        "type"
+    ],
+    "ClinicalTrials.gov_ParticipantFlow": [],
+    "ClinicalTrials.gov_Reference": [
+        "__id"
+    ],
+    "ClinicalTrials.gov_Intervention": [
+        "__id",
+        "description",
+        "arm_group_label"
+    ],
+    "ClinicalTrials.gov_Sponsor": [
+        "__id"
+    ],
+    "DiseaseOntology_Typedef": [
+        "__id",
+        "name"
+    ],
+    "DGIdb_Gene": [
+        "__id",
+        "name",
+        "gene_name",
+        "primary_gene_name",
+        "ncbi_gene_name",
+        "sources",
+        "ensembl_gene_id"
+    ],
+    "COMPOUND": [
+        "__id",
+        "__mapped"
+    ],
+    "CMAUP_Target": [
+        "__id",
+        "id",
+        "target_class_level_displayed",
+        "target_class_level1",
+        "is_cyp",
+        "target_class_level2",
+        "target_class_level3",
+        "is_dtp"
+    ],
+    "DGIdb_Category": [],
+    "DGIdb_Drug": [
+        "__id",
+        "primary_name",
+        "primary_drug_name",
+        "drugs_at_fda_id",
+        "primary_drug_names",
+        "primary_names",
+        "drugs_at_fda_ids"
+    ],
+    "CLINICAL_TRIAL": [
+        "__id",
+        "__mapped"
+    ],
+    "CMAUP_Ingredient": [
+        "__id",
+        "id",
+        "rings",
+        "nhd",
+        "inchi",
+        "iupac_name",
+        "logp",
+        "logs",
+        "tpsa",
+        "smiles",
+        "rotatable_bonds",
+        "logd",
+        "nha"
+    ],
+    "DISEASES_Disease": [
+        "__id"
+    ],
+    "DISEASE": [
+        "__id",
+        "__mapped"
+    ],
+    "GENE": [
+        "__id",
+        "__mapped"
+    ],
+    "HPO_Typedef": [
+        "__id"
+    ],
+    "DISEASES_Gene": [
+        "__id"
+    ],
+    "DiseaseOntology_Header": [
+        "default_namespace",
+        "remarks",
+        "format_version",
+        "property_values",
+        "saved_by"
+    ],
+    "HPO_Header": [
+        "default_namespace",
+        "format_version",
+        "remarks"
+    ],
+    "ClinicalTrials_gov_Group": [
+        "__id",
+        "id"
+    ],
+    "ClinicalTrials_gov_Document": [
+        "__id",
+        "has_protocol",
+        "has_sap",
+        "has_icf"
+    ],
+    "ClinicalTrials_gov_Period": [],
+    "ClinicalTrials_gov_ClinicalResults": [
+        "certain_agreements_pi_employee",
+        "point_of_contact_name_or_title",
+        "certain_agreements_restrictive_agreement"
+    ],
+    "ClinicalTrials_gov_Location": [
+        "__id",
+        "facility_address_state",
+        "facility_address_zip",
+        "facility_address_country"
+    ],
+    "ClinicalTrials_gov_Trial": [
+        "__id",
+        "intervention_model_description",
+        "eligibility_gender_based",
+        "last_update_posted_type",
+        "has_expanded_access",
+        "primary_purpose",
+        "study_first_submitted_qc",
+        "eligibility_healthy_volunteers",
+        "results_first_posted",
+        "disposition_first_submitted",
+        "biospecimen_retention",
+        "brief_title",
+        "study_first_posted",
+        "eligibility_sampling_method",
+        "keywords",
+        "conditions",
+        "brief_summary",
+        "results_first_submitted",
+        "is_ppsd",
+        "download_date",
+        "acronym",
+        "eligibility_gender_description",
+        "eligibility_minimum_age",
+        "expanded_access_type_individual",
+        "eligibility_study_population",
+        "has_dmc",
+        "eligibility_maximum_age",
+        "eligibility_gender",
+        "enrollment_type",
+        "start_date",
+        "org_study_id",
+        "start_date_type",
+        "location_countries",
+        "last_update_submitted",
+        "completion_date",
+        "secondary_ids",
+        "time_perspective",
+        "links",
+        "disposition_first_posted",
+        "completion_date_type",
+        "why_stopped",
+        "allocation",
+        "eligibility_criteria",
+        "primary_completion_date",
+        "last_known_status",
+        "ipd_time_frame",
+        "pending_results_submission_canceled",
+        "ipd_access_criteria",
+        "disposition_first_posted_type",
+        "is_us_export",
+        "masking_description",
+        "last_update_posted",
+        "link_text",
+        "nct_aliases",
+        "study_first_submitted",
+        "results_first_posted_type",
+        "pending_results_returned",
+        "number_of_arms",
+        "observational_model",
+        "pending_results_submitted",
+        "overall_status",
+        "is_fda_regulated_device",
+        "intervention_model",
+        "verification_date",
+        "results_first_submitted_qc",
+        "is_fda_regulated_drug",
+        "study_first_posted_type",
+        "enrollment",
+        "masking",
+        "primary_completion_date_type",
+        "number_of_groups",
+        "study_type",
+        "ipd_description",
+        "last_update_submitted_qc",
+        "expanded_access_type_treatment",
+        "target_duration",
+        "disposition_first_submitted_qc",
+        "ipd_info_type",
+        "sharing_ipd",
+        "is_unapproved_device",
+        "ipd_url",
+        "expanded_access_type_intermediate"
+    ],
+    "ClinicalTrials_gov_Outcome": [],
+    "ClinicalTrials_gov_Sponsor": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_Intervention": [
+        "__id",
+        "arm_group_label"
+    ],
+    "ClinicalTrials_gov_Reference": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_ParticipantFlow": [],
+    "ClinicalTrials_gov_ArmGroup": [
+        "type"
+    ],
+    "ClinicalTrials_gov_Person": [
+        "__id"
+    ],
+    "ClinicalTrials_gov_Milestone": [],
+    "RefSeq_Match": [
+        "blast_score",
+        "filter_score",
+        "matched_bases",
+        "common_component",
+        "weighted_identity",
+        "assembly_bases_seq",
+        "for_remapping",
+        "assembly_bases_aln",
+        "__id",
+        "pct_coverage_hiqual",
+        "matchable_bases",
+        "num_mismatch",
+        "rank",
+        "hsp_percent_coverage",
+        "id",
+        "num_ident",
+        "pct_identity_gapopen_only",
+        "pct_identity_gap",
+        "lxr_locacc_currstat_120",
+        "not_for_annotation",
+        "target",
+        "merge_aligner",
+        "lxr_locacc_currstat_35",
+        "gap",
+        "blast_aligner",
+        "gap_count"
+    ],
+    "RefSeq_ReplicationRegulatoryRegion": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "IntAct_Experiment": [
+        "__id",
+        "secondary_xref",
+        "attributes"
+    ],
+    "BRENDA_Term": [
+        "__id",
+        "__is_proxy"
+    ],
+    "BRENDA_Enzyme": [
+        "__id",
+        "history",
+        "systematic_name"
+    ],
+    "RefSeq_telomeraseRNA": [
+        "__id",
+        "id"
+    ],
+    "UniProt_Protein": [
+        "__id",
+        "names",
+        "version",
+        "keyword_ids",
+        "protein_recommended_name_short",
+        "modified",
+        "sequence_precursor",
+        "sequence_checksum",
+        "created",
+        "sequence_version",
+        "sequence_modified",
+        "secondary_accessions"
+    ],
+    "HPRD_mRNA": [
+        "__id"
+    ],
+    "RefSeq_DGeneSegment": [
+        "__id",
+        "id",
+        "standard_name"
+    ],
+    "RefSeq_miRNA": [
+        "__id",
+        "gbkey"
+    ],
+    "IntAct_Interactor": [
+        "__id",
+        "type_alias",
+        "attributes",
+        "type_primary_xref",
+        "type_secondary_xref",
+        "type_full_name",
+        "short_label",
+        "type_short_label"
+    ],
+    "HPRD_PostTranslationalModification": [
+        "__id"
+    ],
+    "RefSeq_snoRNA": [
+        "__id",
+        "id",
+        "gbkey",
+        "inference",
+        "xrefs",
+        "note"
+    ],
+    "RefSeq_EnhancerBlockingElement": [
+        "__id",
+        "regulatory_class",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_EpigeneticallyModifiedRegion": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "RefSeq_Silencer": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "RefSeq_ChromosomeBreakpoint": [
+        "__id",
+        "recombination_class",
+        "gbkey"
+    ],
+    "RefSeq_MeioticRecombinationRegion": [
+        "__id",
+        "recombination_class",
+        "gbkey"
+    ],
+    "RefSeq_RNaseMRPRNA": [
+        "__id",
+        "id",
+        "tag"
+    ],
+    "RefSeq_NucleotideCleavageSite": [
+        "__id",
+        "feat_class",
+        "gbkey"
+    ],
+    "HPRD_Protein": [
+        "__id",
+        "id",
+        "length"
+    ],
+    "RefSeq_TandemRepeat": [
+        "__id",
+        "rpt_type",
+        "gbkey"
+    ],
+    "IntAct_BioSource": [
+        "__id",
+        "tissue_short_label",
+        "cell_type_secondary_xref",
+        "tissue_attributes",
+        "tissue_primary_xref",
+        "cell_type_short_label",
+        "tissue_secondary_xref",
+        "full_name",
+        "tissue_alias",
+        "cell_type_alias",
+        "alias",
+        "short_label"
+    ],
+    "RefSeq_ProteinBindingSite": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_scaRNA": [
+        "__id",
+        "id",
+        "inference",
+        "xrefs",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_JGeneSegment": [
+        "__id",
+        "standard_name",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_Gene": [
+        "__id",
+        "id",
+        "partial",
+        "gbkey",
+        "gene",
+        "exception"
+    ],
+    "RefSeq_lncRNA": [
+        "__id",
+        "id",
+        "partial",
+        "end_range",
+        "pseudo",
+        "gbkey",
+        "inference",
+        "xrefs",
+        "tag",
+        "start_range",
+        "exception",
+        "experiment",
+        "note"
+    ],
+    "UniProt_Organism": [
+        "__id",
+        "common_names",
+        "synonym_names"
+    ],
+    "RefSeq_RepeatInstabilityRegion": [
+        "__id",
+        "id",
+        "feat_class",
+        "gbkey"
+    ],
+    "IntAct_Interaction": [
+        "__id",
+        "intra_molecular"
+    ],
+    "HPRD_Domain": [
+        "__id"
+    ],
+    "RefSeq_ImprintingControlRegion": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_MitoticRecombinationRegion": [
+        "__id",
+        "recombination_class",
+        "gbkey"
+    ],
+    "RefSeq_SequenceAlterationArtifact": [
+        "__id",
+        "name",
+        "gbkey"
+    ],
+    "IntAct_Term": [
+        "__id",
+        "__is_proxy"
+    ],
+    "RefSeq_DNaseIHypersensitiveSite": [
+        "__id",
+        "regulatory_class",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_ResponseElement": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "HPRD_ProteinComplex": [
+        "__id"
+    ],
+    "RefSeq_CAATSignal": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_NonAllelicHomologousRecombinationRegion": [
+        "__id",
+        "id",
+        "partial",
+        "recombination_class",
+        "gbkey"
+    ],
+    "RefSeq_CAGECluster": [
+        "__id",
+        "feat_class",
+        "gbkey"
+    ],
+    "IntAct_Source": [
+        "__id",
+        "alias",
+        "release_date"
+    ],
+    "UniProt_Feature": [
+        "__id",
+        "location_position"
+    ],
+    "HPRD_Tissue": [
+        "__id"
+    ],
+    "BRENDA_TextValue": [
+        "__id"
+    ],
+    "RefSeq_vaultRNA": [
+        "__id",
+        "id",
+        "gbkey"
+    ],
+    "RefSeq_YRNA": [
+        "__id",
+        "id",
+        "xrefs",
+        "gbkey"
+    ],
+    "RefSeq_MobileGeneticElement": [
+        "__id",
+        "rpt_family",
+        "rpt_type",
+        "mge_id",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_Chromosome": [
+        "__id",
+        "name",
+        "source",
+        "type"
+    ],
+    "BRENDA_NumericValue": [
+        "__id",
+        "max_value",
+        "min_value"
+    ],
+    "RefSeq_ReplicationStartSite": [
+        "__id",
+        "feat_class",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_SequenceSecondaryStructure": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_LocusControlRegion": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_GCRichPromoterRegion": [
+        "__id",
+        "gbkey",
+        "note"
+    ],
+    "UniProt_Citation": [
+        "__id",
+        "volume",
+        "locator",
+        "editors",
+        "publisher",
+        "pages",
+        "city",
+        "number",
+        "institute",
+        "country"
+    ],
+    "RefSeq_MiniSatellite": [
+        "__id",
+        "rpt_type",
+        "gbkey",
+        "satellite"
+    ],
+    "RefSeq_RecombinationFeature": [
+        "__id",
+        "gbkey",
+        "refseq_feature_id"
+    ],
+    "RefSeq_scRNA": [
+        "__id",
+        "id",
+        "gbkey"
+    ],
+    "RefSeq_DirectRepeat": [
+        "__id",
+        "rpt_type",
+        "gbkey"
+    ],
+    "RefSeq_PrimaryTranscript": [
+        "__id",
+        "id",
+        "inference",
+        "exception",
+        "gbkey"
+    ],
+    "HPRD_Interactor": [
+        "__id"
+    ],
+    "RefSeq_SequenceComparison": [
+        "__id",
+        "feat_class",
+        "gbkey"
+    ],
+    "RefSeq_snRNA": [
+        "__id",
+        "id",
+        "gbkey",
+        "xrefs",
+        "tag",
+        "exception",
+        "note"
+    ],
+    "RefSeq_CDS": [
+        "__id",
+        "id",
+        "partial",
+        "end_range",
+        "pseudo",
+        "gbkey",
+        "protein_id",
+        "tag",
+        "transl_except",
+        "start_range",
+        "exception",
+        "note"
+    ],
+    "RefSeq_tRNA": [
+        "__id",
+        "inference",
+        "gbkey",
+        "codons",
+        "note"
+    ],
+    "RefSeq_DispersedRepeat": [
+        "__id",
+        "rpt_type",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_PseudoGene": [
+        "__id",
+        "id",
+        "partial",
+        "end_range",
+        "gbkey",
+        "gene",
+        "start_range",
+        "note"
+    ],
+    "PROSITE_Rule": [
+        "__id"
+    ],
+    "RefSeq_ConservedRegion": [
+        "__id",
+        "feat_class",
+        "gbkey"
+    ],
+    "HPRD_Motif": [
+        "__id"
+    ],
+    "RefSeq_SequenceFeature": [
+        "__id",
+        "feat_class",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_MicroSatellite": [
+        "__id",
+        "rpt_type",
+        "gbkey",
+        "satellite"
+    ],
+    "BRENDA_Protein": [
+        "__id"
+    ],
+    "UniProt_Reference": [
+        "key"
+    ],
+    "RefSeq_Region": [
+        "__id",
+        "rpt_type"
+    ],
+    "RefSeq_CGeneSegment": [
+        "__id",
+        "id",
+        "standard_name",
+        "gbkey"
+    ],
+    "RefSeq_antisenseRNA": [
+        "__id",
+        "id",
+        "xrefs",
+        "gbkey"
+    ],
+    "RefSeq_Assembly": [
+        "__id"
+    ],
+    "RefSeq_MatrixAttachmentSite": [
+        "__id",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_RepeatRegion": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_Insulator": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "RefSeq_OriginOfReplication": [
+        "__id",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_RegulatoryRegion": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_Enhancer": [
+        "__id",
+        "partial",
+        "end_range",
+        "regulatory_class",
+        "gbkey",
+        "start_range"
+    ],
+    "HPRD_Gene": [
+        "__id",
+        "id",
+        "omim_id"
+    ],
+    "HPRD_Disease": [
+        "__id"
+    ],
+    "RefSeq_NucleotideMotif": [
+        "__id",
+        "partial",
+        "allele",
+        "feat_class",
+        "gbkey"
+    ],
+    "RefSeq_TranscriptionalCisRegulatoryRegion": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "RefSeq_rRNA": [
+        "__id",
+        "id",
+        "inference",
+        "product",
+        "exception",
+        "gbkey"
+    ],
+    "RefSeq_Exon": [
+        "__id",
+        "partial",
+        "anticodon",
+        "codons",
+        "number",
+        "experiment",
+        "note",
+        "gbkey",
+        "exception"
+    ],
+    "RefSeq_TATABox": [
+        "__id",
+        "regulatory_class",
+        "gbkey"
+    ],
+    "RefSeq_Promoter": [
+        "__id",
+        "partial",
+        "end_range",
+        "regulatory_class",
+        "gbkey",
+        "note"
+    ],
+    "RefSeq_BiologicalRegion": [
+        "__id",
+        "partial",
+        "end_range",
+        "name",
+        "start_range",
+        "gbkey"
+    ],
+    "RefSeq_Centromere": [
+        "__id",
+        "gbkey"
+    ],
+    "RefSeq_cDNAMatch": [
+        "weighted_identity",
+        "assembly_bases_seq",
+        "for_remapping",
+        "assembly_bases_aln",
+        "__id",
+        "pct_coverage_hiqual",
+        "num_mismatch",
+        "rank",
+        "id",
+        "num_ident",
+        "pct_identity_gap",
+        "lxr_locacc_currstat_120",
+        "exon_identity",
+        "identity",
+        "product_coverage",
+        "batch_id",
+        "gap_count",
+        "matches",
+        "crc32",
+        "consensus_splices",
+        "target",
+        "align_id",
+        "gap",
+        "idty",
+        "curated_alignment"
+    ],
+    "BRENDA_Publication": [
+        "__id",
+        "volume",
+        "authors",
+        "journal",
+        "pages"
+    ],
+    "BRENDA_Organism": [],
+    "RefSeq_Transcript": [
+        "__id",
+        "id",
+        "partial",
+        "gbkey",
+        "inference",
+        "tag",
+        "exception",
+        "note"
+    ],
+    "BRENDA_Value": [],
+    "RefSeq_SequenceAlteration": [
+        "__id",
+        "id",
+        "xrefs",
+        "feat_class",
+        "gbkey"
+    ],
+    "RefSeq_VGeneSegment": [
+        "__id",
+        "id",
+        "partial",
+        "gbkey",
+        "start_range",
+        "exception",
+        "experiment",
+        "note"
+    ],
+    "RefSeq_RNasePRNA": [
+        "__id",
+        "id",
+        "gbkey"
+    ],
+    "RefSeq_mRNA": [
+        "__id",
+        "id",
+        "partial",
+        "end_range",
+        "inference",
+        "tag",
+        "experiment",
+        "note",
+        "gbkey",
+        "start_range",
+        "exception"
+    ],
+    "RefSeq_DLoop": [
+        "__id"
+    ],
+    "ALIGNMENT": [
+        "search_ids",
+        "ids"
+    ],
+    "REGULATORY_ELEMENT": [
+        "search_ids",
+        "ids"
+    ],
+    "EXPERIMENT": [
+        "search_names",
+        "search_ids",
+        "ids"
+    ],
+    "CLASSIFICATION": [
+        "search_ids",
+        "ids"
+    ],
+    "INTERACTION": [
+        "search_ids",
+        "ids"
+    ],
+    "PROTEIN_FEATURE": [
+        "search_names",
+        "search_ids",
+        "ids"
+    ],
+    "MergedPublication": [],
+    "MergedGene": [],
+    "MergedProteinDomain": [],
+    "MergedRna": [],
+    "MergedProtein": [],
+    "MergedTaxon": [],
+    "MergedTerm": [],
+    "MergedDisease": [],
+    "MergedTissue": [],
+    "MergedPTM": []
+}

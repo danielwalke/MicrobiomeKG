@@ -5,7 +5,7 @@ def delete_database_nodes(t_session):
     labels_result = t_session.run(
         """
         CALL db.labels() YIELD label
-        WHERE NOT label =~ '^[A-Z]+$'
+        WHERE NOT label CONTAINS('Merged') /*=~ '^[A-Z]+$'*/
         RETURN label AS lbl
         """
     ).data()
@@ -40,7 +40,7 @@ def delete_database_nodes(t_session):
     t_session.run(
         """
         CALL apoc.periodic.iterate(
-        "MATCH (n) WHERE size(labels(n)) = 0 OR NOT all(l IN labels(n) WHERE l =~ '^[A-Z]+$') RETURN n",
+        "MATCH (n) WHERE size(labels(n)) = 0 OR NOT all(l IN labels(n) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/) RETURN n",
         "DETACH DELETE n",
         {batchSize: 10000, parallel: false}
         )

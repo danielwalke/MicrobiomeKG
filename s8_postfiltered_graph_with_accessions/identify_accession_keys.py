@@ -141,7 +141,7 @@ def extract_accessions_for_label(label, markdown_content, json_schema_list, api_
     system_prompt = """
     You are an API that identifies the best primary and secondary accession properties for a database node based on its markdown schema.
     
-    1. primary_accession: A single property that uniquely identifies the node. If the chosen property is an Array type, provide the integer index of the element to use. If it is not an Array, index must be null. Include your reasoning. Choose string types over integers where possible.
+    1. primary_accession: A single property that identifies the node (e.g.,  a gene name or specific identifier). If the chosen property is an Array type, provide the integer index of the element to use. If it is not an Array, index must be null. Include your reasoning. Choose string types over integers where possible.
     2. secondary_accessions: A list of property keys that, when concatenated, provide a secondary unique identifier. Include your reasoning for this combination.
     
     Return a JSON object strictly matching this format:

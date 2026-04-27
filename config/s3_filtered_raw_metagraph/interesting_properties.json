@@ -1,0 +1,1084 @@
+{
+    "GeneOntology_Subset": {
+        "id": "Essential identifier for web search and linking to specific Gene Ontology subsets.",
+        "description": "Provides context about the purpose and usage of the Gene Ontology subset, relevant for proteome and metaproteome research."
+    },
+    "InterPro_DBInfo": {
+        "name": "Essential identifier for web search and database identification.",
+        "version": "Relevant for tracking database updates and compatibility with analysis tools.",
+        "entry_count": "Indicates database size and scope, important for proteome and metaproteome research context."
+    },
+    "PROTEIN": {
+        "names": "Essential identifier for web search and protein identification across species.",
+        "ids": "Critical for linking to external databases like UniProtKB for detailed protein information."
+    },
+    "InterPro_HomologousSuperfamily": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Critical for understanding the functional and structural context of the homologous superfamily.",
+        "protein_count": "Relevant for quantifying the prevalence of the superfamily across proteomes.",
+        "structure_db_links": "Important for structural analysis and linking to 3D protein structures in PDB."
+    },
+    "InterPro_PTM": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Describes the specific post-translational modification site, crucial for understanding functional aspects in proteome and metaproteome research.",
+        "external_docs": "Links to external documentation like PROSITE and REACTOME, which are important for literature research and pathway analysis.",
+        "structure_db_links": "Provides links to PDB structures, essential for structural analysis in proteome studies.",
+        "key_species": "Indicates key species where the PTM is observed, relevant for microbiome and cross-species comparative studies."
+    },
+    "GeneOntology_Term": {
+        "id": "Essential identifier for web search and cross-referencing with GO database.",
+        "name": "Essential identifier for web search and understanding the biological function or process.",
+        "def": "Provides detailed definition of the term, crucial for understanding its role in proteome, metaproteome, and microbiome research.",
+        "namespace": "Indicates whether the term is related to biological process, molecular function, or cellular component, which is relevant for categorizing research data."
+    },
+    "InterPro_ActiveSite": {
+        "id": "Essential identifier for web search and database reference.",
+        "name": "Critical for understanding the active site function and relevant to proteome and metaproteome research.",
+        "external_docs": "Provides links to external databases like EC numbers and Reactome pathways, important for literature and sequencing analysis.",
+        "structure_db_links": "Links to PDB structures which are crucial for structural analysis in proteome research."
+    },
+    "ENZYME_Protein": {
+        "name": "Essential identifier for web search and protein identification.",
+        "accession": "Highly relevant for protein database lookup and sequencing analysis."
+    },
+    "InterPro_Classification": {
+        "id": "Essential identifier for web search and linking to external databases like Gene Ontology.",
+        "description": "Highly relevant for understanding the functional and biological context of the classification."
+    },
+    "InterPro_Domain": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding domain function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand domain prevalence.",
+        "structure_db_links": "Highly relevant for structural analysis and linking to PDB for 3D structure studies.",
+        "external_docs": "Important for literature research and cross-referencing with other databases like REACTOME and PROSITE."
+    },
+    "InterPro_Repeat": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding the biological function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand the prevalence of the repeat across proteins.",
+        "structure_db_links": "Highly relevant for structural analysis and linking to PDB entries for 3D structure studies.",
+        "members": "Important for understanding associated protein families and domains from databases like PFAM and PROSITE.",
+        "key_species": "Relevant for microbiome and species-specific research to identify organisms where the repeat is prevalent.",
+        "external_docs": "Useful for linking to external documentation and pathways in databases like REACTOME."
+    },
+    "InterPro_BindingSite": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Critical for understanding the functional role of the binding site in proteome and metaproteome research.",
+        "structure_db_links": "Highly relevant for structural analysis in sequencing and proteome studies, linking to PDB entries for 3D structure exploration.",
+        "external_docs": "Important for connecting to external databases like EC numbers and Reactome pathways, supporting literature and treatment research."
+    },
+    "InterPro_Family": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Essential identifier for web search and understanding the family's biological function.",
+        "protein_count": "Relevant for proteome and metaproteome research to understand the scale of protein representation.",
+        "structure_db_links": "Highly relevant for structural analysis in proteome research, linking to PDB entries for 3D structures.",
+        "key_species": "Important for microbiome and proteome research to identify species where this family is prominent.",
+        "external_docs": "Relevant for literature research, providing links to Reactome and PROSITE documentation for functional context."
+    },
+    "InterPro_Publication": {
+        "pmid": "Essential identifier for linking to PubMed and associated literature research.",
+        "title": "Highly relevant for understanding the content and context of the publication in proteome and metaproteome research.",
+        "journal": "Important for categorizing the type of research and credibility of the source.",
+        "year": "Crucial for tracking the timeline of research developments in sequencing analysis and treatments.",
+        "authors": "Key for identifying contributors to specific studies in microbiome and proteome research."
+    },
+    "GeneOntology_Idspace": {
+        "id": "Essential identifier for web search and linking to external databases like KEGG, MetaCyc, and Reactome which are relevant to proteome and metaproteome research."
+    },
+    "TERM": {
+        "__id": "Essential identifier for web search and unique term reference in databases like Gene Ontology."
+    },
+    "GeneOntology_Typedef": {
+        "id": "Essential identifier for web search and unique reference to Gene Ontology terms.",
+        "name": "Provides human-readable label for the relationship type, important for understanding context in proteome and metaproteome research.",
+        "xrefs": "Contains cross-references to other ontologies (e.g., RO, BFO), which are critical for integrating knowledge across biological domains like microbiome and sequencing analysis."
+    },
+    "GeneOntology_Header": {
+        "ontology": "Essential identifier for the type of ontology, crucial for categorizing and searching within proteome and metaproteome research contexts.",
+        "default_namespace": "Provides context about the namespace used in the ontology, which is important for understanding the scope and structure of the Gene Ontology data relevant to microbiome and proteome studies.",
+        "data_version": "Indicates the version of the data, which is critical for ensuring up-to-date sequencing analysis and reproducibility in research."
+    },
+    "ENZYME_Enzyme": {
+        "id": "Essential identifier for enzyme classification and web search.",
+        "official_name": "Primary name for enzyme identification and relevance to proteome research.",
+        "catalyticActivities": "Directly relevant to enzyme function and sequencing analysis in proteome studies."
+    },
+    "PUBLICATION": {
+        "pmid": "Essential identifier for web search and linking to PubMed literature.",
+        "ids": "Contains PMID identifiers which are crucial for referencing specific publications in proteome, metaproteome, and microbiome research."
+    },
+    "PTM": {},
+    "metadata": {},
+    "PROTEIN_DOMAIN": {},
+    "InterPro_ConservedSite": {
+        "id": "Essential identifier for web search and database referencing.",
+        "name": "Provides descriptive information about the conserved site, relevant for understanding its biological function.",
+        "protein_count": "Indicates the number of proteins associated with the conserved site, important for proteome analysis.",
+        "structure_db_links": "Links to structural databases like PDB, crucial for structural biology and sequencing analysis.",
+        "key_species": "Lists key species where the conserved site is found, relevant for microbiome and metaproteome research."
+    },
+    "GeneOntology_SynonymType": {},
+    "FAMILY": {
+        "names": "Essential identifier for web search and distinguishing family entities in proteome, metaproteome, and microbiome research.",
+        "ids": "Provides unique identifiers for cross-referencing with literature, sequencing data, or treatment databases."
+    },
+    "METADATA": {
+        "names": "Essential identifier for web search and distinguishing metadata entries, especially in literature and dataset references.",
+        "ids": "Critical for linking metadata to specific datasets, studies, or external databases in proteome, metaproteome, and microbiome research."
+    },
+    "ENZYME": {
+        "names": "Essential identifier for web search and literature research, as enzyme names are critical for referencing and querying in proteome and metaproteome studies.",
+        "ids": "Useful for linking to external databases and sequencing analysis, ensuring traceability and integration with other datasets."
+    },
+    "HOMOLOGOUSSUPERFAMILY": {
+        "names": "Essential identifier for web search and linking to proteome/metaproteome research. Provides human-readable labels for homologous superfamilies, which are critical in comparative sequence analysis and functional annotation.",
+        "ids": "Moderately relevant for cross-referencing with external databases (e.g., Pfam, InterPro) or literature, enabling integration with sequencing analysis and treatment studies."
+    },
+    "CMAUP_Plant": {
+        "name": "Essential identifier for web search and entity display.",
+        "species_tax_id": "Unique taxonomic identifier for linking to biological databases and literature.",
+        "id": "Internal unique identifier for the node within the knowledge graph."
+    },
+    "DRUG": {
+        "names": "Essential for identifying drug treatments in literature and research contexts.",
+        "ids": "Provides external database links (RxNorm, ChEMBL) crucial for cross-referencing treatments and compounds."
+    },
+    "ClinicalTrials.gov_Group": {
+        "id": "Unique identifier for the treatment arm within the trial.",
+        "title": "Descriptive name of the group, essential for web search and identification.",
+        "description": "Contains detailed treatment protocols and drug regimens relevant to the research topic."
+    },
+    "HPO_Subset": {
+        "id": "Standard identifier for HPO subsets, essential for linking to ontology resources and web search.",
+        "description": "Provides context on the clinical terminology or consequence, relevant for connecting phenotypes to research topics."
+    },
+    "RNA": {
+        "ids": "Contains specific biological identifiers (e.g., miRNA:hsa-...) essential for web search and linking to literature/databases.",
+        "rna_type": "Defines the molecular class (e.g., miRNA), relevant for sequencing analysis and functional research."
+    },
+    "DiseaseOntology_Subset": {
+        "id": "Unique semantic identifier for Disease Ontology subsets, essential for web search and linking to external databases.",
+        "description": "Describes the specific disease category, providing context relevant to treatments and microbiome research associations."
+    },
+    "TAXON": {
+        "names": "Scientific names are critical for identifying organisms in microbiome and proteome studies.",
+        "ids": "External taxonomy IDs enable precise database integration and web search."
+    },
+    "DiseaseOntology_SynonymType": {
+        "id": "External ontology identifier (e.g., OMO) enabling web search and linking disease data to treatments.",
+        "description": "Clarifies synonym classification, aiding literature research and data integration."
+    },
+    "ClinicalTrials.gov_Document": {
+        "id": "Primary external identifier (e.g., NCT, IRRID) for web search and entity resolution.",
+        "url": "Direct link to access the full document for detailed treatment and methodology review.",
+        "type": "Classifies document content (Protocol/ICF) relevant to research methodology.",
+        "date": "Establishes timeline for the clinical study and treatment data.",
+        "comment": "Includes literature citations and study context for research linkage."
+    },
+    "OUTCOME": {
+        "__id": "Unique internal identifier required for graph node integrity and linking.",
+        "names": "Human-readable names essential for web searchability and identification of outcomes.",
+        "ids": "External identifiers for linking to literature, treatments, and sequencing databases."
+    },
+    "INTERVENTION": {
+        "names": "Essential for identifying specific treatments or interventions in research literature.",
+        "ids": "Crucial for linking to external databases and ensuring web searchability of the entity."
+    },
+    "LOCATION": {
+        "names": "Provides human-readable location names essential for identification and search.",
+        "ids": "Contains external identifiers crucial for linking to web resources and literature."
+    },
+    "DiseaseOntology_Term": {
+        "name": "Essential identifier for web search and human readability.",
+        "id": "Primary ontology identifier for unique entity resolution.",
+        "xrefs": "Links to external medical databases (MESH, NCIt) crucial for literature and treatment integration.",
+        "def": "Provides disease context and includes reference URLs for literature research.",
+        "obsolete": "Indicates term validity to ensure current relevance for treatments and research."
+    },
+    "HPO_Term": {
+        "id": "Primary HPO identifier (e.g., HP:0000001) essential for web search and ontology linking.",
+        "name": "Human-readable label for the phenotype term, aiding in identification and readability.",
+        "def": "Formal definition of the phenotype, crucial for mapping to disease states in research.",
+        "xrefs": "Cross-references to external databases (UMLS, SNOMED) for integrating literature and treatment data.",
+        "obsolete": "Boolean flag to filter out deprecated terms, ensuring data quality in analysis."
+    },
+    "HPO_Idspace": {
+        "iri": "Unique web identifier for ontology namespace resolution and linking to external literature.",
+        "id": "Namespace prefix for concise reference and categorization of ontology sources."
+    },
+    "ClinicalTrials.gov_Milestone": {
+        "__id": "Unique identifier required for entity search and linking within the knowledge graph.",
+        "title": "Indicates the trial milestone status, relevant to tracking treatment progress and research stages."
+    },
+    "ClinicalTrials.gov_Person": {
+        "last_name": "Identifies researchers for literature and clinical trial searches.",
+        "affiliation": "Links researchers to institutions involved in proteome and microbiome research."
+    },
+    "HPO_SynonymType": {
+        "__id": "Unique internal identifier required for entity resolution and database indexing.",
+        "id": "Defines the specific synonym category (e.g., abbreviation, obsolete), serving as the human-readable name for search."
+    },
+    "ClinicalTrials.gov_ArmGroup": {
+        "__id": "Unique identifier essential for entity resolution and database linking.",
+        "description": "Contains detailed treatment protocols, drug regimens, and dosages relevant to associated treatments.",
+        "label": "Provides a human-readable name for the arm group to facilitate identification and search."
+    },
+    "ClinicalTrials.gov_ParticipantFlow": {
+        "__id": "Essential unique identifier for entity resolution and web search.",
+        "recruitment_details": "Describes enrollment criteria and sites, relevant for defining research cohorts.",
+        "pre_assignment_details": "Tracks participant status before treatment, crucial for analyzing treatment outcomes."
+    },
+    "ClinicalTrials.gov_Reference": {
+        "pmid": "Unique PubMed identifier enabling web search and linking to specific literature on treatments and research.",
+        "citation": "Contains full bibliographic details essential for literature research and verifying study contexts."
+    },
+    "ClinicalTrials.gov_Intervention": {
+        "name": "Essential identifier for web search and primary entity identification.",
+        "other_name": "Provides synonyms and aliases for comprehensive literature and treatment search.",
+        "type": "Classifies the intervention category, aiding in filtering relevant treatment types."
+    },
+    "ClinicalTrials.gov_Sponsor": {
+        "name": "Primary identifier for web search and entity recognition.",
+        "agency_type": "Indicates sponsor classification relevant to research context."
+    },
+    "DiseaseOntology_Typedef": {
+        "id": "Standard ontology identifier (e.g., IDO:0000664) enabling web search and linking to external resources.",
+        "def": "Provides semantic definition of the disease relationship, relevant for literature and treatment context."
+    },
+    "DGIdb_Gene": {
+        "gene_symbol": "Standard gene identifier essential for web search and literature retrieval.",
+        "uniprotkb_id": "Critical for mapping genes to proteins in proteome and metaproteome research.",
+        "id": "Contains external database references (HGNC, Ensembl) for sequencing and genomic analysis.",
+        "oncokb_gene_name": "Relevant for oncology-specific treatment and drug interaction research."
+    },
+    "COMPOUND": {
+        "names": "Contains chemical names and InChIKeys essential for web search and identifying compounds in treatments.",
+        "ids": "Provides external database references (ChEMBL, PubChem) critical for linking to literature and treatment data."
+    },
+    "CMAUP_Target": {
+        "uniprot_id": "Primary identifier for proteome and sequencing data integration.",
+        "gene_symbol": "Standard gene nomenclature for literature and genomic search.",
+        "protein_name": "Readable entity name for web search and identification.",
+        "chembl_id": "Links to chemical compounds for treatment analysis.",
+        "ttd_id": "Connects to therapeutic target database for literature research.",
+        "type": "Functional classification relevant to biological pathways.",
+        "is_therapeutic_target": "Boolean flag indicating relevance to treatment topics."
+    },
+    "DGIdb_Category": {
+        "name": "Represents drug-gene interaction categories (e.g., DRUG RESISTANCE) directly relevant to treatment research.",
+        "__id": "Unique identifier ensuring node distinctness and enabling internal graph retrieval."
+    },
+    "DGIdb_Drug": {
+        "id": "Unique ChEMBL identifier for cross-referencing drug data and linking to external databases.",
+        "name": "Human-readable drug name for search and identification within the knowledge graph.",
+        "sources": "Data provenance from databases like DrugBank and DTC for literature research validation."
+    },
+    "CLINICAL_TRIAL": {
+        "names": "Essential for human-readable identification and web searchability of the trial.",
+        "ids": "Contains unique external identifiers (NCT numbers) required for linking to external literature and treatment databases."
+    },
+    "CMAUP_Ingredient": {
+        "pref_name": "Essential for human-readable search and linking to treatment literature.",
+        "chembl_id": "Standard identifier for drug databases, crucial for treatment and interaction research.",
+        "pubchem_cid": "Universal chemical identifier for cross-referencing external knowledge bases.",
+        "inchi_key": "Unique chemical fingerprint for precise entity resolution in the graph.",
+        "molecular_weight": "Key physicochemical property for understanding drug behavior in proteome/metaproteome contexts."
+    },
+    "DISEASES_Disease": {
+        "name": "Essential for disease identification and web search.",
+        "id": "External identifier for linking to disease databases."
+    },
+    "DISEASE": {
+        "names": "Essential for human-readable identification and web searchability of the disease entity.",
+        "ids": "Provides external ontology identifiers (DOID) crucial for linking to literature, treatments, and research databases."
+    },
+    "GENE": {
+        "names": "Provides human-readable gene symbols essential for literature search and proteome mapping.",
+        "ids": "Contains HGNC identifiers crucial for unique entity resolution and cross-referencing in sequencing and treatment databases."
+    },
+    "HPO_Typedef": {
+        "name": "Human-readable label for the relationship definition.",
+        "id": "Unique ontology identifier for precise web search and linking.",
+        "xrefs": "External references for cross-database integration and literature search."
+    },
+    "DISEASES_Gene": {
+        "name": "Essential identifier for web search and gene/proteome research.",
+        "id": "Relevant for microbiome and sequencing analysis (rRNA markers)."
+    },
+    "DiseaseOntology_Header": {
+        "__id": "Unique identifier essential for entity searchability and graph linking.",
+        "ontology": "Defines the specific disease vocabulary (DOID) used for standardizing disease terms in research.",
+        "data_version": "Ensures reproducibility and consistency when linking disease terms to literature and sequencing analysis.",
+        "date": "Indicates the release date of the ontology version for temporal context in research."
+    },
+    "HPO_Header": {
+        "__id": "Unique identifier essential for entity search and linking within the knowledge graph.",
+        "ontology": "Specifies the ontology source (hp.obo) relevant for standardizing phenotype data.",
+        "property_values": "Contains description and creators, linking phenotypes to human disease context for treatment research.",
+        "data_version": "Tracks the specific release version for data consistency and reproducibility in research."
+    },
+    "ClinicalTrials_gov_Group": {
+        "title": "Serves as a descriptive name and identifier for web searchability.",
+        "description": "Contains detailed treatment protocols relevant to the research context."
+    },
+    "ClinicalTrials_gov_Document": {
+        "id": "Essential unique identifier for web search and entity linking.",
+        "url": "Direct access link to the clinical trial document for detailed research.",
+        "comment": "Contains literature citations and study context relevant to research topics.",
+        "type": "Describes the document category (e.g., Protocol, ICF) within the trial.",
+        "date": "Indicates the timeline of the document for research tracking."
+    },
+    "ClinicalTrials_gov_Period": {
+        "__id": "Unique identifier required for graph integrity and entity linking.",
+        "title": "Describes the specific treatment phase, relevant to associated treatments and web searchability."
+    },
+    "ClinicalTrials_gov_ClinicalResults": {
+        "__id": "Essential unique identifier for web search and entity linking.",
+        "point_of_contact_organization": "Identifies the research institution conducting the clinical trial.",
+        "limitations_and_caveats": "Provides context on study validity and data quality for treatment analysis."
+    },
+    "ClinicalTrials_gov_Location": {
+        "facility_name": "Essential name for web search and identifying the research institution.",
+        "status": "Indicates if the trial is active, relevant for current treatment availability.",
+        "facility_address_city": "Provides specific geographic location context for the research site."
+    },
+    "ClinicalTrials_gov_Trial": {
+        "id": "Essential unique identifier (NCT number) for web search and entity resolution.",
+        "official_title": "Descriptive name of the clinical trial for identification.",
+        "conditions_mesh": "Standardized medical conditions targeted by the treatment.",
+        "interventions_mesh": "Specific drugs or interventions used in the treatment.",
+        "biospecimen_description": "Details on biological samples collected, relevant to proteome/microbiome sequencing.",
+        "phase": "Indicates the stage of treatment development (e.g., Phase 1, 2, 3).",
+        "url": "Direct link to the trial record for literature and data access.",
+        "detailed_description": "Comprehensive context on the research methodology and purpose.",
+        "source": "Research institutions conducting the study."
+    },
+    "ClinicalTrials_gov_Outcome": {
+        "__id": "Unique identifier required for entity search and linking.",
+        "description": "Provides narrative context on study design and sample collection.",
+        "measure": "Defines specific pharmacokinetic metrics recorded as outcomes.",
+        "time_frame": "Indicates temporal schedule for data collection and analysis."
+    },
+    "ClinicalTrials_gov_Sponsor": {
+        "name": "Essential identifier for the sponsoring organization, enabling web search and entity linking.",
+        "agency_type": "Indicates the funding source category (e.g., Industry, Academic), relevant to research context and treatment development."
+    },
+    "ClinicalTrials_gov_Intervention": {
+        "name": "Primary identifier for web search and entity recognition.",
+        "other_name": "Captures synonyms and trade names for literature linking.",
+        "type": "Categorizes the intervention (e.g., Drug) for filtering.",
+        "description": "Provides context on administration and formulation relevant to treatment protocols."
+    },
+    "ClinicalTrials_gov_Reference": {
+        "pmid": "PubMed ID serves as a unique, web-searchable identifier for biomedical literature.",
+        "citation": "Contains full bibliographic details necessary for literature research context."
+    },
+    "ClinicalTrials_gov_ParticipantFlow": {
+        "__id": "Essential unique identifier required for entity search and linking within the knowledge graph.",
+        "recruitment_details": "Captures enrollment timelines and sites, providing context on study population acquisition.",
+        "pre_assignment_details": "Details participant status and exclusions prior to group assignment, relevant for treatment flow analysis."
+    },
+    "ClinicalTrials_gov_ArmGroup": {
+        "__id": "Unique identifier essential for entity resolution and web search.",
+        "description": "Contains detailed treatment protocols, drug regimens, and dosages relevant to associated treatments.",
+        "label": "Provides a human-readable name for the arm group, useful for indexing and search."
+    },
+    "ClinicalTrials_gov_Person": {
+        "last_name": "Primary name identifier for web search and linking to research literature.",
+        "affiliation": "Links the person to institutions conducting proteome, microbiome, or treatment research."
+    },
+    "ClinicalTrials_gov_Milestone": {
+        "__id": "Unique identifier for the node, ensuring traceability and searchability within the knowledge graph.",
+        "title": "Indicates the current status or milestone state of the clinical trial, crucial for tracking treatment progress."
+    },
+    "RefSeq_Match": {
+        "target_accession": "Unique RefSeq identifier enabling external web search and database linkage.",
+        "bit_score": "Normalized alignment score essential for comparing sequencing match significance.",
+        "e_value": "Statistical expectation value critical for validating sequencing analysis reliability.",
+        "pct_identity_ungap": "Primary metric for sequence similarity accuracy without gap penalties.",
+        "pct_coverage": "Measures the extent of the sequence match, vital for proteome and microbiome completeness."
+    },
+    "RefSeq_ReplicationRegulatoryRegion": {
+        "id": "Essential identifier linking to GeneID for web search and database integration.",
+        "function": "Describes biological role relevant to proteome and replication research.",
+        "experiment": "Contains PMIDs and evidence codes crucial for literature research.",
+        "note": "Provides detailed annotations and coordinates useful for sequencing analysis."
+    },
+    "IntAct_Experiment": {
+        "full_name": "Provides a descriptive title essential for web search and experiment identification.",
+        "primary_xref": "Direct link to PubMed IDs for associated literature research.",
+        "imex_id": "Unique identifier for accessing proteome interaction data within the IMEx consortium."
+    },
+    "BRENDA_Term": {
+        "id": "External identifier (e.g., NCBI Taxonomy) essential for microbiome identification, sequencing analysis, and web searchability."
+    },
+    "BRENDA_Enzyme": {
+        "id": "Unique EC number essential for sequencing analysis and database cross-referencing.",
+        "recommended_name": "Human-readable name required for literature research and treatment lookup."
+    },
+    "RefSeq_telomeraseRNA": {
+        "name": "Standard accession for web search and literature identification.",
+        "gene": "Connects to gene symbol for treatment and genomic research.",
+        "product": "Describes functional component for biological context.",
+        "gbkey": "Classifies RNA type, distinguishing from coding sequences in proteome analysis.",
+        "xrefs": "Links to external databases like GenBank for sequencing data integration.",
+        "tag": "Identifies canonical transcript for consistent sequencing analysis."
+    },
+    "UniProt_Protein": {
+        "accession": "Primary identifier essential for web search and external database linkage.",
+        "protein_recommended_name_full": "Provides the full descriptive name for human readability and functional identification.",
+        "sequence": "Core data required for sequencing analysis, alignment, and metaproteome matching.",
+        "sequence_mass": "Critical for mass spectrometry-based proteome identification and validation.",
+        "sequence_length": "Key metric for filtering and characterizing proteins in sequencing analysis.",
+        "sequence_fragment": "Indicates sequence completeness, vital for metaproteome and fragment analysis.",
+        "protein_recommended_name_ec_numbers": "Links protein to enzymatic function, metabolic pathways, and potential treatments.",
+        "existence": "Evidence level determines reliability and validity for research conclusions.",
+        "dataset": "Distinguishes reviewed Swiss-Prot entries from unreviewed data, ensuring quality.",
+        "db_references": "Connects to external literature, genomic data, and pathway databases for comprehensive research.",
+        "keywords": "Functional tags aiding in microbiome and proteome classification and topic modeling."
+    },
+    "HPRD_mRNA": {
+        "refseq_id": "Public accession number essential for web search, literature retrieval, and external database linking.",
+        "sequence": "Nucleotide data required for sequencing analysis, proteome translation, and microbiome identification."
+    },
+    "RefSeq_DGeneSegment": {
+        "gene": "Primary gene symbol required for web search, literature research, and sequencing analysis.",
+        "gbkey": "Specifies genomic feature type crucial for sequencing analysis classification."
+    },
+    "RefSeq_miRNA": {
+        "id": "RefSeq identifier for database lookup and sequencing alignment.",
+        "gene": "Standard gene symbol for literature and treatment search.",
+        "product": "Mature miRNA name for specific functional and sequencing analysis.",
+        "xrefs": "Cross-references to miRBase for external validation and research."
+    },
+    "IntAct_Interactor": {
+        "primary_xref": "Unique identifier (e.g., UniProt) essential for web search and entity resolution.",
+        "full_name": "Descriptive protein name facilitating human-readable search and identification.",
+        "sequence": "Amino acid sequence required for sequencing analysis and proteome matching.",
+        "secondary_xref": "Contains PubMed IDs for literature research and links to other databases for function and treatment context.",
+        "alias": "Gene names and locus tags critical for microbiome and genomics integration."
+    },
+    "HPRD_PostTranslationalModification": {
+        "pubmed_ids": "Provides searchable literature identifiers for evidence verification and web search.",
+        "type": "Defines the modification class essential for proteome analysis.",
+        "residue": "Identifies the specific amino acid involved in sequencing analysis.",
+        "site": "Specifies the modification position critical for structural research.",
+        "experiment_types": "Contextualizes the research methodology (in vitro/vivo)."
+    },
+    "RefSeq_snoRNA": {
+        "name": "Essential identifier for web search and database lookup.",
+        "gene": "Crucial for literature research and linking to gene-centric data.",
+        "product": "Defines specific RNA function relevant to sequencing analysis.",
+        "exception": "Indicates proteomic data support, linking to proteome research.",
+        "tag": "Highlights canonical status relevant for treatment prioritization."
+    },
+    "RefSeq_EnhancerBlockingElement": {
+        "id": "External identifier essential for web search and linking to genomic databases.",
+        "function": "Describes biological activity and cell contexts, relevant for treatment and mechanism analysis.",
+        "experiment": "Provides literature references via PMIDs for associated research validation."
+    },
+    "RefSeq_EpigeneticallyModifiedRegion": {
+        "id": "Unique identifier containing GeneID references, essential for web search and entity linkage.",
+        "experiment": "Contains sequencing evidence types and PubMed IDs, critical for literature and sequencing analysis.",
+        "note": "Details specific histone modifications and cell line contexts relevant to epigenetic research."
+    },
+    "RefSeq_Silencer": {
+        "id": "Unique identifier required for web search and external database linkage.",
+        "function": "Details regulatory activity and cell types, relevant for treatment and functional analysis.",
+        "note": "Contains genomic coordinates and assembly data crucial for sequencing analysis.",
+        "experiment": "Includes PubMed IDs and evidence codes for associated literature research."
+    },
+    "RefSeq_ChromosomeBreakpoint": {
+        "id": "Essential identifier containing GeneID references for web search and entity linkage.",
+        "experiment": "Contains PMIDs for literature research and sequencing assay evidence.",
+        "note": "Details genetic deletions and affected genes relevant to sequencing analysis and treatments."
+    },
+    "RefSeq_MeioticRecombinationRegion": {
+        "id": "Essential identifier for web search and external database linkage.",
+        "experiment": "Provides sequencing evidence and literature references (PMIDs) for research.",
+        "note": "Contains detailed biological context regarding recombination mapping and genotypes."
+    },
+    "RefSeq_RNaseMRPRNA": {
+        "name": "Primary accession identifier for web search and literature retrieval.",
+        "gene": "Essential for linking to gene-specific treatments and research.",
+        "product": "Defines functional role relevant to mitochondrial processing.",
+        "xrefs": "Enables cross-referencing with external sequencing databases.",
+        "gbkey": "Identifies sequence type (ncRNA) for analysis categorization."
+    },
+    "RefSeq_NucleotideCleavageSite": {
+        "id": "Unique identifier for the specific cleavage site entity, essential for web search and retrieval.",
+        "gene_id": "Links the cleavage site to a specific gene, crucial for sequencing analysis and proteome research.",
+        "experiment": "Contains PMID references and evidence codes, directly supporting literature research and validation.",
+        "note": "Provides biological context such as enzyme names and strand information, relevant for treatment targeting."
+    },
+    "HPRD_Protein": {
+        "refseq_id": "Universal identifier crucial for literature research and web searchability.",
+        "sequence": "Essential for sequencing analysis and proteome characterization.",
+        "molecular_weight": "Relevant for proteome research and mass spectrometry treatments."
+    },
+    "RefSeq_TandemRepeat": {
+        "id": "Essential identifier linking to GeneID for web search and database integration.",
+        "rpt_unit_seq": "Core sequence data required for sequencing analysis and proteome mapping.",
+        "rpt_unit_range": "Genomic coordinates necessary for precise sequencing analysis and location mapping.",
+        "experiment": "Contains PMIDs and evidence codes crucial for literature research and validation.",
+        "note": "Provides biological context such as VNTR names and polymorphisms relevant to treatments.",
+        "rpt_family": "Classification of the repeat family useful for microbiome and genome categorization."
+    },
+    "IntAct_BioSource": {
+        "taxon_name": "Essential organism identifier for microbiome and proteome classification and web search.",
+        "cell_type_full_name": "Detailed cell line description required for reproducibility in sequencing and analysis.",
+        "tissue_full_name": "Anatomical source context necessary for tissue-specific proteome interpretation.",
+        "cell_type_primary_xref": "Contains external database and PubMed IDs for direct literature and data integration.",
+        "cell_type_attributes": "Provides derivation and disease state information relevant for treatment association."
+    },
+    "RefSeq_ProteinBindingSite": {
+        "id": "Unique identifier referencing GeneID, essential for web search and entity resolution.",
+        "bound_moiety": "Identifies specific interacting proteins or transcription factors, crucial for proteome interaction mapping.",
+        "function": "Describes biological regulatory roles and activity, relevant for understanding pathways and potential treatments.",
+        "experiment": "Includes PubMed IDs (PMIDs) for literature research and evidence codes validating binding existence.",
+        "note": "Provides specific motif details useful for sequencing analysis and binding site characterization."
+    },
+    "RefSeq_scaRNA": {
+        "name": "Standard RefSeq accession essential for web search and literature lookup.",
+        "gene": "Links RNA to specific gene locus for genomic context and treatment targeting.",
+        "product": "Provides functional description of the RNA molecule for biological interpretation."
+    },
+    "RefSeq_JGeneSegment": {
+        "gene": "Standard gene symbol essential for web search and literature research.",
+        "id": "Unique string identifier for precise database linkage and entity resolution.",
+        "pseudo": "Indicates pseudogene status vital for sequencing analysis and functional interpretation."
+    },
+    "RefSeq_Gene": {
+        "name": "Primary identifier essential for web search and literature lookup.",
+        "gene_biotype": "Determines relevance to proteome research by distinguishing protein-coding genes.",
+        "xrefs": "Connects to external databases for treatment data and cross-referenced literature.",
+        "gene_synonyms": "Improves literature research recall by including alternative gene names.",
+        "start_range": "Genomic coordinate required for sequencing analysis and location mapping.",
+        "end_range": "Genomic coordinate required for sequencing analysis and location mapping.",
+        "description": "Provides functional context relevant to microbiome and proteome studies."
+    },
+    "RefSeq_lncRNA": {
+        "name": "Standard RefSeq accession required for web search and identification.",
+        "gene": "Associated gene symbol crucial for literature and treatment research.",
+        "model_evidence": "Provides sequencing analysis details like RNAseq coverage and SRA reads.",
+        "product": "Describes the transcript product, aiding functional and research context."
+    },
+    "UniProt_Organism": {
+        "id": "Primary identifier for unique entity resolution within the graph.",
+        "scientific_names": "Provides precise organism identity including strain, essential for web search and treatment specificity.",
+        "lineage": "Defines taxonomic hierarchy, crucial for microbiome classification and metaproteome analysis.",
+        "db_references": "Links to external databases like NCBI Taxonomy, enabling integration with sequencing analysis tools."
+    },
+    "RefSeq_RepeatInstabilityRegion": {
+        "refseq_feature_id": "Standard identifier enabling web search and linkage to external gene databases.",
+        "note": "Contains disease associations and biological context relevant to treatments and literature research.",
+        "experiment": "Provides sequencing methods and evidence codes vital for analysis validation."
+    },
+    "IntAct_Interaction": {
+        "secondary_xref": "Canonical IntAct ID essential for web search and record identification.",
+        "short_label": "Descriptive name of the interaction for easy recognition.",
+        "primary_xref": "References PDB structures vital for proteome and treatment research.",
+        "attributes": "Provides experimental context such as resolution and assembly.",
+        "negative": "Flags non-interactions to ensure data accuracy in analysis."
+    },
+    "HPRD_Domain": {
+        "name": "Represents protein domain symbols (e.g., ACTIN, A2M) crucial for literature research, sequencing analysis, and web searchability."
+    },
+    "RefSeq_ImprintingControlRegion": {
+        "id": "Unique identifier enabling web search and database cross-referencing.",
+        "regulatory_class": "Specifies genomic region type crucial for sequencing analysis.",
+        "experiment": "Contains PMIDs supporting literature research and evidence validation.",
+        "function": "Describes gene expression control relevant to treatment and proteome impact."
+    },
+    "RefSeq_MitoticRecombinationRegion": {
+        "id": "Essential identifier containing GeneID for web search and external database linking.",
+        "experiment": "Links to literature via PMIDs and confirms sequencing analysis evidence.",
+        "note": "Describes specific gene recombinations impacting proteome and treatment strategies."
+    },
+    "RefSeq_SequenceAlterationArtifact": {
+        "id": "Unique external identifier with accession and coordinates, essential for web search and sequencing analysis.",
+        "note": "Explains the artifact status and true genomic location, vital for accurate interpretation in proteome and microbiome research."
+    },
+    "IntAct_Term": {
+        "id": "Provides standard ontology identifiers (e.g., NCBI Taxonomy) essential for identifying organisms in microbiome and proteome research and enabling web search."
+    },
+    "RefSeq_DNaseIHypersensitiveSite": {
+        "id": "Essential identifier for web search and external database linkage.",
+        "function": "Describes biological role and cell context relevant to sequencing analysis.",
+        "experiment": "Contains PMID references crucial for literature research and evidence validation."
+    },
+    "RefSeq_ResponseElement": {
+        "id": "Essential identifier for web search and cross-referencing.",
+        "function": "Describes regulatory mechanisms relevant to treatments and biological function.",
+        "note": "Specifies element types and genomic locations for sequencing analysis.",
+        "experiment": "Provides literature references (PMID) for research validation."
+    },
+    "HPRD_ProteinComplex": {
+        "id": "Primary identifier for searching and linking protein complexes to literature and treatments."
+    },
+    "RefSeq_CAATSignal": {
+        "id": "Unique identifier linking to GeneID/RefSeq, essential for web search and data integration.",
+        "regulatory_class": "Specifies the type of regulatory element, relevant for genomic sequencing analysis.",
+        "function": "Describes specific gene association, crucial for proteome and treatment targeting.",
+        "note": "Provides context on orthologous alignments, supporting sequencing analysis reliability.",
+        "experiment": "Contains PMIDs for literature research and evidence codes for sequencing analysis validation."
+    },
+    "RefSeq_NonAllelicHomologousRecombinationRegion": {
+        "refseq_feature_id": "Unique identifier required for web search and external database integration.",
+        "note": "Details gene interactions and sub-regions vital for proteome and treatment research.",
+        "experiment": "Contains PMIDs for literature research and evidence codes for sequencing analysis.",
+        "end_range": "Genomic coordinate information supporting sequencing analysis and mapping."
+    },
+    "RefSeq_CAGECluster": {
+        "id": "Essential identifier linking to GeneID for web search and database integration.",
+        "function": "Provides transcription activity and cell/tissue context relevant to proteome research.",
+        "experiment": "Contains PMID links for literature research and evidence codes for sequencing analysis validation.",
+        "note": "Offers specific technical details about the CAGE cluster structure for sequencing analysis."
+    },
+    "IntAct_Source": {
+        "short_label": "Common acronym essential for web search and immediate identification of the database.",
+        "full_name": "Full entity name provides detailed context and distinguishes providers from resources.",
+        "secondary_xref": "Contains PubMed IDs crucial for linking to associated literature research.",
+        "primary_xref": "Standard PSI-MI identifiers ensure interoperability within proteomics knowledge graphs.",
+        "attributes": "Includes URLs for direct data access and definitions relevant to sequencing analysis."
+    },
+    "UniProt_Feature": {
+        "id": "Unique feature identifier essential for web search and database retrieval.",
+        "location_sequence": "Links feature to specific UniProt protein accession for proteome context.",
+        "description": "Provides protein name details for literature and treatment research.",
+        "type": "Classifies the feature type relevant for proteome structure.",
+        "location_begin": "Start position on sequence required for sequencing analysis.",
+        "location_end": "End position on sequence required for sequencing analysis."
+    },
+    "HPRD_Tissue": {
+        "name": "Critical for identifying the tissue source in proteome and microbiome research, enabling literature searches and contextualizing sequencing analysis and treatments."
+    },
+    "BRENDA_TextValue": {
+        "comment": "Contains gene and locus names acting as searchable identifiers for proteome and microbiome research.",
+        "value": "Details enzymatic reactions relevant to metabolic sequencing analysis and potential treatment targets."
+    },
+    "RefSeq_vaultRNA": {
+        "name": "Standard accession number essential for web search and sequencing analysis.",
+        "gene": "Gene symbol critical for literature research and identifying treatment targets.",
+        "product": "Specific RNA variant description relevant for functional and microbiome context.",
+        "xrefs": "Cross-references enable linking to external databases for broader sequencing and literature data."
+    },
+    "RefSeq_YRNA": {
+        "name": "Primary RefSeq accession identifier essential for web search and sequencing analysis.",
+        "gene": "Links to gene-specific research, microbiome studies, and potential therapeutic targets.",
+        "product": "Indicates functional role such as Ro60 association, relevant to proteome and disease treatment research."
+    },
+    "RefSeq_MobileGeneticElement": {
+        "id": "Essential identifier for web search and database linkage.",
+        "mobile_element_type": "Critical for classification and sequencing analysis of genetic elements.",
+        "function": "Links to biological role and literature references for treatment research.",
+        "experiment": "Provides evidence type and literature references for sequencing validation."
+    },
+    "RefSeq_Chromosome": {
+        "id": "Unique RefSeq accession essential for web search and literature lookup.",
+        "chromosome": "Logical chromosome number for biological grouping and context.",
+        "start": "Genomic start coordinate required for sequencing analysis.",
+        "end": "Genomic end coordinate required for sequencing analysis.",
+        "mol_type": "Molecular type clarifies sequencing context for analysis pipelines."
+    },
+    "BRENDA_NumericValue": {
+        "substrate": "Chemical name essential for web search and enzyme context.",
+        "inhibitor": "Relevant for associated treatments and enzyme regulation.",
+        "num_value": "Core quantitative data for sequencing and analysis.",
+        "comment": "Provides isoenzyme specifics for proteome research."
+    },
+    "RefSeq_ReplicationStartSite": {
+        "id": "Unique identifier containing GeneID, essential for web search and entity resolution.",
+        "function": "Describes the biological role in DNA synthesis, relevant to sequencing analysis.",
+        "experiment": "Contains PMID links for literature research and evidence codes for experimental validation."
+    },
+    "RefSeq_SequenceSecondaryStructure": {
+        "id": "Unique identifier enabling web search and external database linkage.",
+        "allele": "Identifies specific genetic variants relevant for targeted treatments.",
+        "function": "Details biological effects and cell types, critical for treatment research.",
+        "experiment": "Contains PMIDs and evidence codes supporting literature research.",
+        "note": "Describes structural features and sequencing assays for analysis."
+    },
+    "RefSeq_LocusControlRegion": {
+        "id": "Essential identifier for web search and database linking.",
+        "regulatory_class": "Defines the specific regulatory element type for sequencing analysis.",
+        "function": "Describes gene regulation impact relevant to proteome and treatment research.",
+        "note": "Contains ortholog and fragment details useful for comparative and sequencing analysis.",
+        "experiment": "Provides literature references (PMIDs) and evidence codes for research validation."
+    },
+    "RefSeq_GCRichPromoterRegion": {
+        "id": "External identifier required for web search and database linkage.",
+        "regulatory_class": "Defines the genomic region type, relevant for sequencing analysis.",
+        "function": "Describes biological activity and cell context, essential for treatment research.",
+        "experiment": "Provides literature PMIDs and evidence codes for validation and research."
+    },
+    "UniProt_Citation": {
+        "title": "Essential name for identifying publication content and web search.",
+        "db_references": "Provides unique identifiers like DOI and PubMed for direct literature access.",
+        "authors": "Identifies key researchers involved in proteome and microbiome studies.",
+        "journal": "Contextualizes the research within specific scientific publications.",
+        "date": "Tracks the timeline of sequencing analysis and treatment developments.",
+        "type": "Distinguishes between peer-reviewed articles and submissions for data reliability."
+    },
+    "RefSeq_MiniSatellite": {
+        "id": "External identifier linking to GeneID for web search and database integration.",
+        "note": "Contains specific marker names and repeat details crucial for literature research.",
+        "rpt_unit_seq": "Provides the actual nucleotide sequence required for sequencing analysis."
+    },
+    "RefSeq_RecombinationFeature": {
+        "standard_name": "Human-readable identifier crucial for web search and literature lookup.",
+        "id": "Unique system identifier for precise entity resolution.",
+        "gene": "Associates feature with specific gene for proteome and genomic analysis.",
+        "recombination_class": "Defines biological feature type relevant for sequencing analysis.",
+        "note": "Contains detailed context on breakpoints, translocations, and sequencing methods.",
+        "experiment": "Links to literature via PMIDs and evidence codes for research validation.",
+        "pseudo": "Determines functional potential relevant for proteome expression studies."
+    },
+    "RefSeq_scRNA": {
+        "name": "Standard accession number essential for literature search and web lookup.",
+        "gene": "Gene symbol crucial for biological context and treatment research.",
+        "product": "Describes functional role relevant to proteome and sequencing analysis.",
+        "xrefs": "Provides links to external databases like GenBank for deeper sequencing data."
+    },
+    "RefSeq_DirectRepeat": {
+        "id": "Essential identifier for web search and external database linkage.",
+        "rpt_unit_seq": "Critical for sequencing analysis and genomic sequence context.",
+        "experiment": "Contains PMIDs for literature research and evidence validation.",
+        "note": "Provides specific repeat family classification details."
+    },
+    "RefSeq_PrimaryTranscript": {
+        "name": "Standard RefSeq accession essential for web search and literature lookup.",
+        "gene": "Links transcript to specific gene targets for treatment and functional research.",
+        "xrefs": "Provides cross-references to external databases like GenBank and miRBase for data integration.",
+        "product": "Describes the functional molecule type relevant to proteome and regulatory analysis.",
+        "note": "Details specific sequence variations critical for sequencing analysis accuracy."
+    },
+    "HPRD_Interactor": {
+        "name": "Critical for identifying the specific molecular interactor involved in proteome and microbiome interactions, enabling literature search and analysis."
+    },
+    "RefSeq_SequenceComparison": {
+        "id": "Unique identifier essential for web search and external database linkage.",
+        "function": "Describes biological role relevant to treatments and proteome research.",
+        "note": "Contains specific sequencing analysis details and genomic region information.",
+        "experiment": "Links to literature via PMIDs and provides evidence for sequencing analysis."
+    },
+    "RefSeq_snRNA": {
+        "name": "Standard RefSeq accession essential for web search and literature identification.",
+        "gene": "Links RNA to specific genes, crucial for proteome and treatment research.",
+        "product": "Describes biological function and RNA type, relevant for biological context.",
+        "inference": "Indicates sequencing analysis tools and methods used for annotation."
+    },
+    "RefSeq_CDS": {
+        "name": "Standard RefSeq accession essential for web search and database lookup.",
+        "gene": "Gene symbol critical for literature research and treatment targeting.",
+        "product": "Protein description vital for proteome function and microbiome analysis.",
+        "xrefs": "Cross-references enable integration with Ensembl and GenBank for comprehensive analysis.",
+        "inference": "Evidence source indicates reliability for sequencing analysis and annotation.",
+        "transl_table": "Genetic code table is crucial for microbiome research involving non-standard codes."
+    },
+    "RefSeq_tRNA": {
+        "id": "Unique identifier essential for web search and database linkage.",
+        "gene": "Standard gene symbol crucial for literature research and cross-referencing.",
+        "product": "Defines amino acid specificity, vital for proteome and translation context.",
+        "anticodon": "Key sequence feature required for sequencing analysis and functional classification."
+    },
+    "RefSeq_DispersedRepeat": {
+        "id": "Unique identifier linking to GeneID, essential for web search and entity resolution.",
+        "experiment": "Contains PMIDs for literature research and evidence codes for sequencing analysis validation."
+    },
+    "RefSeq_PseudoGene": {
+        "name": "Essential identifier for web search and entity recognition.",
+        "xrefs": "Links to external databases for sequencing data and literature lookup.",
+        "gene_synonyms": "Facilitates comprehensive literature research across naming conventions.",
+        "gene_biotype": "Distinguishes pseudogenes from functional genes in proteome and sequencing analysis.",
+        "description": "Provides functional context for literature research and treatment association."
+    },
+    "PROSITE_Rule": {
+        "accession": "Unique public identifier essential for web search and linking to proteome literature.",
+        "data_classes": "Specifies the rule category, relevant for sequencing analysis filtering."
+    },
+    "RefSeq_ConservedRegion": {
+        "id": "Unique identifier containing GeneID, essential for web search and external database linking.",
+        "function": "Defines biological role, crucial for understanding treatment targets and mechanisms.",
+        "experiment": "Links to literature via PMID and provides sequencing evidence for validation.",
+        "note": "Details binding motifs and conservation identity, relevant for sequencing and functional analysis."
+    },
+    "HPRD_Motif": {
+        "name": "Identifies the specific protein motif type, essential for proteome research, sequencing analysis, and literature search."
+    },
+    "RefSeq_SequenceFeature": {
+        "id": "Unique identifier essential for web search and database retrieval.",
+        "gene": "Gene symbol critical for proteome and microbiome research context.",
+        "standard_name": "Specific feature name aiding in precise entity identification.",
+        "experiment": "Contains PMIDs and evidence codes vital for literature research.",
+        "pseudo": "Indicates pseudogene status relevant for sequencing analysis."
+    },
+    "RefSeq_MicroSatellite": {
+        "id": "Unique identifier linking to GeneID for web search and literature integration.",
+        "note": "Contains pathogenicity and functional impact data relevant to treatments and research.",
+        "rpt_unit_seq": "Specific sequence unit essential for sequencing analysis and strain comparison."
+    },
+    "BRENDA_Protein": {
+        "accession": "Unique protein identifier crucial for web search, sequencing analysis, and linking to treatments.",
+        "source": "Provides database provenance, important for validating data quality in proteome and sequencing analysis."
+    },
+    "UniProt_Reference": {
+        "__id": "Unique identifier required to distinguish and retrieve the specific reference entity.",
+        "scopes": "Specifies sequencing methodology, highly relevant for sequencing analysis and proteome research."
+    },
+    "RefSeq_Region": {
+        "id": "Unique public identifier essential for web search and database linking.",
+        "experiment": "Contains PMID references crucial for associated literature research.",
+        "gbkey": "Defines the genomic feature type for sequencing analysis context.",
+        "satellite": "Specifies genetic marker details relevant for microbiome and sequencing analysis."
+    },
+    "RefSeq_CGeneSegment": {
+        "gene": "Essential identifier for web search and sequencing analysis.",
+        "product": "Links gene segment to proteome research via protein product description.",
+        "pseudo": "Critical for sequencing analysis to distinguish functional genes from pseudogenes."
+    },
+    "RefSeq_antisenseRNA": {
+        "name": "Standard RefSeq accession essential for web search and entity identification.",
+        "gene": "Links antisense RNA to target gene for proteome, treatment, and biological context.",
+        "product": "Provides functional description necessary for literature research and analysis.",
+        "tag": "Indicates annotation quality (e.g., MANE Select) crucial for sequencing analysis prioritization."
+    },
+    "RefSeq_Assembly": {
+        "id": "Unique RefSeq accession essential for sequencing analysis and database retrieval.",
+        "name": "Standard assembly name critical for web search and literature association.",
+        "ncbi_taxid": "Taxonomic identifier crucial for microbiome classification and organism-specific research."
+    },
+    "RefSeq_MatrixAttachmentSite": {
+        "id": "Unique identifier essential for web search and external database linkage.",
+        "regulatory_class": "Defines the specific type of regulatory region relevant for sequencing analysis.",
+        "function": "Describes biological association with nuclear structures, relevant for proteome context.",
+        "experiment": "Contains PMID references crucial for associated literature research and evidence validation."
+    },
+    "RefSeq_RepeatRegion": {
+        "id": "Unique identifier essential for web search and linking to external genomic databases.",
+        "experiment": "Contains PMIDs and evidence codes crucial for literature research and sequencing validation.",
+        "note": "Provides biological context such as hypervariable regions and motifs relevant to microbiome studies.",
+        "rpt_type": "Defines the structural classification of the repeat region for sequencing analysis.",
+        "rpt_unit_seq": "Specific sequence unit data important for detailed sequencing analysis."
+    },
+    "RefSeq_Insulator": {
+        "id": "Essential identifier linking to external gene databases for web search.",
+        "function": "Describes biological role and potential treatments, includes literature references.",
+        "note": "Contains specific sequencing fragment details and location data relevant to analysis.",
+        "experiment": "Provides evidence codes and literature citations for validation and research."
+    },
+    "RefSeq_OriginOfReplication": {
+        "id": "Unique identifier essential for web search and cross-referencing external databases.",
+        "function": "Describes biological role, critical for functional analysis in proteome and microbiome research.",
+        "experiment": "Contains literature references (PMIDs) and evidence codes, directly supporting literature research and validation.",
+        "direction": "Indicates replication direction, relevant for sequencing analysis and understanding genomic structure."
+    },
+    "RefSeq_RegulatoryRegion": {
+        "id": "Unique identifier essential for web search and database linking.",
+        "regulatory_class": "Specifies the regulatory region type, crucial for sequencing analysis.",
+        "experiment": "Contains PMIDs and evidence codes for associated literature research.",
+        "note": "Provides descriptive context on nucleosome phasing and feature coordinates."
+    },
+    "RefSeq_Enhancer": {
+        "id": "Unique external identifier essential for web search and database linking.",
+        "gene": "Links enhancer to specific genes, bridging genomic data to proteome and treatment research.",
+        "function": "Describes biological activity and cell context, vital for understanding regulatory treatments.",
+        "note": "Contains genomic coordinates and assembly version, critical for accurate sequencing analysis.",
+        "experiment": "Provides PubMed IDs and evidence codes, enabling direct literature research connectivity."
+    },
+    "HPRD_Gene": {
+        "name": "Human-readable identifier essential for web search and literature research.",
+        "symbol": "Standard gene symbol required for sequencing analysis and technical cross-referencing.",
+        "swissprot_id": "Critical for proteome and metaproteome research linking genes to protein entries.",
+        "entrez_gene_id": "Central identifier for accessing sequencing data, publications, and treatment information via NCBI."
+    },
+    "HPRD_Disease": {
+        "name": "Essential for linking diseases to treatments, literature, and proteome studies; enables web search."
+    },
+    "RefSeq_NucleotideMotif": {
+        "id": "Essential identifier for web search and external database linking.",
+        "experiment": "Contains PMID references vital for literature research.",
+        "note": "Details motif sequences and binding properties for sequencing analysis.",
+        "function": "Describes biological function relevant to proteome and microbiome research.",
+        "end_range": "Genomic coordinates required for sequencing analysis."
+    },
+    "RefSeq_TranscriptionalCisRegulatoryRegion": {
+        "id": "Essential identifier linking to GeneID for web search and cross-referencing.",
+        "function": "Describes regulatory effects and cell types, relevant for treatment and proteome impact.",
+        "note": "Contains variant IDs and sequencing coordinates crucial for genetic analysis.",
+        "experiment": "Provides PMID links for literature research and evidence codes for validation."
+    },
+    "RefSeq_rRNA": {
+        "name": "Standard RefSeq accession number essential for web search and entity identification.",
+        "xrefs": "Provides cross-references to GenBank for literature research and data integration.",
+        "note": "Contains specific rRNA types (e.g., 16S, 12S) critical for microbiome and sequencing analysis.",
+        "gene": "Identifies the specific gene locus for genomic context and research."
+    },
+    "RefSeq_Exon": {
+        "id": "Unique exon identifier essential for precise tracking and web search.",
+        "gene": "Gene symbol crucial for literature research and proteome mapping.",
+        "standard_name": "Standardized nomenclature facilitating consistent web search and treatment lookup.",
+        "product": "Describes the protein or RNA product, critical for proteome and treatment research.",
+        "pseudo": "Indicates pseudogene status, vital for distinguishing functional proteome elements.",
+        "start_range": "Genomic start coordinate required for sequencing analysis and location mapping.",
+        "end_range": "Genomic end coordinate required for sequencing analysis and location mapping.",
+        "exon_number": "Defines exon order, crucial for sequencing analysis and splice variant identification.",
+        "xrefs": "Cross-references to external databases like miRBase for literature and data integration.",
+        "model_evidence": "Provides protein similarity evidence, linking genomic data to proteome research.",
+        "inference": "Describes the source transcript inference, relevant for sequencing analysis validation.",
+        "tag": "Indicates MANE Select status, highlighting high-confidence sequences for clinical treatment research."
+    },
+    "RefSeq_TATABox": {
+        "id": "Essential identifier containing GeneID references for web search and data linkage.",
+        "function": "Links regulatory element to specific genes and proteins for proteome research.",
+        "note": "Provides motif details and conservation context relevant to sequencing analysis.",
+        "experiment": "Includes PMID citations enabling associated literature research."
+    },
+    "RefSeq_Promoter": {
+        "id": "Essential identifier for web search and linking to external genomic databases.",
+        "function": "Details biological activity and cell lines, relevant for proteome and treatment contexts.",
+        "experiment": "Contains PMIDs for literature research and evidence codes for validation."
+    },
+    "RefSeq_BiologicalRegion": {
+        "id": "Unique RefSeq identifier essential for precise entity lookup and web search.",
+        "standard_name": "Contains genomic coordinates and biological context critical for sequencing analysis.",
+        "function": "Details regulatory interactions and gene associations relevant to proteome and treatment research.",
+        "note": "Includes literature references (PMID) and methodological context for associated research validation."
+    },
+    "RefSeq_Centromere": {
+        "id": "Unique genomic identifier including accession and coordinates, essential for sequencing analysis and web search.",
+        "note": "Contains literature references (PMID), sequencing methodology details, and model limitations relevant to research context."
+    },
+    "RefSeq_cDNAMatch": {
+        "target_accession": "RefSeq accession identifier essential for linking to literature and external databases.",
+        "qtaxid": "Taxonomy ID crucial for identifying the organism in microbiome and metaproteome research.",
+        "pct_identity_ungap": "Key metric for evaluating sequencing alignment quality and similarity.",
+        "pct_coverage": "Determines the extent of the sequence match required for valid analysis.",
+        "splices": "Indicates splice variants relevant for transcriptome and proteome characterization."
+    },
+    "BRENDA_Publication": {
+        "pmid": "Unique PubMed identifier essential for web search and linking to external literature databases.",
+        "title": "Describes the specific research content, enzymes, and organisms studied.",
+        "year": "Provides temporal context for research trends and treatment developments."
+    },
+    "BRENDA_Organism": {
+        "name": "Essential for organism identification in literature, sequencing, and web searches.",
+        "__id": "Unique identifier for linking to specific BRENDA database records and proteome data."
+    },
+    "RefSeq_Transcript": {
+        "name": "Standard RefSeq accession for web search and entity identification.",
+        "gene": "Links transcript to gene symbol for proteome and treatment research.",
+        "product": "Describes functional output essential for proteome and treatment targeting.",
+        "xrefs": "Provides external database links for literature and cross-referencing.",
+        "model_evidence": "Validates transcript existence via sequencing alignment coverage and samples.",
+        "pseudo": "Distinguishes functional genes from pseudogenes critical for proteome analysis.",
+        "experiment": "Specifies sequencing methods and evidence codes used for annotation.",
+        "start_range": "Genomic start coordinate required for sequencing analysis and mapping.",
+        "end_range": "Genomic end coordinate required for sequencing analysis and mapping."
+    },
+    "BRENDA_Value": {
+        "__id": "Unique identifier required for entity distinction and satisfying the identifier constraint for searchability.",
+        "comment": "Contains detailed biochemical information on isozymes, inhibitors, and structures highly relevant to proteome research and treatment analysis."
+    },
+    "RefSeq_SequenceAlteration": {
+        "dbsnp_rs_id": "Standard identifier for genetic variants, essential for web search and literature lookup.",
+        "function": "Describes disease associations and susceptibility, directly relevant to treatment research.",
+        "experiment": "Contains PubMed IDs and evidence codes, crucial for validating literature and sequencing analysis.",
+        "note": "Provides detailed allele information and biological impact, relevant for sequencing and functional analysis."
+    },
+    "RefSeq_VGeneSegment": {
+        "gene": "Primary gene symbol essential for web search and literature linking.",
+        "standard_name": "Provides descriptive full names enhancing literature searchability.",
+        "pseudo": "Indicates pseudogene status, critical for determining proteome functionality.",
+        "model_evidence": "Contains specific sequencing and protein support data relevant to analysis."
+    },
+    "RefSeq_RNasePRNA": {
+        "name": "Standard accession number essential for web search and literature lookup.",
+        "gene": "Gene symbol links the RNA entity to proteome and genetic research.",
+        "product": "Functional description provides context for biological treatments and research.",
+        "xrefs": "Cross-references locate specific sequence data in external databases like GenBank."
+    },
+    "RefSeq_mRNA": {
+        "name": "Essential identifier for web search and literature reference.",
+        "gene": "Connects mRNA to gene symbol, critical for proteome and microbiome mapping.",
+        "product": "Defines the protein product, directly supporting proteome research.",
+        "model_evidence": "Validates sequencing analysis through RNAseq alignments and SRA read support.",
+        "xrefs": "Enables cross-database navigation for comprehensive literature and data research."
+    },
+    "RefSeq_DLoop": {
+        "id": "Public accession number and coordinates crucial for sequencing analysis and literature lookup.",
+        "gbkey": "Specifies the genomic region type, relevant for functional analysis and sequencing context."
+    },
+    "ALIGNMENT": {
+        "search_names": "Contains query identifiers like GeneIDs, essential for tracking sequencing search origins and database lookup.",
+        "names": "Contains reference accession numbers such as RefSeq, crucial for unique entity identification and web searchability."
+    },
+    "REGULATORY_ELEMENT": {
+        "search_names": "Contains normalized GeneID identifiers optimized for web search and database retrieval.",
+        "names": "Stores canonical GeneID identifiers crucial for entity identification and literature cross-referencing."
+    },
+    "EXPERIMENT": {
+        "names": "Essential IMEx identifiers for linking experiments to proteome databases and literature."
+    },
+    "CLASSIFICATION": {
+        "search_names": "Links to treatment and proteome data via functional classifications like DGIdb.",
+        "names": "Provides taxonomic identifiers crucial for microbiome and metaproteome analysis."
+    },
+    "INTERACTION": {
+        "names": "Provides standard interaction identifiers (e.g., IntAct) essential for unique entity resolution and literature retrieval.",
+        "search_names": "Offers alternative database identifiers (e.g., afcs) to enhance cross-referencing and search capabilities across different resources."
+    },
+    "PROTEIN_FEATURE": {
+        "names": "Canonical InterPro identifiers essential for protein feature identification in proteome and sequencing analysis, enabling web search."
+    },
+    "MergedPublication": {
+        "universal_id": "Primary unique identifier required for distinguishing entities within the knowledge graph.",
+        "merged_ids": "Contains external publication identifiers such as DOI or PMID essential for literature research and web search.",
+        "mapped": "Indicates if the publication is linked to biological data, relevant for sequencing analysis and treatment contexts."
+    },
+    "MergedGene": {
+        "universal_id": "Unique identifier for the gene entity within the knowledge graph, ensuring data integrity for research infrastructure.",
+        "merged_ids": "Contains external database IDs like NCBIGene and OMIM, essential for web search, literature research, sequencing analysis, and treatment linking.",
+        "mapped": "Boolean flag indicating successful gene identity mapping, relevant for validating data quality in sequencing and proteome analysis."
+    },
+    "MergedProteinDomain": {
+        "universal_id": "Primary unique identifier for the node within the knowledge graph system.",
+        "merged_ids": "Contains external database accession numbers (Pfam, SMART, CDD) vital for proteome research and web searchability.",
+        "mapped": "Indicates successful data integration status, relevant for sequencing analysis and data quality control."
+    },
+    "MergedRna": {
+        "universal_id": "Internal unique identifier for tracking specific RNA records within the knowledge graph.",
+        "merged_ids": "External Genbank accession numbers essential for web search, literature research, and sequencing analysis.",
+        "mapped": "Boolean flag indicating successful sequence alignment, relevant for sequencing analysis quality control."
+    },
+    "MergedProtein": {
+        "universal_id": "Unique identifier for tracking the protein entity within the knowledge graph and linking to treatments.",
+        "merged_ids": "Contains external UniProtKB identifiers essential for proteome research, sequence analysis, and web search.",
+        "mapped": "Indicates successful database mapping, relevant for validating sequencing analysis and metaproteome data quality."
+    },
+    "MergedTaxon": {
+        "universal_id": "Internal unique identifier for knowledge graph node integrity and relationship mapping.",
+        "merged_ids": "External NCBI Taxonomy identifiers essential for web search, literature lookup, and cross-referencing sequencing data.",
+        "mapped": "Status flag indicating successful taxonomic assignment, relevant for sequencing analysis quality control."
+    },
+    "MergedTerm": {
+        "universal_id": "Essential identifier for web searchability and unique entity resolution within the knowledge graph.",
+        "merged_ids": "Tracks alternative identifiers during proteome and microbiome data integration.",
+        "mapped": "Confirms linkage to external sequencing or treatment databases."
+    },
+    "MergedDisease": {
+        "universal_id": "Unique identifier necessary for referencing the disease entity in searches and data integration.",
+        "merged_ids": "Contains source IDs relevant for cross-referencing literature, treatments, and sequencing databases.",
+        "mapped": "Indicates integration success, ensuring the disease node is valid for associating with microbiome or proteome data."
+    },
+    "MergedTissue": {
+        "universal_id": "Unique identifier required to reference and retrieve specific tissue records within the research database.",
+        "merged_ids": "Links to original tissue samples, enabling traceability for sequencing analysis and associated treatment data.",
+        "mapped": "Confirms data alignment status, important for validating usability in proteome and microbiome analysis pipelines."
+    },
+    "MergedPTM": {
+        "universal_id": "Primary unique identifier required to track and search specific PTM entities across proteome databases.",
+        "merged_ids": "References original identifiers from sequencing analysis or literature, enabling data integration and traceability.",
+        "mapped": "Confirms whether the PTM is linked to a known sequence or structure, relevant for treatment and functional analysis."
+    }
+}
