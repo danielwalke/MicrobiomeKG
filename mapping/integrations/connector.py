@@ -22,3 +22,9 @@ class Neo4jConnector:
     def execute_write(self, query, parameters=None):
         with self.driver.session() as session:
             session.run(query, parameters or {})
+    
+    def execute_batch_write(self, query, parameters_list, batch_size=5000):
+        with self.driver.session() as session:
+            for i in range(0, len(parameters_list), batch_size):
+                batch = parameters_list[i : i + batch_size]
+                session.run(query, {"batch": batch})
