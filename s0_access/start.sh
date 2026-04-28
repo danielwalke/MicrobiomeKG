@@ -20,6 +20,7 @@
 
 # if [ ! -d "$HOME/git/MicrobiomeKG/s1_raw_graph/workspace/sources" ] || [ -z "$(ls -A $HOME/git/MicrobiomeKG/s1_raw_graph/workspace/sources 2>/dev/null)" ]; then
 #     java -jar BioDWH2-v0.6.8.jar -c ~/mnt/client_data/mikrobiome_kg/workspace
+# java -jar BioDWH2-v0.6.8.jar --add-data-source ~/mnt/client_data/mikrobiome_kg/workspace ENZYME
 #     python -m s1_raw_graph.identify_relevant_db
 #     python -m s1_raw_graph.update_workspace
 #     java -jar BioDWH2-v0.6.8.jar -u ~/mnt/client_data/mikrobiome_kg/workspace
@@ -44,7 +45,12 @@
 # python -m s1_raw_graph.identify_concept_for_node_label
 # python -m s1_raw_graph.add_new_concepts_with_mappings
 
-# python -m s1_raw_graph.remove_dot_from_node_labels
+
+python -m s1_raw_graph.remove_dot_from_node_labels
+echo "Mapping/Merging nodes into unified concepts (extended based on incompleteness of Biodwh2)"
+python -m mapping.integrations.main
+echo "Linking entities across databases using custom edge definitions (extended based on incompleteness of Biodwh2)"
+python -m mapping.linking.main
 
 echo "Starting Docker containers for s2_raw_metagraph..."
 docker compose -f s2_raw_metagraph/docker-compose.yml up -d --wait
