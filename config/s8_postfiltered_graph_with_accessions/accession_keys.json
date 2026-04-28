@@ -1,168 +1,139 @@
 {
     "MergedPublication": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (e.g., UUIDs) for each publication, making it the most suitable primary accession."
+            "property": "merged_ids",
+            "index": 0,
+            "reasoning": "This property contains the consolidated external identifiers (e.g., PMID, DOI) for the publication. It is a String type (preferred over Integer) and index 0 selects the primary identifier from the list."
         },
         "secondary_accessions": {
             "properties": [
-                "PUBLICATION__pmid",
-                "InterPro_Publication__year"
+                "InterPro_Publication__pmid",
+                "UniProt_Citation__db_references"
             ],
-            "reasoning": "The combination of `PUBLICATION__pmid` (PubMed ID) and `InterPro_Publication__year` provides a secondary unique identifier for a publication, as multiple publications might share a PMID but not a year, and vice versa. Both are integer arrays, which can be concatenated into a string for comparison."
+            "reasoning": "These properties provide the specific source identifiers from InterPro and UniProt respectively. Combining them creates a composite key that reflects the specific data sources merged into this node."
         }
     },
     "MergedGene": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (UUIDs) for each MergedGene node. It is the most suitable candidate for a primary accession."
+            "property": "HPRD_Gene__symbol",
+            "index": 0,
+            "reasoning": "Gene symbols are standard, human-readable string identifiers for genes. String types are preferred over integers (like Entrez ID) per guidelines, and sample data indicates a single value located at index 0."
         },
         "secondary_accessions": {
             "properties": [
-                "HPRD_Gene__swissprot_id",
-                "HPRD_Gene__symbol",
-                "HPRD_Gene__entrez_gene_id"
+                "HPRD_Gene__entrez_gene_id",
+                "merged_ids"
             ],
-            "reasoning": "The properties `HPRD_Gene__swissprot_id`, `HPRD_Gene__symbol`, and `HPRD_Gene__entrez_gene_id` are all StringArray or IntegerArray types and seem to represent different identifiers related to the gene. Concatenating these properties could provide a secondary unique identifier for the MergedGene node, especially if the `universal_id` alone is not sufficient or if these identifiers are used in conjunction with the primary key in other systems."
+            "reasoning": "Combines the stable numeric Entrez Gene ID with the curated list of external database identifiers (e.g., NCBIGene, OMIM) found in merged_ids, ensuring robust uniqueness across different database conventions."
         }
     },
     "MergedProteinDomain": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (e.g., UUIDs) for each `MergedProteinDomain` node. It is the most suitable candidate for a primary accession."
+            "property": "InterPro_Domain__id",
+            "index": 0,
+            "reasoning": "InterPro IDs (e.g., IPR000001) are stable, globally unique identifiers for protein domains. Index 0 is selected to retrieve the canonical ID from the array."
         },
         "secondary_accessions": {
             "properties": [
-                "InterPro_Domain__id"
+                "HPRD_Domain__name",
+                "InterPro_Domain__name"
             ],
-            "reasoning": "The `InterPro_Domain__id` property is an Array of Strings, containing InterPro domain IDs (e.g., IPR013968). These IDs are specific to the protein domain and could serve as a secondary identifier, especially when combined with other domain-specific information. Other array properties like `InterPro_Domain__name`, `InterPro_Domain__external_docs`, and `InterPro_Domain__structure_db_links` contain lists of related values rather than unique identifiers for the domain itself. `merged_ids` contains identifiers from various databases, but `InterPro_Domain__id` is specific to InterPro and consistently present."
+            "reasoning": "Concatenating the domain name from HPRD with the descriptive name from InterPro provides a unique, human-readable composite identifier that distinguishes the merged domain concept across these specific resources."
         }
     },
     "MergedRna": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The 'universal_id' property is a String type and appears to contain unique identifiers (e.g., UUIDs) for each node. It is the most suitable candidate for a primary accession key."
+            "property": "HPRD_mRNA__refseq_id",
+            "index": 0,
+            "reasoning": "HPRD_mRNA__refseq_id contains versioned RefSeq accessions (e.g., NM_016830.2), which are standard, curated, and unique identifiers for RNA transcripts. Index 0 is selected to retrieve the primary identifier from the StringArray."
         },
         "secondary_accessions": {
             "properties": [
-                "RNA__ids",
-                "HPRD_mRNA__refseq_id"
+                "merged_ids"
             ],
-            "reasoning": "Both 'RNA__ids' and 'HPRD_mRNA__refseq_id' contain identifiers related to RNA sequences (Genbank IDs and RefSeq IDs, respectively). Combining these properties provides a more specific and potentially unique identifier for the RNA molecule represented by the node, serving as a secondary accession."
+            "reasoning": "The merged_ids property contains GenBank accessions (e.g., Genbank:NM_016830), which serve as widely recognized alternative unique identifiers for cross-referencing and validation against external databases."
         }
     },
     "MergedProtein": {
         "primary_accession": {
             "property": "UniProt_Protein__accession",
             "index": 0,
-            "reasoning": "The `UniProt_Protein__accession` property contains unique UniProt accession codes (e.g., P0C9F0, P0C9F1). It is an Array type. Since each element in the array represents a single accession code for a specific protein instance, the first element (index 0) of the array serves as the unique identifier for that instance. Using the first element is a standard approach when dealing with single-valued arrays representing identifiers."
+            "reasoning": "UniProt accession codes are the standard, globally unique identifiers for protein entries. This property contains the raw accession string (e.g., 'P0C9F0') which is preferred for interoperability over namespaced versions."
         },
         "secondary_accessions": {
             "properties": [
-                "PROTEIN__ids",
-                "UniProt_Protein__keywords",
-                "UniProt_Protein__protein_recommended_name_ec_numbers",
-                "UniProt_Protein__protein_recommended_name_full",
-                "UniProt_Protein__sequence",
-                "HPRD_Protein__molecular_weight",
-                "UniProt_Protein__sequence_fragment",
-                "UniProt_Protein__existence",
-                "merged_ids",
-                "HPRD_Protein__refseq_id",
-                "UniProt_Protein__dataset",
-                "UniProt_Protein__sequence_length",
                 "PROTEIN__names",
-                "UniProt_Protein__sequence_mass",
-                "UniProt_Protein__db_references"
+                "HPRD_Protein__refseq_id"
             ],
-            "reasoning": "The `UniProt_Protein__accession` property (at index 0) is the primary key. The remaining string array properties (`PROTEIN__ids`, `UniProt_Protein__keywords`, `UniProt_Protein__protein_recommended_name_ec_numbers`, `UniProt_Protein__protein_recommended_name_full`, `UniProt_Protein__sequence`, `HPRD_Protein__molecular_weight`, `UniProt_Protein__sequence_fragment`, `UniProt_Protein__existence`, `merged_ids`, `HPRD_Protein__refseq_id`, `UniProt_Protein__dataset`, `PROTEIN__names`, `UniProt_Protein__db_references`) can be concatenated to form a secondary unique identifier, as they collectively provide detailed information about the protein, potentially distinguishing it further if the primary accession alone is insufficient or if additional context is needed. The integer array properties (`UniProt_Protein__sequence_length`, `UniProt_Protein__sequence_mass`) are not included as they are less likely to contribute significantly to uniqueness when concatenated with strings, and their integer nature makes concatenation less straightforward."
+            "reasoning": "PROTEIN__names provides the internal unique identifier specific to the merged protein node (e.g., '1001R_ASFK5'), while HPRD_Protein__refseq_id offers a cross-database identifier from NCBI RefSeq. Together they ensure uniqueness across both the internal system and external biological databases."
         }
     },
     "MergedTaxon": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (UUIDs) based on the sample values provided. It is the most suitable candidate for a primary accession key."
+            "property": "merged_ids",
+            "index": 0,
+            "reasoning": "The 'merged_ids' property contains standard NCBI Taxon CURIEs (e.g., NCBITaxon:561445) which serve as globally unique identifiers for taxa. Given the node label 'MergedTaxon', this property explicitly holds the canonical merged identifier. As it is a StringArray, index 0 is selected to retrieve the primary identifier string."
         },
         "secondary_accessions": {
             "properties": [
-                "UniProt_Organism__id",
                 "TAXON__ids"
             ],
-            "reasoning": "Both `UniProt_Organism__id` and `TAXON__ids` are StringArrays containing identifiers (e.g., NCBI Taxonomy IDs). Concatenating these properties could provide a secondary unique identifier, potentially useful for cross-referencing or disambiguation. They seem to contain similar information (NCBI Taxonomy IDs) but might have different scopes or sources, making their combination useful."
+            "reasoning": "The 'TAXON__ids' property provides equivalent NCBI Taxon identifiers (e.g., NCBITaxon:561445) stored under a distinct property key. This serves as a robust alternative unique identifier that matches the primary accession's semantic meaning, likely representing the source taxon ID namespace."
         }
     },
     "MergedTerm": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The 'universal_id' property is a String type and appears to contain unique identifiers (UUIDs) based on the sample values. It is the most suitable candidate for a primary accession key."
+            "property": "GeneOntology_Term__id",
+            "index": 0,
+            "reasoning": "This property contains standard Gene Ontology identifiers (e.g., GO:0003677) which are globally unique external identifiers for biological terms. Index 0 is selected to extract the primary ID from the array."
         },
         "secondary_accessions": {
             "properties": [
-                "GeneOntology_Term__id",
-                "InterPro_Classification__id"
+                "GeneOntology_Term__name",
+                "GeneOntology_Term__namespace"
             ],
-            "reasoning": "Both 'GeneOntology_Term__id' and 'InterPro_Classification__id' are StringArray types. They seem to represent standard identifiers from external databases (Gene Ontology and InterPro respectively). Combining these provides a more specific secondary identifier than using either one alone. Other properties like 'UniProt_Organism__id' are also IDs, but GO and InterPro terms are often used together to describe molecular function and classification."
+            "reasoning": "The combination of the term name and its namespace provides a unique human-readable composite key, as Gene Ontology term names are unique within their specific namespace (e.g., molecular_function, biological_process)."
         }
     },
     "MergedDisease": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (UUIDs) for each node. It is the most suitable candidate for a primary accession."
+            "property": "merged_ids",
+            "index": 0,
+            "reasoning": "This property contains the disease names consolidated into this node, making it the most semantically appropriate identifier for a MergedDisease label. Index 0 is selected to retrieve a single scalar string from the array, avoiding the forbidden universal_id."
         },
         "secondary_accessions": {
             "properties": [
-                "UniProt_Organism__id"
+                "HPRD_Disease__name"
             ],
-            "reasoning": "The `UniProt_Organism__id` property contains unique numerical identifiers for the organism. Combining this with other identifiers might provide a secondary unique key, although `universal_id` is already unique."
+            "reasoning": "This property provides the specific disease name associated with the HPRD source database. It serves as a verifiable external reference that complements the generic merged IDs, ensuring traceability to the original data source."
         }
     },
     "MergedTissue": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (UUIDs) for each node. It is the most suitable candidate for a primary accession."
+            "property": "HPRD_Tissue__name",
+            "index": 0,
+            "reasoning": "This property provides the canonical tissue name from the HPRD database, offering a human-readable and semantically meaningful identifier. Index 0 is selected because sample values indicate single-element arrays."
         },
         "secondary_accessions": {
             "properties": [
-                "GeneOntology_Term__id",
-                "InterPro_Classification__description",
-                "UniProt_Organism__id",
-                "TAXON__names",
-                "HPRD_Tissue__name",
-                "InterPro_Classification__id",
-                "UniProt_Organism__db_references",
-                "GeneOntology_Term__namespace",
-                "GeneOntology_Term__name",
-                "UniProt_Organism__scientific_names",
-                "UniProt_Organism__lineage",
-                "TAXON__ids",
-                "HPRD_Disease__name"
+                "merged_ids"
             ],
-            "reasoning": "The secondary accession should combine multiple properties to provide a more specific identifier. The properties listed are all StringArrays and contain descriptive information about the node, such as Gene Ontology terms, InterPro classifications, organism identifiers, taxonomic names, tissue names, disease names, etc. Concatenating these properties would create a unique secondary identifier for each node."
+            "reasoning": "This property contains the original tissue identifiers that were consolidated to create this node, providing traceability to source data and an alternative identifier based on the merge logic."
         }
     },
     "MergedPTM": {
         "primary_accession": {
-            "property": "universal_id",
-            "index": null,
-            "reasoning": "The `universal_id` property is a String type and appears to contain unique identifiers (UUIDs) based on the sample values provided. It is the most suitable candidate for a primary accession."
+            "property": "merged_ids",
+            "index": 0,
+            "reasoning": "This property contains the original unique identifier from the source database (HPRD) for the specific PTM record. It is a string type (preferred over integers) and serves as the external accession number, whereas universal_id is internal/generated."
         },
         "secondary_accessions": {
             "properties": [
-                "merged_ids",
                 "HPRD_PostTranslationalModification__type",
                 "HPRD_PostTranslationalModification__residue",
-                "HPRD_PostTranslationalModification__experiment_types",
                 "HPRD_PostTranslationalModification__site"
             ],
-            "reasoning": "The `merged_ids` property is an array of strings, and the other properties (`HPRD_PostTranslationalModification__type`, `HPRD_PostTranslationalModification__residue`, `HPRD_PostTranslationalModification__experiment_types`, `HPRD_PostTranslationalModification__site`) are all StringArrays. Concatenating these properties could potentially provide a secondary unique identifier, capturing different aspects of the PTM information. While `merged_ids` is an array, it's included as it seems relevant to the overall identification, potentially linking to other records or systems. Combining all these properties offers a more comprehensive secondary identifier than using just one or a subset."
+            "reasoning": "Concatenating the modification type, amino acid residue, and site position provides a unique biological definition of the post-translational modification event, distinguishing it from other modifications on the same or different proteins."
         }
     }
 }
