@@ -141,7 +141,7 @@ def extract_accessions_for_label(label, markdown_content, json_schema_list, api_
     system_prompt = """
     You are an API that identifies the best primary and secondary accession properties for a database node based on its markdown schema.
     
-    1. primary_accession: A single property that identifies the node (e.g.,  a gene name or specific identifier). If the chosen property is an Array type, provide the integer index of the element to use. If it is not an Array, index must be null. Include your reasoning. Choose string types over integers where possible.
+    1. primary_accession: A single property that for the node (e.g.,  a gene name or specific identifier). DO NOT pick a generated "universal_id" or "__id". If the chosen property is an Array type, provide the integer index of the element to use. If it is not an Array, index must be null. Include your reasoning. Choose string types over integers where possible.
     2. secondary_accessions: A list of property keys that, when concatenated, provide a secondary unique identifier. Include your reasoning for this combination.
     
     Return a JSON object strictly matching this format:
@@ -184,7 +184,7 @@ def extract_accession_keys(schema_dict_md, json_schema, output_file):
     load_dotenv(find_dotenv())
     custom_api_key = os.getenv("API_KEY")
     custom_base_url = os.getenv("BASE_URL")
-    custom_model = "medgemma-27b-it" #"qwen3-235b-a22b"
+    custom_model = "qwen3.5-397b-a17b" #"qwen3-235b-a22b"
     
     results = {}
     
@@ -217,3 +217,4 @@ if __name__ == "__main__":
     json_schema = extract_json(port, user, password) 
     output_file_path = os.path.expanduser("~/git/MicrobiomeKG/config/s8_postfiltered_graph_with_accessions/accession_keys.json")
     extract_accession_keys(schema_dict_md, json_schema, output_file_path)
+    
