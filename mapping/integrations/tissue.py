@@ -1,12 +1,12 @@
 from pydantic import Field
 from typing import List
-from mapping.models import HprdTissue
+from mapping.models import HPRD_Tissue
 from mapping.integrations.base_merged import BaseMergedEntity
 
 class MergedTissue(BaseMergedEntity):
     __label__ = "MergedTissue"
     __source_mappings__ = {
-        "tissue_names": (HprdTissue, "name")
+        "tissue_names": (HPRD_Tissue, "name")
     }
 
     tissue_names: List[str] = Field(default_factory=list)
