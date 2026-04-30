@@ -64,6 +64,6 @@ class NodeIntegrator:
         SET m = row.props
         WITH m, row
         MATCH (orig) WHERE id(orig) IN row.orig_ids
-        MERGE (orig)-[:MERGED_INTO]->(m)
+        MERGE (orig)-[:MAPPED_TO]->(m)
         """
         self.connector.execute_write(query, {"batch": batch})
