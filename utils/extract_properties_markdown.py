@@ -18,7 +18,7 @@ def extract_schema_with_samples_md(port = 8083, user = "neo4j", password = "neo4
             prop_name = row['propertyName']
             
             for label in row['nodeLabels']:
-                is_concept_node = "Merged" in label
+                is_concept_node = label.isupper() 
                 if only_concept_nodes and not is_concept_node:
                     continue
 
