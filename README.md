@@ -73,7 +73,7 @@ Start raw database:
 java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start ~/git/MicrobiomeKG/s1_raw_graph/workspace/
 ```
 
-Extract concept nodes with MERGED_INTO connections and possible additional concept nodes:
+Extract concept nodes with MAPPED_TO connections and possible additional concept nodes:
 ```bash
 python -m s1_raw_graph.extract_possible_concepts
 ```
@@ -227,3 +227,44 @@ CALL {
   WITH n
   DETACH DELETE n
 } IN TRANSACTIONS OF 100000 ROWS;
+
+
+Unmapped nodes in biodwh2
+MATCH (n) WHERE NOT EXISTS {(n)-[:MAPPED_TO]-()} return distinct labels(n)
+["GeneOntology_Subset"] -> Considered irrelevant since it is only connected to GeneOntology_Header (metadata)
+["metadata"] -> considered irrelvant (metadata, can be stoed in sepaarted file next to dump)
+["InterPro_DBInfo"] -> considered irrelvant (metadata, can be stoed in sepaarted file next to dump)
+["RNAInter_RNA"] -> Partially unmapped by Marcel? (handled by s1_raw_graph.add_missing_mapping_connections)
+["DiseaseOntology_Subset"] -> Considered irrelevant since it is only connected to DiseaseOntology_Header (metadata)
+["GeneOntology_Typedef"] -> irrelevant since only cnnected itself
+["InterPro_ActiveSite"]
+["HPRD_Interactor"]
+["HPRD_PostTranslationalModification"] -> Mapped to custom concept PTM
+["InterPro_Family"]
+["DiseaseOntology_SynonymType"] -> irrelevant since its a single node only connected to DiseaseOntology_Header (metadata)
+["ENZYME_Enzyme"] -> Property rolluop in s4
+["DISEASES_Gene"] -> Partially unmapped by Marcel? (handled by s1_raw_graph.add_missing_mapping_connections)
+["HPRD_Motif"]
+["DiseaseOntology_Header"] -> irrelevant single node
+["InterPro_Classification"]-> Mapped to custom concept TERM
+["InterPro_Repeat"]
+["UniProt_Reference"] -> handled by edge_roll_up in s4 (shotcut between citation and protein)
+["InterPro_BindingSite"]
+["DISEASES_Disease"] -> Mapped to custom concept DISEASE (partially unmapped by Marcel)
+["GeneOntology_Header"] -> irrelevant single node
+["HPRD_Domain"] -> Mapped to custom concept PROTEIN_DOMAIN
+["DGIdb_Drug"]-> Partially unmapped by Marcel? (handled by s1_raw_graph.add_missing_mapping_connections)
+["DGIdb_Category"] -> Mapped to custom concept TERM
+["InterPro_ConservedSite"]
+["DiseaseOntology_Typedef"] -> irrelevant (only two nodes without connections)
+["RNAInter_HistoneModification"] -> considered irrelvant for now
+["GeneOntology_Idspace"] -> considered irrelvant for now
+["HPRD_Disease"]-> Mapped to custom concept DISEASE
+["HPRD_ProteinComplex"] -> considered irrelvant for now
+["InterPro_HomologousSuperfamily"] -> considered irrelvant for now
+["InterPro_PTM"] -> Do not know how to map to PRM concept?
+["GeneOntology_Term"] -> Mapped to custom concept TERM
+["UniProt_Feature"] -> considered irrelvant for now
+["GeneOntology_SynonymType"] -> irrelevant single node
+["HPRD_Tissue"] -> Mapped to custom concept TISSUE
+["DiseaseOntology_Term"] -> Mapped to custom concept TERM
