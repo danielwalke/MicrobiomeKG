@@ -41,11 +41,11 @@
 # python -m s1_raw_graph.execute_identified_cypher_preprocessing
 
 
-# python -m s1_raw_graph.add_missing_mapping_connections
+# 
 # python -m s1_raw_graph.identify_concept_for_node_label
 # python -m s1_raw_graph.add_new_concepts_with_mappings
 
-
+python -m s1_raw_graph.add_missing_mapping_connections
 python -m s1_raw_graph.remove_dot_from_node_labels
 echo "Mapping/Merging nodes into unified concepts (extended based on incompleteness of Biodwh2)"
 python -m mapping.integrations.main
