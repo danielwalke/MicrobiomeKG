@@ -1,14 +1,14 @@
 from pydantic import Field
 from typing import List
-from mapping.models import InterproDomain, HprdDomain
+from mapping.models import InterPro_Domain, HPRD_Domain
 from mapping.integrations.base_merged import BaseMergedEntity
 
 class MergedProteinDomain(BaseMergedEntity):
-    __label__ = "MergedProteinDomain"
+    __label__ = "PROTEIN_DOMAIN"
     __source_mappings__ = {
-        "members_names": (InterproDomain, "members_names"),
-        "member_ids": (InterproDomain, "members"),
-        "hprd_names": (HprdDomain, "name")
+        "members_names": (InterPro_Domain, "members_names"),
+        "member_ids": (InterPro_Domain, "members"),
+        "hprd_names": (HPRD_Domain, "name")
     }
 
     members_names: List[str] = Field(default_factory=list)
