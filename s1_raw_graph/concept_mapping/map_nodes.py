@@ -363,7 +363,7 @@ CALL {
     connector.close()
 
     """TODO: 
-    - Compare to marcels MERGED_INTO
+    - Compare to marcels MAPPED_TO
     - Broaden to single nodes (Just keep them with me to not lose them right now)
     - Label resolution (assign each MergedNode a concept) -> think about efficient ways (caching might work - either dict for checking existing node label combinationor more advanced stuff eg with dspy to cache LLM requests itself? not sure yet but more hopeful now)
     - Filtering with less strict criteria by the LLM

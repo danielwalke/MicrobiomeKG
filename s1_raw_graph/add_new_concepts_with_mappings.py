@@ -58,7 +58,7 @@ for concept, mapping_info in concept_to_databases_with_mappings.items():
             
             session.run(f"""
             MATCH (db_node:{db})
-WHERE db_node.`{final_prop_name}` IS NOT NULL AND NOT EXISTS((db_node)-[:MERGED_INTO]->())
+WHERE db_node.`{final_prop_name}` IS NOT NULL AND NOT EXISTS((db_node)-[:MAPPED_TO]->())
 CALL {{
     WITH db_node
     CREATE (new_c:{concept} {{
@@ -67,14 +67,14 @@ CALL {{
         search_names: [toLower(db_node.`{final_prop_name}`)], 
         search_ids: []
     }})
-    CREATE (db_node)-[:MERGED_INTO]->(new_c)
+    CREATE (db_node)-[:MAPPED_TO]->(new_c)
 }} IN TRANSACTIONS OF 5000 ROWS
             """).consume()
 
             # session.run(
             #     f"""
             #     MATCH (db_node:{db})
-            #     WHERE db_node.`{final_prop_name}` IS NOT NULL AND NOT EXISTS((db_node)-[:MERGED_INTO]->())
+            #     WHERE db_node.`{final_prop_name}` IS NOT NULL AND NOT EXISTS((db_node)-[:MAPPED_TO]->())
             #     WITH db_node.`{final_prop_name}` AS raw_val, collect(db_node) AS db_nodes
             #     CALL {{
             #         WITH raw_val, db_nodes
@@ -85,7 +85,7 @@ CALL {{
             #         FOREACH (existing_c IN matched_concepts |
             #             SET existing_c.names = CASE WHEN NOT raw_val IN coalesce(existing_c.names, []) THEN coalesce(existing_c.names, []) + [raw_val] ELSE coalesce(existing_c.names, []) END,
             #                 existing_c.search_names = CASE WHEN NOT search_val IN coalesce(existing_c.search_names, []) THEN coalesce(existing_c.search_names, []) + [search_val] ELSE coalesce(existing_c.search_names, []) END
-            #             FOREACH (node IN db_nodes | MERGE (node)-[:MERGED_INTO]->(existing_c))
+            #             FOREACH (node IN db_nodes | MERGE (node)-[:MAPPED_TO]->(existing_c))
             #         )
             #         FOREACH (_ IN CASE WHEN size(matched_concepts) = 0 THEN [1] ELSE [] END |
             #             CREATE (new_c:{concept} {{
@@ -94,7 +94,7 @@ CALL {{
             #                 search_names: [search_val], 
             #                 search_ids: []
             #             }})
-            #             FOREACH (node IN db_nodes | MERGE (node)-[:MERGED_INTO]->(new_c))
+            #             FOREACH (node IN db_nodes | MERGE (node)-[:MAPPED_TO]->(new_c))
             #         )
             #     }} IN TRANSACTIONS OF 5000 ROWS
             #     """

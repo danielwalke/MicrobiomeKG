@@ -65,7 +65,7 @@
 #                         WITH n
 #                         MERGE (c:`{new_concept_label}` {{{criteria}}})
 #                         ON CREATE SET c.__mapped = true, c.ids = [], c.names = []
-#                         MERGE (n)-[:MERGED_INTO]->(c)
+#                         MERGE (n)-[:MAPPED_TO]->(c)
 #                     }} IN TRANSACTIONS OF 10000 ROWS
 #                     """
 #                 ).consume()

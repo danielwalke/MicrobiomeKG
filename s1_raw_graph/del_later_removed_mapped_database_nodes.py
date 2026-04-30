@@ -1,9 +1,9 @@
 import json
 from neo4j import GraphDatabase
 
-## I can delete this sinc ein the future i will add these missing MERGED_INTO Conncetions in a previous scrupt
+## I can delete this sinc ein the future i will add these missing MAPPED_TO Conncetions in a previous scrupt
 def get_node_database_labels_without_mappings(session):
-    query = "MATCH (n) WHERE NOT (n)-[:MERGED_INTO]->() AND NOT all(l IN labels(n) WHERE l CONTAINS('Merged') /*=~ '^[A-Z]+$'*/) UNWIND labels(n) AS label RETURN DISTINCT label"
+    query = "MATCH (n) WHERE NOT (n)-[:MAPPED_TO]->() AND NOT all(l IN labels(n) WHERE l =~ '^[A-Z]+$' ) UNWIND labels(n) AS label RETURN DISTINCT label"
     result = session.run(query)
     return [record["label"] for record in result]
 
