@@ -3,7 +3,8 @@ from datetime import date, datetime, time
 from pydantic import Field
 from .base_model import Neo4jBaseModel
 
-class HPRD_Motif(Neo4jBaseModel):
-    __label__ = "HPRD_Motif"
+class ENZYME_Protein(Neo4jBaseModel):
+    __label__ = "ENZYME_Protein"
     __id: Optional[int] = None
+    accession: Optional[str] = None
     name: Optional[str] = None

@@ -3,7 +3,8 @@ from datetime import date, datetime, time
 from pydantic import Field
 from .base_model import Neo4jBaseModel
 
-class HPRD_Motif(Neo4jBaseModel):
-    __label__ = "HPRD_Motif"
+class DiseaseOntology_Subset(Neo4jBaseModel):
+    __label__ = "DiseaseOntology_Subset"
     __id: Optional[int] = None
-    name: Optional[str] = None
+    description: Optional[str] = None
+    id: Optional[str] = None

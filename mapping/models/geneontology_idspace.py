@@ -1,10 +1,10 @@
-from typing import Optional, Any
+from typing import Optional, Any, List
 from datetime import date, datetime, time
 from pydantic import Field
 from .base_model import Neo4jBaseModel
 
-class GeneontologyIdspace(Neo4jBaseModel):
+class GeneOntology_Idspace(Neo4jBaseModel):
     __label__ = "GeneOntology_Idspace"
-    iri: Optional[str] = None
     __id: Optional[int] = None
     id: Optional[str] = None
+    iri: Optional[str] = None

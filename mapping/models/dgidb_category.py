@@ -3,7 +3,7 @@ from datetime import date, datetime, time
 from pydantic import Field
 from .base_model import Neo4jBaseModel
 
-class HPRD_Motif(Neo4jBaseModel):
-    __label__ = "HPRD_Motif"
+class DGIdb_Category(Neo4jBaseModel):
+    __label__ = "DGIdb_Category"
     __id: Optional[int] = None
     name: Optional[str] = None
