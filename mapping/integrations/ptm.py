@@ -1,12 +1,12 @@
 from pydantic import Field
 from typing import List
-from mapping.models import HprdPosttranslationalmodification
+from mapping.models import HPRD_PostTranslationalModification
 from mapping.integrations.base_merged import BaseMergedEntity
 
 class MergedPTM(BaseMergedEntity):
-    __label__ = "MergedPTM"
+    __label__ = "PTM"
     __source_mappings__ = {
-        "ptm_ids": (HprdPosttranslationalmodification, "__id"),
+        "ptm_ids": (HPRD_PostTranslationalModification, "__id"),
     }
 
     ptm_ids: List[int] = Field(default_factory=list)
