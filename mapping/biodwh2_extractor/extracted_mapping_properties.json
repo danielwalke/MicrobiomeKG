@@ -1,0 +1,347 @@
+{
+    "GENE": {
+        "HGNC": [
+            "ensembl_gene_id",
+            "entrez_id",
+            "omim_ids",
+            "symbol"
+        ],
+        "GenCC": [
+            "id"
+        ],
+        "Kegg": [
+            "id"
+        ],
+        "OMIM": [
+            "approved_gene_symbol",
+            "ensembl_gene_id",
+            "entrez_gene_id"
+        ],
+        "MarkerDB": [
+            "entrez_gene_id",
+            "gene_symbol",
+            "variation"
+        ],
+        "MiRBase": [
+            "entrez_gene_id",
+            "hgnc_id"
+        ],
+        "RefSeq": [
+            "xrefs"
+        ],
+        "DrugCentral": [
+            "accession",
+            "gene",
+            "geneid"
+        ],
+        "BioM2MetDisease": [
+            "id"
+        ],
+        "TarBase": [
+            "id"
+        ],
+        "Gene2Phenotype": [
+            "hgnc_id",
+            "hgnc_symbol",
+            "mim"
+        ],
+        "PharmGKB": [
+            "id",
+            "symbol"
+        ],
+        "Mir2disease": [
+            "validated target"
+        ],
+        "Herb": [
+            "xrefs"
+        ],
+        "HPRD": [
+            "entrez_gene_id",
+            "omim_id"
+        ],
+        "MiRTarBase": [
+            "entrez_gene_id"
+        ]
+    },
+    "MIRNA": {
+        "HGNC": [
+            "mirbase_accession"
+        ],
+        "MiRBase": [
+            "accession",
+            "id"
+        ],
+        "TarBase": [
+            "id"
+        ],
+        "MiRDB": [
+            "id"
+        ],
+        "MiRTarBase": [
+            "id"
+        ]
+    },
+    "DRUG": {
+        "DrugBank": [
+            "cas_number",
+            "drugbank_id",
+            "unii"
+        ],
+        "ADReCS": [
+            "drugbank_id",
+            "kegg_id",
+            "pubchem_id"
+        ],
+        "TheMarker": [
+            "drugbank_id",
+            "pubchem_cid"
+        ],
+        "ReDOTrialsDB": [
+            "drugbank_id",
+            "name"
+        ],
+        "DrugMap": [
+            "chebi_id"
+        ],
+        "TTD": [
+            "cas_number",
+            "pubchem_cids"
+        ]
+    },
+    "PATHWAY": {
+        "DrugBank": [
+            "smpdb_id"
+        ],
+        "PharmGKB": [
+            "id"
+        ],
+        "TTD": [
+            "id"
+        ]
+    },
+    "TAXON": {
+        "DrugBank": [
+            "id"
+        ],
+        "Kegg": [
+            "id"
+        ],
+        "IPTMNet": [
+            "ncbi_taxid"
+        ],
+        "DrugCentral": [
+            "snomed_concept_id",
+            "umls_cui"
+        ],
+        "BioM2MetDisease": [
+            "species"
+        ],
+        "UniProt": [
+            "db_references"
+        ],
+        "CMAUP": [
+            "species_tax_id"
+        ],
+        "Brenda": [
+            "ncbi_taxid"
+        ]
+    },
+    "ADVERSE_EVENT": {
+        "ADReCS": [
+            "meddra_code"
+        ],
+        "Sider": [
+            "id"
+        ]
+    },
+    "COMPOUND": {
+        "IIG": [
+            "unii"
+        ],
+        "Kegg": [
+            "id"
+        ],
+        "ChEBI": [
+            "xrefs"
+        ],
+        "MarkerDB": [
+            "hmdb_id"
+        ],
+        "DrugCentral": [
+            "active_moiety_unii",
+            "cas_reg_no",
+            "identifier",
+            "substance_unii"
+        ],
+        "PharmGKB": [
+            "id"
+        ],
+        "OpenTargets": [
+            "id",
+            "xrefs"
+        ],
+        "Sider": [
+            "flat_id"
+        ],
+        "TTD": [
+            "pubchem_cid"
+        ]
+    },
+    "DISEASE": {
+        "GenCC": [
+            "id"
+        ],
+        "Kegg": [
+            "external_identifier"
+        ],
+        "TheMarker": [
+            "icd11"
+        ],
+        "BioM2MetDisease": [
+            "icd10_classification"
+        ],
+        "Gene2Phenotype": [
+            "mim",
+            "mondo_id"
+        ],
+        "OpenTargets": [
+            "id",
+            "xrefs"
+        ],
+        "Herb": [
+            "cas_id",
+            "disgenet_id",
+            "drugbank_id",
+            "pubchem_id"
+        ],
+        "TTD": [
+            "ICD10",
+            "ICD11"
+        ]
+    },
+    "REFERENCE": {
+        "Kegg": [
+            "pmid"
+        ],
+        "DrugCentral": [
+            "pmid"
+        ],
+        "ClinicalTrialsGov": [
+            "pmid"
+        ],
+        "Herb": [
+            "pubmed_id"
+        ]
+    },
+    "PROTEIN": {
+        "IPTMNet": [
+            "uniprot_accession",
+            "uniprot_id"
+        ],
+        "TheMarker": [
+            "ensembl_ids",
+            "gene_ids",
+            "hgnc_ids",
+            "pubchem_cids"
+        ],
+        "MarkerDB": [
+            "uniprot_id"
+        ],
+        "RefSeq": [
+            "xrefs"
+        ],
+        "UniProt": [
+            "accession"
+        ],
+        "CMAUP": [
+            "chembl_id",
+            "gene_symbol",
+            "uniprot_id"
+        ],
+        "DrugMap": [
+            "ec_number",
+            "uniprot_accession",
+            "uniprot_id"
+        ],
+        "Brenda": [
+            "accession"
+        ],
+        "TTD": [
+            "uniprot_ids"
+        ]
+    },
+    "GENE_VARIANT": {
+        "MarkerDB": [
+            "variation"
+        ],
+        "PharmGKB": [
+            "id",
+            "name"
+        ]
+    },
+    "DRUG_LABEL": {
+        "DrugCentral": [
+            "id"
+        ]
+    },
+    "PUBLICATION": {
+        "InterPro": [
+            "pmid"
+        ],
+        "BioM2MetDisease": [
+            "pubmed_id"
+        ],
+        "UniProt": [
+            "db_references"
+        ],
+        "Gene2Phenotype": [
+            "pmid"
+        ],
+        "BIONDA": [
+            "pmid"
+        ],
+        "Brenda": [
+            "pmid"
+        ],
+        "GWASCatalog": [
+            "pmid"
+        ]
+    },
+    "PROTEIN_DOMAIN": {
+        "InterPro": [
+            "members"
+        ]
+    },
+    "RNA": {
+        "BioM2MetDisease": [
+            "id"
+        ]
+    },
+    "TRANSCRIPT": {
+        "TarBase": [
+            "id"
+        ]
+    },
+    "PHENOTYPE": {
+        "Gene2Phenotype": [
+            "hpo_id"
+        ]
+    },
+    "HAPLOTYPE": {
+        "PharmGKB": [
+            "id"
+        ]
+    },
+    "LITERATURE": {
+        "PharmGKB": [
+            "id",
+            "pmid"
+        ]
+    },
+    "INGREDIENT": {
+        "CMAUP": [
+            "chembl_id",
+            "pubchem_cid"
+        ]
+    }
+}

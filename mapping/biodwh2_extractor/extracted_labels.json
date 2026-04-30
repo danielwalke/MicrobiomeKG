@@ -1,0 +1,501 @@
+{
+    "HGNC": {
+        "GENE_LABEL": "Gene",
+        "PROTEIN_LABEL": "Protein",
+        "LNC_RNA_LABEL": "lncRNA",
+        "MI_RNA_LABEL": "miRNA",
+        "T_RNA_LABEL": "tRNA",
+        "R_RNA_LABEL": "rRNA",
+        "SN_RNA_LABEL": "snRNA",
+        "SNO_RNA_LABEL": "snoRNA",
+        "TRANSCRIBES_TO_LABEL": "TRANSCRIBES_TO",
+        "TRANSLATES_TO_LABEL": "TRANSLATES_TO"
+    },
+    "DrugBank": {
+        "INTERACTS_WITH_DRUG_LABEL": "INTERACTS_WITH_DRUG",
+        "IS_IN_PATHWAY_LABEL": "IS_IN_PATHWAY",
+        "IS_POLYPEPTIDE_LABEL": "IS_POLYPEPTIDE",
+        "HAS_ENZYME_LABEL": "HAS_ENZYME",
+        "ENZYME_IN_LABEL": "ENZYME_IN",
+        "AFFECTS_LABEL": "AFFECTS",
+        "CLASSIFIED_AS_LABEL": "CLASSIFIED_AS",
+        "COSTS_LABEL": "COSTS",
+        "HAS_ARTICLE_LABEL": "HAS_ARTICLE",
+        "HAS_ATTACHMENT_LABEL": "HAS_ATTACHMENT",
+        "HAS_BRAND_LABEL": "HAS_BRAND",
+        "HAS_CATEGORY_LABEL": "HAS_CATEGORY",
+        "HAS_DOSAGE_LABEL": "HAS_DOSAGE",
+        "HAS_FOOD_INTERACTION_LABEL": "HAS_FOOD_INTERACTION",
+        "HAS_GO_CLASSIFIER_LABEL": "HAS_GO_CLASSIFIER",
+        "HAS_LINK_LABEL": "HAS_LINK",
+        "HAS_MANUFACTURER_LABEL": "HAS_MANUFACTURER",
+        "HAS_ORGANISM_LABEL": "HAS_ORGANISM",
+        "HAS_PACKAGER_LABEL": "HAS_PACKAGER",
+        "IS_PRODUCT_LABEL": "IS_PRODUCT",
+        "HAS_PATENT_LABEL": "HAS_PATENT",
+        "HAS_PFAM_LABEL": "HAS_PFAM",
+        "HAS_PHARMACOLOGY_LABEL": "HAS_PHARMACOLOGY",
+        "HAS_PROPERTY_LABEL": "HAS_PROPERTY",
+        "HAS_SALT_LABEL": "HAS_SALT",
+        "HAS_SEQUENCE_LABEL": "HAS_SEQUENCE",
+        "HAS_SNP_ADVERSE_DRUG_REACTION_LABEL": "HAS_SNP_ADVERSE_DRUG_REACTION",
+        "HAS_SNP_EFFECT_LABEL": "HAS_SNP_EFFECT",
+        "HAS_SYNONYM_LABEL": "HAS_SYNONYM",
+        "HAS_TARGET_LABEL": "HAS_TARGET",
+        "HAS_TEXTBOOK_LABEL": "HAS_TEXTBOOK",
+        "IS_IN_MIXTURE_LABEL": "IS_IN_MIXTURE",
+        "SUBSTRATE_IN_LABEL": "SUBSTRATE_IN",
+        "HAS_PRODUCT_LABEL": "HAS_PRODUCT",
+        "TARGETS_LABEL": "TARGETS",
+        "ORGANISM_LABEL": "Organism",
+        "PATHWAY_LABEL": "Pathway",
+        "POLYPEPTIDE_LABEL": "Polypeptide",
+        "ENZYME_LABEL": "Enzyme",
+        "REACTION_LABEL": "Reaction",
+        "SALT_LABEL": "Salt",
+        "CALCULATED_PROPERTY_LABEL": "CalculatedProperty",
+        "CARRIER_LABEL": "Carrier",
+        "CLASSIFICATION_LABEL": "Classification",
+        "DRUG_LABEL": "Drug",
+        "EXPERIMENTAL_PROPERTY_LABEL": "ExperimentalProperty",
+        "FOOD_INTERACTION_LABEL": "FoodInteraction",
+        "GO_CLASSIFIER_LABEL": "GOClassifier",
+        "MANUFACTURER_LABEL": "Manufacturer",
+        "MESH_TERM_LABEL": "MeshTerm",
+        "PACKAGER_LABEL": "Packager",
+        "PFAM_LABEL": "Pfam",
+        "PHARMACOLOGY_LABEL": "Pharmacology",
+        "PRICE_LABEL": "Price",
+        "DOSAGE_LABEL": "Dosage",
+        "PRODUCT_LABEL": "Product",
+        "SEQUENCE_LABEL": "Sequence",
+        "TARGET_LABEL": "Target",
+        "TARGET_METADATA_LABEL": "TargetMetadata",
+        "TRANSPORTER_LABEL": "Transporter"
+    },
+    "ADReCS": {
+        "DRUG_LABEL": "Drug",
+        "ADR_LABEL": "ADR"
+    },
+    "STRING": {
+        "SPECIES_LABEL": "Species",
+        "PROTEIN_LABEL": "Protein",
+        "CLUSTER_LABEL": "Cluster"
+    },
+    "IIG": {
+        "INGREDIENT_LABEL": "Ingredient"
+    },
+    "GenCC": {
+        "GENE_LABEL": "Gene",
+        "DISEASE_LABEL": "Disease"
+    },
+    "IID": {
+        "PROTEIN_LABEL": "Protein",
+        "INTERACTS_WITH_LABEL": "INTERACTS_WITH"
+    },
+    "Negatome": {
+        "PROTEIN_LABEL": "Protein",
+        "PFAM_DOMAIN_LABEL": "PfamDomain"
+    },
+    "GeneOntology": {
+        "DB_OBJECT_LABEL": "DBObject"
+    },
+    "Kegg": {
+        "DRUG_LABEL": "Drug",
+        "VARIANT_LABEL": "Variant",
+        "REFERENCE_LABEL": "Reference",
+        "DISEASE_LABEL": "Disease",
+        "NETWORK_LABEL": "Network",
+        "DRUG_GROUP_LABEL": "DrugGroup",
+        "GENE_LABEL": "Gene",
+        "COMPOUND_LABEL": "Compound",
+        "ORGANISM_LABEL": "Organism",
+        "TARGETS_LABEL": "TARGETS"
+    },
+    "ChEBI": {
+        "COMPOUND_LABEL": "Compound",
+        "STRUCTURE_LABEL": "Structure",
+        "ORIGIN_LABEL": "Origin"
+    },
+    "Tissues": {
+        "EXPRESSED_IN_LABEL": "EXPRESSED_IN"
+    },
+    "IPTMNet": {
+        "PROTEIN_LABEL": "Protein",
+        "PTM_LABEL": "PTM",
+        "ORGANISM_LABEL": "Organism"
+    },
+    "OMIM": {
+        "GENE_LABEL": "Gene",
+        "PHENOTYPE_LABEL": "Phenotype"
+    },
+    "TheMarker": {
+        "DRUG_LABEL": "Drug",
+        "DISEASE_LABEL": "Disease",
+        "MARKER_LABEL": "Marker",
+        "ASSOCIATION_LABEL": "Association",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH"
+    },
+    "MarkerDB": {
+        "GENE_LABEL": "Gene",
+        "CHEMICAL_LABEL": "Chemical",
+        "PROTEIN_LABEL": "Protein",
+        "KARYOTYPE_LABEL": "Karyotype",
+        "SEQUENCE_VARIANT_LABEL": "SequenceVariant",
+        "CONDITION_LABEL": "Condition"
+    },
+    "MiRBase": {
+        "PRE_MI_RNA_LABEL": "pre_miRNA",
+        "MI_RNA_LABEL": "miRNA",
+        "SPECIES_LABEL": "Species",
+        "GENE_LABEL": "Gene",
+        "FAMILY_LABEL": "Family",
+        "REFERENCE_LABEL": "Reference"
+    },
+    "RefSeq": {
+        "ASSEMBLY_LABEL": "Assembly",
+        "CHROMOSOME_LABEL": "Chromosome",
+        "GENE_LABEL": "Gene",
+        "M_RNA_LABEL": "mRNA",
+        "T_RNA_LABEL": "tRNA",
+        "R_RNA_LABEL": "rRNA",
+        "NC_RNA_LABEL": "ncRNA",
+        "MI_RNA_LABEL": "miRNA",
+        "SN_RNA_LABEL": "snRNA",
+        "SC_RNA_LABEL": "scRNA",
+        "SNO_RNA_LABEL": "snoRNA",
+        "LNC_RNA_LABEL": "lncRNA",
+        "VAULT_RNA_LABEL": "vaultRNA",
+        "Y_RNA_LABEL": "YRNA",
+        "ANTISENSE_RNA_LABEL": "antisenseRNA",
+        "CDS_LABEL": "CDS",
+        "PRIMARY_TRANSCRIPT_LABEL": "PrimaryTranscript"
+    },
+    "MEDRT": {
+        "HAS_PREFERRED_TERM_LABEL": "HAS_PREFERRED_TERM",
+        "HAS_SYNONYM_LABEL": "HAS_SYNONYM",
+        "TERM_LABEL": "Term"
+    },
+    "ITIS": {
+        "GEOGRAPHIC_DIVISION_LABEL": "GeographicDivision",
+        "JURISDICTION_LABEL": "Jurisdiction",
+        "EXPERT_LABEL": "Expert",
+        "KINGDOM_LABEL": "Kingdom",
+        "RANK_LABEL": "Rank",
+        "TAXON_LABEL": "Taxon",
+        "COMMENT_LABEL": "Comment",
+        "PUBLICATION_LABEL": "Publication",
+        "SOURCE_LABEL": "Source"
+    },
+    "RNALocate": {
+        "LOCALIZATION_LABEL": "Localization",
+        "RNA_LABEL": "RNA"
+    },
+    "DrugCentral": {
+        "DRUG_LABEL_LABEL": "DrugLabel",
+        "REFERENCE_LABEL": "Reference",
+        "ATTRIBUTE_TYPE_LABEL": "AttributeType",
+        "FAERS_LABEL": "FAERS",
+        "INN_STEM_LABEL": "InnStem",
+        "VET_PROD_LABEL": "VetProd",
+        "VET_OMOP_LABEL": "VetOmop",
+        "ORANGE_BOOK_EXCLUSIVITY_LABEL": "OrangeBookExclusivity",
+        "ORANGE_BOOK_PRODUCT_LABEL": "OrangeBookProduct",
+        "STRUCTURE_LABEL": "Structure",
+        "TARGET_KEYWORD_LABEL": "TargetKeyword",
+        "ACTION_TYPE_LABEL": "ActionType",
+        "PDB_LABEL": "PDB",
+        "PARENT_DRUG_MOLECULE_LABEL": "ParentDrugMolecule",
+        "OMOP_CONCEPT_LABEL": "OMOPConcept",
+        "ACTIVE_INGREDIENT_LABEL": "ActiveIngredient",
+        "TARGET_COMPONENT_LABEL": "TargetComponent"
+    },
+    "HMDB": {
+        "PATHWAY_LABEL": "Pathway",
+        "PFAM_LABEL": "Pfam",
+        "GO_CLASS_LABEL": "GOClass",
+        "ONTOLOGY_TERM_LABEL": "OntologyTerm",
+        "DISEASE_LABEL": "Disease",
+        "REFERENCE_LABEL": "Reference",
+        "PROTEIN_LABEL": "Protein",
+        "GENE_LABEL": "Gene",
+        "METABOLITE_LABEL": "Metabolite",
+        "TRANSLATES_TO_LABEL": "TRANSLATES_TO"
+    },
+    "CanadianNutrientFile": {
+        "FOOD_LABEL": "Food",
+        "FOOD_GROUP_LABEL": "FoodGroup",
+        "NUTRIENT_LABEL": "Nutrient",
+        "FOOD_SOURCE_LABEL": "FoodSource",
+        "YIELD_LABEL": "Yield",
+        "REFUSE_LABEL": "Refuse",
+        "MEASURE_LABEL": "Measure",
+        "NUTRIENT_SOURCE_LABEL": "NutrientSource"
+    },
+    "ClinicalTrialsGov": {
+        "OUTCOME_LABEL": "Outcome",
+        "DOCUMENT_LABEL": "Document",
+        "ARM_GROUP_LABEL": "ArmGroup",
+        "PERSON_LABEL": "Person",
+        "SPONSOR_LABEL": "Sponsor",
+        "LOCATION_LABEL": "Location",
+        "REFERENCE_LABEL": "Reference",
+        "TRIAL_LABEL": "Trial",
+        "CONDITION_LABEL": "Condition",
+        "INTERVENTION_LABEL": "Intervention"
+    },
+    "RNAInter": {
+        "COMPOUND_LABEL": "Compound",
+        "GENE_LABEL": "Gene",
+        "PROTEIN_LABEL": "Protein",
+        "HISTONE_MODIFICATION_LABEL": "HistoneModification",
+        "RNA_LABEL": "RNA",
+        "INTERACTS_WITH_LABEL": "INTERACTS_WITH"
+    },
+    "InterPro": {
+        "CLASSIFICATION_LABEL": "Classification",
+        "PUBLICATION_LABEL": "Publication",
+        "DOMAIN_LABEL": "Domain"
+    },
+    "MI": {
+        "INTERACTOR_LABEL": "Interactor",
+        "INTERACTION_LABEL": "Interaction",
+        "PUBLICATION_LABEL": "Publication",
+        "ORGANISM_LABEL": "Organism",
+        "INTERACTS_LABEL": "INTERACTS",
+        "PARTICIPATES_IN_LABEL": "PARTICIPATES_IN"
+    },
+    "Ontology": {
+        "TERM_LABEL": "Term",
+        "HEADER_LABEL": "Header",
+        "SUBSET_LABEL": "Subset",
+        "SYNONYM_TYPE_LABEL": "SynonymType",
+        "IDSPACE_LABEL": "Idspace",
+        "TYPEDEF_LABEL": "Typedef",
+        "INSTANCE_LABEL": "Instance"
+    },
+    "NDFRT": {
+        "IN_NAMESPACE_EDGE_LABEL": "IN_NAMESPACE"
+    },
+    "PTMD": {
+        "PROTEIN_LABEL": "Protein",
+        "PTM_LABEL": "PTM",
+        "DISEASE_LABEL": "Disease"
+    },
+    "BioM2MetDisease": {
+        "BIOMOLECULE_LABEL": "Biomolecule",
+        "GENE_LABEL": "Gene",
+        "SPECIES_LABEL": "Species",
+        "DISEASE_LABEL": "Disease",
+        "PUBLICATION_LABEL": "Publication",
+        "ASSOCIATION_NODE_LABEL": "Association",
+        "TISSUE_LABEL": "Tissue"
+    },
+    "UniProt": {
+        "ORGANISM_LABEL": "Organism",
+        "PROTEIN_LABEL": "Protein",
+        "CITATION_LABEL": "Citation"
+    },
+    "TarBase": {
+        "GENE_LABEL": "Gene",
+        "TRANSCRIPT_LABEL": "Transcript",
+        "MI_RNA_LABEL": "miRNA",
+        "TRANSCRIBES_TO_LABEL": "TRANSCRIBES_TO",
+        "TARGETS_LABEL": "TARGETS"
+    },
+    "LMSD": {
+        "LIPID_LABEL": "Lipid",
+        "LIPID_CLASSIFICATION_LABEL": "LipidClassification"
+    },
+    "ReDOTrialsDB": {
+        "DRUG_LABEL": "Drug",
+        "TRIAL_LABEL": "Trial",
+        "DISEASE_LABEL": "Disease",
+        "INVESTIGATES_LABEL": "INVESTIGATES"
+    },
+    "Gene2Phenotype": {
+        "PUBLICATION_LABEL": "Publication",
+        "GENE_LABEL": "Gene",
+        "PHENOTYPE_LABEL": "Phenotype",
+        "DISEASE_LABEL": "Disease"
+    },
+    "NSIDES": {
+        "DRUG_LABEL": "Drug",
+        "DRUG_EFFECT_LABEL": "DrugEffect",
+        "PART_OF_LABEL": "PART_OF",
+        "HAS_EFFECT_LABEL": "HAS_EFFECT"
+    },
+    "Enzyme": {
+        "ENZYME_LABEL": "Enzyme",
+        "PROTEIN_LABEL": "Protein"
+    },
+    "DGIdb": {
+        "DRUG_LABEL": "Drug",
+        "GENE_LABEL": "Gene",
+        "INTERACTS_WITH_LABEL": "INTERACTS_WITH"
+    },
+    "RNADisease": {
+        "RNA_LABEL": "RNA",
+        "DISEASE_LABEL": "Disease",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH"
+    },
+    "QPTM": {
+        "PROTEIN_LABEL": "Protein",
+        "PTM_LABEL": "PTM",
+        "ORGANISM_LABEL": "Organism"
+    },
+    "TRRUST": {
+        "TRANSCRIPTION_FACTOR_LABEL": "TranscriptionFactor",
+        "GENE_LABEL": "Gene"
+    },
+    "QPTMPlants": {
+        "PROTEIN_LABEL": "Protein",
+        "PTM_LABEL": "PTM",
+        "ORGANISM_LABEL": "Organism"
+    },
+    "MiRDB": {
+        "MI_RNA_LABEL": "miRNA",
+        "M_RNA_LABEL": "mRNA",
+        "TARGETS_LABEL": "TARGETS"
+    },
+    "BIONDA": {
+        "DISEASE_LABEL": "Disease",
+        "BIOMARKER_LABEL": "Biomarker",
+        "PUBLICATION_LABEL": "Publication",
+        "ASSOCIATION_LABEL": "Association",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH"
+    },
+    "PharmGKB": {
+        "GENE_LABEL": "Gene",
+        "HAPLOTYPE_LABEL": "Haplotype",
+        "HAPLOTYPE_SET_LABEL": "HaplotypeSet",
+        "VARIANT_LABEL": "Variant",
+        "PATHWAY_LABEL": "Pathway",
+        "CHEMICAL_LABEL": "Chemical",
+        "PHENOTYPE_LABEL": "Phenotype",
+        "LITERATURE_LABEL": "Literature",
+        "WEB_PAGE_LABEL": "WebPage",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH",
+        "HAS_OCCURRENCE_LABEL": "HAS_OCCURRENCE"
+    },
+    "Diseases": {
+        "GENE_LABEL": "Gene",
+        "DISEASE_LABEL": "Disease",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH"
+    },
+    "Mir2disease": {
+        "MI_RNA_LABEL": "MiRNA",
+        "DISEASE_LABEL": "Disease",
+        "PUBLICATION_LABEL": "Publication",
+        "TARGET_LABEL": "Target of miRNA",
+        "ASSOCIATION_NODE_LABEL": "Association",
+        "ASSOCIATION_LABEL": "ASSOCIATED_WITH"
+    },
+    "OpenTargets": {
+        "MOLECULE_LABEL": "Molecule",
+        "DISEASE_LABEL": "Disease",
+        "TARGET_LABEL": "Target",
+        "HAS_CHILD_LABEL": "HAS_CHILD"
+    },
+    "Herb": {
+        "HERB_LABEL": "Herb",
+        "INGREDIENT_LABEL": "Ingredient",
+        "TARGET_LABEL": "Target",
+        "DISEASE_LABEL": "Disease",
+        "REFERENCE_LABEL": "Reference"
+    },
+    "SwissLipids": {
+        "EVIDENCE_LABEL": "Evidence",
+        "ENZYME_LABEL": "Enzyme",
+        "LIPID_LABEL": "Lipid",
+        "REACTION_LABEL": "Reaction"
+    },
+    "HPO": {
+        "GENE_LABEL": "Gene",
+        "DISEASE_LABEL": "Disease",
+        "ASSOCIATION_LABEL": "Association",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH"
+    },
+    "CMAUP": {
+        "PLANT_LABEL": "Plant",
+        "INGREDIENT_LABEL": "Ingredient",
+        "TARGET_LABEL": "Target",
+        "TARGETS_LABEL": "TARGETS"
+    },
+    "NPCDR": {
+        "NATURAL_PRODUCT_LABEL": "NaturalProduct",
+        "DRUG_LABEL": "Drug",
+        "TARGET_LABEL": "Target",
+        "CELL_LINE_LABEL": "CellLine",
+        "TAXON_LABEL": "Taxon",
+        "COMBINATION_LABEL": "Combination",
+        "DISEASE_LABEL": "Disease",
+        "MOLECULE_LABEL": "Molecule",
+        "MECHANISM_LABEL": "Mechanism",
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH",
+        "REGULATES_LABEL": "REGULATES",
+        "IN_VITRO_MODEL_FOR_LABEL": "IN_VITRO_MODEL_FOR"
+    },
+    "DrugMap": {
+        "DRUG_LABEL": "Drug",
+        "THERAPEUTIC_TARGET_LABEL": "TherapeuticTarget",
+        "TRANSPORTER_LABEL": "Transporter",
+        "METABOLIZING_ENZYME_LABEL": "MetabolizingEnzyme",
+        "PATHWAY_LABEL": "Pathway",
+        "TARGETS_LABEL": "TARGETS"
+    },
+    "HPRD": {
+        "PROTEIN_LABEL": "Protein",
+        "M_RNA_LABEL": "mRNA",
+        "GENE_LABEL": "Gene",
+        "TRANSCRIBES_TO_LABEL": "TRANSCRIBES_TO",
+        "TRANSLATES_TO_LABEL": "TRANSLATES_TO"
+    },
+    "Brenda": {
+        "ENZYME_LABEL": "Enzyme",
+        "PROTEIN_LABEL": "Protein",
+        "PUBLICATION_LABEL": "Publication",
+        "ORGANISM_LABEL": "Organism"
+    },
+    "MiRTarBase": {
+        "ASSOCIATED_WITH_LABEL": "ASSOCIATED_WITH",
+        "HAS_EVIDENCE_LABEL": "HAS_EVIDENCE",
+        "MIRNA_LABEL": "miRNA",
+        "GENE_LABEL": "Gene",
+        "PUBLICATION_LABEL": "Publication",
+        "INTERACTION_LABEL": "Interaction"
+    },
+    "UNII": {
+        "UNII_LABEL": "UNII",
+        "SPECIES_LABEL": "Species"
+    },
+    "NPASS": {
+        "SPECIES_LABEL": "Species",
+        "TARGET_LABEL": "Target",
+        "COMPOUND_LABEL": "Compound",
+        "ACTIVITY_LABEL": "Activity"
+    },
+    "Sider": {
+        "DRUG_LABEL": "Drug",
+        "MEDDRA_TERM_LABEL": "MeddraTerm",
+        "HAS_SIDE_EFFECT_LABEL": "HAS_SIDE_EFFECT",
+        "HAS_SIDE_EFFECT_FREQUENCY_LABEL": "HAS_SIDE_EFFECT_FREQUENCY"
+    },
+    "TTD": {
+        "PATHWAY_LABEL": "Pathway",
+        "TARGET_LABEL": "Target",
+        "DRUG_LABEL": "Drug",
+        "COMPOUND_LABEL": "Compound",
+        "DISEASE_LABEL": "Disease",
+        "BIOMARKER_LABEL": "Biomarker",
+        "TARGETS_LABEL": "TARGETS",
+        "INDICATES_LABEL": "INDICATES"
+    },
+    "GWASCatalog": {
+        "PUBLICATION_LABEL": "Publication",
+        "STUDY_LABEL": "Study",
+        "TRAIT_LABEL": "Trait",
+        "ANCESTRY_LABEL": "Ancestry",
+        "ASSOCIATION_LABEL": "Association"
+    }
+}
