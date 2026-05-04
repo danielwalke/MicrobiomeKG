@@ -6,10 +6,10 @@ services:
       - "7480:7474"
       - "7693:7687"
     volumes:
-      - ./data:/data
-      - ./logs:/logs
-      - ./conf:/conf
-      - ./import:/import
+      - ~/mnt/client_data/mikrobiome_kg/s7_postfiltered_graph/data:/data
+      - ~/mnt/client_data/mikrobiome_kg/s7_postfiltered_graph/logs:/logs
+      - ~/mnt/client_data/mikrobiome_kg/s7_postfiltered_graph/conf:/conf
+      - ~/mnt/client_data/mikrobiome_kg/s7_postfiltered_graph/import:/import
     environment:
       - NEO4J_AUTH=none
       - NEO4J_PLUGINS=["apoc"]
