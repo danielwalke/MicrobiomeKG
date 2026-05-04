@@ -16,7 +16,7 @@ def filter_properties(m_session, t_session):
 
     for label in target_schema_dict:
         if label not in metagraph_schema_dict:
-            print(f"Label {label} not found in metagraph schema, skipping property filtering for this label (Not in metagraph means no properties in complete graph and therefore irrelevant).")
+            print(f"Label {label} not found in metagraph schema, skipping property filtering for this label (Not in metagraph).")
             continue
         all_props = target_schema_dict[label]
         
@@ -38,9 +38,14 @@ def filter_properties(m_session, t_session):
 def edge_roll_up(t_session):
     query = """
     MATCH (n:UniProt_Protein)-[]-(r:UniProt_Reference)-[]-(c:UniProt_Citation)
-    apoc.create.relationship(n, 'HAS_REFERENCE', properties(r), c) YIELD rel
+    CALL {
+        WITH n, r, c
+        CREATE (n)-[rel:HAS_REFERENCE]->(c)
+        SET rel = properties(r)
+    } IN TRANSACTIONS OF 1000 ROWS
     """
-    
+    t_session.run(query).consume()
+
 def indirect_relationship_roll_up(t_session):
     t_session.run(
         """
@@ -59,7 +64,7 @@ def indirect_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -77,7 +82,7 @@ def property_roll_up(t_session):
              WITH sAgg, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
              CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
              RETURN node",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -93,7 +98,7 @@ def property_roll_up(t_session):
              WITH sAgg, key AS newKey, collect(s[key]) AS rawValues
              CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
              RETURN node",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -116,7 +121,7 @@ def direct_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -131,7 +136,7 @@ def bridge_node_roll_up(t_session):
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
              SET new_r.source_labels = dbLabels",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -143,7 +148,7 @@ def delete_all_source_nodes_of_MAPPED_TO(t_session):
             "MATCH (n)-[:MAPPED_TO]->()
              RETURN DISTINCT n",
             "DETACH DELETE n",
-            {batchSize: 10000, parallel: false}
+            {batchSize: 1000, parallel: false}
         )
         """
     ).consume()
@@ -156,7 +161,7 @@ def remove_items(main_list, items_to_remove):
 
 def run_migration(metagraph_driver, target_driver):
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
-        filter_properties(m_session, t_session)
+        #filter_properties(m_session, t_session)
         ##TODO Test this:
         edge_roll_up(t_session)
         property_roll_up(t_session)
