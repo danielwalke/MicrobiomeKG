@@ -4,7 +4,7 @@ from mapping.models import HPRD_Tissue
 from mapping.integrations.base_merged import BaseMergedEntity
 
 class MergedTissue(BaseMergedEntity):
-    __label__ = "MergedTissue"
+    __label__ = "TISSUE"
     __source_mappings__ = {
         "tissue_names": (HPRD_Tissue, "name")
     }
