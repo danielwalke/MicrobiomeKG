@@ -161,7 +161,7 @@ def remove_items(main_list, items_to_remove):
 
 def run_migration(metagraph_driver, target_driver):
     with target_driver.session() as t_session, metagraph_driver.session() as m_session:
-        #filter_properties(m_session, t_session)
+        filter_properties(m_session, t_session)
         ##TODO Test this:
         edge_roll_up(t_session)
         property_roll_up(t_session)
