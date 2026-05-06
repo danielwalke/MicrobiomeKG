@@ -66,7 +66,7 @@ python -m s3_filtered_raw_metagraph.filter_metagraph
 
 
 echo "Cloning raw KG"
-sudo -E python3 -m s4_filtered_rolledup_graph.clone_kg
+python3 -m s4_filtered_rolledup_graph.clone_kg
 echo "Starting Docker containers for s4_filtered_rolledup_graph..." 
 docker compose -f s4_filtered_rolledup_graph/docker-compose.yml up -d --wait
 echo "Filtering knowledge graph in s4_filtered_rolledup_graph..."
@@ -84,7 +84,7 @@ python -m s6_postfiltered_metagraph.filter_metagraph
 
 
 echo "Cloning postfiltered graph..."
-sudo -E python3 -m s7_postfiltered_graph.clone_kg
+python -m s7_postfiltered_graph.clone_kg
 docker compose -f s7_postfiltered_graph/docker-compose.yml up -d --wait
 echo "Filtering knowledge graph in s7_postfiltered_graph..."
 python -m s7_postfiltered_graph.filter_knowledge_graph
