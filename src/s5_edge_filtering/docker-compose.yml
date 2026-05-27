@@ -1,0 +1,21 @@
+services:
+  neo4j-edge-filtered-graph:
+    image: neo4j:latest
+    container_name: neo4j-edge-filtered-graph
+    ports:
+      - "${EDGE_FILTERED_GRAPH_DESKTOP_PORT}:7474"
+      - "${EDGE_FILTERED_GRAPH_BOLT_PORT}:7687"
+    volumes:
+      - ${EDGE_FILTERED_GRAPH_DIR}/data:/data
+      - ${EDGE_FILTERED_GRAPH_DIR}/logs:/logs
+      - ${EDGE_FILTERED_GRAPH_DIR}/conf:/conf
+      - ${EDGE_FILTERED_GRAPH_DIR}/import:/import
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_PLUGINS=["apoc"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s

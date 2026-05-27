@@ -1,0 +1,21 @@
+services:
+  neo4j-raw-metagraph:
+    image: neo4j:latest
+    container_name: neo4j-raw-metagraph
+    ports:
+      - "${RAW_METAGRAPH_DESKTOP_PORT}:7474"
+      - "${RAW_METAGRAPH_BOLT_PORT}:7687"
+    volumes:
+      - ${RAW_METAGRAPH_DIR}/data:/data
+      - ${RAW_METAGRAPH_DIR}/logs:/logs
+      - ${RAW_METAGRAPH_DIR}/conf:/conf
+      - ${RAW_METAGRAPH_DIR}/import:/import
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_PLUGINS=["apoc"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s

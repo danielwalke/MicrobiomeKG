@@ -9,3 +9,4 @@ logs/
 __pycache__
 *.jar
 s1_raw_graph/workspace/config.json
+.env

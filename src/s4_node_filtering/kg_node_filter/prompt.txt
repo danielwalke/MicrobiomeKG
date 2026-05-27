@@ -1,0 +1,46 @@
+The 6-Step Escalation & Evaluation Pipeline
+
+1. The Fast Path (Deterministic): Run your properties through the fast, toolless Analyzer Agent first, providing it only with the basic metadata and local schema connections.
+
+2. The Confidence Threshold: Require the Analyzer to output a confidence_score (0-100%) alongside its importance_score (0-10) and its reasoning.
+
+3. The Escalation (Agentic): If the Analyzer gives a low confidence score (e.g., under 75%) because the property name is ambiguous or the meaning isn't clear from the local neighborhood, route that specific property to a Research Agent.
+
+4. The Research Agent: This specialized agent is equipped with a Web Search tool and a Database Query tool. It spends the extra time and compute to investigate the confusing property, define it, and assign a newly informed importance_score and rationale.
+
+5. The Targeted Judge (Quality Assurance):
+
+Once a property has its score and rationale (either from the Analyzer or the Research Agent), route it through a strict, deterministic filter to decide if it needs auditing by a larger, more capable LLM:
+
+
+
+The Gray Area Trigger: Automatically route 100% of properties with an importance_score between 3 and 6 to the Judge. These are the borderline cases most prone to model hedging or logical drift.
+
+The Sanity Check Trigger: Randomly route 5% to 10% of the "obvious" scores (0-2 and 7-10) to the Judge to monitor for systemic errors.
+
+The Verdict: The Judge evaluates the reasoning against the score and outputs a strict JSON/Pydantic validation: a boolean (is_justified), a revised_score (if unjustified), and a one-sentence correction_reason.
+
+6. Deterministic JSON Storage (The Final Export):
+
+Once all properties have cleared the pipeline, an entirely deterministic script (no LLM involved) aggregates the final, validated data.
+
+
+
+The Output: A structured JSON object for each node label, containing the property keys, their final importance score, and the definitive rationale.
+
+
+
+Implement me for each step a function or class
+
+The overall wrapper should just accept the driver for my unfiltered neo4j KG. Think about the best tool for implementing such a multi agent system for the sytsem evaluation
+
+The LLM that should be used is an OPEN-AI compatible endpoint:
+
+load_dotenv(find_dotenv())
+
+custom_api_key = os.getenv("API_KEY")
+
+custom_base_url = os.getenv("BASE_URL")
+
+custom_model = "qwen3.5-397b-a17b" ##example model 
+

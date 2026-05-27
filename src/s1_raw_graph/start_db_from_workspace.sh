@@ -1,0 +1,1 @@
+java -jar BioDWH2-Neo4j-Server-v1.3.2.jar --start workspaces/test_workspace/

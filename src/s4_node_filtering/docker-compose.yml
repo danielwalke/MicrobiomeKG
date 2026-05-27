@@ -1,0 +1,21 @@
+services:
+  neo4j-node-filtered-graph:
+    image: neo4j:latest
+    container_name: neo4j-node-filtered-graph
+    ports:
+      - "${NODE_FILTERED_GRAPH_DESKTOP_PORT}:7474"
+      - "${NODE_FILTERED_GRAPH_BOLT_PORT}:7687"
+    volumes:
+      - ${NODE_FILTERED_GRAPH_DIR}/data:/data
+      - ${NODE_FILTERED_GRAPH_DIR}/logs:/logs
+      - ${NODE_FILTERED_GRAPH_DIR}/conf:/conf
+      - ${NODE_FILTERED_GRAPH_DIR}/import:/import
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_PLUGINS=["apoc"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
