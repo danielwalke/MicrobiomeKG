@@ -37,5 +37,3 @@ def property_roll_up(t_session):
 
 def propagate_db_nodes(t_session):
     property_roll_up(t_session)
-
-
