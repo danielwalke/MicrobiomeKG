@@ -40,7 +40,7 @@ def get_edge_schema(session):
 class EdgeFilterState(TypedDict):
     messages: Annotated[list, add_messages]
     schema: list
-    extracted_data: list
+    extracted_data: dict
     valid: bool
     attempts: int
     max_retries: int
@@ -65,15 +65,16 @@ def create_edge_filter_graph(model_name, api_key, base_url):
         try:
             parsed_json = json.loads(last_message)
             kept_properties = parsed_json.get("kept_properties", [])
+            removed_properties = parsed_json.get("removed_properties", [])
             
-            if not isinstance(kept_properties, list):
-                return {"valid": False, "messages": [HumanMessage(content="'kept_properties' must be a list.")]}
+            if not isinstance(kept_properties, list) or not isinstance(removed_properties, list):
+                return {"valid": False, "messages": [HumanMessage(content="'kept_properties' and 'removed_properties' must be lists.")]}
             
-            invalid_props = [p for p in kept_properties if p not in valid_props]
+            invalid_props = [p for p in kept_properties + removed_properties if p not in valid_props]
             if invalid_props:
                 return {"valid": False, "messages": [HumanMessage(content=f"These properties are invalid and do not exist in the schema: {invalid_props}")]}
                 
-            return {"valid": True, "extracted_data": kept_properties}
+            return {"valid": True, "extracted_data": parsed_json}
             
         except json.JSONDecodeError:
             return {"valid": False, "messages": [HumanMessage(content="Return valid JSON.")]}
@@ -110,7 +111,8 @@ def get_llm_filtered_edge_properties(schema, model_name, base_url, api_key):
         
         Return a JSON object matching this format:
         {
-            "kept_properties": ["prop1", "prop2"]
+            "kept_properties": ["prop1", "prop2"],
+            "removed_properties": ["prop3"]
         }
         """
         user_prompt = f"Edge Type: {label}\nAvailable Properties: {properties}"
@@ -121,7 +123,7 @@ def get_llm_filtered_edge_properties(schema, model_name, base_url, api_key):
                 HumanMessage(content=user_prompt)
             ],
             "schema": properties,
-            "extracted_data": [],
+            "extracted_data": {},
             "valid": False,
             "attempts": 0,
             "max_retries": 3
@@ -133,16 +135,17 @@ def get_llm_filtered_edge_properties(schema, model_name, base_url, api_key):
                 filtered_schema[label] = final_state["extracted_data"]
             else:
                 print(f"Failed to extract for {label}. Keeping all properties.")
-                filtered_schema[label] = [p for p in properties if p]
+                filtered_schema[label] = {"kept_properties": [p for p in properties if p], "removed_properties": []}
         except Exception as e:
             print(f"Error filtering edge properties for {label}: {e}")
-            filtered_schema[label] = [p for p in properties if p] # keep all on error
+            filtered_schema[label] = {"kept_properties": [p for p in properties if p], "removed_properties": []} # keep all on error
             
     return filtered_schema
 
 def apply_edge_property_filter(session, original_schema, kept_schema):
     for label, all_props in original_schema.items():
-        kept_props = kept_schema.get(label, [])
+        schema_dict = kept_schema.get(label, {})
+        kept_props = schema_dict.get("kept_properties", []) if isinstance(schema_dict, dict) else schema_dict
         irrelevant_props = [p for p in all_props if p not in kept_props and p]
         
         if not irrelevant_props:
