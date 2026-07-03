@@ -1,0 +1,154 @@
+I started refactoring my codespace from mapping, s0_access, s1_raw_graph...to s9_kg_metrics, and want to store refactored code in src/ directory. I already finished src/s3_propagation completely (just havent tested completely yet). 
+The overall goal is:
+# Graph Processing Pipeline Architecture
+
+The system is structured as a sequential, six-stage data processing pipeline designed for graph manipulation. Each stage is isolated within its own dedicated directory under the `src/` folder. 
+
+## Universal Stage Pattern
+Every individual stage in the pipeline strictly adheres to the following internal execution pattern:
+1. **Primary Operation:** The specific graph transformation or filtering task assigned to that stage.
+2. **Metagraph:** Generation or updating of the graph's metadata representation.
+3. **Clone:** Creating a cloned state of the processed graph.
+
+The pipeline is entirely linear. The output of the `Clone` step from one stage serves directly as the input for the `Primary Operation` of the subsequent stage.
+
+---
+
+## Detailed Pipeline Stages
+
+### Stage 1: Raw Graph Initialization
+* **Directory:** `src/s1_raw_graph`
+* **Primary Operation:** Raw graph from /mnt/vdb/daniel/git/workspaces/test_workspace. Already created and started this one and its running on port 8083
+* **Internal Flow:** Raw graph -> Metagraph -> Clone
+* **Routing:** The cloned output is passed to Stage 2.
+
+### Stage 2: Mapping
+* **Directory:** `src/s2_mapping`
+* **Primary Operation:** Mapping. Some nodes already have mappings where a mapping is the unifying entity from entities across different databases (e.g., a UniProtProtein and KeggProtein connected to unified PROTEIN). So the resulting concept nodes are all uppercase letters and combined but some kind of identifiers. I used /mapping previously but miss some concepts yet and need to find ids that i can use for the missing concept mappings.
+* **Internal Flow:** Mapping -> Metagraph -> Clone
+* **Routing:** The cloned output is passed to Stage 3.
+
+### Stage 3: Propagation and Cleanup
+* **Directory:** `src/s3_propagation`
+* **Primary Operation:** Prop & edge Propagation & DB node removal. Propagating all database nodes to the unifying concept nodes which was previously the rolledup graph
+* **Internal Flow:** Prop & edge Propagation & DB node removal -> Metagraph -> Clone
+* **Routing:** The cloned output is passed to Stage 4.
+
+### Stage 4: Node Filtering
+* **Directory:** `src/s4_node_filtering`
+* **Primary Operation:** Node prop filtering. I want an LLM to filter information I started with a concept for a multi agent sytsem.  but I need to change the model name to MODEL_QWEN="Qwen 3.6 35B" or MODEL_GEMMA="Gemma 4 31B IT"  from my .env file and test everything. I want a microbiome KG for metaproteomics and metagenomics so filter all properties that are irrelevant i sthe goal.
+* **Internal Flow:** Node prop filtering -> Metagraph -> Clone
+* **Routing:** The cloned output is passed to Stage 5.
+
+### Stage 5: Edge Filtering and Combination
+* **Directory:** `src/s5_edge_filtering`
+* **Primary Operation:** Edge combination & edge filtering. The graph and propagation creates duplicate edges i want to combine them, merge all properties and filter redundant edge properties again with an LLM. But only combine those with the same edge type.
+* **Internal Flow:** Edge combination & edge filtering -> Metagraph -> Clone
+* **Routing:** The cloned output is passed to Stage 6.
+
+### Stage 6: Accession Appendage
+* **Directory:** `src/s6_accessions`
+* **Primary Operation:** Appending accession keys. I want a unified representation for all node types so all should have at least a primary accession key and secondary accession keys like in s8_postfiltered_graph_with_accessions. I again need to ask an LLM to find those accession keys on the properties of each node labels.
+* **Internal Flow:** Appending accession keys -> Metagraph -> Clone
+* **Routing:** Final clone output of the pipeline.
+
+Each LLM function should generate a json in a config file at the respective subdirectory for example config/s1_raw_graph such that humans can check the filtering of accession keys identification
+Make sure to commit at each stage with git. Test all step and run it on the current graph (bolt:localhost:8083 - no password required). Cloning and metagraph generation from utils are essential to adhere to the FAIR principles.
+For LLM calls use the BASE_URL and API_KEY from .env
+For the directories of cloned files and their respective ports use:
+RAW_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/workspace/neo4j/neo4j.db/data
+RAW_GRAPH_DESKTOP_PORT=7474
+RAW_GRAPH_BOLT_PORT=8083
+RAW_GRAPH_DESKTOP_URI=http://localhost:${RAW_GRAPH_DESKTOP_PORT}
+RAW_GRAPH_BOLT_URI=bolt://localhost:${RAW_GRAPH_BOLT_PORT}
+RAW_GRAPH_USERNAME=neo4j
+RAW_GRAPH_PASSWORD=password
+
+RAW_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/raw_metagraph/neo4j
+RAW_METAGRAPH_DESKTOP_PORT=7475
+RAW_METAGRAPH_BOLT_PORT=8084
+RAW_METAGRAPH_DESKTOP_URI=http://localhost:${RAW_METAGRAPH_DESKTOP_PORT}
+RAW_METAGRAPH_BOLT_URI=bolt://localhost:${RAW_METAGRAPH_BOLT_PORT}
+RAW_METAGRAPH_USERNAME=neo4j
+RAW_METAGRAPH_PASSWORD=password
+
+MAPPED_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/mapped_graph/neo4j
+MAPPED_GRAPH_DESKTOP_PORT=7476
+MAPPED_GRAPH_BOLT_PORT=8085
+MAPPED_GRAPH_DESKTOP_URI=http://localhost:${MAPPED_GRAPH_DESKTOP_PORT}
+MAPPED_GRAPH_BOLT_URI=bolt://localhost:${MAPPED_GRAPH_BOLT_PORT}
+MAPPED_GRAPH_USERNAME=neo4j
+MAPPED_GRAPH_PASSWORD=password
+
+MAPPED_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/mapped_metagraph/neo4j
+MAPPED_METAGRAPH_DESKTOP_PORT=7477
+MAPPED_METAGRAPH_BOLT_PORT=8086
+MAPPED_METAGRAPH_DESKTOP_URI=http://localhost:${MAPPED_METAGRAPH_DESKTOP_PORT}
+MAPPED_METAGRAPH_BOLT_URI=bolt://localhost:${MAPPED_METAGRAPH_BOLT_PORT}
+MAPPED_METAGRAPH_USERNAME=neo4j
+MAPPED_METAGRAPH_PASSWORD=password
+
+PROPAGATED_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/propagated_graph/neo4j
+PROPAGATED_GRAPH_DESKTOP_PORT=7478
+PROPAGATED_GRAPH_BOLT_PORT=8087
+PROPAGATED_GRAPH_DESKTOP_URI=http://localhost:${PROPAGATED_GRAPH_DESKTOP_PORT}
+PROPAGATED_GRAPH_BOLT_URI=bolt://localhost:${PROPAGATED_GRAPH_BOLT_PORT}
+PROPAGATED_GRAPH_USERNAME=neo4j
+PROPAGATED_GRAPH_PASSWORD=password
+
+PROPAGATED_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/propagated_metagraph/neo4j
+PROPAGATED_METAGRAPH_DESKTOP_PORT=7479
+PROPAGATED_METAGRAPH_BOLT_PORT=8088
+PROPAGATED_METAGRAPH_DESKTOP_URI=http://localhost:${PROPAGATED_METAGRAPH_DESKTOP_PORT}
+PROPAGATED_METAGRAPH_BOLT_URI=bolt://localhost:${PROPAGATED_METAGRAPH_BOLT_PORT}
+PROPAGATED_METAGRAPH_USERNAME=neo4j
+PROPAGATED_METAGRAPH_PASSWORD=password
+
+NODE_FILTERED_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/node_filtered_graph/neo4j
+NODE_FILTERED_GRAPH_DESKTOP_PORT=7480
+NODE_FILTERED_GRAPH_BOLT_PORT=8089
+NODE_FILTERED_GRAPH_DESKTOP_URI=http://localhost:${NODE_FILTERED_GRAPH_DESKTOP_PORT}
+NODE_FILTERED_GRAPH_BOLT_URI=bolt://localhost:${NODE_FILTERED_GRAPH_BOLT_PORT}
+NODE_FILTERED_GRAPH_USERNAME=neo4j
+NODE_FILTERED_GRAPH_PASSWORD=password
+
+NODE_FILTERED_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/node_filtered_metagraph/neo4j
+NODE_FILTERED_METAGRAPH_DESKTOP_PORT=7481
+NODE_FILTERED_METAGRAPH_BOLT_PORT=8090
+NODE_FILTERED_METAGRAPH_DESKTOP_URI=http://localhost:${NODE_FILTERED_METAGRAPH_DESKTOP_PORT}
+NODE_FILTERED_METAGRAPH_BOLT_URI=bolt://localhost:${NODE_FILTERED_METAGRAPH_BOLT_PORT}
+NODE_FILTERED_METAGRAPH_USERNAME=neo4j
+NODE_FILTERED_METAGRAPH_PASSWORD=password
+
+EDGE_FILTERED_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/edge_filtered_graph/neo4j
+EDGE_FILTERED_GRAPH_DESKTOP_PORT=7482
+EDGE_FILTERED_GRAPH_BOLT_PORT=8091
+EDGE_FILTERED_GRAPH_DESKTOP_URI=http://localhost:${EDGE_FILTERED_GRAPH_DESKTOP_PORT}    
+EDGE_FILTERED_GRAPH_BOLT_URI=bolt://localhost:${EDGE_FILTERED_GRAPH_BOLT_PORT}
+EDGE_FILTERED_GRAPH_USERNAME=neo4j
+EDGE_FILTERED_GRAPH_PASSWORD=password
+
+EDGE_FILTERED_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/edge_filtered_metagraph/neo4j
+EDGE_FILTERED_METAGRAPH_DESKTOP_PORT=7483
+EDGE_FILTERED_METAGRAPH_BOLT_PORT=8092
+EDGE_FILTERED_METAGRAPH_DESKTOP_URI=http://localhost:${EDGE_FILTERED_METAGRAPH_DESKTOP_PORT}
+EDGE_FILTERED_METAGRAPH_BOLT_URI=bolt://localhost:${EDGE_FILTERED_METAGRAPH_BOLT_PORT}
+EDGE_FILTERED_METAGRAPH_USERNAME=neo4j
+EDGE_FILTERED_METAGRAPH_PASSWORD=password
+
+FINAL_GRAPH_DIR=/mnt/vdb/daniel/git/workspaces/final_graph/neo4j
+FINAL_GRAPH_DESKTOP_PORT=7484
+FINAL_GRAPH_BOLT_PORT=8093
+FINAL_GRAPH_DESKTOP_URI=http://localhost:${FINAL_GRAPH_DESKTOP_PORT}
+FINAL_GRAPH_BOLT_URI=bolt://localhost:${FINAL_GRAPH_BOLT_PORT}
+FINAL_GRAPH_USERNAME=neo4j
+FINAL_GRAPH_PASSWORD=password
+
+FINAL_METAGRAPH_DIR=/mnt/vdb/daniel/git/workspaces/final_metagraph/neo4j
+FINAL_METAGRAPH_DESKTOP_PORT=7485
+FINAL_METAGRAPH_BOLT_PORT=8094
+FINAL_METAGRAPH_DESKTOP_URI=http://localhost:${FINAL_METAGRAPH_DESKTOP_PORT}
+FINAL_METAGRAPH_BOLT_URI=bolt://localhost:${FINAL_METAGRAPH_BOLT_PORT}
+FINAL_METAGRAPH_USERNAME=neo4j
+FINAL_METAGRAPH_PASSWORD=password
+

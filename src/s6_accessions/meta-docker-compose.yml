@@ -1,15 +1,15 @@
 services:
-  neo4j-edge-filtered-metagraph:
+  neo4j-final-metagraph:
     image: neo4j:latest
-    container_name: neo4j-edge-filtered-metagraph
+    container_name: neo4j-final-metagraph
     ports:
-      - "${EDGE_FILTERED_METAGRAPH_DESKTOP_PORT}:7474"
-      - "${EDGE_FILTERED_METAGRAPH_BOLT_PORT}:7687"
+      - "${FINAL_METAGRAPH_DESKTOP_PORT}:7474"
+      - "${FINAL_METAGRAPH_BOLT_PORT}:7687"
     volumes:
-      - ${EDGE_FILTERED_METAGRAPH_DIR}/data:/data
-      - ${EDGE_FILTERED_METAGRAPH_DIR}/logs:/logs
-      - ${EDGE_FILTERED_METAGRAPH_DIR}/conf:/conf
-      - ${EDGE_FILTERED_METAGRAPH_DIR}/import:/import
+      - ${FINAL_METAGRAPH_DIR}/data:/data
+      - ${FINAL_METAGRAPH_DIR}/logs:/logs
+      - ${FINAL_METAGRAPH_DIR}/conf:/conf
+      - ${FINAL_METAGRAPH_DIR}/import:/import
     environment:
       - NEO4J_AUTH=none
       - NEO4J_PLUGINS=["apoc"]

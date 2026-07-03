@@ -2,15 +2,16 @@ import os
 from neo4j import GraphDatabase
 from dotenv import load_dotenv
 from src.s3_propagation.delete_detach_db_nodes import delete_db_nodes
-from src.s3_propagation.propagate_db_edges import propagate_db_edges
+from src.s3_propagation.propagate_db_edges import propagate_edges
 from src.s3_propagation.propagate_db_nodes import propagate_db_nodes
 from src.utils.migrate_metagraph import migrate_metagraph
 from src.utils.clone_kg import clone_kg
 
 def propagation(target_driver):
-    propagate_db_nodes(target_driver)
-    propagate_db_edges(target_driver)
-    delete_db_nodes(target_driver)
+    with target_driver.session() as session:
+        propagate_db_nodes(session)
+        propagate_edges(session)
+        delete_db_nodes(session)
 
 if __name__ == "__main__":
     load_dotenv()

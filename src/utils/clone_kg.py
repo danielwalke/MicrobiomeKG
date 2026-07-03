@@ -18,10 +18,13 @@ def format_bytes(size):
             return f"{size:.1f}{unit}"
         size /= 1024
 
-def clone_kg(source_data_dir, target_project_dir):
+def clone_kg(source_dir, target_project_dir):
     IS_WINDOWS = platform.system() == "Windows"
     
-    abs_source = os.path.abspath(source_data_dir)
+    abs_source = os.path.abspath(source_dir)
+    if not abs_source.endswith('data') and os.path.exists(os.path.join(abs_source, 'data')):
+        abs_source = os.path.join(abs_source, 'data')
+        
     abs_target = os.path.abspath(target_project_dir)
     target_data_dir = os.path.join(abs_target, 'data')
 

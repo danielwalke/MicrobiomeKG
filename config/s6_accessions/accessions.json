@@ -1,0 +1,152 @@
+{
+    "PUBLICATION": {
+        "primary_accession": {
+            "property": "primary_accession",
+            "index": null,
+            "reasoning": "The property contains DOI strings, which are standard, globally unique identifiers for academic publications."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "pmid"
+            ],
+            "reasoning": "The pmid property contains PubMed IDs, which serve as another standard and unique identifier for publications, providing a reliable secondary lookup method."
+        }
+    },
+    "REACTION": {
+        "primary_accession": {
+            "property": "KEGG_Reaction__id",
+            "index": 0,
+            "reasoning": "Contains standard, globally unique KEGG reaction identifiers (e.g., 'R07444'). As a StringArray, index 0 is selected to access the primary identifier, providing a stable and widely recognized key for biochemical reactions."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "ids",
+                "names"
+            ],
+            "reasoning": "Concatenating the prefixed database identifier from `ids` (e.g., 'KEGG:R07444') with the descriptive reaction name from `names` creates a highly specific secondary identifier. This combination leverages both standardized codes and human-readable context to ensure unambiguous identification."
+        }
+    },
+    "PROTEIN": {
+        "primary_accession": {
+            "property": "UniProt_Protein__accession",
+            "index": 0,
+            "reasoning": "UniProt accession is the standard, widely recognized unique identifier for protein entries across biological databases. It is a string type, ensuring human readability and compatibility with most external tools and APIs."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "RefSeq_CDS__protein_id",
+                "KEGG_Protein__id"
+            ],
+            "reasoning": "RefSeq protein ID and KEGG Orthology ID are established standard identifiers in genomics and pathway databases. Combining them creates a robust secondary unique key that provides redundancy and facilitates cross-referencing across multiple major biological resources."
+        }
+    },
+    "PATHWAY": {
+        "primary_accession": {
+            "property": "ids",
+            "index": 0,
+            "reasoning": "The 'ids' property contains the canonical KEGG pathway identifier (e.g., 'KEGG:M00924'), which is the most appropriate unique identifier for the node. It is a StringArray, so index 0 is specified."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "KEGG_Pathway__id"
+            ],
+            "reasoning": "The 'KEGG_Pathway__id' property provides the KEGG map identifier (e.g., 'map01100'), which serves as a complementary unique identifier distinct from the primary accession."
+        }
+    },
+    "PROTEIN_DOMAIN": {
+        "primary_accession": {
+            "property": "InterPro_Domain__id",
+            "index": 0,
+            "reasoning": "Contains InterPro accession numbers (e.g., IPR013968), which are the canonical and standardized unique identifiers for protein domains. Index 0 is selected as it typically represents the primary InterPro ID for the domain."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "InterPro_Domain__members"
+            ],
+            "reasoning": "Contains a list of cross-referenced domain identifiers from multiple external databases (PFAM, SMART, CDD, PRINTS, etc.) formatted as 'DB:ID'. Concatenating these provides a highly specific secondary identifier that captures the domain's annotation across multiple systems."
+        }
+    },
+    "GENE": {
+        "primary_accession": {
+            "property": "KEGG_Gene__symbols",
+            "index": 0,
+            "reasoning": "Contains the standard human-readable gene symbol (e.g., 'MYLIP'), which is the most widely recognized and biologically standard primary identifier for gene nodes. Index 0 is selected as it represents the primary symbol."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "KEGG_Gene__id",
+                "ids"
+            ],
+            "reasoning": "Combines the species-prefixed KEGG identifier (e.g., 'hsa:29116') with the standard NCBI Gene ID (e.g., 'NCBIGene:105376737') to provide a robust, cross-database unique identifier that ensures unambiguous node resolution."
+        }
+    },
+    "REACTION_CLASS": {
+        "primary_accession": {
+            "property": "KEGG_RClass__id",
+            "index": 0,
+            "reasoning": "Contains standardized KEGG Reaction Class identifiers (e.g., RC00584), which are globally unique and widely recognized in bioinformatics. As an array, index 0 is selected since each node contains exactly one ID."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "ids"
+            ],
+            "reasoning": "Provides the standard prefixed identifier format (e.g., KEGG:RC00584), which is commonly used for database cross-references and ensures compatibility with external tools, ontologies, and data integration pipelines."
+        }
+    },
+    "COMPOUND": {
+        "primary_accession": {
+            "property": "KEGG_Compound__id",
+            "index": 0,
+            "reasoning": "Contains standard KEGG Compound identifiers (e.g., 'C22300'), which are widely used, stable, and unique for chemical compounds. It is a string type, avoiding internal database IDs like __id."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "KEGG_Glycan__id",
+                "ids"
+            ],
+            "reasoning": "These properties provide alternative standardized KEGG identifiers (glycan-specific codes and prefixed compound IDs). When concatenated, they form a robust secondary unique key that covers different compound classes and facilitates cross-database mapping."
+        }
+    },
+    "DRUG": {
+        "primary_accession": {
+            "property": "KEGG_Drug__id",
+            "index": 0,
+            "reasoning": "Contains the canonical KEGG Drug identifier (e.g., D05241), which is globally unique, domain-standard, and reliably maps to the specific drug node."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "ids",
+                "KEGG_Drug__external_identifier"
+            ],
+            "reasoning": "These properties aggregate standardized external identifiers such as CAS, INN, PubChem, ATC, and NIKKAJI codes. Concatenating them provides a comprehensive, cross-referencable secondary identifier that covers multiple pharmacological databases."
+        }
+    },
+    "RNA": {
+        "primary_accession": {
+            "property": "RefSeq_PrimaryTranscript__name",
+            "index": 0,
+            "reasoning": "This property contains the canonical RefSeq accession (e.g., NR_..., NM_...) for the primary transcript, which serves as the standard and most universally recognized unique identifier for RNA nodes across different transcript types."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "RefSeq_PrimaryTranscript__gene",
+                "RefSeq_PrimaryTranscript__product"
+            ],
+            "reasoning": "Concatenating the gene name and product description provides a robust secondary unique identifier. This combination effectively distinguishes between transcript variants and isoforms that may share similar naming conventions or reference IDs, ensuring accurate node differentiation."
+        }
+    },
+    "TERM": {
+        "primary_accession": {
+            "property": "GeneOntology_Term__id",
+            "index": 0,
+            "reasoning": "Contains the standard Gene Ontology identifier (e.g., GO:0003677), which is the canonical and definitive unique identifier for each term in the ontology."
+        },
+        "secondary_accessions": {
+            "properties": [
+                "GeneOntology_Term__name",
+                "GeneOntology_Term__namespace"
+            ],
+            "reasoning": "Concatenating the term name with its namespace (molecular_function, biological_process, or cellular_component) creates a robust secondary key that uniquely distinguishes terms across the three GO namespaces, providing a reliable fallback for lookups or human-readable identification."
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "RefSeq_HAS": [
+        "start",
+        "end",
+        "phase",
+        "strand"
+    ],
+    "InterPro_HAS_REFERENCE": [],
+    "KEGG_CATALYZED_BY": [],
+    "KEGG_ASSOCIATED_WITH_COMPOUND": [
+        "__id"
+    ],
+    "GeneOntology_HAS_RELATIONSHIP": [
+        "__id",
+        "rel_id"
+    ],
+    "GeneOntology_DISJOINT_FROM": [],
+    "KEGG_ASSOCIATED_WITH_PROTEIN": [],
+    "GeneOntology_IS_A": [
+        "__id",
+        "source_labels",
+        "target_labels"
+    ],
+    "InterPro_HAS_CLASS": [],
+    "KEGG_ASSOCIATED_WITH_REACTION": [
+        "__id"
+    ],
+    "InterPro_CHILD_OF": [
+        "__id"
+    ],
+    "UniProt_BELONGS_TO": [
+        "__id"
+    ],
+    "BELONGS_TO": [],
+    "KEGG_ENCODES": [
+        "__id",
+        "source_labels",
+        "target_labels"
+    ],
+    "KEGG_TARGETS": [
+        "__id",
+        "target_type",
+        "source_labels",
+        "target_labels"
+    ],
+    "KEGG_ASSOCIATED_WITH_PATHWAY": [
+        "__id"
+    ],
+    "TARGETS": [
+        "source"
+    ],
+    "HAS_REFERENCE": []
+}
