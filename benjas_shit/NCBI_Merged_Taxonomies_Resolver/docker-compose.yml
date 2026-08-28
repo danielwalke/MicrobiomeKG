@@ -1,2 +1,77 @@
 services:
-  # TODO
+
+  biodwh2-neo4j:
+    image: eclipse-temurin:17-jre-jammy # image for java 17 runtime enviroment
+
+    working_dir: /app 
+
+    volumes:
+      - /home/benjamin.reyes/BioDWH2/workspaces/no_TrEMBL_safe_copy_2:/workspace
+      - /home/benjamin.reyes/BioDWH2/BioDWH2_Neo4j/BioDWH2-Neo4j-Server-v1.3.2.jar:/app/biodwh2-neo4j.jar:ro
+
+    command:
+      - java
+      - -Xmx6g
+      - -Xms4g
+      - -jar
+      - /app/biodwh2-neo4j.jar
+      - --start
+      - /workspace
+      - --port
+      - "7481"
+      - --bolt-port
+      - "7692"
+
+    mem_limit: "10g"
+
+    ports:
+      - "172.31.151.160:7480:7481"
+      - "172.31.151.160:7691:7692"
+
+    environment:
+      NEO4J_AUTH: none
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
+      NEO4J_dbms_memory_pagecache_size: "3g"
+
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "bash -c '</dev/tcp/127.0.0.1/7692'"
+        ]
+      interval: 5s
+      timeout: 3s
+      #Implemented for 1 run{database-health-startup-allowance}
+      start_period: 5m
+      retries: 120
+
+
+  ncbi-ambiguity-resolver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Share biodwh2-neo4j's network namespace instead of reaching it via the compose
+    # service-name DNS: this host's docker embedded DNS (127.0.0.11) doesn't resolve
+    # other services' names, so bridge-network DNS lookups fail with
+    # "Temporary failure in name resolution". Sharing the namespace lets us hit it
+    # over loopback instead, which needs no DNS at all.
+    network_mode: "service:biodwh2-neo4j"
+
+    environment:
+      RAW_GRAPH_BOLT_URI: bolt://127.0.0.1:7692
+      RAW_GRAPH_USERNAME: ""
+      RAW_GRAPH_PASSWORD: ""
+
+    volumes:
+      - ./merged.dmp:/app/merged.dmp:ro
+
+    depends_on:
+      biodwh2-neo4j:
+        condition: service_healthy
+
+    profiles:
+      - import
