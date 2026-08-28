@@ -1,0 +1,7 @@
+CAZY_CazyOrganism; ncbi_taxid;	158605
+GTDB_Genome; ncbi_taxid;	1313
+INSTANCE_TAXON;  taxonomy_id;	179392
+KEGG_Organism; ncbi_taxid;	NCBITaxon:1285583
+TAXON; ids;	[NCBITaxon:1785091]
+TrEMBL_Organism; taxonomy_id;	649638
+
