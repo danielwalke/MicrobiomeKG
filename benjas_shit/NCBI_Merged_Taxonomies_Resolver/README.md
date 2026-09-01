@@ -67,9 +67,13 @@ For each label (in the order it appears in `databases.txt`):
      any `NCBITaxon:` prefix and checks the resulting int against the
      `merged.dmp`-derived map.
    - Only nodes whose id **is** a merged/obsolete id go into the result dict,
-     keyed by that merged id (not by node id) so the later id-replacement
-     lookup is O(1): `{ncbi_merged_id: [node_id, ncbi_id]}`, where `ncbi_id`
-     is the original raw property value (kept to preserve its exact
+     keyed by that merged id so the later id-replacement lookup is O(1):
+     `{ncbi_merged_id: [[node_id, ncbi_id], ...]}` — a *list* of entries per
+     merged id, since multiple nodes of the same label can share one obsolete
+     taxid (e.g. several `GTDB_Genome` assemblies of the same species). An
+     earlier version keyed this as a single `[node_id, ncbi_id]` value, which
+     silently dropped every node but the last one seen for a given merged id.
+     `ncbi_id` is the original raw property value (kept to preserve its exact
      formatting — plain int, plain str, or CURIE — when writing the fix).
 
 3. **`update_ncbi_id_based_on_node_id`**, called once per entry in that dict:

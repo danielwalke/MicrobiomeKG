@@ -6,12 +6,12 @@ services:
     working_dir: /app 
 
     volumes:
-      - /home/benjamin.reyes/BioDWH2/workspaces/no_TrEMBL_safe_copy_2:/workspace
+      - /home/benjamin.reyes/BioDWH2/workspaces/TrEMBL_Instance_Node_Mapping_2:/workspace
       - /home/benjamin.reyes/BioDWH2/BioDWH2_Neo4j/BioDWH2-Neo4j-Server-v1.3.2.jar:/app/biodwh2-neo4j.jar:ro
 
     command:
       - java
-      - -Xmx6g
+      - -Xmx10g
       - -Xms4g
       - -jar
       - /app/biodwh2-neo4j.jar
@@ -35,7 +35,7 @@ services:
       NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
       NEO4J_dbms_memory_pagecache_size: "3g"
 
-
+  
     healthcheck:
       test:
         [
