@@ -54,24 +54,18 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    # Share biodwh2-neo4j's network namespace instead of reaching it via the compose
-    # service-name DNS: this host's docker embedded DNS (127.0.0.11) doesn't resolve
-    # other services' names, so bridge-network DNS lookups fail with
-    # "Temporary failure in name resolution". Sharing the namespace lets us hit it
-    # over loopback instead, which needs no DNS at all.
-    network_mode: "service:biodwh2-neo4j"
-
+    # The raw graph is already running outside this compose stack, published at
+    # 172.31.151.160:7480/7691 (see biodwh2-neo4j's `ports:` above) — don't start
+    # or depend on the biodwh2-neo4j service here, it would just fight that
+    # already-running instance for the same host ports. Connect straight to it
+    # over its published bolt port instead.
     environment:
-      RAW_GRAPH_BOLT_URI: bolt://127.0.0.1:7692
+      RAW_GRAPH_BOLT_URI: bolt://172.31.151.160:7691
       RAW_GRAPH_USERNAME: ""
       RAW_GRAPH_PASSWORD: ""
 
     volumes:
       - ./merged.dmp:/app/merged.dmp:ro
-
-    depends_on:
-      biodwh2-neo4j:
-        condition: service_healthy
 
     profiles:
       - import
