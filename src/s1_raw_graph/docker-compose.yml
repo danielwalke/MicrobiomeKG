@@ -1,0 +1,18 @@
+services:
+  neo4j-raw-graph:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: neo4j-raw-graph
+    ports:
+      - "${RAW_GRAPH_DESKTOP_PORT}:7474"
+      - "${RAW_GRAPH_BOLT_PORT}:7687"
+    volumes:
+      - ${RAW_GRAPH_DIR}:/app/workspaces/test_workspace
+      - ${RAW_BIODWH2_GRAPH_JAR_PATH}:/app/BioDWH2-Neo4j-Server-v1.3.2.jar
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s

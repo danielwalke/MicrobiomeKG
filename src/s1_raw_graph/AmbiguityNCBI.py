@@ -134,6 +134,7 @@ def run_query_to_generate_dict_with_ids_based_on_new_standarized_ids(driver, lab
             for ncbi_id in values:
                 #convert value to integer
                 ncbi_merged_id = extract_taxid(ncbi_id)
+                #if tax_id from the node not None and tax_id from node present in the dmp mapping 
                 if ncbi_merged_id is not None and ncbi_merged_id in merged_map:
                     debug_print(f"[{label}] merged taxid match: node_id={node_id} old={ncbi_id!r} merged_id={ncbi_merged_id}")
                     merged_nodes.setdefault(ncbi_merged_id, []).append([node_id, ncbi_id])

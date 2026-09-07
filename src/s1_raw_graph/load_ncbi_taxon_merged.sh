@@ -4,10 +4,16 @@ set -euo pipefail
 # Downloads NCBI's taxdump archive and extracts merged.dmp from it — the file
 # consumed by AmbiguityNCBI.load_merged_dmp() / NCBI_MERGED_DMP_PATH in
 # s1_raw_graph/main.py's NCBI Merged Taxonomies Resolution step.
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#
+# Writes into the BioDWH2 workspace directory (bind-mounted from the host via
+# docker-compose's ${RAW_GRAPH_DIR}:/app/workspaces/test_workspace) rather than
+# the script's own directory: main.py runs on the HOST, not in this container,
+# so the file has to land somewhere the host can actually see it — anywhere
+# else in the container's filesystem is invisible to the host and is discarded
+# on rebuild.
+WORKSPACE_DIR="/app/workspaces/test_workspace"
 TAXDUMP_URL="https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz"
-merged_dmp_path="${NCBI_MERGED_DMP_PATH:-${SCRIPT_DIR}/merged.dmp}"
+merged_dmp_path="${NCBI_MERGED_DMP_PATH:-${WORKSPACE_DIR}/merged.dmp}"
 
 if [ -f "$merged_dmp_path" ]; then
     echo "[load_ncbi_taxon_merged] merged.dmp already present at ${merged_dmp_path}, skipping download."

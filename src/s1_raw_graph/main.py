@@ -45,9 +45,9 @@ def main():
 
     mapped_graph_dir = os.getenv("MAPPED_GRAPH_DIR")
 
-    raw_metagraph_uri = os.getenv("RAW_METAGRAPH_BOLT_URI")
-    raw_metagraph_user = os.getenv("RAW_METAGRAPH_USERNAME")
-    raw_metagraph_password = os.getenv("RAW_METAGRAPH_PASSWORD")
+    # raw_metagraph_uri = os.getenv("RAW_METAGRAPH_BOLT_URI")
+    # raw_metagraph_user = os.getenv("RAW_METAGRAPH_USERNAME")
+    # raw_metagraph_password = os.getenv("RAW_METAGRAPH_PASSWORD")
 
     print(f"Connecting to Raw Graph at {raw_graph_uri}...")
     # notifications_min_severity="OFF" silences Neo4j's id() deprecation notice —
@@ -62,18 +62,18 @@ def main():
     print("Running Primary Operation: NCBI Merged Taxonomies Resolution")
     resolve_ncbi_merged_taxonomies(source_driver)
 
-    print(f"Connecting to Raw Metagraph at {raw_metagraph_uri}...")
-    # NOTE: Assuming the neo4j-raw-metagraph container is already running.
-    # We use auth=None because docker-compose specifies NEO4J_AUTH=none.
-    metagraph_driver = GraphDatabase.driver(raw_metagraph_uri, auth=None)
+    # print(f"Connecting to Raw Metagraph at {raw_metagraph_uri}...")
+    # # NOTE: Assuming the neo4j-raw-metagraph container is already running.
+    # # We use auth=None because docker-compose specifies NEO4J_AUTH=none.
+    # metagraph_driver = GraphDatabase.driver(raw_metagraph_uri, auth=None)
 
-    # 3. Metagraph Generation
-    print("Generating metagraph...")
-    migrate_metagraph(source_driver, metagraph_driver)
+    # # 3. Metagraph Generation
+    # print("Generating metagraph...")
+    # migrate_metagraph(source_driver, metagraph_driver)
 
     # 4. Clone
     print(f"Cloning Raw Graph to Stage 2 MAPPED_GRAPH_DIR: {mapped_graph_dir}")
-    clone_kg(raw_graph_dir, mapped_graph_dir)
+    clone_kg(raw_graph_dir + "/neo4j/neo4j.db", mapped_graph_dir ) # the tag "/neo4j/neo4j.db" is necessary because the first neo4j service comes from the wrkspace structure of BioDWH2 so "data" is 2 levels down from the root directory
     print("Stage 1 complete.")
 
 if __name__ == "__main__":
