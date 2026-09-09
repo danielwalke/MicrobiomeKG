@@ -1,0 +1,61 @@
+services:
+
+
+  #s0_BioDWH2_service: #implement later for BioDWH2 run with
+  
+  #co-dependent services:
+  s1_BioDWH2_neo4j_service: # stock neo4j:latest reading an already-built BioDWH2 workspace's neo4j.db directly (no BioDWH2 jar/build involved here)
+    image: neo4j:latest
+    user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR, mirroring the validated `docker run --user="$(id -u):$(id -g)"` command
+    ports:
+      - "${RAW_GRAPH_DESKTOP_PORT}:7474"
+      - "${RAW_GRAPH_BOLT_PORT}:7687"
+    volumes:
+    #it first scans the whole file as plain text and replaces every ${RAW_GRAPH_DIR} with the value it finds in .env 
+    #(which it auto-loads because it's sitting right next to the compose file — that's automatic
+      - ${RAW_GRAPH_DIR}/neo4j/neo4j.db/data:/data
+      - ${RAW_GRAPH_DIR}/neo4j/neo4j.db/logs:/logs
+    environment:
+      NEO4J_AUTH: none
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  s1_NCBI_taxonomy_service: # runs src/s1_raw_graph/main.py: NCBI ambiguity resolution against s1_BioDWH2_neo4j_service, then clones the result into MAPPED_GRAPH_DIR
+    image: s1-ncbi-taxonomy-service # explicit lowercase tag: Docker image names must be all-lowercase, and the auto-generated <project>-<service> name would fail on this service's uppercase letters
+    build:
+      context: /mnt/vdb/benja/MicrobiomeKG
+      dockerfile: src/s1_raw_graph/ncbi-taxonomy.Dockerfile
+    user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR/MAPPED_GRAPH_DIR, mirroring s1_BioDWH2_neo4j_service
+    depends_on:
+      s1_BioDWH2_neo4j_service:
+        condition: service_healthy
+    # RAW_GRAPH_DIR/MAPPED_GRAPH_DIR are mounted at their own literal host paths (not
+    # remapped to e.g. /app/input) so main.py's existing os.getenv("RAW_GRAPH_DIR")-based
+    # path logic resolves unmodified inside the container, same as it does on the host.
+    volumes:
+      - ${RAW_GRAPH_DIR}:${RAW_GRAPH_DIR}:ro
+      - ${MAPPED_GRAPH_DIR}:${MAPPED_GRAPH_DIR}
+    env_file: #here needed because main.py reads RAW_GRAPH_BOLT_URI from env, and docker-compose doesn't auto-load .env for service envs
+    #it controls what os.getenv(...) sees when Python code runs inside the container
+      - .env
+    environment:
+      RAW_GRAPH_BOLT_URI: bolt://s1_BioDWH2_neo4j_service:7687
+
+
+
+#independent services
+  #s2:
+    #build:
+      #context: /mnt/vdb/benja/MicrobiomeKG/src/s2_graph
+      #dockerfile: s2.Dockerfile
+
+    #volumes:
+    #- ${RAW_GRAPH_DIR}/neo4j/neo4j.db/data:app/input/data
+    #- ${RAW_GRAPH_DIR}/neo4j.db/logs:app/input/logs 
+    #- ${MAPPED_GRAPH_DIR}:app/workspace/output
+
+

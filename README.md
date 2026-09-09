@@ -105,7 +105,7 @@ cd src/s1_raw_graph && docker compose -f meta-docker-compose.yml up -d && cd ../
 PYTHONPATH=. python3 -m src.s1_raw_graph.main
 ```
 
-The NCBI resolution step standardizes each raw label's taxid property to `ncbi_taxid`, replaces any obsolete/merged id with its current one (per `merged.dmp`, keeping the original under `ncbi_taxid_old`), and links the node to the corresponding `TAXON` node via `MAPPED_TO`. See `AmbiguityNCBI.py` and `databases.txt` in this directory for the per-label configuration, and the design notes originally written up in `benjas_shit/NCBI_Merged_Taxonomies_Resolver/README.md` for the full rationale.
+The NCBI resolution step standardizes each raw label's taxid property to `ncbi_taxid`, replaces any obsolete/merged id with its current one (per `merged.dmp`, keeping the original under `ncbi_taxid_old`), and links the node to the corresponding `TAXON` node via `MAPPED_TO`. See `AmbiguityNCBI.py` and `databases.txt` in this directory for the per-label configuration, and the design notes originally written up in `NCBI_Taxon_Ambiguity_Und_Enzyme_Pipeline/NCBI_Merged_Taxonomies_Resolver/README.md` for the full rationale.
 
 ---
 

@@ -1,8 +1,8 @@
 import os
+import shutil
 from neo4j import GraphDatabase
 from dotenv import load_dotenv
 from src.utils.migrate_metagraph import migrate_metagraph
-from src.utils.clone_kg import clone_kg
 
 from src.s1_raw_graph.AmbiguityNCBI import (
     NcbiMergedTaxonomy,
@@ -32,6 +32,31 @@ def resolve_ncbi_merged_taxonomies(driver):
             new_taxid = merged_map[ncbi_merged_id]
             for node_id, ncbi_id in entries:
                 update_ncbi_id_based_on_node_id(driver, label, config["is_list"], node_id, ncbi_id, new_taxid, config["curie_prefix"])
+
+
+def clone_raw_graph_data(raw_graph_dir, mapped_graph_dir):
+    """Copy the BioDWH2 workspace's neo4j data directory into MAPPED_GRAPH_DIR.
+
+    Done as a plain in-process copy rather than via src.utils.clone_kg (which shells
+    out to a throwaway `docker run` to perform the copy as uid 7474, matching a stock
+    neo4j:latest container's default user) — s1_BioDWH2_neo4j_service now runs as this
+    same host user instead, so no uid translation is needed, and a container running
+    this step has no Docker socket to reach a docker run subprocess through anyway.
+    """
+    source_data_dir = os.path.join(raw_graph_dir, "neo4j", "neo4j.db", "data")
+    target_data_dir = os.path.join(mapped_graph_dir, "data")
+
+    if os.path.exists(target_data_dir):
+        shutil.rmtree(target_data_dir)
+    shutil.copytree(source_data_dir, target_data_dir)
+
+    for dir_name in ("data", "logs", "conf", "import"):
+        os.makedirs(os.path.join(mapped_graph_dir, dir_name), exist_ok=True)
+
+    for root, _, files in os.walk(target_data_dir):
+        for filename in files:
+            if filename in ("database_lock", "store_lock") or filename.endswith(".tmp") or ".tmp." in filename:
+                os.remove(os.path.join(root, filename))
 
 
 def main():
@@ -73,7 +98,7 @@ def main():
 
     # 4. Clone
     print(f"Cloning Raw Graph to Stage 2 MAPPED_GRAPH_DIR: {mapped_graph_dir}")
-    clone_kg(raw_graph_dir + "/neo4j/neo4j.db", mapped_graph_dir ) # the tag "/neo4j/neo4j.db" is necessary because the first neo4j service comes from the wrkspace structure of BioDWH2 so "data" is 2 levels down from the root directory
+    clone_raw_graph_data(raw_graph_dir, mapped_graph_dir)
     print("Stage 1 complete.")
 
 if __name__ == "__main__":
