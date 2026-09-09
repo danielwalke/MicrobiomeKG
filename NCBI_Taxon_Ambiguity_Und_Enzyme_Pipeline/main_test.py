@@ -2,8 +2,8 @@ from src.s2_mapping.integrations.integrator import NodeIntegrator
 from src.s2_mapping.integrations.entity_resolver import EntityResolver
 from src.s2_mapping.integrations.connector import Neo4jConnector
 
-from benjas_shit.enzyme import MergedEnzymeTest
-from benjas_shit.term import MergedTerm
+from NCBI_Taxon_Ambiguity_Und_Enzyme_Pipeline.enzyme import MergedEnzymeTest
+from NCBI_Taxon_Ambiguity_Und_Enzyme_Pipeline.term import MergedTerm
 
 
 #delete the repeated nodes, just to avoid duplicates during testing 

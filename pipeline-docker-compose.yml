@@ -27,7 +27,7 @@ services:
   s1_NCBI_taxonomy_service: # runs src/s1_raw_graph/main.py: NCBI ambiguity resolution against s1_BioDWH2_neo4j_service, then clones the result into MAPPED_GRAPH_DIR
     image: s1-ncbi-taxonomy-service # explicit lowercase tag: Docker image names must be all-lowercase, and the auto-generated <project>-<service> name would fail on this service's uppercase letters
     build:
-      context: /mnt/vdb/benja/MicrobiomeKG
+      context: ${PROJEKT_DIR}
       dockerfile: src/s1_raw_graph/ncbi-taxonomy.Dockerfile
     user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR/MAPPED_GRAPH_DIR, mirroring s1_BioDWH2_neo4j_service
     depends_on:
@@ -43,7 +43,7 @@ services:
     #it controls what os.getenv(...) sees when Python code runs inside the container
       - .env
     environment:
-      RAW_GRAPH_BOLT_URI: bolt://s1_BioDWH2_neo4j_service:7687
+      RAW_GRAPH_BOLT_URI: "bolt://s1_BioDWH2_neo4j_service:${RAW_GRAPH_CONTAINER_BOLT_PORT}"
 
 
 

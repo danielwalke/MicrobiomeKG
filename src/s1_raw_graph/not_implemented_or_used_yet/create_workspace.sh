@@ -1,1 +1,0 @@
-java -jar ./BioDWH2Fork/src/biodwh2-main/target/BioDWH2-v0.6.8d.jar --create workspaces/test_workspace
