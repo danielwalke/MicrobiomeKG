@@ -1,37 +1,39 @@
+x-neo4j-base: &neo4j_base
+  image: neo4j:latest
+  user: "1000:1000" # matches the host user owning each stage's input dir
+  environment:
+    NEO4J_AUTH: none
+  healthcheck:
+    test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"] 
+    interval: 10s
+    timeout: 10s
+    retries: 5
+    start_period: 40s
+
 services:
 
-
   #s0_BioDWH2_service: #implement later for BioDWH2 run with
-  
+
   #co-dependent services:
-  s1_BioDWH2_neo4j_service: # stock neo4j:latest reading an already-built BioDWH2 workspace's neo4j.db directly (no BioDWH2 jar/build involved here)
-    image: neo4j:latest
-    user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR, mirroring the validated `docker run --user="$(id -u):$(id -g)"` command
+  s1_neo4j: # stock neo4j:latest reading an already-built BioDWH2 workspace's neo4j.db directly (no BioDWH2 jar/build involved here)
+    <<: *neo4j_base
     ports:
       - "${RAW_GRAPH_DESKTOP_PORT}:7474"
       - "${RAW_GRAPH_BOLT_PORT}:7687"
     volumes:
-    #it first scans the whole file as plain text and replaces every ${RAW_GRAPH_DIR} with the value it finds in .env 
+    #it first scans the whole file as plain text and replaces every ${RAW_GRAPH_DIR} with the value it finds in .env
     #(which it auto-loads because it's sitting right next to the compose file — that's automatic
       - ${RAW_GRAPH_DIR}/neo4j/neo4j.db/data:/data
       - ${RAW_GRAPH_DIR}/neo4j/neo4j.db/logs:/logs
-    environment:
-      NEO4J_AUTH: none
-    healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
 
-  s1_NCBI_taxonomy_service: # runs src/s1_raw_graph/main.py: NCBI ambiguity resolution against s1_BioDWH2_neo4j_service, then clones the result into MAPPED_GRAPH_DIR
+  s1_NCBI_taxonomy_service: # runs src/s1_raw_graph/main.py: NCBI ambiguity resolution against s1_neo4j, then clones the result into MAPPED_GRAPH_DIR
     image: s1-ncbi-taxonomy-service # explicit lowercase tag: Docker image names must be all-lowercase, and the auto-generated <project>-<service> name would fail on this service's uppercase letters
     build:
       context: ${PROJEKT_DIR}
       dockerfile: src/s1_raw_graph/ncbi-taxonomy.Dockerfile
-    user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR/MAPPED_GRAPH_DIR, mirroring s1_BioDWH2_neo4j_service
+    user: "1000:1000" # matches the host user owning RAW_GRAPH_DIR/MAPPED_GRAPH_DIR, mirroring s1_neo4j
     depends_on:
-      s1_BioDWH2_neo4j_service:
+      s1_neo4j:
         condition: service_healthy
     # RAW_GRAPH_DIR/MAPPED_GRAPH_DIR are mounted at their own literal host paths (not
     # remapped to e.g. /app/input) so main.py's existing os.getenv("RAW_GRAPH_DIR")-based
@@ -43,19 +45,41 @@ services:
     #it controls what os.getenv(...) sees when Python code runs inside the container
       - .env
     environment:
-      RAW_GRAPH_BOLT_URI: "bolt://s1_BioDWH2_neo4j_service:${RAW_GRAPH_CONTAINER_BOLT_PORT}"
+      RAW_GRAPH_BOLT_URI: "bolt://s1_neo4j:${GRAPH_CONTAINER_BOLT_PORT}"
 
-
+  s2_neo4j: # stock neo4j:latest serving stage 1's cloned output (MAPPED_GRAPH_DIR) as stage 2's input
+    <<: *neo4j_base
+    environment: # overrides the base's environment wholesale (YAML merge keys don't deep-merge), so NEO4J_AUTH is restated here alongside NEO4J_PLUGINS
+      NEO4J_AUTH: none
+      NEO4J_PLUGINS: '["apoc"]'
+    depends_on: # waits for s1's runner to finish populating MAPPED_GRAPH_DIR before starting, not just for s1_neo4j to be healthy
+      s1_NCBI_taxonomy_service:
+        condition: service_completed_successfully
+    ports:
+      - "${MAPPED_GRAPH_DESKTOP_PORT}:7474" # container ports repeat across services; only the host side must stay unique
+      - "${MAPPED_GRAPH_BOLT_PORT}:7687"
+    volumes:
+      - ${MAPPED_GRAPH_DIR}/data:/data
+      - ${MAPPED_GRAPH_DIR}/logs:/logs
+      - ${MAPPED_GRAPH_DIR}/conf:/conf
+      - ${MAPPED_GRAPH_DIR}/import:/import
 
 #independent services
-  #s2:
-    #build:
-      #context: /mnt/vdb/benja/MicrobiomeKG/src/s2_graph
-      #dockerfile: s2.Dockerfile
-
-    #volumes:
-    #- ${RAW_GRAPH_DIR}/neo4j/neo4j.db/data:app/input/data
-    #- ${RAW_GRAPH_DIR}/neo4j.db/logs:app/input/logs 
-    #- ${MAPPED_GRAPH_DIR}:app/workspace/output
-
-
+  s2_mapping: # runs src/s2_mapping/main.py: entity resolution + integration + linking against s2_neo4j, then clones the result into PROPAGATED_GRAPH_DIR
+    build:
+      context: ${PROJEKT_DIR}
+      dockerfile: src/s2_mapping/s2_mapping.Dockerfile
+    user: "1000:1000" # matches the host user owning MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR, mirroring s2_neo4j
+    depends_on:
+      s2_neo4j:
+        condition: service_healthy
+    # MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR are mounted at their own literal host paths,
+    # same reasoning as s1_NCBI_taxonomy_service, for clone_mapped_graph_data()'s
+    # os.getenv("MAPPED_GRAPH_DIR")/os.getenv("PROPAGATED_GRAPH_DIR")-based paths.
+    volumes:
+      - ${MAPPED_GRAPH_DIR}:${MAPPED_GRAPH_DIR}:ro
+      - ${PROPAGATED_GRAPH_DIR}:${PROPAGATED_GRAPH_DIR}
+    env_file:
+      - .env
+    environment:
+      MAPPED_GRAPH_BOLT_URI: "bolt://s2_neo4j:${GRAPH_CONTAINER_BOLT_PORT}"

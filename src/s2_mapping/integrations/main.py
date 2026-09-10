@@ -6,7 +6,8 @@ from src.s2_mapping.integrations.term import MergedTerm
 from src.s2_mapping.integrations.disease import MergedDisease
 from src.s2_mapping.integrations.tissue import MergedTissue
 from src.s2_mapping.integrations.ptm import MergedPTM
-from src.s2_mapping.integrations.kegg_merged import MergedModule, MergedReaction, MergedPathway, MergedEnzyme
+from src.s2_mapping.integrations.kegg_merged import MergedModule, MergedReaction, MergedPathway
+from src.s2_mapping.integrations.enzyme import MergedEnzyme
 
 def delete_label_in_batches(session, label, batch_size):
     query = f"""
