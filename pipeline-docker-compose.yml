@@ -83,3 +83,77 @@ services:
       - .env
     environment:
       MAPPED_GRAPH_BOLT_URI: "bolt://s2_neo4j:${GRAPH_CONTAINER_BOLT_PORT}"
+
+  s3_neo4j: # stock neo4j:latest 
+      <<: *neo4j_base
+      environment: # overrides the base's environment wholesale (YAML merge keys don't deep-merge), so NEO4J_AUTH is restated here alongside NEO4J_PLUGINS
+        NEO4J_AUTH: none
+        NEO4J_PLUGINS: '["apoc"]'
+      #depends_on: # waits for s1's runner to finish populating MAPPED_GRAPH_DIR before starting, not just for s1_neo4j to be healthy
+        #s2_mapping:
+          #condition: service_completed_successfully
+      ports:
+        - "${PROPAGATED_GRAPH_DESKTOP_PORT}:7474" # container ports repeat across services; only the host side must stay unique
+        - "${PROPAGATED_GRAPH_BOLT_PORT}:7687"
+      volumes:
+        - ${PROPAGATED_GRAPH_DIR}/data:/data
+        - ${PROPAGATED_GRAPH_DIR}/logs:/logs
+        - ${PROPAGATED_GRAPH_DIR}/conf:/conf
+        - ${PROPAGATED_GRAPH_DIR}/import:/import
+
+  #dependent service
+  s3_propagation: # runs src/s3_propagation/main.py
+      build:
+        context: ${PROJEKT_DIR}
+        dockerfile: src/s3_propagation/s3_propagation.Dockerfile
+      user: "1000:1000" # matches the host user owning MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR, mirroring s3_neo4j
+      depends_on:
+        s3_neo4j:
+          condition: service_healthy
+      # MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR are mounted at their own literal host paths,
+      # same reasoning as s1_NCBI_taxonomy_service, for clone_mapped_graph_data()'s
+      # os.getenv("MAPPED_GRAPH_DIR")/os.getenv("PROPAGATED_GRAPH_DIR")-based paths.
+      volumes:
+        - ${PROPAGATED_GRAPH_DIR}:${PROPAGATED_GRAPH_DIR}:ro
+        - ${NODE_FILTERED_GRAPH_DIR}:${NODE_FILTERED_GRAPH_DIR}:ro
+      env_file:
+        - .env
+      environment:
+        PROPAGATED_GRAPH_BOLT_URI: "bolt://s3_neo4j:${GRAPH_CONTAINER_BOLT_PORT}"
+
+  #independent service
+  s4_neo4j: # stock neo4j:latest 
+      <<: *neo4j_base
+      environment: # overrides the base's environment wholesale (YAML merge keys don't deep-merge), so NEO4J_AUTH is restated here alongside NEO4J_PLUGINS
+        NEO4J_AUTH: none
+        NEO4J_PLUGINS: '["apoc"]'
+      #depends_on: # waits for s1's runner to finish populating MAPPED_GRAPH_DIR before starting, not just for s1_neo4j to be healthy
+        #s2_mapping:
+          #condition: service_completed_successfully
+      ports:
+        - "${NODE_FILTERED_GRAPH_DESKTOP_PORT}:7474" # container ports repeat across services; only the host side must stay unique
+        - "${NODE_FILTERED_GRAPH_BOLT_PORT}:7687"
+      volumes:
+        - ${NODE_FILTERED_GRAPH_DIR}/data:/data
+        - ${NODE_FILTERED_GRAPH_DIR}/logs:/logs
+        - ${NODE_FILTERED_GRAPH_DIR}/conf:/conf
+        - ${NODE_FILTERED_GRAPH_DIR}/import:/import
+
+  s4_filtering: # runs src/s4_filtering/main.py
+      build:
+        context: ${PROJEKT_DIR}
+        dockerfile: src/s4_node_filtering/s4_node_filtering.Dockerfile
+      user: "1000:1000" # matches the host user owning MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR, mirroring s3_neo4j
+      depends_on:
+        s4_neo4j:
+          condition: service_healthy
+      # MAPPED_GRAPH_DIR/PROPAGATED_GRAPH_DIR are mounted at their own literal host paths,
+      # same reasoning as s1_NCBI_taxonomy_service, for clone_mapped_graph_data()'s
+      # os.getenv("MAPPED_GRAPH_DIR")/os.getenv("PROPAGATED_GRAPH_DIR")-based paths.
+      volumes:
+        - ${NODE_FILTERED_GRAPH_DIR}:${NODE_FILTERED_GRAPH_DIR}:ro
+        - ${EDGE_FILTERED_GRAPH_DIR}:${EDGE_FILTERED_GRAPH_DIR}:ro
+      env_file:
+        - .env
+      environment:
+        NODE_FILTERED_GRAPH_BOLT_URI: "bolt://s4_neo4j:${GRAPH_CONTAINER_BOLT_PORT}"

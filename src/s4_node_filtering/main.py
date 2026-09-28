@@ -9,15 +9,15 @@ def main():
     load_dotenv()
     
     # Stage 4 Input: NODE_FILTERED_GRAPH_DIR (from Stage 3)
-    node_filtered_graph_uri = os.getenv("NODE_FILTERED_GRAPH_BOLT_URI", "bolt://localhost:8089")
-    node_filtered_graph_user = os.getenv("NODE_FILTERED_GRAPH_USERNAME", "neo4j")
-    node_filtered_graph_password = os.getenv("NODE_FILTERED_GRAPH_PASSWORD", "password")
+    node_filtered_graph_uri = os.getenv("NODE_FILTERED_GRAPH_BOLT_URI")
+    #node_filtered_graph_user = os.getenv("NODE_FILTERED_GRAPH_USERNAME", "neo4j")
+    #node_filtered_graph_password = os.getenv("NODE_FILTERED_GRAPH_PASSWORD", "password")
     node_filtered_graph_dir = os.getenv("NODE_FILTERED_GRAPH_DIR")
     
     # Metagraph Target
-    node_filtered_metagraph_uri = os.getenv("NODE_FILTERED_METAGRAPH_BOLT_URI", "bolt://localhost:8090")
-    node_filtered_metagraph_user = os.getenv("NODE_FILTERED_METAGRAPH_USERNAME", "neo4j")
-    node_filtered_metagraph_password = os.getenv("NODE_FILTERED_METAGRAPH_PASSWORD", "password")
+    #node_filtered_metagraph_uri = os.getenv("NODE_FILTERED_METAGRAPH_BOLT_URI", "bolt://localhost:8090")
+    #node_filtered_metagraph_user = os.getenv("NODE_FILTERED_METAGRAPH_USERNAME", "neo4j")
+    #node_filtered_metagraph_password = os.getenv("NODE_FILTERED_METAGRAPH_PASSWORD", "password")
     
     # Clone Target (Stage 5 Input)
     edge_filtered_graph_dir = os.getenv("EDGE_FILTERED_GRAPH_DIR")
@@ -28,7 +28,7 @@ def main():
     api_key = os.getenv("API_KEY")
 
     print(f"Connecting to Node Filtered Graph at {node_filtered_graph_uri}...")
-    target_driver = GraphDatabase.driver(node_filtered_graph_uri, auth=(node_filtered_graph_user, node_filtered_graph_password))
+    target_driver = GraphDatabase.driver(node_filtered_graph_uri) #auth=(node_filtered_graph_user, node_filtered_graph_password)
     
     print("Running Primary Operation: Node Property Filtering via LLM")
     with target_driver.session() as session:
@@ -42,11 +42,11 @@ def main():
     with target_driver.session() as session:
         apply_property_filter(session, schema, filtered_schema)
 
-    print(f"Connecting to Node Filtered Metagraph at {node_filtered_metagraph_uri}...")
-    metagraph_driver = GraphDatabase.driver(node_filtered_metagraph_uri, auth=None)
+    #print(f"Connecting to Node Filtered Metagraph at {node_filtered_metagraph_uri}...")
+    #metagraph_driver = GraphDatabase.driver(node_filtered_metagraph_uri, auth=None)
 
-    print("Generating metagraph...")
-    migrate_metagraph(target_driver, metagraph_driver)
+    #print("Generating metagraph...")
+    #migrate_metagraph(target_driver, metagraph_driver)
 
     print(f"Cloning Node Filtered Graph to Stage 5 EDGE_FILTERED_GRAPH_DIR: {edge_filtered_graph_dir}")
     clone_kg(node_filtered_graph_dir, edge_filtered_graph_dir)

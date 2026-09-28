@@ -9,7 +9,7 @@ def delete_db_nodes(t_session):
             WHERE all(l IN labels(n) WHERE l <> toUpper(l)) 
              RETURN DISTINCT n",
             "DETACH DELETE n",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}
         )
         """
     ).consume()

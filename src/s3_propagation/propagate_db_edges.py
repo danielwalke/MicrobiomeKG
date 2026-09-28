@@ -18,7 +18,7 @@ def direct_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}
         )
         """
     ).consume()
@@ -33,7 +33,7 @@ def bridge_node_roll_up(t_session):
              RETURN c1, c2, labels(dbN) AS dbLabels, properties(dbN) AS dbProps",
             "CALL apoc.create.relationship(c1, 'SHARED_ENTITY', dbProps, c2) YIELD rel AS new_r
              SET new_r.source_labels = dbLabels",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}   
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}   
         )
         """
     ).consume()
@@ -45,7 +45,7 @@ def edge_roll_up(t_session):
         WITH n, r, c
         CREATE (n)-[rel:HAS_REFERENCE]->(c)
         SET rel = properties(r)
-    }} IN TRANSACTIONS OF {os.getenv("BATCH_SIZE")} ROWS
+    }} IN TRANSACTIONS OF {os.getenv("BATCH_SIZE", "1000")} ROWS
     """
     t_session.run(query).consume()
 
@@ -67,7 +67,7 @@ def indirect_relationship_roll_up(t_session):
             CALL apoc.create.relationship(startN, rType, rProps, endN) YIELD rel AS new_r
             SET new_r.source_labels = sLabels
             SET new_r.target_labels = tLabels",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}
         )
         """
     ).consume()

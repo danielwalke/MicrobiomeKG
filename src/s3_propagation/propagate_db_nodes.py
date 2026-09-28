@@ -14,7 +14,7 @@ def property_roll_up(t_session):
              WITH sAgg, head(labels(s)) + '__' + key AS newKey, collect(s[key]) AS rawValues
              CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
              RETURN node",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}
         )
         """
     ).consume()
@@ -30,7 +30,7 @@ def property_roll_up(t_session):
              WITH sAgg, key AS newKey, collect(s[key]) AS rawValues
              CALL apoc.create.setProperty(sAgg, newKey, apoc.coll.toSet(apoc.coll.flatten(rawValues))) YIELD node
              RETURN node",
-            {{batchSize: {os.getenv("BATCH_SIZE")}, parallel: false}}
+            {{batchSize: {os.getenv("BATCH_SIZE", "1000")}, parallel: false}}
         )
         """
     ).consume()
