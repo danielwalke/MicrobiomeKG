@@ -44,7 +44,7 @@ if __name__ == "__main__":
     #propagated_graph_user = os.getenv("PROPAGATED_GRAPH_USERNAME")
     #propagated_graph_password = os.getenv("PROPAGATED_GRAPH_PASSWORD")
     propagated_graph_dir = os.getenv("PROPAGATED_GRAPH_DIR")
-    filtered_graph_dir = os.getenv("FILTERED_GRAPH_DIR")
+    node_filtered_graph_dir = os.getenv("NODE_FILTERED_GRAPH_DIR")
 
     #propagated_metagraph_uri = os.getenv("PROPAGATED_METAGRAPH_BOLT_URI")
     #propagated_metagraph_user = os.getenv("PROPAGATED_METAGRAPH_USERNAME")
@@ -56,6 +56,6 @@ if __name__ == "__main__":
     #metagraph_driver = GraphDatabase.driver(propagated_metagraph_uri, auth=(propagated_metagraph_user, propagated_metagraph_password))
     #migrate_metagraph(target_driver, metagraph_driver)
 
-    print(f"Cloning Propagated Graph to Stage 4 FILTERED_GRAPH_DIR: {filtered_graph_dir}")
-    clone_propagated_graph_data(propagated_graph_dir, filtered_graph_dir)
+    print(f"Cloning Propagated Graph to Stage 4 NODE_FILTERED_GRAPH_DIR: {node_filtered_graph_dir}")
+    clone_propagated_graph_data(propagated_graph_dir, node_filtered_graph_dir)
 

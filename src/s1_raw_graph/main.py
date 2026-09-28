@@ -64,8 +64,8 @@ def main():
 
     # 1. Primary Operation: For s1, the raw graph is already started by Java application.
     raw_graph_uri = os.getenv("RAW_GRAPH_BOLT_URI")
-    raw_graph_user = os.getenv("RAW_GRAPH_USERNAME")
-    raw_graph_password = os.getenv("RAW_GRAPH_PASSWORD")
+    #raw_graph_user = os.getenv("RAW_GRAPH_USERNAME")
+    #raw_graph_password = os.getenv("RAW_GRAPH_PASSWORD")
     raw_graph_dir = os.getenv("RAW_GRAPH_DIR")
 
     mapped_graph_dir = os.getenv("MAPPED_GRAPH_DIR")
@@ -78,7 +78,7 @@ def main():
     # notifications_min_severity="OFF" silences Neo4j's id() deprecation notice —
     # the NCBI resolution step below still relies on id(n) for node identity.
     source_driver = GraphDatabase.driver(
-        raw_graph_uri, auth=(raw_graph_user, raw_graph_password), notifications_min_severity="OFF"
+        raw_graph_uri, auth=None, notifications_min_severity="OFF"
     )
 
     # 2. NCBI Merged Taxonomies Resolution — runs against the raw graph itself, before
